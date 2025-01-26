@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     bool _boostDeceling;
     float _boostSpeed = 12f;
-    float _boostDecel = 36f;
+    float _boostDecel = 30f;
 
     Vector2 _dpad;
     bool _buttonA;
@@ -67,7 +67,6 @@ public class Player : MonoBehaviour
         }
         if(_boostDeceling) {
             Accelerate(ref _velocity.x, Mathf.Sign(_velocity.x), _boostDecel, delta, true);
-            //_velocity.x -= Mathf.Sign(_velocity.x) * _boostDecel * delta;
         }
         
         if(_controller._isGrounded) {
