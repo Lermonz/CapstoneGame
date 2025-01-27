@@ -11,6 +11,7 @@ public class TargetBehaviour : MonoBehaviour
     }
     public void GotHit() {
         this.gameObject.transform.localScale -= Vector3.up;
+        GameBehaviour.Instance.HitTarget();
         Destroy(gameObject, 0.5f);
     }
 }

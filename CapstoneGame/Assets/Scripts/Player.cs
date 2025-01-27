@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 
     bool _canBoost = true;
     bool _canSpin = true;
+    bool _canDoubleJump = true;
 
     bool _boostDeceling;
     float _boostSpeed = 12f;
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
     bool _buttonB;
 
     float _spinCooldown = 1.1f;
+    float _doubleJumpCooldown = 0.6f;
     
     void Start()
     {
@@ -81,10 +83,15 @@ public class Player : MonoBehaviour
         // Spin
         if(_buttonB && _canSpin) {
             Hitbox(1.5f, 0.8f);
-            if(!_controller._isGrounded) {
+            if(!_controller._isGrounded && _canDoubleJump) {
                 _velocity.y = _doubleJumpVelocity;
             }
             StartCoroutine(SpinCooldown());
+        }
+
+        //Refresh DoubleJump Property
+        if(_controller._isGrounded && !_canDoubleJump) {
+            StartCoroutine(DoubleJumpCooldown());
         }
         
         // Jump
@@ -106,6 +113,7 @@ public class Player : MonoBehaviour
     IEnumerator BoostCooldown() {
         _canBoost = false;
         _canSpin = false;
+        _canDoubleJump = false;
         _gravity = 0;
         _velocity.y = Mathf.Clamp(_velocity.y, -0.2f, 0.2f);
         yield return new WaitForSeconds(0.15f);
@@ -118,9 +126,15 @@ public class Player : MonoBehaviour
         _canBoost = true;
     }
     IEnumerator SpinCooldown() {
+        Debug.Log("SpinCooldown");
         _canSpin = false;
+        _canDoubleJump = false;
         yield return new WaitForSeconds(_spinCooldown);
         _canSpin = true;
+    }
+    IEnumerator DoubleJumpCooldown() {
+        yield return new WaitForSeconds(_doubleJumpCooldown);
+        _canDoubleJump = true;
     }
     void Accelerate(ref float axis, float input, float mult, float delta, bool decel = false) {
         int dir = decel ? -1 : 1;
