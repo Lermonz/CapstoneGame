@@ -43,6 +43,7 @@ public class Controller2D : MonoBehaviour
                 velocity.y = (hit.distance-boundInset) * directionY;
                 rayLength = hit.distance;
                 _isGrounded = true;
+                Debug.Log("Grounded");
             }
             else {
                 _isGrounded = false;
@@ -91,8 +92,5 @@ public class Controller2D : MonoBehaviour
     public struct RayCastOrigins {
         public Vector2 topleft, topright;
         public Vector2 botleft, botright;
-    }
-    void LandingProperties() {
-        _canDoubleJump = true;
     }
 }
