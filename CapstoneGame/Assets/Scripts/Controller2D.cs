@@ -11,10 +11,12 @@ public class Controller2D : MonoBehaviour
     float _horzRaySpacing;
     float _vertRaySpacing;
 
+    float _vertElseCount;
+
     public LayerMask collMask;
 
     public bool _isGrounded;
-
+    public bool _hitCeiling;
     public bool _canDoubleJump;
 
     BoxCollider2D _collider;
@@ -33,6 +35,8 @@ public class Controller2D : MonoBehaviour
         float directionY = Mathf.Sign(velocity.y);
         float rayLength = Mathf.Abs(velocity.y)+boundInset;
 
+        _vertElseCount = 0;
+
         for(int i = 0; i < _vertRayCount; i++) {
             Vector2 rayOrigin = directionY == -1 ? _raycastOrigins.botleft : _raycastOrigins.topleft;
             rayOrigin += Vector2.right * (_vertRaySpacing * i + velocity.x);
@@ -42,12 +46,22 @@ public class Controller2D : MonoBehaviour
             if(hit) {
                 velocity.y = (hit.distance-boundInset) * directionY;
                 rayLength = hit.distance;
-                _isGrounded = true;
-                Debug.Log("Grounded");
+                if(directionY == 1) {
+                    _hitCeiling = true;
+                }
+                else {
+                    _isGrounded = true;
+                }
+                
             }
             else {
-                _isGrounded = false;
+                _vertElseCount++;
             }
+        }
+        if(_vertElseCount >= _vertRayCount) {
+            Debug.Log("Airborne");
+            _isGrounded = false;
+            _hitCeiling = false;
         }
     }
     void HorzCollisions(ref Vector2 velocity) {
