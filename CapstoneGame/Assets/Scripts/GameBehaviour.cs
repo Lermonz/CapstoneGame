@@ -19,6 +19,9 @@ public class GameBehaviour : MonoBehaviour
         else
             Instance = this;
     }
+    void Start() {
+        Application.targetFrameRate = 60;
+    }
     public void HitTarget() {
         TargetsDestroyed++;
     }
