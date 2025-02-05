@@ -12,8 +12,8 @@ public class Player : MonoBehaviour
     SpriteRenderer _renderer;
     Vector2 _velocity;
     public GameObject _hitBox;
-    float _jumpVelocity = 8f;
-    float _doubleJumpVelocity = 6f;
+    float _jumpVelocity = 9f;
+    float _doubleJumpVelocity = 6.5f;
     float _downBoostVelocity = -10f;
     float _gravity = -0.3f;
     float _baseAccel = 10f;

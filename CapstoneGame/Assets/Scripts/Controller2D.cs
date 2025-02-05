@@ -40,8 +40,8 @@ public class Controller2D : MonoBehaviour
         _vertElseCount = 0;
 
         for(int i = 0; i < _vertRayCount; i++) {
-            Vector2 rayOrigin = directionY == -1 ? _raycastOrigins.botleft : _raycastOrigins.topleft;
-            rayOrigin += Vector2.right * (_vertRaySpacing + velocity.x);
+            Vector2 rayOrigin = directionY == -1 ? _raycastOrigins.botleft + Vector2.right*0.05f : _raycastOrigins.topleft;
+            rayOrigin += Vector2.right * i * _vertRaySpacing;
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collMask);
             Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
 
@@ -74,7 +74,7 @@ public class Controller2D : MonoBehaviour
         float rayLength = Mathf.Abs(velocity.x)+boundInset;
         _horzElseCount = 0;
 
-        for(int i = 0; i < _vertRayCount; i++) {
+        for(int i = 1; i < _vertRayCount; i++) {
             Vector2 rayOrigin = directionX == -1 ? _raycastOrigins.botleft : _raycastOrigins.botright;
             rayOrigin += Vector2.up * (_horzRaySpacing * i);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collMask);
@@ -91,7 +91,7 @@ public class Controller2D : MonoBehaviour
                 _horzElseCount++;
             }
         }
-        if(_horzElseCount >= _horzRayCount) {
+        if(_horzElseCount >= _horzRayCount-2) {
             _hitWall = false;
         }
 
@@ -111,7 +111,7 @@ public class Controller2D : MonoBehaviour
         _vertRayCount = Mathf.Clamp(_vertRayCount,2,20);
 
         _horzRaySpacing = bounds.size.y / (_horzRayCount-1);
-        _vertRaySpacing = bounds.size.y / (_vertRayCount-1);
+        _vertRaySpacing = 0.9f * bounds.size.y / (_vertRayCount-1);
     }
     Bounds getBounds() {
         Bounds bounds = _collider.bounds;
