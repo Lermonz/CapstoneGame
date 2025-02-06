@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     bool _buttonA;
     bool _buttonB;
 
-    float _spinCooldown = 66f;
+    float _spinCooldown = 50f;
     float _doubleJumpCooldown = 8f;
     
     void Start()
@@ -124,6 +124,7 @@ public class Player : MonoBehaviour
 
         //Refresh DoubleJump Property
         if(_controller._isGrounded && !_canDoubleJump) {
+            StopCoroutine(SpinCooldown(0));
             StartCoroutine(DoubleJumpCooldown(_doubleJumpCooldown));
             StartCoroutine(SpinCooldown(_doubleJumpCooldown));
         }
@@ -170,7 +171,6 @@ public class Player : MonoBehaviour
             StartCoroutine(BoostCooldown(12f));
     }
     IEnumerator SpinCooldown(float cooldown) {
-        Debug.Log("SpinCooldown");
         for(int i = 0; i < cooldown; i++) {
             _canSpin = false;
             yield return null;
@@ -181,6 +181,7 @@ public class Player : MonoBehaviour
         for(int i = 0; i < cooldown; i++) {
             yield return null;
         }
+        _canSpin = true;
         _canDoubleJump = true;
     }
     IEnumerator BoostCooldown(float cooldown) {
