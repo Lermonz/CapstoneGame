@@ -162,7 +162,7 @@ public class Player : MonoBehaviour
         }
         _canDownBoost = true;
         _boostDeceling = true;
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.21f);
         _boostDeceling = false;
         if(!_controller._isGrounded) {
             StartCoroutine(BoostCooldown(60f));

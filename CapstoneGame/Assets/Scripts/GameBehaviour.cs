@@ -10,6 +10,7 @@ public class GameBehaviour : MonoBehaviour
     int _targetsDestroyed;
     public int TargetsDestroyed { get => _targetsDestroyed; set {_targetsDestroyed = value;}}
     public bool _canExit;
+    public bool _stopTimer;
 
     void Awake()
     {
@@ -21,6 +22,7 @@ public class GameBehaviour : MonoBehaviour
     }
     void Start() {
         Application.targetFrameRate = 60;
+        _stopTimer = false;
     }
     public void HitTarget() {
         TargetsDestroyed++;
