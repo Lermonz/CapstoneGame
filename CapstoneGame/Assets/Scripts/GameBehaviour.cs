@@ -6,11 +6,12 @@ public class GameBehaviour : MonoBehaviour
 {
     public static GameBehaviour Instance;
     public int _currentLevel;
-    public int[] _targetReq;
-    int _targetsDestroyed;
+    public int _targetReq;
+    public int _targetsDestroyed;
     public int TargetsDestroyed { get => _targetsDestroyed; set {_targetsDestroyed = value;}}
     public bool _canExit;
     public bool _stopTimer;
+    public bool _countdownDone = false;
 
     void Awake()
     {
@@ -22,15 +23,24 @@ public class GameBehaviour : MonoBehaviour
     }
     void Start() {
         Application.targetFrameRate = 60;
-        _stopTimer = false;
+        _stopTimer = true;
+        StartCoroutine(Countdown());
     }
     public void HitTarget() {
         TargetsDestroyed++;
     }
     void Update() {
         // if you've destroyed enough targets for this level, you can touch the goal
-        if(_targetsDestroyed >= _targetReq[_currentLevel]) {
+        if(_targetsDestroyed >= _targetReq) {
             _canExit = true;
         }
+    }
+    IEnumerator Countdown() {
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(2f);
+        _stopTimer = false;
+        _countdownDone = true;
+        Time.timeScale = 1f;
+
     }
 }

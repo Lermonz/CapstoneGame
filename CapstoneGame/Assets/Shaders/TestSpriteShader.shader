@@ -46,10 +46,10 @@ Shader "Unlit/TestSpriteShader"
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                i.uv *= 5;
+                i.uv *= 2.5;
                 i.uv *= cos(i.uv.x)*_SinTime.w*0.2+1;
-                i.uv.x += cos(i.uv.x + _Time.y)*0.28+_Time.y*0.52;
-                i.uv.y += cos(i.uv.y + _Time.y)*0.015;
+                i.uv.x += cos(i.uv.y + _Time.y)*0.25+_Time.y*0.22;
+                i.uv.y += cos(i.uv.x + _Time.y)*0.025+_Time.y*0.1;
                 fixed4 col = tex2D(_MainTex, i.uv);
                 return col;
             }

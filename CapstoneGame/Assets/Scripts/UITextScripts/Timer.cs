@@ -2,13 +2,17 @@ using UnityEngine;
 using TMPro;
 
 [RequireComponent(typeof(TMP_Text))]
+[DisallowMultipleComponent]
 public class Timer : MonoBehaviour
 {
     float _totalFrames = 0;
-    public static int ms = 0;
-    public static int s = 0;
-    public static int m = 0;
-    public TMP_Text _timer;
+    int ms = 0;
+    int s = 0;
+    int m = 0;
+    TMP_Text _timer;
+    void Start() {
+        _timer = GetComponent<TextMeshProUGUI>();
+    }
     void Update()
     {
         if(!GameBehaviour.Instance._stopTimer) {

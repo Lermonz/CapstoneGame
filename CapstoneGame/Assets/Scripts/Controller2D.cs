@@ -61,7 +61,6 @@ public class Controller2D : MonoBehaviour
             }
         }
         if(_vertElseCount >= _vertRayCount) {
-            Debug.Log("Airborne");
             _isGrounded = false;
             _hitCeiling = false;
         }

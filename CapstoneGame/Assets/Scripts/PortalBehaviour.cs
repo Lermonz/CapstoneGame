@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PortalBehaviour : MonoBehaviour
 {
+    public GameObject _winMenu;
     void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")) {
             if(GameBehaviour.Instance._canExit) {
@@ -17,7 +18,8 @@ public class PortalBehaviour : MonoBehaviour
         ResetTransform();
     }
     void ExitSuccess() {
-        Debug.Log("YAY YIPPE WAHOO!!!!!!!!");
+        Time.timeScale = 0;
+        _winMenu.SetActive(true);
     }
     void ExitFail() {
         this.transform.localScale = new Vector3(0.6f,0.6f,0.6f);

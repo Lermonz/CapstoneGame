@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 {
     Controller2D _controller;
     SpriteRenderer _renderer;
+    //ParticleSystem _particles;
     Vector2 _velocity;
     public GameObject _hitBox;
     float _jumpVelocity = 9f;
@@ -28,8 +29,6 @@ public class Player : MonoBehaviour
     bool _canDoubleJump = true;
     bool _canDownBoost = true;
 
-    bool _ignoreWallVerticalClamp = false;
-
     bool _boostDeceling;
     float _boostSpeed = 12f;
     float _boostDecel = 30f;
@@ -45,6 +44,7 @@ public class Player : MonoBehaviour
     {
         _controller = GetComponent<Controller2D>();
         _renderer = GetComponent<SpriteRenderer>();
+        //_particles = GetComponent<ParticleSystem>();
     }
     void Update() {
         float delta = Time.deltaTime;
@@ -101,6 +101,7 @@ public class Player : MonoBehaviour
                 facingDirection = Mathf.Sign(_dpad.x);
             }
             _velocity.x += _boostSpeed * facingDirection;
+            //_particles.Play();
             StartCoroutine(BoostCoroutine());
         }
         if(_boostDeceling) {
@@ -129,8 +130,9 @@ public class Player : MonoBehaviour
             StartCoroutine(SpinCooldown(_doubleJumpCooldown));
         }
         
-        
+        //Fast Fall / Down Boost
         if(_dpad.y < 0 && _canDownBoost) {
+            //_particles.Play();
             _velocity.y = _downBoostVelocity;
             _canDownBoost = false;
         }
