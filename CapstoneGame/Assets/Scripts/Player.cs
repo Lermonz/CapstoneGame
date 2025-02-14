@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -10,14 +11,13 @@ public class Player : MonoBehaviour
 {
     Controller2D _controller;
     SpriteRenderer _renderer;
-    //ParticleSystem _particles;
     Vector2 _velocity;
     public GameObject _hitBox;
-    float _jumpVelocity = 9f;
-    float _doubleJumpVelocity = 6.5f;
+    float _jumpVelocity = 10.8f;
+    float _doubleJumpVelocity = 7.5f;
     float _downBoostVelocity = -10f;
     float _gravity = -0.3f;
-    float _baseAccel = 10f;
+    float _baseAccel = 6f;
     float _baseDecel = 16f;
     float _baseAirDecel = 2.5f;
     float _skidDecel = 30f;
@@ -101,15 +101,18 @@ public class Player : MonoBehaviour
                 facingDirection = Mathf.Sign(_dpad.x);
             }
             _velocity.x += _boostSpeed * facingDirection;
-            //_particles.Play();
             StartCoroutine(BoostCoroutine());
         }
         if(_boostDeceling) {
             Accelerate(ref _velocity.x, Mathf.Sign(_velocity.x), _boostDecel, delta, true);
         }
         if(_controller._hitWall) {
-            StopCoroutine(BoostCoroutine());
-            _velocity.x = Mathf.Clamp(_velocity.x,-5,5);
+            if(Mathf.Abs(_velocity.x) > _maxRunSpeed) {
+                _velocity.x = -_velocity.x*0.4f;
+                _velocity.y = Mathf.Abs(_velocity.x);
+            }
+            else
+                _velocity.x = Mathf.Clamp(_velocity.x,-5,5);
             _boostDeceling = false;
         }
 
@@ -132,7 +135,6 @@ public class Player : MonoBehaviour
         
         //Fast Fall / Down Boost
         if(_dpad.y < 0 && _canDownBoost) {
-            //_particles.Play();
             _velocity.y = _downBoostVelocity;
             _canDownBoost = false;
         }
@@ -166,11 +168,7 @@ public class Player : MonoBehaviour
         _boostDeceling = true;
         yield return new WaitForSeconds(0.21f);
         _boostDeceling = false;
-        if(!_controller._isGrounded) {
-            StartCoroutine(BoostCooldown(60f));
-        }
-        else
-            StartCoroutine(BoostCooldown(12f));
+        StartCoroutine(BoostCooldown(60f));
     }
     IEnumerator SpinCooldown(float cooldown) {
         for(int i = 0; i < cooldown; i++) {
@@ -188,6 +186,8 @@ public class Player : MonoBehaviour
     }
     IEnumerator BoostCooldown(float cooldown) {
         for(int i = 0; i < cooldown; i++) {
+            if(_controller._isGrounded && i < cooldown - 12)
+                i = (int)cooldown - 12;
             yield return null;
         }
         _canBoost = true;
@@ -205,6 +205,7 @@ public class Player : MonoBehaviour
         HitBoxObject = Instantiate(_hitBox, this.transform);
         HitBoxObject.transform.localScale = new Vector3(width, height, 20);
     }
+    
     void OnGUI() {
         string CoordText = GUI.TextArea(new Rect(0, 0, 150, 150), 
         ("XPos: "+this.transform.position.x.ToString("#.00")+
@@ -216,4 +217,5 @@ public class Player : MonoBehaviour
         "\nCan Double Jump: "+_canDoubleJump+
         "\nCan Fast Fall: "+_canDownBoost));
     }
+    
 }

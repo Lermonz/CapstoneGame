@@ -1,4 +1,4 @@
-Shader "Unlit/TestSpriteShader"
+Shader "Unlit/WeirdWobbleShader1"
 {
     Properties
     {
@@ -46,10 +46,9 @@ Shader "Unlit/TestSpriteShader"
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                i.uv *= 2.5;
                 i.uv *= cos(i.uv.x)*_SinTime.w*0.2+1;
-                i.uv.x += cos(i.uv.y + _Time.y)*0.25+_Time.y*0.22;
-                i.uv.y += cos(i.uv.x + _Time.y)*0.025+_Time.y*0.1;
+                i.uv.x += dot(_Time.y*0.2+15,i.uv.y)+_CosTime.y*0.13;
+                i.uv.y += sin(distance(cos(i.uv.y),i.uv.x))*0.25+_Time.y*0.21;
                 fixed4 col = tex2D(_MainTex, i.uv);
                 return col;
             }

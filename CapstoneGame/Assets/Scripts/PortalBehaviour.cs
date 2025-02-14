@@ -5,6 +5,11 @@ using UnityEngine;
 public class PortalBehaviour : MonoBehaviour
 {
     public GameObject _winMenu;
+    private float _scale;
+    void Start()
+    {
+        _scale = transform.localScale.x;
+    }
     void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")) {
             if(GameBehaviour.Instance._canExit) {
@@ -22,9 +27,9 @@ public class PortalBehaviour : MonoBehaviour
         _winMenu.SetActive(true);
     }
     void ExitFail() {
-        this.transform.localScale = new Vector3(0.6f,0.6f,0.6f);
+        this.transform.localScale = new Vector3(_scale*0.5f,_scale*0.5f,_scale*0.5f);
     }
     void ResetTransform() {
-        this.transform.localScale = new Vector3(1,1,1);
+        this.transform.localScale = new Vector3(_scale,_scale,_scale);
     }
 }
