@@ -11,7 +11,7 @@ public class CountdownText : MonoBehaviour
     }
     void Update()
     {
-        if(GameBehaviour.Instance._countdownDone) {
+        if(LevelManager.Instance._countdownDone) {
             CountGo();
         }
     }

@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GameBehaviour : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
-    public static GameBehaviour Instance;
+    public static LevelManager Instance;
     public int _currentLevel;
     public int _targetReq;
     public int _targetsDestroyed;

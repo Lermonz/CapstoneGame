@@ -15,7 +15,7 @@ public class Timer : MonoBehaviour
     }
     void Update()
     {
-        if(!GameBehaviour.Instance._stopTimer) {
+        if(!LevelManager.Instance._stopTimer) {
             _totalFrames+=Time.deltaTime;
             m = Mathf.FloorToInt(_totalFrames/60);
             s = Mathf.FloorToInt(_totalFrames%60);

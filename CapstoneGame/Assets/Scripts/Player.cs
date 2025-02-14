@@ -33,9 +33,7 @@ public class Player : MonoBehaviour
     float _boostSpeed = 12f;
     float _boostDecel = 30f;
 
-    Vector2 _dpad;
-    bool _buttonA;
-    bool _buttonB;
+    //Vector2 _dpad;
 
     float _spinCooldown = 50f;
     float _doubleJumpCooldown = 8f;
@@ -48,10 +46,8 @@ public class Player : MonoBehaviour
     }
     void Update() {
         float delta = Time.deltaTime;
-        _dpad = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        _buttonA = Input.GetButtonDown("Boost");
-        _buttonB = Input.GetButtonDown("Spin");
-        if ((_dpad.x > 0 && _renderer.flipX) || (_dpad.x < 0 && !_renderer.flipX)) {
+        //_dpad = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if ((InputManager.Instance.HorizontalInput > 0 && _renderer.flipX) || (InputManager.Instance.HorizontalInput < 0 && !_renderer.flipX)) {
             _renderer.flipX = !_renderer.flipX;
         }
         if(_controller._isGrounded) {
@@ -60,7 +56,7 @@ public class Player : MonoBehaviour
             _canDownBoost = false;
         }
         // Jump
-        if(_canJump && _dpad.y > 0) {
+        if(_canJump && InputManager.Instance.JumpInput) {
             _velocity.y = _jumpVelocity;
             _canDownBoost = true;
             _canJump = false;
@@ -72,20 +68,20 @@ public class Player : MonoBehaviour
         
         // if not at max run speed yet, accelerate to max run speed
         if(Mathf.Abs(_velocity.x) < _maxRunSpeed) {
-            Accelerate(ref _velocity.x, _dpad.x, _baseAccel, delta);
+            Accelerate(ref _velocity.x, InputManager.Instance.HorizontalInput, _baseAccel, delta);
         }
         // if over max run speed, decelerate to max run speed
         if(Mathf.Abs(_velocity.x) >= _maxRunSpeed) {
-            Accelerate(ref _velocity.x, _dpad.x, _baseAccel, delta, true);
+            Accelerate(ref _velocity.x, InputManager.Instance.HorizontalInput, _baseAccel, delta, true);
             //_velocity.x -= _dpad.x * _baseAccel * delta;
         }
         // deceleration for skidding on the ground
-        if(Mathf.Sign(_dpad.x) != Mathf.Sign(_velocity.x)) {
-            Accelerate(ref _velocity.x, _dpad.x, _skidDecel, delta);
+        if(Mathf.Sign(InputManager.Instance.HorizontalInput) != Mathf.Sign(_velocity.x)) {
+            Accelerate(ref _velocity.x, InputManager.Instance.HorizontalInput, _skidDecel, delta);
             //_velocity.x += _dpad.x * _skidDecel * delta;
         }
         // deceleration for when you are no longer pressing a direction
-        if(_dpad.x == 0 && _velocity.x != 0) {
+        if(InputManager.Instance.HorizontalInput == 0 && _velocity.x != 0) {
             if(_controller._isGrounded) {
                 Accelerate(ref _velocity.x, Mathf.Sign(_velocity.x), _baseDecel, delta, true);
             }
@@ -95,10 +91,10 @@ public class Player : MonoBehaviour
         }
 
         // Boost
-        if(_canBoost && _buttonA) {
+        if(_canBoost && InputManager.Instance.BoostInput) {
             float facingDirection = _renderer.flipX ? -1 : 1;
-            if(_dpad.x != 0) {
-                facingDirection = Mathf.Sign(_dpad.x);
+            if(InputManager.Instance.HorizontalInput != 0) {
+                facingDirection = Mathf.Sign(InputManager.Instance.HorizontalInput);
             }
             _velocity.x += _boostSpeed * facingDirection;
             StartCoroutine(BoostCoroutine());
@@ -117,7 +113,7 @@ public class Player : MonoBehaviour
         }
 
         // Spin
-        if(_buttonB && _canSpin) {
+        if(InputManager.Instance.SpinInput && _canSpin) {
             Hitbox(1.5f, 0.8f);
             if(!_controller._isGrounded && _canDoubleJump) {
                 _canDoubleJump = false;
@@ -134,7 +130,7 @@ public class Player : MonoBehaviour
         }
         
         //Fast Fall / Down Boost
-        if(_dpad.y < 0 && _canDownBoost) {
+        if(InputManager.Instance.DownInput && _canDownBoost) {
             _velocity.y = _downBoostVelocity;
             _canDownBoost = false;
         }

@@ -12,7 +12,7 @@ public class PortalBehaviour : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")) {
-            if(GameBehaviour.Instance._canExit) {
+            if(LevelManager.Instance._canExit) {
                 ExitSuccess();
             }
             else
