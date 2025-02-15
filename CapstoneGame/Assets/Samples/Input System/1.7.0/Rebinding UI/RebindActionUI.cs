@@ -24,7 +24,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             set
             {
                 m_Action = value;
-                UpdateActionLabel();
+                //UpdateActionLabel();
                 UpdateBindingDisplay();
             }
         }
@@ -56,7 +56,8 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// <summary>
         /// Text component that receives the name of the action. Optional.
         /// </summary>
-        public Text actionLabel
+        /*
+        public TMPro.TextMeshProUGUI actionLabel
         {
             get => m_ActionLabel;
             set
@@ -65,12 +66,13 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 UpdateActionLabel();
             }
         }
+        */
 
         /// <summary>
         /// Text component that receives the display string of the binding. Can be <c>null</c> in which
         /// case the component entirely relies on <see cref="updateBindingUIEvent"/>.
         /// </summary>
-        public Text bindingText
+        public TMPro.TextMeshProUGUI bindingText
         {
             get => m_BindingText;
             set
@@ -382,11 +384,11 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         [Tooltip("Text label that will receive the name of the action. Optional. Set to None to have the "
             + "rebind UI not show a label for the action.")]
         [SerializeField]
-        private Text m_ActionLabel;
+        private TMPro.TextMeshProUGUI m_ActionLabel;
 
         [Tooltip("Text label that will receive the current, formatted binding string.")]
         [SerializeField]
-        private Text m_BindingText;
+        private TMPro.TextMeshProUGUI m_BindingText;
 
         [Tooltip("Optional UI that will be shown while a rebind is in progress.")]
         [SerializeField]
@@ -420,7 +422,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         #if UNITY_EDITOR
         protected void OnValidate()
         {
-            UpdateActionLabel();
+            //UpdateActionLabel();
             UpdateBindingDisplay();
         }
 
