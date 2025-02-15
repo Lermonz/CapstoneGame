@@ -17,6 +17,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start() {
         OpenMainMenu();
+        Time.timeScale = 1f;
     }
 
     private void CloseMenus() {

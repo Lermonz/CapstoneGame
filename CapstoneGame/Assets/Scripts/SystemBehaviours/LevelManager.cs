@@ -21,7 +21,6 @@ public class LevelManager : MonoBehaviour
             Instance = this;
     }
     void Start() {
-        Application.targetFrameRate = 60;
         _stopTimer = true;
         StartCoroutine(Countdown());
     }
