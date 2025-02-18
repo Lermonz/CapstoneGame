@@ -31,7 +31,7 @@ Shader "Unlit/WeirdWobbleShader"
             };
 
             sampler2D _MainTex;
-            float4 _Color;
+            fixed4 _Color;
             float4 _MainTex_ST;
 
             v2f vert (appdata v)
@@ -46,11 +46,11 @@ Shader "Unlit/WeirdWobbleShader"
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                i.uv *= 2.5;
+                i.uv *= 6;
                 i.uv *= cos(i.uv.x)*_SinTime.w*0.2+1;
                 i.uv.x += cos(i.uv.y + _Time.y)*0.25+_Time.y*0.22;
                 i.uv.y += cos(i.uv.x + _Time.y)*0.025+_Time.y*0.1;
-                fixed4 col = tex2D(_MainTex, i.uv);
+                fixed4 col = tex2D(_MainTex, i.uv)*_Color;
                 return col;
             }
             ENDCG

@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MenuOpenClose",
+                    "name": "MenuOpen",
                     "type": "Button",
                     "id": "7242b3f7-e441-4193-893f-89e6b987e961",
                     "expectedControlType": "Button",
@@ -145,7 +145,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "MenuOpenClose",
+                    "action": "MenuOpen",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -153,12 +153,12 @@
         },
         {
             "name": "UI",
-            "id": "39b79383-4a16-49b7-acec-9d505fcad505",
+            "id": "bec0adaa-38f9-4917-a553-af03f44eebed",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "MenuClose",
                     "type": "Button",
-                    "id": "1482e521-b2a3-4c44-ba74-fde3f3ec6bdb",
+                    "id": "52014257-7ef8-454f-8764-468ebbf413df",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -168,12 +168,12 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "3de72aca-759f-4a0c-ac07-8b53bdfd0641",
-                    "path": "",
+                    "id": "6e229b1f-d41a-4f3b-a7f3-30033c8a8492",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "New action",
+                    "groups": "Keyboard",
+                    "action": "MenuClose",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

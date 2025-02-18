@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance;
+    public static PlayerInput PlayerInput;
 
     // Input Properties //
     public float HorizontalInput {get; private set;}
@@ -14,16 +15,18 @@ public class InputManager : MonoBehaviour
     public bool DownInput {get; private set;}
     public bool BoostInput {get; private set;}
     public bool SpinInput {get; private set;}
-    public bool MenuOpenCloseInput {get; private set;}
+    public bool MenuOpenInput {get; private set;}
 
-    PlayerInput _playerInput;
+    public bool UIMenuCloseInput {get; private set;}
 
     private InputAction _horizontalAction;
     private InputAction _jumpAction;
     private InputAction _downAction;
     private InputAction _boostAction;
     private InputAction _spinAction;
-    private InputAction _menuOpenCloseAction;
+    private InputAction _menuOpenAction;
+
+    private InputAction _menuCloseAction;
 
     void Awake()
     {
@@ -31,13 +34,15 @@ public class InputManager : MonoBehaviour
             Destroy(this);
         else
             Instance = this;
-        _playerInput = GetComponent<PlayerInput>();
-        _horizontalAction = _playerInput.actions["Horizontal"];
-        _jumpAction = _playerInput.actions["Jump"];
-        _downAction = _playerInput.actions["Down"];
-        _boostAction = _playerInput.actions["Boost"];
-        _spinAction = _playerInput.actions["Spin"];
-        _menuOpenCloseAction = _playerInput.actions["MenuOpenClose"];
+        PlayerInput = GetComponent<PlayerInput>();
+        _horizontalAction = PlayerInput.actions["Horizontal"];
+        _jumpAction = PlayerInput.actions["Jump"];
+        _downAction = PlayerInput.actions["Down"];
+        _boostAction = PlayerInput.actions["Boost"];
+        _spinAction = PlayerInput.actions["Spin"];
+        _menuOpenAction = PlayerInput.actions["MenuOpen"];
+
+        _menuCloseAction = PlayerInput.actions["MenuClose"];
     }
     void Update()
     {
@@ -46,6 +51,13 @@ public class InputManager : MonoBehaviour
         DownInput = _downAction.WasPressedThisFrame();
         BoostInput = _boostAction.WasPressedThisFrame();
         SpinInput = _spinAction.WasPressedThisFrame();
-        MenuOpenCloseInput = _menuOpenCloseAction.WasPressedThisFrame();
+        MenuOpenInput = _menuOpenAction.WasPressedThisFrame();
+        UIMenuCloseInput = _menuCloseAction.WasPressedThisFrame();
+    }
+    public void DisablePlayerInput() {
+        PlayerInput.SwitchCurrentActionMap("UI");
+    }
+    public void EnablePlayerInput() {
+        PlayerInput.SwitchCurrentActionMap("Player");
     }
 }

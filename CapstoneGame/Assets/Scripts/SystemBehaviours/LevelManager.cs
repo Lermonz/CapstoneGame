@@ -14,14 +14,15 @@ public class LevelManager : MonoBehaviour
 
     void Awake()
     {
-        // Singleton pattern
         if (Instance != null && Instance != this)
             Destroy(this);
         else
             Instance = this;
     }
     void Start() {
+        Time.timeScale = 1f;
         _stopTimer = true;
+        InputManager.Instance.DisablePlayerInput();
         StartCoroutine(Countdown());
     }
     public void HitTarget() {
@@ -34,11 +35,9 @@ public class LevelManager : MonoBehaviour
         }
     }
     IEnumerator Countdown() {
-        Time.timeScale = 0f;
         yield return new WaitForSecondsRealtime(2f);
         _stopTimer = false;
         _countdownDone = true;
-        Time.timeScale = 1f;
-
+        InputManager.Instance.EnablePlayerInput();
     }
 }

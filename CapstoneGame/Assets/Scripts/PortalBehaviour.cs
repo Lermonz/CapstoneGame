@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PortalBehaviour : MonoBehaviour
 {
-    public GameObject _winMenu;
     private float _scale;
     void Start()
     {
@@ -24,7 +23,8 @@ public class PortalBehaviour : MonoBehaviour
     }
     void ExitSuccess() {
         Time.timeScale = 0;
-        _winMenu.SetActive(true);
+        InputManager.Instance.DisablePlayerInput();
+        PauseMenu.Instance.OnWin();
     }
     void ExitFail() {
         this.transform.localScale = new Vector3(_scale*0.5f,_scale*0.5f,_scale*0.5f);
