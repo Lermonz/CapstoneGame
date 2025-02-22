@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool _isPaused = false;
+    public bool _isPaused = false;
     public static PauseMenu Instance;
     [Header ("Panels")]
     public GameObject _pauseMenu;
@@ -23,6 +23,7 @@ public class PauseMenu : MonoBehaviour
             Destroy(this);
         else
             Instance = this;
+        _isPaused = false;
     }
     private void Update() {
         if(InputManager.Instance.MenuOpenInput) {

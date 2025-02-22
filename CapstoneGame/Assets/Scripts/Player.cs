@@ -1,18 +1,20 @@
-using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [RequireComponent (typeof (Controller2D))]
 [RequireComponent (typeof (SpriteRenderer))]
+[RequireComponent (typeof (VFXPlayer))]
+[RequireComponent (typeof (Player_SFXPlayer))]
 public class Player : MonoBehaviour
 {
     Controller2D _controller;
     SpriteRenderer _renderer;
+    VFXPlayer _vfxPlayer;
+    Player_SFXPlayer _sfxPlayer;
+
     Vector2 _velocity;
     public GameObject _hitBox;
+
     float _jumpVelocity = 10.8f;
     float _doubleJumpVelocity = 7.5f;
     float _downBoostVelocity = -10f;
@@ -35,13 +37,15 @@ public class Player : MonoBehaviour
 
     //Vector2 _dpad;
 
-    float _spinCooldown = 50f;
+    float _spinCooldown = 42f;
     float _doubleJumpCooldown = 8f;
     
     void Start()
     {
         _controller = GetComponent<Controller2D>();
         _renderer = GetComponent<SpriteRenderer>();
+        _vfxPlayer = GetComponent<VFXPlayer>();
+        _sfxPlayer = GetComponent<Player_SFXPlayer>();
         //_particles = GetComponent<ParticleSystem>();
     }
     void Update() {
@@ -58,6 +62,7 @@ public class Player : MonoBehaviour
         // Jump
         if(_canJump && InputManager.Instance.JumpInput) {
             _velocity.y = _jumpVelocity;
+            _sfxPlayer.SetAndPlayOneShot(_sfxPlayer._jumpSFX);
             _canDownBoost = true;
             _canJump = false;
         }
@@ -97,6 +102,8 @@ public class Player : MonoBehaviour
                 facingDirection = Mathf.Sign(InputManager.Instance.HorizontalInput);
             }
             _velocity.x += _boostSpeed * facingDirection;
+            _sfxPlayer.SetAndPlayOneShot(_sfxPlayer._boostSFX);
+            _vfxPlayer.Boost_AfterImage(_renderer.flipX);
             StartCoroutine(BoostCoroutine());
         }
         if(_boostDeceling) {
@@ -115,6 +122,8 @@ public class Player : MonoBehaviour
         // Spin
         if(InputManager.Instance.SpinInput && _canSpin) {
             Hitbox(1.5f, 0.8f);
+            _sfxPlayer.SetAndPlayOneShot(_sfxPlayer._spinSFX);
+            _vfxPlayer.Spin_Sparkle();
             if(!_controller._isGrounded && _canDoubleJump) {
                 _canDoubleJump = false;
                 _velocity.y = _doubleJumpVelocity;
@@ -132,13 +141,14 @@ public class Player : MonoBehaviour
         //Fast Fall / Down Boost
         if(InputManager.Instance.DownInput && _canDownBoost) {
             _velocity.y = _downBoostVelocity;
+            _sfxPlayer.SetAndPlayOneShot(_sfxPlayer._fastFallSFX);
             _canDownBoost = false;
         }
         if(_controller._hitCeiling) {
             _velocity.y = 0;
         }
-        
-        _velocity.y += _gravity;
+        if(!PauseMenu.Instance._isPaused)
+            _velocity.y += _gravity;
         if(Mathf.Abs(_velocity.x) < 0.02) {
             _velocity.x = 0;
         }

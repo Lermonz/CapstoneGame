@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Unlit_WeirdWobbleShader2
-  m_Shader: {fileID: 4800000, guid: 0ef4126c2b51c4a8fb483ceef802552e, type: 3}
+  m_Name: Unlit_SolidColor
+  m_Shader: {fileID: 4800000, guid: 5143c4668078046be85b50422c0cb4d4, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -30,6 +30,5 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Color1: {r: 0.62423694, g: 0.46610194, b: 0.6509804, a: 1}
-    - _Color2: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

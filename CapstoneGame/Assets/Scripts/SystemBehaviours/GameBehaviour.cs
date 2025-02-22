@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class GameBehaviour : MonoBehaviour
 {
     public static GameBehaviour Instance;
+    public bool _isGame;
     void Awake()
     {
         if (Instance != null && Instance != this)

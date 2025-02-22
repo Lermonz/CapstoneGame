@@ -4,6 +4,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     Vector2 _startPos;
+    public float _speed = 1;
     float _z;
     [SerializeField] private GameObject _toFollow;
     void Awake() {
@@ -11,6 +12,6 @@ public class CameraFollow : MonoBehaviour
         _z = this.transform.position.z;
     }
     void Update(){
-        this.transform.position = new Vector3(_toFollow.transform.position.x,_toFollow.transform.position.y,_z);
+        this.transform.position = new Vector3(_toFollow.transform.position.x*_speed,_toFollow.transform.position.y*_speed,_z);
     }
 }

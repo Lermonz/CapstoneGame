@@ -1,18 +1,18 @@
-Shader "Unlit/WeirdWobbleShader2"
+Shader "Unlit/SolidColor"
 {
     Properties {
-        _Color1 ("Color 1", Color) = (1,1,1,1)
-        _Color2 ("Color 2", Color) = (0,0,0,1)
+        _Color ("Color", Color) = (1,1,1,1)
         _MainTex ("Sprite Texture", 2D) = "white" { }
     }
     SubShader
     {
         Tags { "QUEUE"="Transparent" "IGNOREPROJECTOR"="true" "RenderType"="Transparent" }
         LOD 200
-        Blend One OneMinusSrcAlpha
 
         Pass
         {
+            Blend SrcAlpha OneMinusSrcAlpha
+            Cull Off
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -28,33 +28,33 @@ Shader "Unlit/WeirdWobbleShader2"
             
             struct v2f
             {
-                float2 uv : TEXCOORD0;
+                float2 texcoord : TEXCOORD0;
                 fixed4 color: COLOR;
                 float4 vertex : SV_POSITION;
             };
             
+
             sampler2D _MainTex;
+            fixed4 _Color;
             float4 _MainTex_ST;
-            fixed4 _Color1;
-            fixed4 _Color2;
+            float _Offset;
 
             v2f vert (appdata v)
             {
                 v2f OUT;
                 OUT.vertex = UnityObjectToClipPos(v.vertex);
-                OUT.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
+                OUT.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
                 OUT.color = v.color;
+                //_Color.w *= _CosTime.w;
                 return OUT;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            fixed4 frag (v2f i, UNITY_VPOS_TYPE screenPos : SV_POSITION) : SV_Target
             {
                 // sample the texture
-                i.uv *= 4;
-                i.uv.x -= cos(i.uv.y*2.5)+_Time.y*0.055;
-                i.uv.y -= 0.025+_Time.y*0.05;
-                fixed4 col = tex2D(_MainTex, i.uv)*i.color;
-                return col;
+                i.texcoord.x += cos(i.texcoord.y*7 + (_Time.y+screenPos.xy*0.1))*0.012+0.0075;
+                fixed4 col = tex2D(_MainTex, i.texcoord);
+                return i.color*col.w;
             }
             ENDCG
         }

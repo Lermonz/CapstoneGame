@@ -1031,6 +1031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef8322f11e5a64978b5c5b5fe791f639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPaused: 0
   _pauseMenu: {fileID: 1536787711}
   _settingsMenu: {fileID: 438959899}
   _controlsMenu: {fileID: 1724027853}
@@ -2495,6 +2496,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 80, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &477342211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 477342213}
+  - component: {fileID: 477342212}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &477342212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477342211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c334cd3fdfe3e44fb9cad925197ff85d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isGame: 0
+--- !u!4 &477342213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477342211}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 205.44934, y: 166.0663, z: -1.5873668}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &493629289
 GameObject:
   m_ObjectHideFlags: 0
@@ -5997,6 +6043,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 33188171023820415, guid: 8ee05fd044866443981128910a2d57bb, type: 3}
+      propertyPath: _spinSparkle
+      value: 
+      objectReference: {fileID: 2217484696819996735, guid: c31fa7b8130b148418da584c5cd520f8, type: 3}
     - target: {fileID: 4081278157206668099, guid: 8ee05fd044866443981128910a2d57bb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -10435,3 +10485,4 @@ SceneRoots:
   - {fileID: 818891902}
   - {fileID: 68028796}
   - {fileID: 1480168979}
+  - {fileID: 477342213}
