@@ -21,6 +21,8 @@ public class Controller2D : MonoBehaviour
     public bool _hitWall;
     public bool _canDoubleJump;
 
+    public int _groundIsDown = 1;
+
     BoxCollider2D _collider;
     RayCastOrigins _raycastOrigins;
     void Start() {
@@ -48,7 +50,7 @@ public class Controller2D : MonoBehaviour
             if(hit) {
                 velocity.y = (hit.distance-boundInset) * directionY;
                 rayLength = hit.distance;
-                if(directionY == 1) {
+                if(directionY == _groundIsDown) {
                     _hitCeiling = true;
                 }
                 else {
@@ -84,7 +86,6 @@ public class Controller2D : MonoBehaviour
                 //velocity.y = Mathf.Clamp(velocity.y, -Mathf.Infinity, 0);
                 rayLength = hit.distance;
                 _hitWall = true;
-                Debug.Log("Hit Info: "+hit.distance);
             }
             else {
                 _horzElseCount++;

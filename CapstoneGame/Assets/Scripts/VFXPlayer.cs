@@ -5,11 +5,17 @@ public class VFXPlayer : MonoBehaviour
 {
     public GameObject _spinSparkle;
     public GameObject _boostAfterImage;
+    public GameObject _wooshCircle;
 
     public int _afterImageAmount;
     public float _afterImageFreq;
     public void Spin_Sparkle() {
         Instantiate(_spinSparkle, this.transform);
+    }
+    public void Woosh(float offsetY) {
+        Instantiate(_wooshCircle, 
+            new Vector3(this.transform.position.x, this.transform.position.y+offsetY,this.transform.position.z), 
+            this.transform.rotation);
     }
     public void Boost_AfterImage(bool _isFlip) {
         StartCoroutine(AfterImageCoroutine(_isFlip));

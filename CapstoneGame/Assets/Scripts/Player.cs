@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     float _boostSpeed = 12f;
     float _boostDecel = 30f;
 
-    //Vector2 _dpad;
+    bool _isGravityFlipped = false;
 
     float _spinCooldown = 42f;
     float _doubleJumpCooldown = 8f;
@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
         if(_controller._hitWall) {
             if(Mathf.Abs(_velocity.x) > _maxRunSpeed) {
                 _velocity.x = -_velocity.x*0.4f;
-                _velocity.y = Mathf.Abs(_velocity.x);
+                _velocity.y = _isGravityFlipped ? -Mathf.Abs(_velocity.x) : Mathf.Abs(_velocity.x);
             }
             else
                 _velocity.x = Mathf.Clamp(_velocity.x,-5,5);
@@ -126,6 +126,7 @@ public class Player : MonoBehaviour
             _vfxPlayer.Spin_Sparkle();
             if(!_controller._isGrounded && _canDoubleJump) {
                 _canDoubleJump = false;
+                _vfxPlayer.Woosh(-0.5f);
                 _velocity.y = _doubleJumpVelocity;
             }
             StartCoroutine(SpinCooldown(_spinCooldown));
@@ -142,6 +143,7 @@ public class Player : MonoBehaviour
         if(InputManager.Instance.DownInput && _canDownBoost) {
             _velocity.y = _downBoostVelocity;
             _sfxPlayer.SetAndPlayOneShot(_sfxPlayer._fastFallSFX);
+            _vfxPlayer.Woosh(0.5f);
             _canDownBoost = false;
         }
         if(_controller._hitCeiling) {
@@ -163,7 +165,7 @@ public class Player : MonoBehaviour
             _canSpin = false;
         _canDownBoost = false;
         _gravity *= 0.25f;
-        _velocity.y = Mathf.Clamp(_velocity.y, -0.4f, 2f);
+        _velocity.y = Mathf.Clamp(_velocity.y, -0.4f, 0.4f);
         yield return new WaitForSeconds(0.15f);
         _gravity *= 4f;
         if(spinOverride) {
@@ -211,7 +213,27 @@ public class Player : MonoBehaviour
         HitBoxObject = Instantiate(_hitBox, this.transform);
         HitBoxObject.transform.localScale = new Vector3(width, height, 20);
     }
-    
+    void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.CompareTag("GravityFlip")) {
+            FlipGravity();
+        }
+    }
+    void OnTriggerExit2D(Collider2D other) {
+        if(other.gameObject.CompareTag("GravityFlip")) {
+            FlipGravity();
+            _renderer.flipY = false;
+        }
+    }
+    void FlipGravity() {
+        _isGravityFlipped = !_isGravityFlipped;
+        _controller._groundIsDown = -_controller._groundIsDown;
+        _jumpVelocity = -_jumpVelocity;
+        _doubleJumpVelocity = -_doubleJumpVelocity;
+        _downBoostVelocity = -_downBoostVelocity;
+        _gravity = -_gravity;
+        _renderer.flipY = true;
+    }
+    /*
     void OnGUI() {
         string CoordText = GUI.TextArea(new Rect(0, 0, 150, 150), 
         ("XPos: "+this.transform.position.x.ToString("#.00")+
@@ -223,5 +245,6 @@ public class Player : MonoBehaviour
         "\nCan Double Jump: "+_canDoubleJump+
         "\nCan Fast Fall: "+_canDownBoost));
     }
+    */
     
 }

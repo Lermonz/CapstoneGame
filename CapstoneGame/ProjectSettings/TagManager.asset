@@ -7,6 +7,7 @@ TagManager:
   - Block
   - Hitbox
   - Target
+  - GravityFlip
   layers:
   - Default
   - TransparentFX
@@ -44,9 +45,12 @@ TagManager:
   - name: background
     uniqueID: 3119344019
     locked: 0
+  - name: behind player
+    uniqueID: 3549772259
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: behind please
+  - name: infront
     uniqueID: 3702484951
     locked: 0
