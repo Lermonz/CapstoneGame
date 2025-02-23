@@ -14,6 +14,7 @@ public class Controller2D : MonoBehaviour
     float _vertElseCount;
     float _horzElseCount;
 
+
     public LayerMask collMask;
 
     public bool _isGrounded;
@@ -30,6 +31,9 @@ public class Controller2D : MonoBehaviour
         CalcRays();
     }
     public void Move(Vector2 velocity) {
+        if(InputManager.Instance._freezeVelocity) {
+            velocity = Vector2.zero;
+        }
         RayCastUpdate();
         VertCollisions(ref velocity);
         HorzCollisions(ref velocity);

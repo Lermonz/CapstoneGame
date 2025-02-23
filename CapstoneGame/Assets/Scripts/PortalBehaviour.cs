@@ -22,8 +22,8 @@ public class PortalBehaviour : MonoBehaviour
         ResetTransform();
     }
     void ExitSuccess() {
-        Time.timeScale = 0;
         InputManager.Instance.DisablePlayerInput();
+        LevelManager.Instance.FreezePlayerAndTimer();
         PauseMenu.Instance.OnWin();
     }
     void ExitFail() {

@@ -19,6 +19,14 @@ public class MainMenuManager : MonoBehaviour
         OpenMainMenu();
         Time.timeScale = 1f;
     }
+    void Update()
+    {
+        if(_levelsMenu.activeSelf) {
+            if(EventSystem.current.currentSelectedGameObject == null) {
+                EventSystem.current.SetSelectedGameObject(_levelsFirstButton);
+            }
+        }
+    }
 
     private void CloseMenus() {
         _mainMenu.SetActive(false);

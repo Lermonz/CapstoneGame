@@ -1,12 +1,20 @@
 using System.Collections;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
+
     public int _currentLevel;
+    [Header("Level Times (in ms)")]
+    [Tooltip("m*6000 : s*100 : ms*1")]
+    public int _goldTime;
+    public int _silverTime;
+    public int _bronzeTime;
+    [Header("Target Stuff")]
     public int _targetReq;
-    public int _targetsDestroyed;
+    int _targetsDestroyed;
     public int TargetsDestroyed { get => _targetsDestroyed; set {_targetsDestroyed = value;}}
     public bool _canExit;
     public bool _stopTimer;
@@ -35,9 +43,14 @@ public class LevelManager : MonoBehaviour
         }
     }
     IEnumerator Countdown() {
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSeconds(2f);
         _stopTimer = false;
         _countdownDone = true;
         InputManager.Instance.EnablePlayerInput();
+        InputManager.Instance._freezeVelocity = false;
+    }
+    public void FreezePlayerAndTimer() {
+        _stopTimer = true;
+        InputManager.Instance._freezeVelocity = true;
     }
 }

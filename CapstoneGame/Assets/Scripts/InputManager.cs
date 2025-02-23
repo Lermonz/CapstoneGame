@@ -9,6 +9,8 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
     public static PlayerInput PlayerInput;
 
+    public bool _freezeVelocity = false;
+
     // Input Properties //
     public float HorizontalInput {get; private set;}
     public bool JumpInput {get; private set;}

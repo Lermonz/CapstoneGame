@@ -11,6 +11,6 @@ public class TargetsLeft : MonoBehaviour
     }
     void Update()
     {
-        _text.text = string.Format(LevelManager.Instance._targetsDestroyed+"/"+LevelManager.Instance._targetReq+" Targets");
+        _text.text = string.Format(LevelManager.Instance.TargetsDestroyed+" of "+LevelManager.Instance._targetReq);
     }
 }

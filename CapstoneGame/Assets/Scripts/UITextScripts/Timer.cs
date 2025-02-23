@@ -6,6 +6,7 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     float _totalFrames = 0;
+    public int FinalTime;
     int ms = 0;
     int s = 0;
     int m = 0;
@@ -21,6 +22,9 @@ public class Timer : MonoBehaviour
             s = Mathf.FloorToInt(_totalFrames%60);
             ms = Mathf.FloorToInt(_totalFrames%1*100);
             _timer.text = string.Format("{0:00}:{1:00}:{2:00}", m, s, ms);
+        }
+        else {
+            FinalTime = (m*60+s)*100+ms;
         }
     }
 }
