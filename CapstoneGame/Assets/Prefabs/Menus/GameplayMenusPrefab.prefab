@@ -367,6 +367,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LoadMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 2763020108130059543, guid: a8ac8ba02170f4fcb9fce10ff15e3f6f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -54
+      objectReference: {fileID: 0}
     - target: {fileID: 2899127607983211269, guid: a8ac8ba02170f4fcb9fce10ff15e3f6f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -383,6 +387,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: NextScene
       objectReference: {fileID: 0}
+    - target: {fileID: 3458826456648762425, guid: a8ac8ba02170f4fcb9fce10ff15e3f6f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -82
+      objectReference: {fileID: 0}
+    - target: {fileID: 3528627286885232733, guid: a8ac8ba02170f4fcb9fce10ff15e3f6f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -68
+      objectReference: {fileID: 0}
     - target: {fileID: 4849953582981526857, guid: a8ac8ba02170f4fcb9fce10ff15e3f6f, type: 3}
       propertyPath: m_Name
       value: WinPanel
@@ -395,6 +407,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6325090685792886886, guid: a8ac8ba02170f4fcb9fce10ff15e3f6f, type: 3}
+      propertyPath: _yourPB
+      value: 
+      objectReference: {fileID: 5337480545872017285}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -405,6 +421,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1432486633606904537, guid: a8ac8ba02170f4fcb9fce10ff15e3f6f, type: 3}
   m_PrefabInstance: {fileID: 2799910398387191777}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5337480545872017285 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7839023034651904100, guid: a8ac8ba02170f4fcb9fce10ff15e3f6f, type: 3}
+  m_PrefabInstance: {fileID: 2799910398387191777}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7319819142225545896 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4849953582981526857, guid: a8ac8ba02170f4fcb9fce10ff15e3f6f, type: 3}

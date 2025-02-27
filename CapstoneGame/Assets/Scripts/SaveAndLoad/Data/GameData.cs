@@ -5,9 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public float personalBest;
+    public SerializableDictionary<string, float> personalBest;
     // default initialized values of the constructor
     public GameData() {
-        this.personalBest = 99*60000+59*1000+999;
+        personalBest = new SerializableDictionary<string, float>();
     }
 }

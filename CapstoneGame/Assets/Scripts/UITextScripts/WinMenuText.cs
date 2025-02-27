@@ -25,10 +25,16 @@ public class WinMenuText : MonoBehaviour
     }
     void OnEnable()
     {
+        LevelManager.Instance.CheckPB();
         DataPersistenceManager.Instance.SaveGame();
         _yourTime.text= string.Format("{0:00}:{1:00}.{2:000}", 
                     Timer.Instance.m,
                     Timer.Instance.s,
                     Timer.Instance.ms);
+        Vector3 pb = LevelManager.Instance.ConvertTimerToVector3(LevelManager.Instance._personalBest);
+        _yourPB.text= string.Format("{0:00}:{1:00}.{2:000}", 
+                    pb.x,
+                    pb.y,
+                    pb.z);
     }
 }

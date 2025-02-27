@@ -10,8 +10,10 @@ public class GameBehaviour : MonoBehaviour
     public bool _isGame;
     void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance != null && Instance != this) {
             Destroy(this);
+            return;
+        }
         else
             Instance = this;
         DontDestroyOnLoad(gameObject);

@@ -2200,7 +2200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0040b5c31c34adfb33f2e7106a7ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentLevel: 0
+  _levelID: 4
+  _personalBest: 5999999
   _goldTime: {x: 0, y: 0, z: 0}
   _silverTime: {x: 0, y: 0, z: 0}
   _bronzeTime: {x: 0, y: 0, z: 0}
@@ -2265,7 +2266,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _totalFrames: 0
-  FinalTime: 0
   m: 0
   s: 0
   ms: 0

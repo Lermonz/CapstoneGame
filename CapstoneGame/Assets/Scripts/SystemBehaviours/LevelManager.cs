@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Data.Common;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -6,8 +7,8 @@ public class LevelManager : MonoBehaviour, IDataPersistence
 {
     public static LevelManager Instance;
 
-    public int _currentLevel;
-    public float _personalBest;
+    public string _levelID;
+    public float _personalBest = 99*60000+59*1000+999;
     [Header("Level Times (in ms)")]
     [Tooltip("minute : second : millisecond")]
     public Vector3 _goldTime;
@@ -63,10 +64,32 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     public float ConvertTimerToFloat(Vector3 time) {
         return (time.x*60+time.y)*1000+time.z;
     }
-    public void LoadData(GameData data) {
-        this._personalBest = data.personalBest;
+    private void SetNewPB(float thisRunTime) {
+        this._personalBest = thisRunTime;
     }
-    public void SaveData(ref GameData data) {
-        data.personalBest = this._personalBest;
+    public void CheckPB() {
+        float finalTime = ConvertTimerToFloat(
+            new Vector3(Timer.Instance.m,
+                    Timer.Instance.s,
+                    Timer.Instance.ms));
+        if (finalTime < this._personalBest) {
+            SetNewPB(finalTime);
+        }
+    }
+    public void LoadData(GameData data) {
+        if(data.personalBest.ContainsKey(_levelID)){
+            data.personalBest.TryGetValue(_levelID, out this._personalBest);
+        }
+        else{
+            this._personalBest = 5999999;
+        }
+        //this._personalBest = data.personalBestOLD;
+    }
+    public void SaveData(GameData data) {
+        if(data.personalBest.ContainsKey(_levelID)){
+            data.personalBest.Remove(_levelID);
+        }
+        data.personalBest.Add(_levelID, this._personalBest);
+        //data.personalBestOLD = this._personalBest;
     }
 }

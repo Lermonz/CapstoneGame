@@ -5,7 +5,6 @@ public class Timer : MonoBehaviour
 {
     public static Timer Instance;
     public float _totalFrames = 0;
-    public int FinalTime;
     public int m = 0;
     public int s = 0;
     public int ms = 0;
@@ -23,9 +22,6 @@ public class Timer : MonoBehaviour
             m = Mathf.FloorToInt(_totalFrames/60);
             s = Mathf.FloorToInt(_totalFrames%60);
             ms = Mathf.FloorToInt(_totalFrames%1*1000);
-        }
-        else {
-            FinalTime = (m*60+s)*1000+ms;
         }
     }
 }

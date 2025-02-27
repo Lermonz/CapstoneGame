@@ -67,4 +67,8 @@ public class MainMenuManager : MonoBehaviour
     public void OnBackPress() {
         OpenMainMenu();
     }
+    public void OnResetProgressPress() {
+        DataPersistenceManager.Instance.NewGame();
+        DataPersistenceManager.Instance.SaveGame();
+    }
 }
