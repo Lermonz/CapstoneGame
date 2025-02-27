@@ -34,6 +34,10 @@ public class PauseMenu : MonoBehaviour
             if(_isPaused)
                 Unpause();
         }
+        /*
+        if(EventSystem.current.currentSelectedGameObject == null) {
+            EventSystem.current.SetSelectedGameObject(EventSystem.current.firstSelectedGameObject);
+        }*/
     }
     public void Pause() {
         _isPaused = true;

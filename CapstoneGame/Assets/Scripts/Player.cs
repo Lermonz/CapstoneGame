@@ -15,10 +15,10 @@ public class Player : MonoBehaviour
     Vector2 _velocity;
     public GameObject _hitBox;
 
-    float _jumpVelocity = 10.8f;
-    float _doubleJumpVelocity = 7.5f;
+    float _jumpVelocity = 12.8f;
+    float _doubleJumpVelocity = 9.5f;
     float _downBoostVelocity = -10f;
-    float _gravity = -0.3f;
+    float _gravity = -0.45f;
     float _baseAccel = 6f;
     float _baseDecel = 16f;
     float _baseAirDecel = 2.5f;
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
 
     bool _boostDeceling;
     float _boostSpeed = 12f;
-    float _boostDecel = 30f;
+    float _boostDecel = 36f;
 
     bool _isGravityFlipped = false;
 
@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        // Boost
+        /// BOOST  ///
         if(_canBoost && InputManager.Instance.BoostInput) {
             float facingDirection = _renderer.flipX ? -1 : 1;
             if(InputManager.Instance.HorizontalInput != 0) {
@@ -109,17 +109,19 @@ public class Player : MonoBehaviour
         if(_boostDeceling) {
             Accelerate(ref _velocity.x, Mathf.Sign(_velocity.x), _boostDecel, delta, true);
         }
+        // when player hits wall they can bounce off of it at high enough speeds
         if(_controller._hitWall) {
-            if(Mathf.Abs(_velocity.x) > _maxRunSpeed) {
+            if(Mathf.Abs(_velocity.x) > _maxRunSpeed * 1.5f) {
                 _velocity.x = -_velocity.x*0.4f;
                 _velocity.y = _isGravityFlipped ? -Mathf.Abs(_velocity.x) : Mathf.Abs(_velocity.x);
+                _velocity.y *= 1.2f; //scale bounce with gravity changes
             }
             else
                 _velocity.x = Mathf.Clamp(_velocity.x,-5,5);
             _boostDeceling = false;
         }
 
-        // Spin
+        /// SPIN ///
         if(InputManager.Instance.SpinInput && _canSpin) {
             Hitbox(1.5f, 0.8f);
             _sfxPlayer.SetAndPlayOneShot(_sfxPlayer._spinSFX);
@@ -178,6 +180,19 @@ public class Player : MonoBehaviour
         _boostDeceling = false;
         StartCoroutine(BoostCooldown(60f));
     }
+    IEnumerator BoostDecelCoroutine(float delay, float amount) {
+        for(int i = 0; i < delay; i++) {
+            yield return null;
+        }
+        _boostDeceling = true;
+        StartCoroutine(BoostDecelCoroutine(amount));
+    }
+    IEnumerator BoostDecelCoroutine(float amount) {
+        for(int i = 0; i < amount; i++) {
+            yield return null;
+        }
+        _boostDeceling = false;
+    }
     IEnumerator SpinCooldown(float cooldown) {
         for(int i = 0; i < cooldown; i++) {
             _canSpin = false;
@@ -213,16 +228,49 @@ public class Player : MonoBehaviour
         HitBoxObject = Instantiate(_hitBox, this.transform);
         HitBoxObject.transform.localScale = new Vector3(width, height, 20);
     }
+    /// COLLISIONS WITH OBJECTS ///
+    // GRAVITY FIELD
     void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("GravityFlip")) {
             FlipGravity();
         }
+        if(other.gameObject.CompareTag("Boost")) {
+            StartCoroutine(BoostObjectPull(other.gameObject.transform.position, 
+                other.gameObject.GetComponent<BoostObjectBehaviour>().BoostInDirection()));
+            StartCoroutine(BoostDecelCoroutine(26,13));
+        }
     }
+    IEnumerator BoostObjectPull(Vector3 position, Vector2 boost) {
+        SetAllPlayerActions(false, false, false, false);
+        float elapsedTime = 0;
+        float waitTime = 6f;
+        while(elapsedTime < waitTime) {
+            transform.position = Vector3.Lerp(transform.position, position, (elapsedTime / (waitTime)));
+            elapsedTime++;
+            yield return null;
+        }
+        elapsedTime = 0;
+        waitTime = 6f;
+        while(elapsedTime < waitTime) {
+            InputManager.Instance._freezeVelocity = true;
+            elapsedTime++;
+            yield return null;
+        }
+        InputManager.Instance._freezeVelocity = false;
+        SetAllPlayerActions();
+        ForceVelocityToVector(boost);
+
+    }
+    // GRAVITY FIELD EXIT
     void OnTriggerExit2D(Collider2D other) {
         if(other.gameObject.CompareTag("GravityFlip")) {
             FlipGravity();
             _renderer.flipY = false;
         }
+    }
+    void ForceVelocityToVector(Vector2 v) {
+        float a = 0.8f;
+        _velocity = v + new Vector2(_velocity.x*(1-a),a+_velocity.y*(1-a));
     }
     void FlipGravity() {
         _isGravityFlipped = !_isGravityFlipped;
@@ -233,7 +281,12 @@ public class Player : MonoBehaviour
         _gravity = -_gravity;
         _renderer.flipY = true;
     }
-    /*
+    void SetAllPlayerActions(bool spin = true, bool doubleJump = true, bool boost = true, bool fastFall = true) {
+        _canSpin = spin;
+        _canDoubleJump = doubleJump;
+        _canBoost = boost;
+        _canDownBoost = fastFall;
+    }
     void OnGUI() {
         string CoordText = GUI.TextArea(new Rect(0, 0, 150, 150), 
         ("XPos: "+this.transform.position.x.ToString("#.00")+
@@ -245,6 +298,5 @@ public class Player : MonoBehaviour
         "\nCan Double Jump: "+_canDoubleJump+
         "\nCan Fast Fall: "+_canDownBoost));
     }
-    */
     
 }
