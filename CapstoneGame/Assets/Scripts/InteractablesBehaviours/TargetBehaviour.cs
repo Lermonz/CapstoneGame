@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TargetBehaviour : MonoBehaviour
 {
@@ -8,8 +10,19 @@ public class TargetBehaviour : MonoBehaviour
         }
     }
     public void GotHit() {
-        this.gameObject.transform.localScale -= Vector3.up;
+        this.GetComponent<PolygonCollider2D>().enabled = false;
+        StartCoroutine(BreakApartAnim());
         LevelManager.Instance.HitTarget();
+    }
+    IEnumerator BreakApartAnim() {
+        float realX = this.transform.position.x;
+        for(int i = 0; i < 3; i++) {
+            //this.transform.position = new Vector3(realX+Mathf.Sin(Time.deltaTime*100)*0.5f,this.transform.position.y,this.transform.position.z);
+            yield return null;
+        }
+        this.transform.localEulerAngles = new Vector3(90, 0, 0);
+        this.GetComponent<ParticleSystem>().Play();
+        Debug.Log("play particle system");
         Destroy(gameObject, 0.5f);
     }
 }

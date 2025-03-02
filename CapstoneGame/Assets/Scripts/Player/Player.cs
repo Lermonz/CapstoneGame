@@ -269,8 +269,7 @@ public class Player : MonoBehaviour
         }
     }
     void ForceVelocityToVector(Vector2 v) {
-        float a = 0.8f;
-        _velocity = v + new Vector2(_velocity.x*(1-a),a+_velocity.y*(1-a));
+        _velocity = v;
     }
     void FlipGravity() {
         _isGravityFlipped = !_isGravityFlipped;
