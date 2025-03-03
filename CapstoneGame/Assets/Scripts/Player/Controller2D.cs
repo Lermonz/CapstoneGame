@@ -39,6 +39,10 @@ public class Controller2D : MonoBehaviour
         HorzCollisions(ref velocity);
         transform.Translate(velocity);
     }
+    public void PullTowards(Vector2 goal, float str) {
+        Vector2 dir = new Vector2(goal.x-this.transform.position.x,goal.y-this.transform.position.y);
+        transform.Translate(dir*str);
+    }
     void VertCollisions(ref Vector2 velocity) {
         float directionY = Mathf.Sign(velocity.y);
         float rayLength = Mathf.Abs(velocity.y)+boundInset;

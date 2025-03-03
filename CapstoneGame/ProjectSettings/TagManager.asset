@@ -10,6 +10,7 @@ TagManager:
   - GravityFlip
   - Boost
   - DestructableBlock
+  - BlackHole
   layers:
   - Default
   - TransparentFX
@@ -49,6 +50,9 @@ TagManager:
     locked: 0
   - name: behind player
     uniqueID: 3549772259
+    locked: 0
+  - name: objects
+    uniqueID: 4210933439
     locked: 0
   - name: Default
     uniqueID: 0

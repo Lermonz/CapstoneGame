@@ -18,12 +18,16 @@ public class Player : MonoBehaviour
     float _jumpVelocity = 12.8f;
     float _doubleJumpVelocity = 9.5f;
     float _downBoostVelocity = -10f;
-    float _gravity = -0.45f;
     float _baseAccel = 6f;
     float _baseDecel = 16f;
     float _baseAirDecel = 2.5f;
     float _skidDecel = 30f;
     float _maxRunSpeed = 5f;
+    const float _gravity = -29f;
+    float _gravityMult = 1;
+    bool _inBlackHole = false;
+    float _terminalVelocity;
+    const float _termV = -20;
 
     bool _canJump = true;
     bool _canBoost = true;
@@ -47,10 +51,12 @@ public class Player : MonoBehaviour
         _vfxPlayer = GetComponent<VFXPlayer>();
         _sfxPlayer = GetComponent<Player_SFXPlayer>();
         //_particles = GetComponent<ParticleSystem>();
+        _terminalVelocity = _termV;
     }
     void Update() {
         float delta = Time.deltaTime;
         //_dpad = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        
         if ((InputManager.Instance.HorizontalInput > 0 && _renderer.flipX) || (InputManager.Instance.HorizontalInput < 0 && !_renderer.flipX)) {
             _renderer.flipX = !_renderer.flipX;
         }
@@ -58,6 +64,9 @@ public class Player : MonoBehaviour
             _canJump = true;
             _velocity.y = 0;
             _canDownBoost = false;
+        }
+        if(_controller._hitCeiling) {
+            _velocity.y = 0;
         }
         // Jump
         if(_canJump && InputManager.Instance.JumpInput) {
@@ -94,7 +103,16 @@ public class Player : MonoBehaviour
                 Accelerate(ref _velocity.x, Mathf.Sign(_velocity.x), _baseAirDecel, delta, true);
             }
         }
-
+        //TREATING GRAVITY LIKE ACCELERATION
+        if(!PauseMenu.Instance._isPaused && !_inBlackHole) {
+            if(_velocity.y > _terminalVelocity) {
+                Accelerate(ref _velocity.y, _gravityMult, _gravity, delta);
+            }
+            if(_velocity.y <= _terminalVelocity) {
+                Accelerate(ref _velocity.y, _gravityMult, _gravity*2, delta, true);
+                //_velocity.x -= _dpad.x * _baseAccel * delta;
+            }
+        }
         /// BOOST  ///
         if(_canBoost && InputManager.Instance.BoostInput) {
             float facingDirection = _renderer.flipX ? -1 : 1;
@@ -143,16 +161,14 @@ public class Player : MonoBehaviour
         
         //Fast Fall / Down Boost
         if(InputManager.Instance.DownInput && _canDownBoost) {
-            _velocity.y = _downBoostVelocity;
+            _velocity.y += _downBoostVelocity;
             _sfxPlayer.SetAndPlayOneShot(_sfxPlayer._fastFallSFX);
             _vfxPlayer.Woosh(0.5f);
             _canDownBoost = false;
         }
-        if(_controller._hitCeiling) {
-            _velocity.y = 0;
-        }
-        if(!PauseMenu.Instance._isPaused)
-            _velocity.y += _gravity;
+        
+        // if(_inBlackHole)
+        //     _velocity.y += _gravity;
         if(Mathf.Abs(_velocity.x) < 0.02) {
             _velocity.x = 0;
         }
@@ -166,10 +182,10 @@ public class Player : MonoBehaviour
         if(spinOverride)
             _canSpin = false;
         _canDownBoost = false;
-        _gravity *= 0.25f;
+        _gravityMult *= 0.25f;
         _velocity.y = Mathf.Clamp(_velocity.y, -0.4f, 0.4f);
         yield return new WaitForSeconds(0.15f);
-        _gravity *= 4f;
+        _gravityMult *= 4f;
         if(spinOverride) {
             _canSpin = true;
             spinOverride = false;
@@ -240,6 +256,20 @@ public class Player : MonoBehaviour
             StartCoroutine(BoostDecelCoroutine(26,13));
         }
     }
+    void OnTriggerStay2D(Collider2D other) {
+        if(other.gameObject.CompareTag("BlackHole")) {
+            _terminalVelocity = 0;
+            _inBlackHole = true;
+            //Strength of black hole pull is increased when player is closer to it
+            float strength = Vector2.Distance(other.gameObject.transform.position,this.transform.position)*0.5f;
+            Debug.Log("Strength: "+strength);
+            PullTowards(other.gameObject.transform.position, strength);
+        }
+    }
+    void PullTowards(Vector2 goal, float str) {
+        _velocity.x += (goal.x-this.transform.position.x)*str;
+        _velocity.y += (goal.y-this.transform.position.y)*str;
+    }
     IEnumerator BoostObjectPull(Vector3 position, Vector2 boost) {
         SetAllPlayerActions(false, false, false, false);
         float elapsedTime = 0;
@@ -267,6 +297,10 @@ public class Player : MonoBehaviour
             FlipGravity();
             _renderer.flipY = false;
         }
+        if(other.gameObject.CompareTag("BlackHole")) {
+            _terminalVelocity = _termV;
+            _inBlackHole = false;
+        }
     }
     void ForceVelocityToVector(Vector2 v) {
         _velocity = v;
@@ -277,7 +311,7 @@ public class Player : MonoBehaviour
         _jumpVelocity = -_jumpVelocity;
         _doubleJumpVelocity = -_doubleJumpVelocity;
         _downBoostVelocity = -_downBoostVelocity;
-        _gravity = -_gravity;
+        _gravityMult = -_gravityMult;
         _renderer.flipY = true;
     }
     void SetAllPlayerActions(bool spin = true, bool doubleJump = true, bool boost = true, bool fastFall = true) {
@@ -292,10 +326,8 @@ public class Player : MonoBehaviour
         "\nY Pos: "+this.transform.position.y.ToString("#.00")+
         "\nX Vel: "+_velocity.x.ToString("#.00")+
         "\nY Vel: "+_velocity.y.ToString("#.00")+
-        "\nCan Boost: "+_canBoost+
-        "\nCan Spin: "+_canSpin+
-        "\nCan Double Jump: "+_canDoubleJump+
-        "\nCan Fast Fall: "+_canDownBoost));
+        "\nIs Ground: "+_controller._isGrounded+
+        "\nGravity Mult: "+_gravityMult));
     }
     
 }
