@@ -44,9 +44,7 @@ public class ScrollRectSnap : MonoBehaviour
     }
     void LerpToButton(int position) {
         float newY = Mathf.Lerp(_panel.anchoredPosition.y, position, Time.deltaTime * 15f);
-        Debug.Log(position);
         Vector2 newPosition = new Vector2 (_panel.anchoredPosition.x, newY);
-        
         _panel.anchoredPosition = newPosition;
     }
     public void StartDrag() {

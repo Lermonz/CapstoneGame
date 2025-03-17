@@ -12,6 +12,6 @@ public class CameraFollow : MonoBehaviour
         _z = this.transform.position.z;
     }
     void Update(){
-        this.transform.position = new Vector3(_toFollow.transform.position.x*_speed,_toFollow.transform.position.y*_speed,_z);
+        this.transform.position = new Vector3(_toFollow.transform.position.x*_speed,_toFollow.transform.position.y*_speed+this.transform.localScale.y*2,_z);
     }
 }

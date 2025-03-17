@@ -261,7 +261,7 @@ public class Player : MonoBehaviour
             _terminalVelocity = 0;
             _inBlackHole = true;
             //Strength of black hole pull is increased when player is closer to it
-            float strength = Vector2.Distance(other.gameObject.transform.position,this.transform.position)*0.5f;
+            float strength = 1/Vector2.Distance(other.gameObject.transform.position,this.transform.position);
             Debug.Log("Strength: "+strength);
             PullTowards(other.gameObject.transform.position, strength);
         }
@@ -320,14 +320,13 @@ public class Player : MonoBehaviour
         _canBoost = boost;
         _canDownBoost = fastFall;
     }
-    void OnGUI() {
-        string CoordText = GUI.TextArea(new Rect(0, 0, 150, 150), 
-        ("XPos: "+this.transform.position.x.ToString("#.00")+
-        "\nY Pos: "+this.transform.position.y.ToString("#.00")+
-        "\nX Vel: "+_velocity.x.ToString("#.00")+
-        "\nY Vel: "+_velocity.y.ToString("#.00")+
-        "\nIs Ground: "+_controller._isGrounded+
-        "\nGravity Mult: "+_gravityMult));
-    }
-    
+    // void OnGUI() {
+    //     string CoordText = GUI.TextArea(new Rect(0, 0, 150, 150), 
+    //     ("XPos: "+this.transform.position.x.ToString("#.00")+
+    //     "\nY Pos: "+this.transform.position.y.ToString("#.00")+
+    //     "\nX Vel: "+_velocity.x.ToString("#.00")+
+    //     "\nY Vel: "+_velocity.y.ToString("#.00")+
+    //     "\nIs Ground: "+_controller._isGrounded+
+    //     "\nGravity Mult: "+_gravityMult));
+    // }
 }

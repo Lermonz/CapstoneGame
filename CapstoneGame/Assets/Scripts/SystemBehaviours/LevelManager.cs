@@ -77,6 +77,9 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         }
     }
     public void LoadData(GameData data) {
+        this._bronzeTime = ConvertTimerToVector3(data.levelBronzes[_levelID]);
+        this._silverTime = ConvertTimerToVector3(data.levelSilvers[_levelID]);
+        this._goldTime = ConvertTimerToVector3(data.levelGolds[_levelID]);
         if(data.personalBest.ContainsKey(_levelID)){
             data.personalBest.TryGetValue(_levelID, out this._personalBest);
         }
@@ -90,6 +93,21 @@ public class LevelManager : MonoBehaviour, IDataPersistence
             data.personalBest.Remove(_levelID);
         }
         data.personalBest.Add(_levelID, this._personalBest);
+        if(this._personalBest <= data.levelGolds[_levelID]) {
+            UpdateMedals(data, "gold");
+        }
+        else if(this._personalBest <= data.levelSilvers[_levelID]) {
+            UpdateMedals(data, "silver");
+        }
+        else if(this._personalBest <= data.levelBronzes[_levelID]) {
+            UpdateMedals(data, "bronze");
+        }
         //data.personalBestOLD = this._personalBest;
+    }
+    public void UpdateMedals(GameData data, string medal) {
+        if(data.medals.ContainsKey(_levelID)){
+            data.medals.Remove(_levelID);
+        }
+        data.medals.Add(_levelID, medal);
     }
 }
