@@ -31,7 +31,6 @@ public class DataPersistenceManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        this._dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
     }
 
@@ -52,6 +51,7 @@ public class DataPersistenceManager : MonoBehaviour
         _dataHandler.Save(_gameData);
     }
     public void LoadGame(){
+        this._dataPersistenceObjects = FindAllDataPersistenceObjects();
         // Load any saved data from a file using data handler
         this._gameData = _dataHandler.Load();
 

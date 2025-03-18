@@ -22,7 +22,6 @@ public class TargetBehaviour : MonoBehaviour
         }
         this.transform.localEulerAngles = new Vector3(90, 0, 0);
         this.GetComponent<ParticleSystem>().Play();
-        Debug.Log("play particle system");
         Destroy(gameObject, 0.5f);
     }
 }

@@ -93,13 +93,13 @@ public class LevelManager : MonoBehaviour, IDataPersistence
             data.personalBest.Remove(_levelID);
         }
         data.personalBest.Add(_levelID, this._personalBest);
-        if(this._personalBest <= data.levelGolds[_levelID]) {
+        if(data.personalBest[_levelID] <= data.levelGolds[_levelID]) {
             UpdateMedals(data, "gold");
         }
-        else if(this._personalBest <= data.levelSilvers[_levelID]) {
+        else if(data.personalBest[_levelID] <= data.levelSilvers[_levelID]) {
             UpdateMedals(data, "silver");
         }
-        else if(this._personalBest <= data.levelBronzes[_levelID]) {
+        else if(data.personalBest[_levelID] <= data.levelBronzes[_levelID]) {
             UpdateMedals(data, "bronze");
         }
         //data.personalBestOLD = this._personalBest;

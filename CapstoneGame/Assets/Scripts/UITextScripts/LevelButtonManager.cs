@@ -9,7 +9,6 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
     [SerializeField]
     private Button _levelButton;
     public int _totalGolds;
-    public bool IsSelected {get; private set;} = false;
     private void Awake()
     {
         _levelButton = this.GetComponent<Button>();
@@ -23,17 +22,17 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
             break;
         case LevelUnlockType.TotalGolds:
             foreach(KeyValuePair<string, string> item in data.medals) {
-               if(item.Value == "gold") {
-                  _totalGolds++;
-               }
+                if(item.Value == "gold") {
+                    _totalGolds++;
+                }
             }
             _levelButton.interactable = _totalGolds >= _buttonData._goldTotalReq;
             break;
         case LevelUnlockType.GoldsInWorld:
             for(int i = 0+(_buttonData._world-1)*10; i < 10+(_buttonData._world-1)*10; i++) {
-               if(data.medals.ElementAt(i).Value == "gold") {
-                  _totalGolds++;
-               }
+                if(data.medals.ElementAt(i).Value == "gold") {
+                    _totalGolds++;
+                }
             }
             _levelButton.interactable = _totalGolds >= _buttonData._goldTotalReq;
             break;
@@ -47,4 +46,8 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
     public void SaveData(GameData data) {
         return;
     }
+    // void Update() {
+    //     Debug.Log("Total Golds:"+_totalGolds);
+    //     _levelButton.interactable = _totalGolds >= _buttonData._goldTotalReq;
+    // }
 }
