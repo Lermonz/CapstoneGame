@@ -11,6 +11,7 @@ public class TargetBehaviour : MonoBehaviour
     }
     public void GotHit() {
         this.GetComponent<PolygonCollider2D>().enabled = false;
+        this.GetComponent<AudioSource>().PlayOneShot(this.GetComponent<AudioSource>().clip);
         StartCoroutine(BreakApartAnim());
         LevelManager.Instance.HitTarget();
     }
@@ -22,6 +23,6 @@ public class TargetBehaviour : MonoBehaviour
         }
         this.transform.localEulerAngles = new Vector3(90, 0, 0);
         this.GetComponent<ParticleSystem>().Play();
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 1f);
     }
 }
