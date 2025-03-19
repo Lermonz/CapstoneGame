@@ -838,6 +838,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GeneralUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5992231763950251567, guid: c9203039d4c4649c6b8341f1a0b9ca97, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992231763950251567, guid: c9203039d4c4649c6b8341f1a0b9ca97, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7925021113430912183, guid: c9203039d4c4649c6b8341f1a0b9ca97, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8971013940838069923, guid: c9203039d4c4649c6b8341f1a0b9ca97, type: 3}
       propertyPath: _minutesText
       value: 
@@ -850,7 +862,8 @@ PrefabInstance:
       propertyPath: _millisecondsText
       value: 
       objectReference: {fileID: 8038824180229476777}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7077679442099036738, guid: c9203039d4c4649c6b8341f1a0b9ca97, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

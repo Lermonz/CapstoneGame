@@ -46,11 +46,10 @@ Shader "Unlit/WeirdWobbleShader"
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                i.uv *= 5;
-                //i.uv *= cos(i.uv.x)*_SinTime.w*0.05+1;
-                i.uv.y *= (i.uv.x-4.5)*.4;
-                i.uv.x += _Time.y*0.14;
-                i.uv.y -= cos(i.uv.x*(_SinTime.y*.12+1.6))*0.42+_Time.y*0.1;
+                i.uv.x += i.uv.y*0.5+i.uv.x*0.5;
+                i.uv *= 48;
+                i.uv.y += cos(i.uv.x*2.5)+_Time.y*0.025;
+                i.uv.x += 0.025+_Time.y*0.015;
                 fixed4 col = tex2D(_MainTex, i.uv)*_Color;
                 return col;
             }

@@ -1,16 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PortalBehaviour : MonoBehaviour
 {
-    private float _scale;
-    void Start()
-    {
-        _scale = transform.localScale.x;
-    }
+    public SpriteRenderer[] _renderers;
+    private bool dontRetrigger = false;
     void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Player")) {
+        if(other.gameObject.CompareTag("Player") && !dontRetrigger) {
             if(LevelManager.Instance._canExit) {
                 ExitSuccess();
             }
@@ -22,14 +20,19 @@ public class PortalBehaviour : MonoBehaviour
         ResetTransform();
     }
     void ExitSuccess() {
+        dontRetrigger = true;
         InputManager.Instance.DisablePlayerInput();
         LevelManager.Instance.FreezePlayerAndTimer();
         PauseMenu.Instance.OnWin();
     }
     void ExitFail() {
-        this.transform.localScale = new Vector3(_scale*0.5f,_scale*0.5f,_scale*0.5f);
+        foreach(SpriteRenderer i in _renderers) {
+            i.color = Color.black;
+        }
     }
     void ResetTransform() {
-        this.transform.localScale = new Vector3(_scale,_scale,_scale);
+        foreach(SpriteRenderer i in _renderers) {
+            i.color = Color.white;
+        }
     }
 }

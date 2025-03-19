@@ -22,6 +22,7 @@ Shader "Unlit/VertexID"
             struct appdata
             {
                 float4 vertex : POSITION;
+                float4 color : COLOR;
                 float2 texcoord : TEXCOORD0;
             };
             
@@ -40,7 +41,7 @@ Shader "Unlit/VertexID"
                 v2f OUT;
                 OUT.vertex = UnityObjectToClipPos(v.vertex);
                 v.texcoord.y += _Time.y*2;
-                OUT.color = lerp(_Color2,_Color1, pow(cos(v.texcoord.y*1.28),2)*0.6-0.22);
+                OUT.color = lerp(_Color2,_Color1, pow(cos(v.texcoord.y*1.28),2)*0.6-0.22)*v.color;
                 return OUT;
             }
 

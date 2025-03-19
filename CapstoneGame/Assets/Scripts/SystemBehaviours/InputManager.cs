@@ -14,6 +14,7 @@ public class InputManager : MonoBehaviour
     // Input Properties //
     public float HorizontalInput {get; private set;}
     public bool JumpInput {get; private set;}
+    public bool JumpRelease {get; private set;}
     public bool DownInput {get; private set;}
     public bool BoostInput {get; private set;}
     public bool SpinInput {get; private set;}
@@ -50,6 +51,7 @@ public class InputManager : MonoBehaviour
     {
         HorizontalInput = _horizontalAction.ReadValue<float>();
         JumpInput = _jumpAction.WasPressedThisFrame();
+        JumpRelease = _jumpAction.WasReleasedThisFrame();
         DownInput = _downAction.WasPressedThisFrame();
         BoostInput = _boostAction.WasPressedThisFrame();
         SpinInput = _spinAction.WasPressedThisFrame();

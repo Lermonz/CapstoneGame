@@ -15,14 +15,14 @@ public class Player : MonoBehaviour
     Vector2 _velocity;
     public GameObject _hitBox;
 
-    float _jumpVelocity = 12.8f;
-    float _doubleJumpVelocity = 9.5f;
+    float _jumpVelocity = 14f;
+    float _doubleJumpVelocity = 8.5f;
     float _downBoostVelocity = -10f;
-    float _baseAccel = 6f;
+    float _baseAccel = 12f;
     float _baseDecel = 16f;
     float _baseAirDecel = 2.5f;
     float _skidDecel = 30f;
-    float _maxRunSpeed = 5f;
+    float _maxRunSpeed = 6f;
     const float _gravity = -29f;
     float _gravityMult = 1;
     bool _inBlackHole = false;
@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
 
     float _spinCooldown = 42f;
     float _doubleJumpCooldown = 8f;
+
+    bool _jumpOverride = false;
     
     void Start()
     {
@@ -61,7 +63,7 @@ public class Player : MonoBehaviour
             _renderer.flipX = !_renderer.flipX;
         }
         if(_controller._isGrounded) {
-            _canJump = true;
+            _canJump = !_jumpOverride;
             _velocity.y = 0;
             _canDownBoost = false;
         }
@@ -74,6 +76,9 @@ public class Player : MonoBehaviour
             _sfxPlayer.SetAndPlayOneShot(_sfxPlayer._jumpSFX);
             _canDownBoost = true;
             _canJump = false;
+        }
+        if(_velocity.y >= 4 && InputManager.Instance.JumpRelease) {
+            StartCoroutine(ShortenJumpTo(2,4f));
         }
         if(!_controller._isGrounded && _canJump) {
             _canDownBoost = true;
@@ -132,7 +137,7 @@ public class Player : MonoBehaviour
             if(Mathf.Abs(_velocity.x) > _maxRunSpeed * 1.5f) {
                 _velocity.x = -_velocity.x*0.4f;
                 _velocity.y = _isGravityFlipped ? -Mathf.Abs(_velocity.x) : Mathf.Abs(_velocity.x);
-                _velocity.y *= 1.2f; //scale bounce with gravity changes
+                _velocity.y *= 0.6f; //scale bounce with gravity changes
             }
             else
                 _velocity.x = Mathf.Clamp(_velocity.x,-5,5);
@@ -174,21 +179,27 @@ public class Player : MonoBehaviour
         }
         _controller.Move(_velocity * delta);
     }
+    IEnumerator ShortenJumpTo(int delay, float amount) {
+        for(int i = 0; i < delay; i++) {
+            yield return null;
+        }
+        _velocity.y = _isGravityFlipped ? -amount : amount;
+    }
     IEnumerator BoostCoroutine() {
         _canBoost = false;
-        bool spinOverride = false;
-        if(_canSpin)
-            spinOverride = true;
-        if(spinOverride)
+        if(_canSpin || _canJump)
+            _jumpOverride = true;
+        if(_jumpOverride) {
+            _canJump = false;
             _canSpin = false;
+        }
         _canDownBoost = false;
-        _gravityMult *= 0.25f;
+        StartCoroutine(NegateGravityFor(12));
         _velocity.y = Mathf.Clamp(_velocity.y, -0.4f, 0.4f);
         yield return new WaitForSeconds(0.15f);
-        _gravityMult *= 4f;
-        if(spinOverride) {
+        if(_jumpOverride) {
             _canSpin = true;
-            spinOverride = false;
+            _jumpOverride = false;
         }
         _canDownBoost = true;
         _boostDeceling = true;
@@ -196,14 +207,21 @@ public class Player : MonoBehaviour
         _boostDeceling = false;
         StartCoroutine(BoostCooldown(60f));
     }
-    IEnumerator BoostDecelCoroutine(float delay, float amount) {
+    IEnumerator NegateGravityFor(int delay) {
+        _gravityMult *= 0.125f;
+        for(int i = 0; i < delay; i++) {
+            yield return null;
+        }
+        _gravityMult *= 8f;
+    }
+    IEnumerator BoostDecelCoroutine(int delay, int amount) {
         for(int i = 0; i < delay; i++) {
             yield return null;
         }
         _boostDeceling = true;
         StartCoroutine(BoostDecelCoroutine(amount));
     }
-    IEnumerator BoostDecelCoroutine(float amount) {
+    IEnumerator BoostDecelCoroutine(int amount) {
         for(int i = 0; i < amount; i++) {
             yield return null;
         }
