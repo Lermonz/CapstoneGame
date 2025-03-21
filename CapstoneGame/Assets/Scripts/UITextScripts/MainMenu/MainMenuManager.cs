@@ -90,8 +90,11 @@ public class MainMenuManager : MonoBehaviour
     public void OnPrevWorldPress() {
         DecrementWorld();
     }
+    public void SaveGame() {
+        DataPersistenceManager.Instance.SaveGame();
+    }
     public void OnResetProgressPress() {
         DataPersistenceManager.Instance.NewGame();
-        DataPersistenceManager.Instance.SaveGame();
+        SaveGame();
     }
 }
