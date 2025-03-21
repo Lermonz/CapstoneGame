@@ -42,11 +42,13 @@ public class PauseMenu : MonoBehaviour
     public void Pause() {
         _isPaused = true;
         OpenMainPauseMenu();
+        FindAudioPlayerForButtons(6);
         InputManager.Instance.DisablePlayerInput();
         Time.timeScale = 0;
     }
     public void Unpause() {
         _isPaused = false;
+        FindAudioPlayerForButtons(5);
         CloseMenus();
         InputManager.Instance.EnablePlayerInput();
         Time.timeScale = 1;
@@ -89,5 +91,8 @@ public class PauseMenu : MonoBehaviour
     }
     public void OnBackPress() {
         OpenMainPauseMenu();
+    }
+    public void FindAudioPlayerForButtons(int fileNum) {
+        AudioSelecterButtons.Instance.PlaySFX(fileNum);
     }
 }

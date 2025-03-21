@@ -1,8 +1,10 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SelectLevel : MonoBehaviour
 {
+    public float _delay;
     public void LoadLevel (int level) {
         SetGameBehavior(true);
         SceneManager.LoadScene(level);
@@ -21,5 +23,12 @@ public class SelectLevel : MonoBehaviour
     }
     void SetGameBehavior(bool game) {
         GameBehaviour.Instance._isGame = game;
+    }
+    public void DelayedLoadLevel (int level) {
+        StartCoroutine(DelayThenLoad(level));
+    }
+    IEnumerator DelayThenLoad(int level) {
+        yield return new WaitForSeconds(_delay);
+        LoadLevel(level);
     }
 }
