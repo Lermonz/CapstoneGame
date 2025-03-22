@@ -664,6 +664,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6175757089237633219, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: _buttonData._world
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175757089237633219, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: _buttonData._levelID
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175757089237633219, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: _buttonData._goldTotalReq
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7159098251629792139, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -908,7 +920,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.2174754, y: 0.5, z: 0}
+  m_LocalPosition: {x: -5.235085, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1766,6 +1778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ef9a0b2a6cf4da8bc484db2a71bc6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _delay: 0
 --- !u!1001 &1312415848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3516,6 +3529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ef9a0b2a6cf4da8bc484db2a71bc6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _delay: 0
 --- !u!61 &1678727464
 BoxCollider2D:
   m_ObjectHideFlags: 0

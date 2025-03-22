@@ -866,7 +866,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2093849, y: 2.5, z: 0}
+  m_LocalPosition: {x: 1.1910324, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1292,6 +1292,22 @@ PrefabInstance:
     - target: {fileID: 5211385599213261141, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
       propertyPath: m_text
       value: swivel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175757089237633219, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: _buttonData._world
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175757089237633219, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: _buttonData._levelID
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175757089237633219, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: _buttonData._unlockType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175757089237633219, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: _buttonData._goldTotalReq
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2126,6 +2142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ef9a0b2a6cf4da8bc484db2a71bc6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _delay: 0
 --- !u!1 &1314238741
 GameObject:
   m_ObjectHideFlags: 0
@@ -4201,6 +4218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ef9a0b2a6cf4da8bc484db2a71bc6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _delay: 0
 --- !u!61 &1678727464
 BoxCollider2D:
   m_ObjectHideFlags: 0

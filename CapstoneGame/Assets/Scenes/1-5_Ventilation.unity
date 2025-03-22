@@ -205,8 +205,8 @@ PolygonCollider2D:
       - {x: -0.71, y: -0.25}
       - {x: 0.75, y: -0.25}
       - {x: 0.75, y: 0.45}
-      - {x: -0.5, y: 0.45}
-      - {x: -0.5, y: 0.23}
+      - {x: -0.6, y: 0.45}
+      - {x: -0.6, y: 0.23}
   m_UseDelaunayMesh: 0
 --- !u!1 &198867357
 GameObject:
@@ -791,7 +791,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.830611, y: -0.26, z: 0}
+  m_LocalPosition: {x: -6.8489757, y: -0.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2178,6 +2178,14 @@ PrefabInstance:
       propertyPath: m_text
       value: Ventilation
       objectReference: {fileID: 0}
+    - target: {fileID: 6175757089237633219, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: _buttonData._world
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175757089237633219, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: _buttonData._levelID
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2341,6 +2349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ef9a0b2a6cf4da8bc484db2a71bc6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _delay: 0
 --- !u!1 &1327195186
 GameObject:
   m_ObjectHideFlags: 0
@@ -3464,6 +3473,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -20, y: 6, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 25
+      m_TileSpriteIndex: 25
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -17, y: 6, z: 0}
     second:
       serializedVersion: 2
@@ -3666,7 +3685,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: cd94f07d34dbf4b37a3a1f36c0d250fb, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: ab7facb9e357a4e44979786e2a3ae2ae, type: 2}
-  - m_RefCount: 31
+  - m_RefCount: 32
     m_Data: {fileID: 11400000, guid: cfe34d2cf680b4a5095944ef78f03cd1, type: 2}
   - m_RefCount: 16
     m_Data: {fileID: 11400000, guid: b7c2cd058411e42ac8a2026b42c44299, type: 2}
@@ -3723,14 +3742,14 @@ Tilemap:
     m_Data: {fileID: -1793432638, guid: 3f86e3d35d7854af7a9a76121e5466f3, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -1960022494, guid: 3f86e3d35d7854af7a9a76121e5466f3, type: 3}
-  - m_RefCount: 31
+  - m_RefCount: 32
     m_Data: {fileID: -538470336, guid: 3f86e3d35d7854af7a9a76121e5466f3, type: 3}
   - m_RefCount: 16
     m_Data: {fileID: -1497689438, guid: 3f86e3d35d7854af7a9a76121e5466f3, type: 3}
   - m_RefCount: 5
     m_Data: {fileID: 924263334, guid: 3f86e3d35d7854af7a9a76121e5466f3, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 100
+  - m_RefCount: 101
     m_Data:
       e00: 1
       e01: 0
@@ -3749,7 +3768,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 100
+  - m_RefCount: 101
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 0
     m_Data: {r: 0.9741085, g: 0.5031823, b: 0.5493091, a: 1}
@@ -4588,6 +4607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ef9a0b2a6cf4da8bc484db2a71bc6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _delay: 0
 --- !u!61 &1678727464
 BoxCollider2D:
   m_ObjectHideFlags: 0

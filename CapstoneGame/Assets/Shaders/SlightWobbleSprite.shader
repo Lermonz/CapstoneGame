@@ -53,7 +53,7 @@ Shader "Unlit/SlightWobbleSprite"
             fixed4 frag (v2f i, UNITY_VPOS_TYPE screenPos : SV_POSITION) : SV_Target
             {
                 // sample the texture
-                i.texcoord.x += cos(i.texcoord.y*3 + (_Time.y+screenPos.xy*0.1))*0.008+0.0075;
+                i.texcoord.x += cos(i.texcoord.y*3 + (_Time.y+screenPos.xy*0.1))*0.009+0.0085;
                 fixed4 col = tex2D(_MainTex, i.texcoord);
                 return col;
             }

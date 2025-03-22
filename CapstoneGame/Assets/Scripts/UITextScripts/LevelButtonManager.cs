@@ -8,46 +8,57 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
     public Button_LvlButtonData _buttonData;
     [SerializeField]
     private Button _levelButton;
-    public int _totalGolds;
+    public int _totalCount;
     private void Awake()
     {
         _levelButton = this.GetComponent<Button>();
     }
     public void LoadData(GameData data)
     {
-        _totalGolds = 0;
+        CheckUnlock(data);
+    }
+    public void SaveData(GameData data) {
+        CheckUnlock(data);
+    }
+    private void CheckUnlock(GameData data) {
+        _totalCount = 0;
         switch(_buttonData._unlockType) {
         case LevelUnlockType.OnWorld:
-            _levelButton.interactable = true;
+            data.unlockedLevels[_buttonData._levelID] = true;
             break;
         case LevelUnlockType.TotalGolds:
-            foreach(KeyValuePair<string, string> item in data.medals) {
-                if(item.Value == "gold") {
-                    _totalGolds++;
-                }
-            }
-            _levelButton.interactable = _totalGolds >= _buttonData._goldTotalReq;
+            TotalGolds(data);
+            data.unlockedLevels[_buttonData._levelID] = _totalCount >= _buttonData._goldTotalReq;
             break;
         case LevelUnlockType.GoldsInWorld:
-            for(int i = 0+(_buttonData._world-1)*10; i < 10+(_buttonData._world-1)*10; i++) {
-                if(data.medals.ElementAt(i).Value == "gold") {
-                    _totalGolds++;
-                }
-            }
-            _levelButton.interactable = _totalGolds >= _buttonData._goldTotalReq;
+            TotalGoldsInWorld(data);
+            data.unlockedLevels[_buttonData._levelID] = _totalCount >= _buttonData._goldTotalReq;
             break;
         case LevelUnlockType.SpecificGold:
-            _levelButton.interactable = data.medals[_buttonData._requiredLevelID] == "gold";
+            data.unlockedLevels[_buttonData._levelID] = data.medals[_buttonData._requiredLevelID] == "gold";
             break;
         default:
             break;
-      }
+        }
+        MakeButtonInteractable(data);
     }
-    public void SaveData(GameData data) {
-        return;
+    private void MakeButtonInteractable(GameData data) {
+        _levelButton.interactable = data.unlockedLevels[_buttonData._levelID];
     }
-    // void Update() {
-    //     Debug.Log("Total Golds:"+_totalGolds);
-    //     _levelButton.interactable = _totalGolds >= _buttonData._goldTotalReq;
-    // }
+    private void TotalGolds(GameData data) {
+        _totalCount = 0;
+        foreach(KeyValuePair<string, string> item in data.medals) {
+            if(item.Value == "gold") {
+                _totalCount++;
+            }
+        }
+    }
+    private void TotalGoldsInWorld(GameData data) {
+        _totalCount = 0;
+        for(int i = 0+(_buttonData._world-1)*10; i < 10+(_buttonData._world-1)*10; i++) {
+            if(data.medals.ElementAt(i).Value == "gold") {
+                _totalCount++;
+            }
+        }
+    }
 }

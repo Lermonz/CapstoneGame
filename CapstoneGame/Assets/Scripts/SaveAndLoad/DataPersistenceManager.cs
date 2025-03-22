@@ -38,6 +38,7 @@ public class DataPersistenceManager : MonoBehaviour
         this._gameData = new GameData();
     }
     public void SaveGame(){
+        this._dataPersistenceObjects = FindAllDataPersistenceObjects();
         if(this._gameData == null) {
             Debug.LogWarning("No data found when trying to save.");
             return;

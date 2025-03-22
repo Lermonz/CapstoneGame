@@ -7,7 +7,7 @@ public class AudioSelecterButtons : MonoBehaviour
     private AudioSource _source;
     void Awake() {
         if (Instance != null && Instance != this) {
-            Destroy(this);
+            Destroy(this.gameObject);
             return;
         }
         else

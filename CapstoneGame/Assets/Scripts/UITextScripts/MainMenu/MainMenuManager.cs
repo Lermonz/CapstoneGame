@@ -97,4 +97,7 @@ public class MainMenuManager : MonoBehaviour
         DataPersistenceManager.Instance.NewGame();
         SaveGame();
     }
+    public void FindAudioPlayerForButtons(int fileNum) {
+        AudioSelecterButtons.Instance.PlaySFX(fileNum);
+    }
 }

@@ -13,6 +13,7 @@ public class GameData
     public SerializableDictionary<string, float> levelGolds;
     public SerializableDictionary<string, float> levelSilvers;
     public SerializableDictionary<string, float> levelBronzes;
+    public SerializableDictionary<string, bool> unlockedLevels;
     // default initialized values of the constructor
     public GameData() {
         personalBest = new SerializableDictionary<string, float>();
