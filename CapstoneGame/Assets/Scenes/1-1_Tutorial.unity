@@ -1782,7 +1782,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.235069, y: 0.49999988, z: 0}
+  m_LocalPosition: {x: -10.227105, y: 0.49999988, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2396,6 +2396,30 @@ PrefabInstance:
     - target: {fileID: 8449693425285930691, guid: 0b6cc6a038c5f4bf387429e68a4ef849, type: 3}
       propertyPath: m_Size.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607455458634067334, guid: 0b6cc6a038c5f4bf387429e68a4ef849, type: 3}
+      propertyPath: ShapeModule.arc.value
+      value: 210
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607455458634067334, guid: 0b6cc6a038c5f4bf387429e68a4ef849, type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607455458634067334, guid: 0b6cc6a038c5f4bf387429e68a4ef849, type: 3}
+      propertyPath: ShapeModule.arc.spread
+      value: 0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607455458634067334, guid: 0b6cc6a038c5f4bf387429e68a4ef849, type: 3}
+      propertyPath: ShapeModule.m_Position.y
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607455458634067334, guid: 0b6cc6a038c5f4bf387429e68a4ef849, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607455458634067334, guid: 0b6cc6a038c5f4bf387429e68a4ef849, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
+      value: 0.25675964
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5730280194738579861, guid: 0b6cc6a038c5f4bf387429e68a4ef849, type: 3}

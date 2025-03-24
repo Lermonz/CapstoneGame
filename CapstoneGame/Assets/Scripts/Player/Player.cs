@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent (typeof (Controller2D))]
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     SpriteRenderer _renderer;
     VFXPlayer _vfxPlayer;
     Player_SFXPlayer _sfxPlayer;
+    Animator _animator;
 
     Vector2 _velocity;
     public GameObject _hitBox;
@@ -18,11 +20,11 @@ public class Player : MonoBehaviour
     float _jumpVelocity = 14f;
     float _doubleJumpVelocity = 8.5f;
     float _downBoostVelocity = -10f;
-    float _baseAccel = 12f;
-    float _baseDecel = 16f;
-    float _baseAirDecel = 2.5f;
-    float _skidDecel = 30f;
-    float _maxRunSpeed = 6f;
+    float _baseAccel = 18f;
+    float _baseDecel = 20f;
+    float _baseAirDecel = 2.8f;
+    float _skidDecel = 40f;
+    float _maxRunSpeed = 5.5f;
     const float _gravity = -29f;
     float _gravityMult = 1;
     bool _inBlackHole = false;
@@ -52,11 +54,15 @@ public class Player : MonoBehaviour
         _renderer = GetComponent<SpriteRenderer>();
         _vfxPlayer = GetComponent<VFXPlayer>();
         _sfxPlayer = GetComponent<Player_SFXPlayer>();
+        _animator = GetComponent<Animator>();
         //_particles = GetComponent<ParticleSystem>();
         _terminalVelocity = _termV;
     }
     void Update() {
         float delta = Time.deltaTime;
+        _animator.SetBool("Running", InputManager.Instance.HorizontalInput != 0 && _controller._isGrounded);
+        _animator.SetBool("Jumping", _velocity.y > 0.2 && !_controller._isGrounded);
+        _animator.SetBool("Falling", _velocity.y < -0.2 && !_controller._isGrounded);
         //_dpad = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         
         if ((InputManager.Instance.HorizontalInput > 0 && _renderer.flipX) || (InputManager.Instance.HorizontalInput < 0 && !_renderer.flipX)) {
@@ -106,6 +112,9 @@ public class Player : MonoBehaviour
             }
             else {
                 Accelerate(ref _velocity.x, Mathf.Sign(_velocity.x), _baseAirDecel, delta, true);
+            }
+            if(Mathf.Abs(_velocity.x) <= 1) {
+                _velocity.x = 0;
             }
         }
         //TREATING GRAVITY LIKE ACCELERATION
