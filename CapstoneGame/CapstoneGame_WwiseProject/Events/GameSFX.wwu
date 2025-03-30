@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{CB0BEE05-7ACE-4E32-BBC6-C118FC70317F}" SchemaVersion="119">
+	<Events>
+		<WorkUnit Name="GameSFX" ID="{CB0BEE05-7ACE-4E32-BBC6-C118FC70317F}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="13"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="Crystal_Break" ID="{A7407960-2D20-46EE-8798-6DFF01732D79}">
+					<ChildrenList>
+						<Action Name="" ID="{A473C9AF-EE68-48D9-9E7E-27F3535DA51D}" ShortID="723935360">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="crystal_break2" ID="{77BD201E-96D8-4FD2-A91D-BDDB8108CB55}" WorkUnitID="{7FD96404-D09A-41C2-906C-4B91AF852793}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

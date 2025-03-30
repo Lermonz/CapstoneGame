@@ -31,7 +31,7 @@ public class WinMenuText : MonoBehaviour
                     Timer.Instance.m,
                     Timer.Instance.s,
                     Timer.Instance.ms);
-        Vector3 pb = LevelManager.Instance.ConvertTimerToVector3(LevelManager.Instance._personalBest);
+        Vector3 pb = GameBehaviour.Instance.ConvertTimerToVector3(LevelManager.Instance._personalBest);
         _yourPB.text= string.Format("{0:00}:{1:00}.{2:000}", 
                     pb.x,
                     pb.y,

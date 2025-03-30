@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{25F1BD17-7738-4C8E-A066-8FBB8B03CB0B}" SchemaVersion="119">
+	<AudioObjects>
+		<WorkUnit Name="Player_SFX" ID="{25F1BD17-7738-4C8E-A066-8FBB8B03CB0B}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="23"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Sound Name="player_Jump1" ID="{147F3A9E-1E0C-4193-A1F2-79018B454167}" ShortID="312784101">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="player_Jump1" ID="{7943FE3C-D4E1-4EFC-9A42-6B960B2E9016}">
+							<Language>SFX</Language>
+							<AudioFile>player_Jump1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="291109648"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="player_Jump1" ID="{7943FE3C-D4E1-4EFC-9A42-6B960B2E9016}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="player_FastFall1" ID="{F3B5C356-6834-421A-9D2B-0472BA02A48E}" ShortID="117747131">
+					<PropertyList>
+						<Property Name="Pitch" Type="int32">
+							<ModifierList>
+								<ModifierInfo>
+									<Modifier Name="" ID="{1DDCCE89-2729-47AB-BCDA-E310A7EC4FBA}">
+										<PropertyList>
+											<Property Name="Enabled" Type="bool" Value="True"/>
+											<Property Name="Max" Type="Real64" Value="200"/>
+											<Property Name="Min" Type="Real64" Value="-200"/>
+										</PropertyList>
+									</Modifier>
+								</ModifierInfo>
+							</ModifierList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="player_FastFall1" ID="{BB71844B-9C4C-471B-8332-FBEB1BB98931}">
+							<Language>SFX</Language>
+							<AudioFile>player_FastFall1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="991962359"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="player_FastFall1" ID="{BB71844B-9C4C-471B-8332-FBEB1BB98931}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="player_Spin2" ID="{FDEA7D55-531C-4A47-AF51-E5205534291E}" ShortID="979867094">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="player_Spin2" ID="{2330435D-F0B9-44E5-AE29-8363CAD7FA7E}">
+							<Language>SFX</Language>
+							<AudioFile>player_Spin2.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="468924835"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="player_Spin2" ID="{2330435D-F0B9-44E5-AE29-8363CAD7FA7E}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="player_Boost2" ID="{1C63ABD6-158F-4F13-BFC7-95EF0C15A4C8}" ShortID="209978326">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="player_Boost2" ID="{A06AEFAC-6F74-44B4-8429-0FCD1955DE49}">
+							<Language>SFX</Language>
+							<AudioFile>player_Boost2.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="297365200"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="player_Boost2" ID="{A06AEFAC-6F74-44B4-8429-0FCD1955DE49}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

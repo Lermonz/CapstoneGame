@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{F7208305-3A80-4691-9593-DD6787B4FC9B}" SchemaVersion="119">
+	<Events>
+		<WorkUnit Name="MenuSFX" ID="{F7208305-3A80-4691-9593-DD6787B4FC9B}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="1"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="ButtonConfirm1" ID="{C3EEC3C6-95F0-4E3F-8C9D-1D5C37EC6B69}">
+					<ChildrenList>
+						<Action Name="" ID="{7DF2E32E-F337-4D24-8937-C92BCFD8A0B4}" ShortID="697560975">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="button_select1_1" ID="{92D4FB56-987F-430B-9E4C-19B8A7C88B57}" WorkUnitID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="ButtonConfirm2" ID="{8A051046-EE24-4404-9718-23B0007D440E}">
+					<ChildrenList>
+						<Action Name="" ID="{7BCB404D-8480-4ACF-9276-BC10145FA31C}" ShortID="168568196">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="button_select2_1" ID="{DD2A7666-79FD-4EAB-A9C7-9C1E630237F9}" WorkUnitID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="ButtonConfirm3" ID="{2CB4E3F7-00E4-4579-B66A-1B9332BD4899}">
+					<ChildrenList>
+						<Action Name="" ID="{1355460B-C975-4C99-B28A-964CAF5C0C3D}" ShortID="602163244">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="button_select3_1" ID="{BE26E364-8EAA-4C1B-9B4F-BA1E3A5EDE48}" WorkUnitID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="ButtonConfirm4" ID="{E4A2D9E8-3C66-4A8B-AD65-57754DBA7D7D}">
+					<ChildrenList>
+						<Action Name="" ID="{E3E732FD-18BD-4A60-AAFB-779EC4ED0A14}" ShortID="915564671">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="button_select4_1" ID="{61BD06D9-270D-4794-9B26-30DB1CA8DD7B}" WorkUnitID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="ButtonBackOut1" ID="{6C925603-F2A3-417F-A576-066FF8379020}">
+					<ChildrenList>
+						<Action Name="" ID="{997AAE0C-008C-460D-A9E3-7FC25931367C}" ShortID="890360592">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="button_select5_1" ID="{269A41A4-4BC1-4DE4-A0FE-93361D3C3FCE}" WorkUnitID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="ButtonNext" ID="{0597ACD0-7DD7-4E4C-ADB5-51D3E663852E}">
+					<ChildrenList>
+						<Action Name="" ID="{AA146F8C-3960-4847-9E7C-AC9D5F045F5A}" ShortID="597154055">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="button_select6_1" ID="{5DFFFD41-0C05-4AFE-A21F-1AA558421622}" WorkUnitID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="ButtonPrev" ID="{098EB3C0-B9B8-4457-8FE9-5403C3EE8A60}">
+					<ChildrenList>
+						<Action Name="" ID="{AA23A64E-4D08-49D3-A5A7-90F26CD54FAB}" ShortID="821469784">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="button_select7_1" ID="{490FB554-992A-4FD0-8605-792D69210CDA}" WorkUnitID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="ButtonWarning" ID="{1EFF375F-09CA-4DFA-901C-90F8B5584AC1}">
+					<ChildrenList>
+						<Action Name="" ID="{E87421FC-F031-43A5-B8C7-E11997DF414F}" ShortID="481865148">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="button_select8_1" ID="{FDB3DF2E-BAA5-4CA3-81C2-344846189AFA}" WorkUnitID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

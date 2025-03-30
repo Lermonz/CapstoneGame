@@ -29,4 +29,13 @@ public class GameBehaviour : MonoBehaviour
             Application.Quit();
         #endif
     }
+    public Vector3 ConvertTimerToVector3(float time) {
+        float m = Mathf.FloorToInt(time/60000);
+        float s = Mathf.FloorToInt((time-m*60000)/1000);
+        float ms = Mathf.FloorToInt(time - m*60000 - s*1000);
+        return new Vector3(m,s,ms);
+    }
+    public float ConvertTimerToFloat(Vector3 time) {
+        return (time.x*60+time.y)*1000+time.z;
+    }
 }

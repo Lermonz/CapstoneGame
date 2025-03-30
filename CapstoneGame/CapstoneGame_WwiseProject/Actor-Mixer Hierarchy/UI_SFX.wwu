@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}" SchemaVersion="119">
+	<AudioObjects>
+		<WorkUnit Name="UI_SFX" ID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="1"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Sound Name="button_select1_1" ID="{92D4FB56-987F-430B-9E4C-19B8A7C88B57}" ShortID="390062395">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="button_select1_1" ID="{5BC28B3E-6402-4A38-9408-EEBA47C81560}">
+							<Language>SFX</Language>
+							<AudioFile>button_select1_1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="153599617"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="button_select1_1" ID="{5BC28B3E-6402-4A38-9408-EEBA47C81560}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="button_select8_1" ID="{FDB3DF2E-BAA5-4CA3-81C2-344846189AFA}" ShortID="268468346">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="button_select8_1" ID="{808680A5-A992-409B-91BA-EE17F263C46D}">
+							<Language>SFX</Language>
+							<AudioFile>button_select8_1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="49204311"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="button_select8_1" ID="{808680A5-A992-409B-91BA-EE17F263C46D}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="button_select7_1" ID="{490FB554-992A-4FD0-8605-792D69210CDA}" ShortID="1069677857">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="button_select7_1" ID="{8D6310E5-010C-4540-A4B6-74B100E7A64D}">
+							<Language>SFX</Language>
+							<AudioFile>button_select7_1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="479308673"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="button_select7_1" ID="{8D6310E5-010C-4540-A4B6-74B100E7A64D}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="button_select6_1" ID="{5DFFFD41-0C05-4AFE-A21F-1AA558421622}" ShortID="584523517">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="button_select6_1" ID="{D34767D6-63C8-4974-9CC0-462D13C1E187}">
+							<Language>SFX</Language>
+							<AudioFile>button_select6_1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="914652543"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="button_select6_1" ID="{D34767D6-63C8-4974-9CC0-462D13C1E187}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="button_select5_1" ID="{269A41A4-4BC1-4DE4-A0FE-93361D3C3FCE}" ShortID="184520361">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="button_select5_1" ID="{DE7AC2B3-848C-4DB6-90D6-4FB09F6FB60B}">
+							<Language>SFX</Language>
+							<AudioFile>button_select5_1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="116333208"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="button_select5_1" ID="{DE7AC2B3-848C-4DB6-90D6-4FB09F6FB60B}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="button_select4_1" ID="{61BD06D9-270D-4794-9B26-30DB1CA8DD7B}" ShortID="951913612">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="button_select4_1" ID="{56A9B9E8-6F6F-44AC-8F6F-B1641DB4B626}">
+							<Language>SFX</Language>
+							<AudioFile>button_select4_1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="146638624"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="button_select4_1" ID="{56A9B9E8-6F6F-44AC-8F6F-B1641DB4B626}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="button_select3_1" ID="{BE26E364-8EAA-4C1B-9B4F-BA1E3A5EDE48}" ShortID="1037551891">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="button_select3_1" ID="{D5397E09-6B5A-48D3-B1B6-5491565DD66A}">
+							<Language>SFX</Language>
+							<AudioFile>button_select3_1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="33559383"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="button_select3_1" ID="{D5397E09-6B5A-48D3-B1B6-5491565DD66A}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="button_select2_1" ID="{DD2A7666-79FD-4EAB-A9C7-9C1E630237F9}" ShortID="996264048">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="button_select2_1" ID="{227B287B-0C00-48B9-8958-2B109E79CB04}">
+							<Language>SFX</Language>
+							<AudioFile>button_select2_1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="355843960"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="button_select2_1" ID="{227B287B-0C00-48B9-8958-2B109E79CB04}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

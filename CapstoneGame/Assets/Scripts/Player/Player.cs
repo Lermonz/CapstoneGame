@@ -5,13 +5,11 @@ using UnityEngine;
 [RequireComponent (typeof (Controller2D))]
 [RequireComponent (typeof (SpriteRenderer))]
 [RequireComponent (typeof (VFXPlayer))]
-[RequireComponent (typeof (Player_SFXPlayer))]
 public class Player : MonoBehaviour
 {
     Controller2D _controller;
     SpriteRenderer _renderer;
     VFXPlayer _vfxPlayer;
-    Player_SFXPlayer _sfxPlayer;
     Animator _animator;
 
     Vector2 _velocity;
@@ -53,7 +51,6 @@ public class Player : MonoBehaviour
         _controller = GetComponent<Controller2D>();
         _renderer = GetComponent<SpriteRenderer>();
         _vfxPlayer = GetComponent<VFXPlayer>();
-        _sfxPlayer = GetComponent<Player_SFXPlayer>();
         _animator = GetComponent<Animator>();
         //_particles = GetComponent<ParticleSystem>();
         _terminalVelocity = _termV;
@@ -79,7 +76,8 @@ public class Player : MonoBehaviour
         // Jump
         if(_canJump && InputManager.Instance.JumpInput) {
             _velocity.y = _jumpVelocity;
-            _sfxPlayer.SetAndPlayOneShot(_sfxPlayer._jumpSFX);
+            //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._jumpSFX);
+            AkSoundEngine.PostEvent("Player_Jump", gameObject);
             _canDownBoost = true;
             _canJump = false;
         }
@@ -134,7 +132,8 @@ public class Player : MonoBehaviour
                 facingDirection = Mathf.Sign(InputManager.Instance.HorizontalInput);
             }
             _velocity.x += _boostSpeed * facingDirection;
-            _sfxPlayer.SetAndPlayOneShot(_sfxPlayer._boostSFX);
+            //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._boostSFX);
+            AkSoundEngine.PostEvent("Player_Dash", gameObject);
             _vfxPlayer.Boost_AfterImage(_renderer.flipX);
             StartCoroutine(BoostCoroutine());
         }
@@ -156,7 +155,8 @@ public class Player : MonoBehaviour
         /// SPIN ///
         if(InputManager.Instance.SpinInput && _canSpin) {
             Hitbox(1.5f, 0.8f);
-            _sfxPlayer.SetAndPlayOneShot(_sfxPlayer._spinSFX);
+            //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._spinSFX);
+            AkSoundEngine.PostEvent("Player_Attack", gameObject);
             _vfxPlayer.Spin_Sparkle();
             if(!_controller._isGrounded && _canDoubleJump) {
                 _canDoubleJump = false;
@@ -176,7 +176,8 @@ public class Player : MonoBehaviour
         //Fast Fall / Down Boost
         if(InputManager.Instance.DownInput && _canDownBoost) {
             _velocity.y += _downBoostVelocity;
-            _sfxPlayer.SetAndPlayOneShot(_sfxPlayer._fastFallSFX);
+            //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._fastFallSFX);
+            AkSoundEngine.PostEvent("Player_FastFall", gameObject);
             _vfxPlayer.Woosh(0.5f);
             _canDownBoost = false;
         }

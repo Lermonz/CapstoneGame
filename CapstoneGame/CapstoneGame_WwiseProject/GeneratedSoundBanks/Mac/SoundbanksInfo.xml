@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="16" SoundBankVersion="150">
+	<RootPaths>
+		<ProjectRoot>../..</ProjectRoot>
+		<SourceFilesRoot>../../.cache/Mac</SourceFilesRoot>
+		<SoundBanksRoot>.</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>.</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{960D40C5-B0E5-B773-0BAD-E3190899B514}">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+			<Plugins>
+				<AudioDevices>
+					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
+					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
+				</AudioDevices>
+			</Plugins>
+			<Busses>
+				<Bus Id="3599330521" Name="MusicMixer"/>
+				<Bus Id="3803692087" Name="Master Audio Bus"/>
+				<Bus Id="4084091105" Name="SFXMixer"/>
+			</Busses>
+		</SoundBank>
+		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{410D1876-BDF8-4BCB-598C-CD970D0C68DC}">
+			<ShortName>SoundbankAll</ShortName>
+			<Path>SoundbankAll.bnk</Path>
+			<Media>
+				<File Id="12078152" Language="SFX" Streaming="true" Location="Memory">
+					<ShortName>AntiworkLoop_1.wav</ShortName>
+					<Path>Media/12078152.wem</Path>
+					<CachePath>SFX/AntiworkLoop_1_FBC78EF0.wem</CachePath>
+					<PrefetchSize>38608</PrefetchSize>
+				</File>
+				<File Id="33559383" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>button_select3_1.wav</ShortName>
+					<CachePath>SFX/button_select3_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="49204311" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>button_select8_1.wav</ShortName>
+					<CachePath>SFX/button_select8_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="116333208" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>button_select5_1.wav</ShortName>
+					<CachePath>SFX/button_select5_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="146638624" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>button_select4_1.wav</ShortName>
+					<CachePath>SFX/button_select4_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="150809189" Language="SFX" Streaming="true" Location="Memory">
+					<ShortName>AntiworkIntro_1.wav</ShortName>
+					<Path>Media/150809189.wem</Path>
+					<CachePath>SFX/AntiworkIntro_1_FBC78EF0.wem</CachePath>
+					<PrefetchSize>38560</PrefetchSize>
+				</File>
+				<File Id="153599617" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>button_select1_1.wav</ShortName>
+					<CachePath>SFX/button_select1_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="291109648" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>player_Jump1.wav</ShortName>
+					<CachePath>SFX/player_Jump1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="297365200" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>player_Boost2.wav</ShortName>
+					<CachePath>SFX/player_Boost2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="354589701" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>crystal_break2.wav</ShortName>
+					<CachePath>SFX/crystal_break2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="355843960" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>button_select2_1.wav</ShortName>
+					<CachePath>SFX/button_select2_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="468924835" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>player_Spin2.wav</ShortName>
+					<CachePath>SFX/player_Spin2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="479308673" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>button_select7_1.wav</ShortName>
+					<CachePath>SFX/button_select7_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="914652543" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>button_select6_1.wav</ShortName>
+					<CachePath>SFX/button_select6_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="991962359" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>player_FastFall1.wav</ShortName>
+					<CachePath>SFX/player_FastFall1_818F3B66.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="817870589" Name="ButtonBackOut1" DurationType="OneShot" DurationMin="0.8108125" DurationMax="0.8108125">
+					<MediaRefs>
+						<MediaRef Id="116333208"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3348213544" Name="ButtonConfirm1" DurationType="OneShot" DurationMin="0.9" DurationMax="0.9">
+					<MediaRefs>
+						<MediaRef Id="153599617"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3348213547" Name="ButtonConfirm2" DurationType="OneShot" DurationMin="0.9" DurationMax="0.9">
+					<MediaRefs>
+						<MediaRef Id="355843960"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3348213546" Name="ButtonConfirm3" DurationType="OneShot" DurationMin="0.8107917" DurationMax="0.8107917">
+					<MediaRefs>
+						<MediaRef Id="33559383"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3348213549" Name="ButtonConfirm4" DurationType="OneShot" DurationMin="0.8108125" DurationMax="0.8108125">
+					<MediaRefs>
+						<MediaRef Id="146638624"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3070336346" Name="ButtonNext" DurationType="OneShot" DurationMin="0.8108125" DurationMax="0.8108125">
+					<MediaRefs>
+						<MediaRef Id="914652543"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1953314766" Name="ButtonPrev" DurationType="OneShot" DurationMin="0.8108125" DurationMax="0.8108125">
+					<MediaRefs>
+						<MediaRef Id="479308673"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="279279475" Name="ButtonWarning" DurationType="OneShot" DurationMin="0.8108125" DurationMax="0.8108125">
+					<MediaRefs>
+						<MediaRef Id="49204311"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="756738409" Name="Crystal_Break" DurationType="OneShot" DurationMin="0.7742083" DurationMax="0.7742083">
+					<MediaRefs>
+						<MediaRef Id="354589701"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2824512041" Name="Player_Attack" DurationType="OneShot" DurationMin="1.3653333" DurationMax="1.3653333">
+					<MediaRefs>
+						<MediaRef Id="468924835"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2394582229" Name="Player_Dash" DurationType="OneShot" DurationMin="1.3653333" DurationMax="1.3653333">
+					<MediaRefs>
+						<MediaRef Id="297365200"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="4179545512" Name="Player_FastFall" DurationType="OneShot" DurationMin="1.2163737" DurationMax="1.5325348">
+					<MediaRefs>
+						<MediaRef Id="991962359"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1305133589" Name="Player_Jump" DurationType="OneShot" DurationMin="1.3653333" DurationMax="1.3653333">
+					<MediaRefs>
+						<MediaRef Id="291109648"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="4039638074" Name="PlayWorld1" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="12078152"/>
+						<MediaRef Id="150809189"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2443977444" Name="StopWorld1" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+			</Events>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{E3C8F524-6565-B5A9-D104-EDACCA0E0FEF}</FileHash>
+</SoundBanksInfo>

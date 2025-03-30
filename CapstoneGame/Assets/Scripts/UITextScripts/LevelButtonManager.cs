@@ -13,8 +13,7 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
     {
         _levelButton = this.GetComponent<Button>();
     }
-    public void LoadData(GameData data)
-    {
+    public void LoadData(GameData data){
         CheckUnlock(data);
     }
     public void SaveData(GameData data) {
@@ -28,7 +27,10 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
             break;
         case LevelUnlockType.TotalGolds:
             TotalGolds(data);
-            data.unlockedLevels[_buttonData._levelID] = _totalCount >= _buttonData._goldTotalReq;
+            data.unlockedLevels[
+                _buttonData._levelID] = 
+                _totalCount >= 
+                _buttonData._goldTotalReq;
             break;
         case LevelUnlockType.GoldsInWorld:
             TotalGoldsInWorld(data);

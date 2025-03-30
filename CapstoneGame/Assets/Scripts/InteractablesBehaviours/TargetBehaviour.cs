@@ -11,7 +11,8 @@ public class TargetBehaviour : MonoBehaviour
     }
     public void GotHit() {
         this.GetComponent<PolygonCollider2D>().enabled = false;
-        this.GetComponent<AudioSource>().PlayOneShot(this.GetComponent<AudioSource>().clip);
+        //this.GetComponent<AudioSource>().PlayOneShot(this.GetComponent<AudioSource>().clip);
+        AkSoundEngine.PostEvent("Crystal_Break", gameObject);
         StartCoroutine(BreakApartAnim());
         LevelManager.Instance.HitTarget();
     }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}" SchemaVersion="119">
+	<Events>
+		<WorkUnit Name="Music" ID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="15"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="PlayWorld1" ID="{4F226F1A-A4FB-4F81-BE4A-37022C52F9CD}">
+					<ChildrenList>
+						<Action Name="" ID="{0BE677C5-F19B-4DE2-B18C-4E64CEA7052D}" ShortID="973403369">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Antiwork" ID="{99F5C74C-261E-48F7-ADCF-0B662370CD8D}" WorkUnitID="{5BCF3E77-3189-4112-96A6-4EE645FD6275}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="StopWorld1" ID="{0D19B70E-7C89-42ED-B4EE-D64D9CD63260}">
+					<ChildrenList>
+						<Action Name="" ID="{9438C048-7F8A-495F-8D85-EDE63355F762}" ShortID="663482886">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Antiwork" ID="{99F5C74C-261E-48F7-ADCF-0B662370CD8D}" WorkUnitID="{5BCF3E77-3189-4112-96A6-4EE645FD6275}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

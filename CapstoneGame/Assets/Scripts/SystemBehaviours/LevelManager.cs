@@ -55,20 +55,11 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         _stopTimer = true;
         InputManager.Instance._freezeVelocity = true;
     }
-    public Vector3 ConvertTimerToVector3(float time) {
-        float m = Mathf.FloorToInt(time/60000);
-        float s = Mathf.FloorToInt((time-m*60000)/1000);
-        float ms = Mathf.FloorToInt(time - m*60000 - s*1000);
-        return new Vector3(m,s,ms);
-    }
-    public float ConvertTimerToFloat(Vector3 time) {
-        return (time.x*60+time.y)*1000+time.z;
-    }
     private void SetNewPB(float thisRunTime) {
         this._personalBest = thisRunTime;
     }
     public void CheckPB() {
-        float finalTime = ConvertTimerToFloat(
+        float finalTime = GameBehaviour.Instance.ConvertTimerToFloat(
             new Vector3(Timer.Instance.m,
                     Timer.Instance.s,
                     Timer.Instance.ms));
@@ -77,9 +68,9 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         }
     }
     public void LoadData(GameData data) {
-        this._bronzeTime = ConvertTimerToVector3(data.levelBronzes[_levelID]);
-        this._silverTime = ConvertTimerToVector3(data.levelSilvers[_levelID]);
-        this._goldTime = ConvertTimerToVector3(data.levelGolds[_levelID]);
+        this._bronzeTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelBronzes[_levelID]);
+        this._silverTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelSilvers[_levelID]);
+        this._goldTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelGolds[_levelID]);
         if(data.personalBest.ContainsKey(_levelID)){
             data.personalBest.TryGetValue(_levelID, out this._personalBest);
         }

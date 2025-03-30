@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{3B0033C6-FCF6-4225-95F8-B2AB6DB94F9C}" SchemaVersion="119">
+	<Events>
+		<WorkUnit Name="PlayerSFX" ID="{3B0033C6-FCF6-4225-95F8-B2AB6DB94F9C}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="23"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<Event Name="Player_FastFall" ID="{05A299D3-C0FC-426A-81E1-92F87FDCD43D}">
+					<ChildrenList>
+						<Action Name="" ID="{2BC2A32A-97E4-4618-8329-A565F6C684B2}" ShortID="648419732">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="player_FastFall1" ID="{F3B5C356-6834-421A-9D2B-0472BA02A48E}" WorkUnitID="{25F1BD17-7738-4C8E-A066-8FBB8B03CB0B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Player_Attack" ID="{25467068-7FDE-4889-8631-21CAFED1691A}">
+					<ChildrenList>
+						<Action Name="" ID="{E11CA26F-4A2D-4214-991D-DD6059BFDD17}" ShortID="859038887">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="player_Spin2" ID="{FDEA7D55-531C-4A47-AF51-E5205534291E}" WorkUnitID="{25F1BD17-7738-4C8E-A066-8FBB8B03CB0B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Player_Jump" ID="{A0F29F18-10D2-4D42-9C82-DE2839317BA5}">
+					<ChildrenList>
+						<Action Name="" ID="{4B6CF3B8-FFD0-4FD1-9FA9-F39D7C9166C4}" ShortID="372623201">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="player_Jump1" ID="{147F3A9E-1E0C-4193-A1F2-79018B454167}" WorkUnitID="{25F1BD17-7738-4C8E-A066-8FBB8B03CB0B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Player_Dash" ID="{7F515DFF-D06B-4FC6-BF49-B85A71D285D9}">
+					<ChildrenList>
+						<Action Name="" ID="{CF3E7FDC-CBA6-444A-93D9-2252B18CC8EC}" ShortID="582842538">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="player_Boost2" ID="{1C63ABD6-158F-4F13-BFC7-95EF0C15A4C8}" WorkUnitID="{25F1BD17-7738-4C8E-A066-8FBB8B03CB0B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

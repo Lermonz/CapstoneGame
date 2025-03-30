@@ -18,6 +18,7 @@ public class GameData
     public GameData() {
         personalBest = new SerializableDictionary<string, float>();
         medals = new SerializableDictionary<string, string>();
+        unlockedLevels = new SerializableDictionary<string, bool>();
         levelGolds = new SerializableDictionary<string, float> {
             {"1", 7000}, {"2", 9500}, {"3", 9000}, {"4", 8800}, 
             {"5", 14200}, {"6", 14600}, {"7", 9200}, {"8", 17500}, 

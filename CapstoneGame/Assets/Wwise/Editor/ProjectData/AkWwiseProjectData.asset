@@ -1,0 +1,501 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a344e410206ef494ca41e150814b80ec, type: 3}
+  m_Name: AkWwiseProjectData
+  m_EditorClassIdentifier: 
+  AcousticTextureWwu:
+  - PhysicalPath: Virtual Acoustics/Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Virtual Acoustics
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: c46e7c0350a4da4cb0ba9042b9a76f87
+    ParentPath: Virtual Acoustics/Default Work Unit
+    guid: c46e7c0350a4da4cb0ba9042b9a76f87
+    GuidInternal: 
+    m_lastTime: -8584583388361712651
+    List: []
+  AuxBusWwu:
+  - PhysicalPath: Master-Mixer Hierarchy/Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Master-Mixer Hierarchy
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: c9a97c197515a745be7087e8c5be52db
+    ParentPath: Master-Mixer Hierarchy/Default Work Unit
+    guid: c9a97c197515a745be7087e8c5be52db
+    GuidInternal: 
+    m_lastTime: -8584583166902713050
+    List:
+    - name: Master Audio Bus
+      guid: d8a41415a61d2a41a17e75ca0c2149f3
+      id: 3803692087
+      PathAndIcons:
+      - ElementName: Master-Mixer Hierarchy
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c9a97c197515a745be7087e8c5be52db
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+        guid: d8a41415a61d2a41a17e75ca0c2149f3
+      Path: Master-Mixer Hierarchy/Default Work Unit/Master Audio Bus
+    - name: MusicMixer
+      guid: cdb246afb5eb64429f0fed7354eaec1c
+      id: 3599330521
+      PathAndIcons:
+      - ElementName: Master-Mixer Hierarchy
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c9a97c197515a745be7087e8c5be52db
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+        guid: d8a41415a61d2a41a17e75ca0c2149f3
+      - ElementName: MusicMixer
+        ObjectType: 2
+        guid: cdb246afb5eb64429f0fed7354eaec1c
+      Path: Master-Mixer Hierarchy/Default Work Unit/Master Audio Bus/MusicMixer
+    - name: SFXMixer
+      guid: c1c502adb30aaa45b002905e66a3e352
+      id: 4084091105
+      PathAndIcons:
+      - ElementName: Master-Mixer Hierarchy
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c9a97c197515a745be7087e8c5be52db
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+        guid: d8a41415a61d2a41a17e75ca0c2149f3
+      - ElementName: SFXMixer
+        ObjectType: 2
+        guid: c1c502adb30aaa45b002905e66a3e352
+      Path: Master-Mixer Hierarchy/Default Work Unit/Master Audio Bus/SFXMixer
+  BankWwu:
+  - PhysicalPath: SoundBanks/Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: SoundBanks
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: dcf7882929bf8641954570bd88cb6dfc
+    ParentPath: SoundBanks/Default Work Unit
+    guid: dcf7882929bf8641954570bd88cb6dfc
+    GuidInternal: 
+    m_lastTime: -8584583098722212598
+    List:
+    - name: SoundbankAll
+      guid: 9762e8200339cd44958560e7d9927dec
+      id: 3877572401
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: dcf7882929bf8641954570bd88cb6dfc
+      - ElementName: SoundbankAll
+        ObjectType: 7
+        guid: 9762e8200339cd44958560e7d9927dec
+      Path: SoundBanks/Default Work Unit/SoundbankAll
+  EventWwu:
+  - PhysicalPath: Events/Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Events
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: 3333dce57db9a043a091cad01361477a
+    ParentPath: Events/Default Work Unit
+    guid: 3333dce57db9a043a091cad01361477a
+    GuidInternal: 
+    m_lastTime: -8584583234289103802
+    List: []
+  - PhysicalPath: Events/GameSFX.wwu
+    PathAndIcons:
+    - ElementName: Events
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: GameSFX
+      ObjectType: 12
+      guid: 05ee0bcbce7a324ebbc6c118fc70317f
+    ParentPath: Events/GameSFX
+    guid: 05ee0bcbce7a324ebbc6c118fc70317f
+    GuidInternal: 
+    m_lastTime: -8584583228202756171
+    List:
+    - name: Crystal_Break
+      guid: 607940a7202dee4687986dff01732d79
+      id: 756738409
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: GameSFX
+        ObjectType: 12
+        guid: 05ee0bcbce7a324ebbc6c118fc70317f
+      - ElementName: Crystal_Break
+        ObjectType: 3
+        guid: 607940a7202dee4687986dff01732d79
+      Path: Events/GameSFX/Crystal_Break
+      maxAttenuation: 0
+      maxDuration: 0.7742083
+      minDuration: 0.7742083
+  - PhysicalPath: Events/MenuSFX.wwu
+    PathAndIcons:
+    - ElementName: Events
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: MenuSFX
+      ObjectType: 12
+      guid: 058320f7803a91469593dd6787b4fc9b
+    ParentPath: Events/MenuSFX
+    guid: 058320f7803a91469593dd6787b4fc9b
+    GuidInternal: 
+    m_lastTime: -8584583234665807584
+    List:
+    - name: ButtonBackOut1
+      guid: 0356926ca3f27f41a576066ff8379020
+      id: 817870589
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: MenuSFX
+        ObjectType: 12
+        guid: 058320f7803a91469593dd6787b4fc9b
+      - ElementName: ButtonBackOut1
+        ObjectType: 3
+        guid: 0356926ca3f27f41a576066ff8379020
+      Path: Events/MenuSFX/ButtonBackOut1
+      maxAttenuation: 0
+      maxDuration: 0.8108125
+      minDuration: 0.8108125
+    - name: ButtonConfirm1
+      guid: c6c3eec3f0953f4e8c9d1d5c37ec6b69
+      id: 3348213544
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: MenuSFX
+        ObjectType: 12
+        guid: 058320f7803a91469593dd6787b4fc9b
+      - ElementName: ButtonConfirm1
+        ObjectType: 3
+        guid: c6c3eec3f0953f4e8c9d1d5c37ec6b69
+      Path: Events/MenuSFX/ButtonConfirm1
+      maxAttenuation: 0
+      maxDuration: 0.9
+      minDuration: 0.9
+    - name: ButtonConfirm2
+      guid: 4610058a24ee0444971823b0007d440e
+      id: 3348213547
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: MenuSFX
+        ObjectType: 12
+        guid: 058320f7803a91469593dd6787b4fc9b
+      - ElementName: ButtonConfirm2
+        ObjectType: 3
+        guid: 4610058a24ee0444971823b0007d440e
+      Path: Events/MenuSFX/ButtonConfirm2
+      maxAttenuation: 0
+      maxDuration: 0.9
+      minDuration: 0.9
+    - name: ButtonConfirm3
+      guid: f7e3b42ce4007945b66a1b9332bd4899
+      id: 3348213546
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: MenuSFX
+        ObjectType: 12
+        guid: 058320f7803a91469593dd6787b4fc9b
+      - ElementName: ButtonConfirm3
+        ObjectType: 3
+        guid: f7e3b42ce4007945b66a1b9332bd4899
+      Path: Events/MenuSFX/ButtonConfirm3
+      maxAttenuation: 0
+      maxDuration: 0.8107917
+      minDuration: 0.8107917
+    - name: ButtonConfirm4
+      guid: e8d9a2e4663c8b4aad6557754dba7d7d
+      id: 3348213549
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: MenuSFX
+        ObjectType: 12
+        guid: 058320f7803a91469593dd6787b4fc9b
+      - ElementName: ButtonConfirm4
+        ObjectType: 3
+        guid: e8d9a2e4663c8b4aad6557754dba7d7d
+      Path: Events/MenuSFX/ButtonConfirm4
+      maxAttenuation: 0
+      maxDuration: 0.8108125
+      minDuration: 0.8108125
+    - name: ButtonNext
+      guid: d0ac9705d77d4c4eadb551d3e663852e
+      id: 3070336346
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: MenuSFX
+        ObjectType: 12
+        guid: 058320f7803a91469593dd6787b4fc9b
+      - ElementName: ButtonNext
+        ObjectType: 3
+        guid: d0ac9705d77d4c4eadb551d3e663852e
+      Path: Events/MenuSFX/ButtonNext
+      maxAttenuation: 0
+      maxDuration: 0.8108125
+      minDuration: 0.8108125
+    - name: ButtonPrev
+      guid: c0b38e09b8b957448fe95403c3ee8a60
+      id: 1953314766
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: MenuSFX
+        ObjectType: 12
+        guid: 058320f7803a91469593dd6787b4fc9b
+      - ElementName: ButtonPrev
+        ObjectType: 3
+        guid: c0b38e09b8b957448fe95403c3ee8a60
+      Path: Events/MenuSFX/ButtonPrev
+      maxAttenuation: 0
+      maxDuration: 0.8108125
+      minDuration: 0.8108125
+    - name: ButtonWarning
+      guid: 5f37ff1eca09fa4d901c90f8b5584ac1
+      id: 279279475
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: MenuSFX
+        ObjectType: 12
+        guid: 058320f7803a91469593dd6787b4fc9b
+      - ElementName: ButtonWarning
+        ObjectType: 3
+        guid: 5f37ff1eca09fa4d901c90f8b5584ac1
+      Path: Events/MenuSFX/ButtonWarning
+      maxAttenuation: 0
+      maxDuration: 0.8108125
+      minDuration: 0.8108125
+  - PhysicalPath: Events/Music.wwu
+    PathAndIcons:
+    - ElementName: Events
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Music
+      ObjectType: 12
+      guid: 3509c7a70499334f80eb9e8b4c10de23
+    ParentPath: Events/Music
+    guid: 3509c7a70499334f80eb9e8b4c10de23
+    GuidInternal: 
+    m_lastTime: -8584583098722090250
+    List:
+    - name: PlayWorld1
+      guid: 1a6f224ffba4814fbe4a37022c52f9cd
+      id: 4039638074
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Music
+        ObjectType: 12
+        guid: 3509c7a70499334f80eb9e8b4c10de23
+      - ElementName: PlayWorld1
+        ObjectType: 3
+        guid: 1a6f224ffba4814fbe4a37022c52f9cd
+      Path: Events/Music/PlayWorld1
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: StopWorld1
+      guid: 0eb7190d897ced42b4eed64d9cd63260
+      id: 2443977444
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Music
+        ObjectType: 12
+        guid: 3509c7a70499334f80eb9e8b4c10de23
+      - ElementName: StopWorld1
+        ObjectType: 3
+        guid: 0eb7190d897ced42b4eed64d9cd63260
+      Path: Events/Music/StopWorld1
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+  - PhysicalPath: Events/PlayerSFX.wwu
+    PathAndIcons:
+    - ElementName: Events
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: PlayerSFX
+      ObjectType: 12
+      guid: c633003bf6fc254295f8b2ab6db94f9c
+    ParentPath: Events/PlayerSFX
+    guid: c633003bf6fc254295f8b2ab6db94f9c
+    GuidInternal: 
+    m_lastTime: -8584583228202711120
+    List:
+    - name: Player_Attack
+      guid: 68704625de7f8948863121cafed1691a
+      id: 2824512041
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: PlayerSFX
+        ObjectType: 12
+        guid: c633003bf6fc254295f8b2ab6db94f9c
+      - ElementName: Player_Attack
+        ObjectType: 3
+        guid: 68704625de7f8948863121cafed1691a
+      Path: Events/PlayerSFX/Player_Attack
+      maxAttenuation: 0
+      maxDuration: 1.3653333
+      minDuration: 1.3653333
+    - name: Player_Dash
+      guid: ff5d517f6bd0c64fbf49b85a71d285d9
+      id: 2394582229
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: PlayerSFX
+        ObjectType: 12
+        guid: c633003bf6fc254295f8b2ab6db94f9c
+      - ElementName: Player_Dash
+        ObjectType: 3
+        guid: ff5d517f6bd0c64fbf49b85a71d285d9
+      Path: Events/PlayerSFX/Player_Dash
+      maxAttenuation: 0
+      maxDuration: 1.3653333
+      minDuration: 1.3653333
+    - name: Player_FastFall
+      guid: d399a205fcc06a4281e192f87fdcd43d
+      id: 4179545512
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: PlayerSFX
+        ObjectType: 12
+        guid: c633003bf6fc254295f8b2ab6db94f9c
+      - ElementName: Player_FastFall
+        ObjectType: 3
+        guid: d399a205fcc06a4281e192f87fdcd43d
+      Path: Events/PlayerSFX/Player_FastFall
+      maxAttenuation: 0
+      maxDuration: 1.5325348
+      minDuration: 1.2163737
+    - name: Player_Jump
+      guid: 189ff2a0d210424d9c82de2839317ba5
+      id: 1305133589
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: PlayerSFX
+        ObjectType: 12
+        guid: c633003bf6fc254295f8b2ab6db94f9c
+      - ElementName: Player_Jump
+        ObjectType: 3
+        guid: 189ff2a0d210424d9c82de2839317ba5
+      Path: Events/PlayerSFX/Player_Jump
+      maxAttenuation: 0
+      maxDuration: 1.3653333
+      minDuration: 1.3653333
+  RtpcWwu:
+  - PhysicalPath: Game Parameters/Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Game Parameters
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: 0ac9380fe798fc4d8e5f2e74df9772cb
+    ParentPath: Game Parameters/Default Work Unit
+    guid: 0ac9380fe798fc4d8e5f2e74df9772cb
+    GuidInternal: 
+    m_lastTime: -8584583388361783315
+    List: []
+  StateWwu:
+  - PhysicalPath: States/Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: States
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: a4bfda019f1bcc41b4ea92c6bcdc7046
+    ParentPath: States/Default Work Unit
+    guid: a4bfda019f1bcc41b4ea92c6bcdc7046
+    GuidInternal: 
+    m_lastTime: -8584583388361725089
+    List: []
+  SwitchWwu:
+  - PhysicalPath: Switches/Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Switches
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: ec51b8006c82fd47a70aed29fbfa8c00
+    ParentPath: Switches/Default Work Unit
+    guid: ec51b8006c82fd47a70aed29fbfa8c00
+    GuidInternal: 
+    m_lastTime: -8584583388361720362
+    List: []
+  TriggerWwu:
+  - PhysicalPath: Triggers/Default Work Unit.wwu
+    PathAndIcons:
+    - ElementName: Triggers
+      ObjectType: 5
+      guid: 00000000000000000000000000000000
+    - ElementName: Default Work Unit
+      ObjectType: 12
+      guid: ba9c686a1b1e6242b4037fea7edadaa0
+    ParentPath: Triggers/Default Work Unit
+    guid: ba9c686a1b1e6242b4037fea7edadaa0
+    GuidInternal: 
+    m_lastTime: -8584583243921055673
+    List: []
+  ExpandedFileSystemItemIds: 
+  ExpandedWaapiItemIds: 05000000070000001200000018000000190000001a0000001b0000002000000022000000
+  AutoSyncSelection: 0
+  autoPopulateEnabled: 1
+  currentDataSource: 0
+  CurrentPluginConfig: 
