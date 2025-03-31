@@ -24,7 +24,7 @@
 				<Bus Id="4084091105" Name="SFXMixer"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{410D1876-BDF8-4BCB-598C-CD970D0C68DC}">
+		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{A7C676F3-6A63-3AB7-AF49-0E2CC812ED2F}">
 			<ShortName>SoundbankAll</ShortName>
 			<Path>SoundbankAll.bnk</Path>
 			<Media>
@@ -84,6 +84,10 @@
 					<ShortName>button_select7_1.wav</ShortName>
 					<CachePath>SFX/button_select7_1_818F3B66.wem</CachePath>
 				</File>
+				<File Id="713058177" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>button_highlight1.wav</ShortName>
+					<CachePath>SFX/button_highlight1_818F3B66.wem</CachePath>
+				</File>
 				<File Id="914652543" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_select6_1.wav</ShortName>
 					<CachePath>SFX/button_select6_1_818F3B66.wem</CachePath>
@@ -117,6 +121,11 @@
 				<Event Id="3348213549" Name="ButtonConfirm4" DurationType="OneShot" DurationMin="0.8108125" DurationMax="0.8108125">
 					<MediaRefs>
 						<MediaRef Id="146638624"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3278968191" Name="ButtonHighlight" DurationType="OneShot" DurationMin="0.40541667" DurationMax="0.40541667">
+					<MediaRefs>
+						<MediaRef Id="713058177"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="3070336346" Name="ButtonNext" DurationType="OneShot" DurationMin="0.8108125" DurationMax="0.8108125">
@@ -169,5 +178,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{E3C8F524-6565-B5A9-D104-EDACCA0E0FEF}</FileHash>
+	<FileHash>{53F3EDA4-6A5E-2BF2-C9B5-91E15BB77A94}</FileHash>
 </SoundBanksInfo>

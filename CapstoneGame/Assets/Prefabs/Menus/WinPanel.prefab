@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 630014877628426495}
   - component: {fileID: 6555359135735301149}
   - component: {fileID: 2424906745263859242}
+  - component: {fileID: 4412153002166957060}
   m_Layer: 5
   m_Name: LevelSelect
   m_TagString: Untagged
@@ -424,6 +425,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4412153002166957060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134367774232891895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa87cc1af814346a581172990e5ef957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1333061554631133854
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +584,7 @@ GameObject:
   - component: {fileID: 759255943914539197}
   - component: {fileID: 8752037623650974223}
   - component: {fileID: 2899127607983211269}
+  - component: {fileID: 249571944949880596}
   m_Layer: 5
   m_Name: Reset
   m_TagString: Untagged
@@ -714,6 +728,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &249571944949880596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135014434784225432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa87cc1af814346a581172990e5ef957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2583943228679332407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,6 +1664,7 @@ GameObject:
   - component: {fileID: 3155326974385390503}
   - component: {fileID: 8318137474120840994}
   - component: {fileID: 7705247200316708776}
+  - component: {fileID: 2774752734345748973}
   m_Layer: 5
   m_Name: Next
   m_TagString: Untagged
@@ -1801,6 +1828,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2774752734345748973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6213336674375873272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa87cc1af814346a581172990e5ef957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7222804756285547012
 GameObject:
   m_ObjectHideFlags: 0

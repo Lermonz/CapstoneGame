@@ -95,6 +95,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="ButtonHighlight" ID="{23D53B51-45A4-4567-B379-CDD46091DB14}">
+					<ChildrenList>
+						<Action Name="" ID="{623F8C7A-A7B9-4404-822B-C59E1231301B}" ShortID="215553442">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="button_highlight1" ID="{AD5C79D0-98FB-4B09-99BE-73899C23F998}" WorkUnitID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

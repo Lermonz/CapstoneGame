@@ -171,7 +171,7 @@ MonoBehaviour:
     ParentPath: Events/MenuSFX
     guid: 058320f7803a91469593dd6787b4fc9b
     GuidInternal: 
-    m_lastTime: -8584583234665807584
+    m_lastTime: -8584581706764523047
     List:
     - name: ButtonBackOut1
       guid: 0356926ca3f27f41a576066ff8379020
@@ -258,6 +258,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.8108125
       minDuration: 0.8108125
+    - name: ButtonHighlight
+      guid: 513bd523a4456745b379cdd46091db14
+      id: 3278968191
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: MenuSFX
+        ObjectType: 12
+        guid: 058320f7803a91469593dd6787b4fc9b
+      - ElementName: ButtonHighlight
+        ObjectType: 3
+        guid: 513bd523a4456745b379cdd46091db14
+      Path: Events/MenuSFX/ButtonHighlight
+      maxAttenuation: 0
+      maxDuration: 0.40541667
+      minDuration: 0.40541667
     - name: ButtonNext
       guid: d0ac9705d77d4c4eadb551d3e663852e
       id: 3070336346

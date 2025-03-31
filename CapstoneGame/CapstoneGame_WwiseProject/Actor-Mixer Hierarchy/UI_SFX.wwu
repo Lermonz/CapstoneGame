@@ -183,6 +183,35 @@
 						<ActiveSource Name="button_select2_1" ID="{227B287B-0C00-48B9-8958-2B109E79CB04}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Sound Name="button_highlight1" ID="{AD5C79D0-98FB-4B09-99BE-73899C23F998}" ShortID="453258402">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-3</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="button_highlight1" ID="{3CCD0D19-F2C4-4E7E-9FBC-232DABEB607C}">
+							<Language>SFX</Language>
+							<AudioFile>button_highlight1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="713058177"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="button_highlight1" ID="{3CCD0D19-F2C4-4E7E-9FBC-232DABEB607C}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

@@ -18,6 +18,7 @@ namespace AK
         static const AkUniqueID BUTTONCONFIRM2 = 3348213547U;
         static const AkUniqueID BUTTONCONFIRM3 = 3348213546U;
         static const AkUniqueID BUTTONCONFIRM4 = 3348213549U;
+        static const AkUniqueID BUTTONHIGHLIGHT = 3278968191U;
         static const AkUniqueID BUTTONNEXT = 3070336346U;
         static const AkUniqueID BUTTONPREV = 1953314766U;
         static const AkUniqueID BUTTONWARNING = 279279475U;
