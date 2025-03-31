@@ -8,6 +8,13 @@
 			</PropertyList>
 			<ChildrenList>
 				<Sound Name="player_Jump1" ID="{147F3A9E-1E0C-4193-A1F2-79018B454167}" ShortID="312784101">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>2</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>

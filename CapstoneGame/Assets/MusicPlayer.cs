@@ -33,9 +33,11 @@ public class MusicManager : MonoBehaviour
         }
         Debug.Log(sceneID +" <- sceneID\n"+trackToPlay+" <- trackToPlay");
         if(trackToPlay == 0) {
-            Debug.Log("StopyWorld1");
-            AkSoundEngine.PostEvent("StopWorld1",gameObject);
-            playingTrack1 = false;
+            if(playingTrack1) {
+                Debug.Log("StopyWorld1");
+                AkSoundEngine.PostEvent("StopWorld1",gameObject);
+                playingTrack1 = false;
+            }
         }
         else if(trackToPlay == 1 && !playingTrack1) {
             Debug.Log("PlayWorld1");
