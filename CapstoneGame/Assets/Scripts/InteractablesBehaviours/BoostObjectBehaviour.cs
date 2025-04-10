@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BoostObjectBehaviour : MonoBehaviour
 {
-    public float _force = 12;
+    public float _force = 13;
     public Vector2 BoostInDirection() {
         Vector2 v = new Vector2(_force,_force);
         float delta = this.transform.localEulerAngles.z+45;

@@ -4,6 +4,13 @@
 		<WorkUnit Name="Default Work Unit" ID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}" PersistMode="Standalone">
 			<ChildrenList>
 				<Bus Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}">
+					<PropertyList>
+						<Property Name="BusVolume" Type="Real64">
+							<ValueList>
+								<Value>-2</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="AudioDevice" PluginName="System" CompanyID="0" PluginID="174" PluginType="7">
 							<ObjectRef Name="System" ID="{6EE2C5A8-7CF8-41B0-A7F3-B6970DDFF125}" WorkUnitID="{90BA6078-1D5A-48B0-96D6-F2993A0AEE80}"/>
@@ -14,12 +21,24 @@
 							<PropertyList>
 								<Property Name="BusVolume" Type="Real64">
 									<ValueList>
-										<Value>-8</Value>
+										<Value>-13</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
 						</Bus>
-						<Bus Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}"/>
+						<Bus Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}">
+							<ChildrenList>
+								<Bus Name="PlayerSFX" ID="{08DF2506-62FB-49DA-9ECA-F9C2311EAFB0}">
+									<PropertyList>
+										<Property Name="BusVolume" Type="Real64">
+											<ValueList>
+												<Value>4</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+								</Bus>
+							</ChildrenList>
+						</Bus>
 					</ChildrenList>
 				</Bus>
 			</ChildrenList>

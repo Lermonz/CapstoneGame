@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy/Default Work Unit
     guid: c9a97c197515a745be7087e8c5be52db
     GuidInternal: 
-    m_lastTime: -8584583166902713050
+    m_lastTime: -8584580867033842548
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -71,6 +71,26 @@ MonoBehaviour:
         ObjectType: 2
         guid: cdb246afb5eb64429f0fed7354eaec1c
       Path: Master-Mixer Hierarchy/Default Work Unit/Master Audio Bus/MusicMixer
+    - name: PlayerSFX
+      guid: 0625df08fb62da499ecaf9c2311eafb0
+      id: 4283257371
+      PathAndIcons:
+      - ElementName: Master-Mixer Hierarchy
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: c9a97c197515a745be7087e8c5be52db
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+        guid: d8a41415a61d2a41a17e75ca0c2149f3
+      - ElementName: SFXMixer
+        ObjectType: 2
+        guid: c1c502adb30aaa45b002905e66a3e352
+      - ElementName: PlayerSFX
+        ObjectType: 2
+        guid: 0625df08fb62da499ecaf9c2311eafb0
+      Path: Master-Mixer Hierarchy/Default Work Unit/Master Audio Bus/SFXMixer/PlayerSFX
     - name: SFXMixer
       guid: c1c502adb30aaa45b002905e66a3e352
       id: 4084091105

@@ -41,6 +41,7 @@ namespace AK
     {
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
         static const AkUniqueID MUSICMIXER = 3599330521U;
+        static const AkUniqueID PLAYERSFX = 4283257371U;
         static const AkUniqueID SFXMIXER = 4084091105U;
     } // namespace BUSSES
 

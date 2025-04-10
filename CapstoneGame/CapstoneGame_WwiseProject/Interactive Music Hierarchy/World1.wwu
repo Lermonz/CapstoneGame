@@ -65,24 +65,24 @@
 									<Custom>
 										<MusicPlaylistItem Name="" ID="{4A83DA1B-42C5-433A-A3FB-199BF1ADEB31}" ShortID="587082699">
 											<ChildrenList>
-												<MusicPlaylistItem Name="" ID="{ABE77E56-9937-4F8E-A1C3-0A180566B07A}" ShortID="925708867">
+												<MusicPlaylistItem Name="" ID="{B4079A07-7CD4-430B-8A11-698AF8C88096}" ShortID="1026005768">
 													<PropertyList>
 														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Segment">
-															<ObjectRef Name="AntiworkIntro_1" ID="{70E7C13A-AA87-44C7-939D-970F64D21433}" WorkUnitID="{5BCF3E77-3189-4112-96A6-4EE645FD6275}"/>
+															<ObjectRef Name="AntiworkIntro_2" ID="{6ADE649C-580E-4F58-80DA-E958BECA7CD2}" WorkUnitID="{5BCF3E77-3189-4112-96A6-4EE645FD6275}"/>
 														</Reference>
 													</ReferenceList>
 												</MusicPlaylistItem>
-												<MusicPlaylistItem Name="" ID="{3E6F3C63-92EF-413F-8CCB-9E103B202219}" ShortID="709072755">
+												<MusicPlaylistItem Name="" ID="{5F43D248-B047-467B-BF87-20387C618CDC}" ShortID="968840172">
 													<PropertyList>
 														<Property Name="LoopCount" Type="int16" Value="0"/>
 														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
 													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Segment">
-															<ObjectRef Name="AntiworkLoop_1" ID="{9321E0AC-69D8-46A3-9D5C-9A8D3CA3F05B}" WorkUnitID="{5BCF3E77-3189-4112-96A6-4EE645FD6275}"/>
+															<ObjectRef Name="AntiworkLoop_2" ID="{C30D35C2-C7A4-46D3-BD27-95625B97BC1C}" WorkUnitID="{5BCF3E77-3189-4112-96A6-4EE645FD6275}"/>
 														</Reference>
 													</ReferenceList>
 												</MusicPlaylistItem>
@@ -107,9 +107,9 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<MusicSegment Name="AntiworkIntro_1" ID="{70E7C13A-AA87-44C7-939D-970F64D21433}" ShortID="698345089">
+								<MusicSegment Name="AntiworkLoop_2" ID="{C30D35C2-C7A4-46D3-BD27-95625B97BC1C}" ShortID="28957809">
 									<PropertyList>
-										<Property Name="EndPosition" Type="Real64" Value="8666.66666666667"/>
+										<Property Name="EndPosition" Type="Real64" Value="162258.134632013"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -120,36 +120,14 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<MusicTrack Name="AntiworkIntro_1" ID="{41A92DF8-1473-4ECA-BE1C-D3283F4872B9}" ShortID="194765586">
-											<PropertyList>
-												<Property Name="IsStreamingEnabled" Type="bool">
-													<ValueList>
-														<Value>True</Value>
-													</ValueList>
-												</Property>
-												<Property Name="IsZeroLatency" Type="bool">
-													<ValueList>
-														<Value>True</Value>
-													</ValueList>
-												</Property>
-												<Property Name="LookAheadTime" Type="int16">
-													<ValueList>
-														<Value>200</Value>
-													</ValueList>
-												</Property>
-												<Property Name="PreFetchLength" Type="int16">
-													<ValueList>
-														<Value>200</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
+										<MusicTrack Name="AntiworkLoop_2" ID="{F5E2D058-C44D-4B72-AA61-742ABD8442FA}" ShortID="1039893894">
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
 												</Reference>
 												<Reference Name="TransitionRoot">
 													<Custom>
-														<MusicTransition Name="Root" ID="{1B578DBF-8745-4B53-B39F-C2C40A1BA83A}">
+														<MusicTransition Name="Root" ID="{8A4017B0-D62E-462E-8EF2-8EB99E21872E}">
 															<PropertyList>
 																<Property Name="IsFolder" Type="bool" Value="True"/>
 															</PropertyList>
@@ -159,11 +137,11 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="AntiworkIntro_1" ID="{EDDA55DA-98AC-4106-AC4E-372023CCE076}">
+												<AudioFileSource Name="AntiworkLoop_2" ID="{0FC73D03-9116-4698-AF88-7D013F1E26C6}">
 													<Language>SFX</Language>
-													<AudioFile>AntiworkIntro_1.wav</AudioFile>
+													<AudioFile>AntiworkLoop_2.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="150809189"/>
+														<MediaID ID="223842354"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
@@ -171,18 +149,18 @@
 												<ObjectList Name="Sequences">
 													<Reference>
 														<Local>
-															<MusicTrackSequence Name="" ID="{2A38BF49-5AFA-4510-8708-A634A565CA2A}">
+															<MusicTrackSequence Name="" ID="{7709753E-760E-484B-A8B7-D732895838D8}">
 																<ObjectLists>
 																	<ObjectList Name="Clips">
 																		<Reference>
 																			<Local>
-																				<MusicClip Name="AntiworkIntro_1" ID="{3D38A888-C2C3-4EEE-9AC5-8599C238D834}">
+																				<MusicClip Name="AntiworkLoop_2" ID="{C6CC56FA-B4E5-48C7-87F0-6E129772CA48}">
 																					<PropertyList>
-																						<Property Name="EndTrimOffset" Type="Real64" Value="8666.66666666667"/>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="154666.666666667"/>
 																						<Property Name="FadeInMode" Type="int16" Value="0"/>
 																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																					</PropertyList>
-																					<AudioSourceRef Name="AntiworkIntro_1" ID="{EDDA55DA-98AC-4106-AC4E-372023CCE076}"/>
+																					<AudioSourceRef Name="AntiworkLoop_2" ID="{0FC73D03-9116-4698-AF88-7D013F1E26C6}"/>
 																				</MusicClip>
 																			</Local>
 																		</Reference>
@@ -199,15 +177,15 @@
 										<ObjectList Name="Cues">
 											<Reference>
 												<Local>
-													<MusicCue Name="Entry Cue" ID="{AA6B11A6-C600-436A-808F-02F7D32FD825}"/>
+													<MusicCue Name="Entry Cue" ID="{E909AEF2-4CCC-47CF-B70D-0BDCF6709E4D}"/>
 												</Local>
 											</Reference>
 											<Reference>
 												<Local>
-													<MusicCue Name="Exit Cue" ID="{AD744A4E-0AF8-4EC0-92A6-D41C73443610}">
+													<MusicCue Name="Exit Cue" ID="{E323C858-2793-4D79-A6BD-08A26DCF249B}">
 														<PropertyList>
 															<Property Name="CueType" Type="int16" Value="1"/>
-															<Property Name="TimeMs" Type="Real64" Value="8666.66666666667"/>
+															<Property Name="TimeMs" Type="Real64" Value="154666.666666667"/>
 														</PropertyList>
 													</MusicCue>
 												</Local>
@@ -215,21 +193,9 @@
 										</ObjectList>
 									</ObjectLists>
 								</MusicSegment>
-								<MusicSegment Name="AntiworkLoop_1" ID="{9321E0AC-69D8-46A3-9D5C-9A8D3CA3F05B}" ShortID="931823468">
+								<MusicSegment Name="AntiworkIntro_2" ID="{6ADE649C-580E-4F58-80DA-E958BECA7CD2}" ShortID="431076428">
 									<PropertyList>
-										<Property Name="EndPosition" Type="Real64" Value="154666.666666667"/>
-										<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
-										<Property Name="MaxSoundPerInstance" Type="int16">
-											<ValueList>
-												<Value>1</Value>
-											</ValueList>
-										</Property>
-										<Property Name="OverridePriority" Type="bool" Value="True"/>
-										<Property Name="Priority" Type="int16">
-											<ValueList>
-												<Value>51</Value>
-											</ValueList>
-										</Property>
+										<Property Name="EndPosition" Type="Real64" Value="9333.33333333333"/>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -240,36 +206,14 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<MusicTrack Name="AntiworkLoop_1" ID="{17AF1E21-439D-46B1-A96E-B7C895934073}" ShortID="683318772">
-											<PropertyList>
-												<Property Name="IsStreamingEnabled" Type="bool">
-													<ValueList>
-														<Value>True</Value>
-													</ValueList>
-												</Property>
-												<Property Name="IsZeroLatency" Type="bool">
-													<ValueList>
-														<Value>True</Value>
-													</ValueList>
-												</Property>
-												<Property Name="LookAheadTime" Type="int16">
-													<ValueList>
-														<Value>200</Value>
-													</ValueList>
-												</Property>
-												<Property Name="PreFetchLength" Type="int16">
-													<ValueList>
-														<Value>200</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
+										<MusicTrack Name="AntiworkIntro_2" ID="{EEC49C2C-81EA-4432-868B-4C57F224327E}" ShortID="826652260">
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
 												</Reference>
 												<Reference Name="TransitionRoot">
 													<Custom>
-														<MusicTransition Name="Root" ID="{6FFED242-836B-4951-AFD9-103D4615A385}">
+														<MusicTransition Name="Root" ID="{B0B50013-219C-4FA3-94FA-A4C90836A14F}">
 															<PropertyList>
 																<Property Name="IsFolder" Type="bool" Value="True"/>
 															</PropertyList>
@@ -279,11 +223,11 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="AntiworkLoop_1" ID="{1AECCAEC-4E7B-43FC-A035-44775EFB36A7}">
+												<AudioFileSource Name="AntiworkIntro_2" ID="{74F02CBF-2A57-4242-8679-7AF8A88EC123}">
 													<Language>SFX</Language>
-													<AudioFile>AntiworkLoop_1.wav</AudioFile>
+													<AudioFile>AntiworkIntro_2.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="12078152"/>
+														<MediaID ID="193719762"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
@@ -291,18 +235,18 @@
 												<ObjectList Name="Sequences">
 													<Reference>
 														<Local>
-															<MusicTrackSequence Name="" ID="{8D1C5211-DFC2-405D-B7EE-192221971D53}">
+															<MusicTrackSequence Name="" ID="{AD69A2BB-047E-4783-B7D8-AE438BB67E7B}">
 																<ObjectLists>
 																	<ObjectList Name="Clips">
 																		<Reference>
 																			<Local>
-																				<MusicClip Name="AntiworkLoop_1" ID="{F66E4619-5AC1-438F-9A5B-F92B3A706A30}">
+																				<MusicClip Name="AntiworkIntro_2" ID="{EFFE0D76-9163-492C-AD19-B38229E945CF}">
 																					<PropertyList>
-																						<Property Name="EndTrimOffset" Type="Real64" Value="154666.666666667"/>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="8666.66666666667"/>
 																						<Property Name="FadeInMode" Type="int16" Value="0"/>
 																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																					</PropertyList>
-																					<AudioSourceRef Name="AntiworkLoop_1" ID="{1AECCAEC-4E7B-43FC-A035-44775EFB36A7}"/>
+																					<AudioSourceRef Name="AntiworkIntro_2" ID="{74F02CBF-2A57-4242-8679-7AF8A88EC123}"/>
 																				</MusicClip>
 																			</Local>
 																		</Reference>
@@ -319,15 +263,15 @@
 										<ObjectList Name="Cues">
 											<Reference>
 												<Local>
-													<MusicCue Name="Entry Cue" ID="{737EB02A-A806-4D5B-9824-915B0A825B48}"/>
+													<MusicCue Name="Entry Cue" ID="{86E090D2-9530-4CBC-AF79-EC6C1D03658C}"/>
 												</Local>
 											</Reference>
 											<Reference>
 												<Local>
-													<MusicCue Name="Exit Cue" ID="{D3F48D6D-EEEB-4EB1-A2F0-261DC8AFE923}">
+													<MusicCue Name="Exit Cue" ID="{4C47D242-F984-43D3-B652-6FA4A40AEA59}">
 														<PropertyList>
 															<Property Name="CueType" Type="int16" Value="1"/>
-															<Property Name="TimeMs" Type="Real64" Value="154666.666666667"/>
+															<Property Name="TimeMs" Type="Real64" Value="8666.66666666667"/>
 														</PropertyList>
 													</MusicCue>
 												</Local>

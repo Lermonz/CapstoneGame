@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{ABA5259D-BD8D-641A-A2FE-21A83C598268}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{0DCF33A3-48D9-205F-00EE-5FFB4AE40DB7}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -22,18 +22,13 @@
 				<Bus Id="3599330521" Name="MusicMixer"/>
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 				<Bus Id="4084091105" Name="SFXMixer"/>
+				<Bus Id="4283257371" Name="PlayerSFX"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{A7C676F3-6A63-3AB7-AF49-0E2CC812ED2F}">
+		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{CE6DFC12-177F-2510-7CC3-47BF99AE725A}">
 			<ShortName>SoundbankAll</ShortName>
 			<Path>SoundbankAll.bnk</Path>
 			<Media>
-				<File Id="12078152" Language="SFX" Streaming="true" Location="Memory">
-					<ShortName>AntiworkLoop_1.wav</ShortName>
-					<Path>Media/12078152.wem</Path>
-					<CachePath>SFX/AntiworkLoop_1_FBC78EF0.wem</CachePath>
-					<PrefetchSize>38608</PrefetchSize>
-				</File>
 				<File Id="33559383" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_select3_1.wav</ShortName>
 					<CachePath>SFX/button_select3_1_818F3B66.wem</CachePath>
@@ -50,15 +45,17 @@
 					<ShortName>button_select4_1.wav</ShortName>
 					<CachePath>SFX/button_select4_1_818F3B66.wem</CachePath>
 				</File>
-				<File Id="150809189" Language="SFX" Streaming="true" Location="Memory">
-					<ShortName>AntiworkIntro_1.wav</ShortName>
-					<Path>Media/150809189.wem</Path>
-					<CachePath>SFX/AntiworkIntro_1_FBC78EF0.wem</CachePath>
-					<PrefetchSize>38560</PrefetchSize>
-				</File>
 				<File Id="153599617" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_select1_1.wav</ShortName>
 					<CachePath>SFX/button_select1_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="193719762" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>AntiworkIntro_2.wav</ShortName>
+					<CachePath>SFX/AntiworkIntro_2_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="223842354" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>AntiworkLoop_2.wav</ShortName>
+					<CachePath>SFX/AntiworkLoop_2_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="291109648" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>player_Jump1.wav</ShortName>
@@ -170,13 +167,13 @@
 				</Event>
 				<Event Id="4039638074" Name="PlayWorld1" DurationType="Infinite">
 					<MediaRefs>
-						<MediaRef Id="12078152"/>
-						<MediaRef Id="150809189"/>
+						<MediaRef Id="193719762"/>
+						<MediaRef Id="223842354"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="2443977444" Name="StopWorld1" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{1BCE419B-22F5-F3A8-4153-2FD286C9534B}</FileHash>
+	<FileHash>{3AD9A311-D69B-2966-0190-8414B6A227A9}</FileHash>
 </SoundBanksInfo>

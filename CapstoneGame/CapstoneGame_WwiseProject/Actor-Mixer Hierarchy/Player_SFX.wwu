@@ -20,7 +20,7 @@
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
 						</Reference>
 						<Reference Name="OutputBus">
-							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+							<ObjectRef Name="PlayerSFX" ID="{08DF2506-62FB-49DA-9ECA-F9C2311EAFB0}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
@@ -57,7 +57,7 @@
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
 						</Reference>
 						<Reference Name="OutputBus">
-							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+							<ObjectRef Name="PlayerSFX" ID="{08DF2506-62FB-49DA-9ECA-F9C2311EAFB0}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
@@ -79,7 +79,7 @@
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
 						</Reference>
 						<Reference Name="OutputBus">
-							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+							<ObjectRef Name="PlayerSFX" ID="{08DF2506-62FB-49DA-9ECA-F9C2311EAFB0}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
@@ -96,12 +96,19 @@
 					</ActiveSourceList>
 				</Sound>
 				<Sound Name="player_Boost2" ID="{1C63ABD6-158F-4F13-BFC7-95EF0C15A4C8}" ShortID="209978326">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>3</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
 						</Reference>
 						<Reference Name="OutputBus">
-							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+							<ObjectRef Name="PlayerSFX" ID="{08DF2506-62FB-49DA-9ECA-F9C2311EAFB0}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>

@@ -27,13 +27,14 @@ public class Player : MonoBehaviour
     float _gravityMult = 1;
     bool _inBlackHole = false;
     float _terminalVelocity;
-    const float _termV = -20;
+    const float _termV = -16;
 
     bool _canJump = true;
     bool _canBoost = true;
     bool _canSpin = true;
     bool _canDoubleJump = true;
     bool _canDownBoost = true;
+    bool _isJumping = false;
 
     bool _boostDeceling;
     float _boostSpeed = 12f;
@@ -66,23 +67,28 @@ public class Player : MonoBehaviour
             _renderer.flipX = !_renderer.flipX;
         }
         if(_controller._isGrounded) {
+            _isJumping = false;
             _canJump = !_jumpOverride;
             _velocity.y = 0;
             _canDownBoost = false;
         }
         if(_controller._hitCeiling) {
+            _isJumping = false;
             _velocity.y = 0;
         }
         // Jump
         if(_canJump && InputManager.Instance.JumpInput) {
-            _velocity.y = _jumpVelocity;
+            _velocity.y = _jumpVelocity + _velocity.x*0.1f;
             //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._jumpSFX);
             AkSoundEngine.PostEvent("Player_Jump", gameObject);
             _canDownBoost = true;
             _canJump = false;
+            _isJumping = true;
         }
-        if(_velocity.y >= 4 && InputManager.Instance.JumpRelease) {
-            StartCoroutine(ShortenJumpTo(2,4f));
+        if(_isJumping && InputManager.Instance.JumpRelease) {
+            _isJumping = false;
+            if(_velocity.y >= 4 )
+                StartCoroutine(ShortenJumpTo(2,4f));
         }
         if(!_controller._isGrounded && _canJump) {
             _canDownBoost = true;
@@ -117,10 +123,10 @@ public class Player : MonoBehaviour
         }
         //TREATING GRAVITY LIKE ACCELERATION
         if(!PauseMenu.Instance._isPaused && !_inBlackHole) {
-            if(_velocity.y > _terminalVelocity) {
+            if(_isGravityFlipped ? _velocity.y < _terminalVelocity : _velocity.y > _terminalVelocity) {
                 Accelerate(ref _velocity.y, _gravityMult, _gravity, delta);
             }
-            if(_velocity.y <= _terminalVelocity) {
+            if(_isGravityFlipped ? _velocity.y >= _terminalVelocity : _velocity.y <= _terminalVelocity) {
                 Accelerate(ref _velocity.y, _gravityMult, _gravity*2, delta, true);
                 //_velocity.x -= _dpad.x * _baseAccel * delta;
             }
@@ -277,8 +283,10 @@ public class Player : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("GravityFlip")) {
             FlipGravity();
+            _terminalVelocity = -_termV;
         }
         if(other.gameObject.CompareTag("Boost")) {
+            _isJumping = false;
             StartCoroutine(BoostObjectPull(other.gameObject.transform.position, 
                 other.gameObject.GetComponent<BoostObjectBehaviour>().BoostInDirection()));
             StartCoroutine(BoostDecelCoroutine(26,13));
@@ -286,7 +294,7 @@ public class Player : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D other) {
         if(other.gameObject.CompareTag("BlackHole")) {
-            _terminalVelocity = 0;
+            //_terminalVelocity = 0;
             _inBlackHole = true;
             //Strength of black hole pull is increased when player is closer to it
             float strength = 1/Vector2.Distance(other.gameObject.transform.position,this.transform.position);
@@ -301,14 +309,14 @@ public class Player : MonoBehaviour
     IEnumerator BoostObjectPull(Vector3 position, Vector2 boost) {
         SetAllPlayerActions(false, false, false, false);
         float elapsedTime = 0;
-        float waitTime = 6f;
+        float waitTime = 4f;
         while(elapsedTime < waitTime) {
             transform.position = Vector3.Lerp(transform.position, position, (elapsedTime / (waitTime)));
             elapsedTime++;
             yield return null;
         }
         elapsedTime = 0;
-        waitTime = 6f;
+        waitTime = 2f;
         while(elapsedTime < waitTime) {
             InputManager.Instance._freezeVelocity = true;
             elapsedTime++;
@@ -324,9 +332,10 @@ public class Player : MonoBehaviour
         if(other.gameObject.CompareTag("GravityFlip")) {
             FlipGravity();
             _renderer.flipY = false;
+            _terminalVelocity = _termV;
         }
         if(other.gameObject.CompareTag("BlackHole")) {
-            _terminalVelocity = _termV;
+            //_terminalVelocity = _termV;
             _inBlackHole = false;
         }
     }
