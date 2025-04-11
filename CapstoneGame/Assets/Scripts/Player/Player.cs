@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent (typeof (Controller2D))]
@@ -38,7 +37,7 @@ public class Player : MonoBehaviour
 
     bool _boostDeceling;
     float _boostSpeed = 12f;
-    float _boostDecel = 36f;
+    float _boostDecel = 50f;
 
     bool _isGravityFlipped = false;
 
@@ -94,27 +93,32 @@ public class Player : MonoBehaviour
             _canDownBoost = true;
             StartCoroutine(CoyoteTime());
         } 
-        
-        // if not at max run speed yet, accelerate to max run speed
-        if(Mathf.Abs(_velocity.x) < _maxRunSpeed) {
-            Accelerate(ref _velocity.x, InputManager.Instance.HorizontalInput, _baseAccel, delta);
+        if(_boostDeceling) {
+            Accelerate(ref _velocity.x, Mathf.Sign(_velocity.x), _boostDecel, delta, true);
         }
-        // if over max run speed, decelerate to max run speed
-        if(Mathf.Abs(_velocity.x) >= _maxRunSpeed) {
-            Accelerate(ref _velocity.x, InputManager.Instance.HorizontalInput, _baseAccel, delta, true);
-            //_velocity.x -= _dpad.x * _baseAccel * delta;
-        }
-        // deceleration for skidding on the ground
-        if(Mathf.Sign(InputManager.Instance.HorizontalInput) != Mathf.Sign(_velocity.x)) {
-            Accelerate(ref _velocity.x, InputManager.Instance.HorizontalInput, _skidDecel, delta);
-            //_velocity.x += _dpad.x * _skidDecel * delta;
+        else {
+        // these are put in an else because otherwise they stack with boostdeceling and i dont want that
+            // if not at max run speed yet, accelerate to max run speed
+            if(Mathf.Abs(_velocity.x) < _maxRunSpeed) {
+                Accelerate(ref _velocity.x, InputManager.Instance.HorizontalInput, _baseAccel, delta);
+            }
+            // if over max run speed, decelerate to max run speed
+            if(Mathf.Abs(_velocity.x) >= _maxRunSpeed) {
+                Accelerate(ref _velocity.x, InputManager.Instance.HorizontalInput, _baseAccel, delta, true);
+                //_velocity.x -= _dpad.x * _baseAccel * delta;
+            }
+            // deceleration for skidding on the ground
+            if(Mathf.Sign(InputManager.Instance.HorizontalInput) != Mathf.Sign(_velocity.x)) {
+                Accelerate(ref _velocity.x, InputManager.Instance.HorizontalInput, _skidDecel, delta);
+                //_velocity.x += _dpad.x * _skidDecel * delta;
+            }
         }
         // deceleration for when you are no longer pressing a direction
         if(InputManager.Instance.HorizontalInput == 0 && _velocity.x != 0) {
             if(_controller._isGrounded) {
                 Accelerate(ref _velocity.x, Mathf.Sign(_velocity.x), _baseDecel, delta, true);
             }
-            else {
+            else{
                 Accelerate(ref _velocity.x, Mathf.Sign(_velocity.x), _baseAirDecel, delta, true);
             }
             if(Mathf.Abs(_velocity.x) <= 1) {
@@ -143,15 +147,13 @@ public class Player : MonoBehaviour
             _vfxPlayer.Boost_AfterImage(_renderer.flipX);
             StartCoroutine(BoostCoroutine());
         }
-        if(_boostDeceling) {
-            Accelerate(ref _velocity.x, Mathf.Sign(_velocity.x), _boostDecel, delta, true);
-        }
+        
         // when player hits wall they can bounce off of it at high enough speeds
         if(_controller._hitWall) {
             if(Mathf.Abs(_velocity.x) > _maxRunSpeed * 1.5f) {
                 _velocity.x = -_velocity.x*0.4f;
                 _velocity.y = _isGravityFlipped ? -Mathf.Abs(_velocity.x) : Mathf.Abs(_velocity.x);
-                _velocity.y *= 0.6f; //scale bounce with gravity changes
+                _velocity.y *= 0.9f; //scale bounce with gravity changes
             }
             else
                 _velocity.x = Mathf.Clamp(_velocity.x,-5,5);
@@ -218,10 +220,8 @@ public class Player : MonoBehaviour
             _jumpOverride = false;
         }
         _canDownBoost = true;
-        _boostDeceling = true;
-        yield return new WaitForSeconds(0.21f);
-        _boostDeceling = false;
-        StartCoroutine(BoostCooldown(60f));
+        StartCoroutine(BoostDecelCoroutine(1,10));
+        StartCoroutine(BoostCooldown(70f));
     }
     IEnumerator NegateGravityFor(int delay) {
         _gravityMult *= 0.125f;
@@ -235,6 +235,7 @@ public class Player : MonoBehaviour
             yield return null;
         }
         _boostDeceling = true;
+        Debug.Log("Set boostDeceling to "+_boostDeceling);
         StartCoroutine(BoostDecelCoroutine(amount));
     }
     IEnumerator BoostDecelCoroutine(int amount) {
@@ -242,6 +243,7 @@ public class Player : MonoBehaviour
             yield return null;
         }
         _boostDeceling = false;
+        Debug.Log("Set boostDeceling to "+_boostDeceling);
     }
     IEnumerator SpinCooldown(float cooldown) {
         for(int i = 0; i < cooldown; i++) {
@@ -258,9 +260,12 @@ public class Player : MonoBehaviour
         _canDoubleJump = true;
     }
     IEnumerator BoostCooldown(float cooldown) {
+        int adjuster = 12;
+        if(_controller._isGrounded)
+            adjuster += 14;
         for(int i = 0; i < cooldown; i++) {
-            if(_controller._isGrounded && i < cooldown - 12)
-                i = (int)cooldown - 12;
+            if(_controller._isGrounded && i < cooldown - adjuster)
+                i = (int)cooldown - adjuster;
             yield return null;
         }
         _canBoost = true;
@@ -289,7 +294,8 @@ public class Player : MonoBehaviour
             _isJumping = false;
             StartCoroutine(BoostObjectPull(other.gameObject.transform.position, 
                 other.gameObject.GetComponent<BoostObjectBehaviour>().BoostInDirection()));
-            StartCoroutine(BoostDecelCoroutine(26,13));
+            StartCoroutine(BoostDecelCoroutine(15,13));
+            StartCoroutine(NegateGravityFor(19*(int)Mathf.Abs(Mathf.Sin(Mathf.Deg2Rad*other.gameObject.transform.localEulerAngles.z))));
         }
     }
     void OnTriggerStay2D(Collider2D other) {
