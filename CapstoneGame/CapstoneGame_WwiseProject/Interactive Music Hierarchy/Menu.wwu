@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{D2B7DCA1-9EA6-4794-889D-A6770C489F82}" SchemaVersion="119">
+	<InteractiveMusic>
+		<WorkUnit Name="Menu" ID="{D2B7DCA1-9EA6-4794-889D-A6770C489F82}" PersistMode="Standalone">
+			<PropertyList>
+				<Property Name="Color" Type="int16" Value="12"/>
+				<Property Name="OverrideColor" Type="bool" Value="True"/>
+			</PropertyList>
+			<ChildrenList>
+				<MusicSwitchContainer Name="menuSwitch" ID="{FD9E25DE-22A5-4BD2-A675-20E5642B353C}" ShortID="559687877">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+						<Reference Name="TransitionRoot">
+							<Custom>
+								<MusicTransition Name="Root" ID="{3D3CB427-9606-41AE-8BE2-1A23CEEE8B7F}">
+									<PropertyList>
+										<Property Name="IsFolder" Type="bool" Value="True"/>
+									</PropertyList>
+									<ChildrenList>
+										<MusicTransition Name="Transition" ID="{120A8BA1-4EEF-47E1-9578-8619CA710631}">
+											<TransitionInfo/>
+										</MusicTransition>
+									</ChildrenList>
+									<TransitionInfo/>
+								</MusicTransition>
+							</Custom>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicPlaylistContainer Name="menuPlaylist" ID="{77B59452-22D1-40E5-9648-8D98DF29AB83}" ShortID="222557111">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-3</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+								</Reference>
+								<Reference Name="PlaylistRoot">
+									<Custom>
+										<MusicPlaylistItem Name="" ID="{18633D16-0D0F-4548-9979-ED7869D9D6A7}" ShortID="344135962">
+											<ChildrenList>
+												<MusicPlaylistItem Name="" ID="{8198757C-8BF4-4F9E-BD13-6CE2519BF1A1}" ShortID="141486079">
+													<PropertyList>
+														<Property Name="LoopCount" Type="int16" Value="0"/>
+														<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Segment">
+															<ObjectRef Name="RumblerLoop_2" ID="{E177FAD6-2E44-4953-B3F7-9AB1C5C6AB50}" WorkUnitID="{D2B7DCA1-9EA6-4794-889D-A6770C489F82}"/>
+														</Reference>
+													</ReferenceList>
+												</MusicPlaylistItem>
+											</ChildrenList>
+										</MusicPlaylistItem>
+									</Custom>
+								</Reference>
+								<Reference Name="TransitionRoot">
+									<Custom>
+										<MusicTransition Name="Root" ID="{33293119-F6F8-4748-9315-7C0B1D6E9ADC}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<ChildrenList>
+												<MusicTransition Name="Transition" ID="{8EA17841-20B7-4BD7-A982-735EE0EEBE21}">
+													<TransitionInfo/>
+												</MusicTransition>
+											</ChildrenList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</Custom>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicSegment Name="RumblerLoop_2" ID="{E177FAD6-2E44-4953-B3F7-9AB1C5C6AB50}" ShortID="11663817">
+									<PropertyList>
+										<Property Name="EndPosition" Type="Real64" Value="72000"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<MusicTrack Name="RumblerLoop_2" ID="{DCF6C743-733B-432A-8CEA-1A7D0042FA12}" ShortID="456880060">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+												</Reference>
+												<Reference Name="TransitionRoot">
+													<Custom>
+														<MusicTransition Name="Root" ID="{7BFDF228-FDB7-4EE9-B7E6-EF6AB12C761F}">
+															<PropertyList>
+																<Property Name="IsFolder" Type="bool" Value="True"/>
+															</PropertyList>
+															<TransitionInfo/>
+														</MusicTransition>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="RumblerLoop_2" ID="{D5C634EE-DF10-48D0-893C-518E65DD9FB8}">
+													<Language>SFX</Language>
+													<AudioFile>RumblerLoop_2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="610240063"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<Reference>
+														<Local>
+															<MusicTrackSequence Name="" ID="{1ECC61DB-C350-46EC-9C65-D62E08904152}">
+																<ObjectLists>
+																	<ObjectList Name="Clips">
+																		<Reference>
+																			<Local>
+																				<MusicClip Name="RumblerLoop_2" ID="{421633F6-CFA2-4CCD-A3E3-9BC34BDB1F18}">
+																					<PropertyList>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="72000"/>
+																						<Property Name="FadeInMode" Type="int16" Value="0"/>
+																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																					</PropertyList>
+																					<AudioSourceRef Name="RumblerLoop_2" ID="{D5C634EE-DF10-48D0-893C-518E65DD9FB8}"/>
+																				</MusicClip>
+																			</Local>
+																		</Reference>
+																	</ObjectList>
+																</ObjectLists>
+															</MusicTrackSequence>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
+									</ChildrenList>
+									<ObjectLists>
+										<ObjectList Name="Cues">
+											<Reference>
+												<Local>
+													<MusicCue Name="Entry Cue" ID="{7DDF5AD5-0B12-4792-8DC2-5653BCBC492A}"/>
+												</Local>
+											</Reference>
+											<Reference>
+												<Local>
+													<MusicCue Name="Exit Cue" ID="{CEB23C10-421A-4902-B702-51D048DF420E}">
+														<PropertyList>
+															<Property Name="CueType" Type="int16" Value="1"/>
+															<Property Name="TimeMs" Type="Real64" Value="72000"/>
+														</PropertyList>
+													</MusicCue>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicSegment>
+							</ChildrenList>
+						</MusicPlaylistContainer>
+					</ChildrenList>
+				</MusicSwitchContainer>
+			</ChildrenList>
+		</WorkUnit>
+	</InteractiveMusic>
+</WwiseDocument>

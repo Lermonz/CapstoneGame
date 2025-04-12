@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{CF494D82-62DF-4CE0-A080-48AAAA6B89AF}" SchemaVersion="119">
 	<SoundcasterSessions>
-		<WorkUnit Name="Default Work Unit" ID="{CF494D82-62DF-4CE0-A080-48AAAA6B89AF}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{CF494D82-62DF-4CE0-A080-48AAAA6B89AF}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundcasterSession Name="WholeGame" ID="{A73A9578-3487-4E0D-9F91-BBE5F903D869}">
+					<ModuleList>
+						<Module>
+							<ObjectRef Name="PlayMenu" ID="{8DE4D159-6838-4DB6-8C82-41637D5038DF}" WorkUnitID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}"/>
+							<Position X="0" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="PlayWorld1" ID="{4F226F1A-A4FB-4F81-BE4A-37022C52F9CD}" WorkUnitID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}"/>
+							<Position X="0" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ButtonHighlight" ID="{23D53B51-45A4-4567-B379-CDD46091DB14}" WorkUnitID="{F7208305-3A80-4691-9593-DD6787B4FC9B}"/>
+							<Position X="0" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ButtonConfirm2" ID="{8A051046-EE24-4404-9718-23B0007D440E}" WorkUnitID="{F7208305-3A80-4691-9593-DD6787B4FC9B}"/>
+							<Position X="0" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="StopMenu" ID="{0A10D226-ABC7-44B3-AEDA-AA6A0C29D9A3}" WorkUnitID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}"/>
+							<Position X="1" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="StopWorld1" ID="{0D19B70E-7C89-42ED-B4EE-D64D9CD63260}" WorkUnitID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}"/>
+							<Position X="1" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ButtonConfirm1" ID="{C3EEC3C6-95F0-4E3F-8C9D-1D5C37EC6B69}" WorkUnitID="{F7208305-3A80-4691-9593-DD6787B4FC9B}"/>
+							<Position X="1" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ButtonBackOut1" ID="{6C925603-F2A3-417F-A576-066FF8379020}" WorkUnitID="{F7208305-3A80-4691-9593-DD6787B4FC9B}"/>
+							<Position X="1" Y="4"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Player_Attack" ID="{25467068-7FDE-4889-8631-21CAFED1691A}" WorkUnitID="{3B0033C6-FCF6-4225-95F8-B2AB6DB94F9C}"/>
+							<Position X="2" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Player_Dash" ID="{7F515DFF-D06B-4FC6-BF49-B85A71D285D9}" WorkUnitID="{3B0033C6-FCF6-4225-95F8-B2AB6DB94F9C}"/>
+							<Position X="2" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Player_FastFall" ID="{05A299D3-C0FC-426A-81E1-92F87FDCD43D}" WorkUnitID="{3B0033C6-FCF6-4225-95F8-B2AB6DB94F9C}"/>
+							<Position X="3" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Player_Jump" ID="{A0F29F18-10D2-4D42-9C82-DE2839317BA5}" WorkUnitID="{3B0033C6-FCF6-4225-95F8-B2AB6DB94F9C}"/>
+							<Position X="3" Y="1"/>
+						</Module>
+					</ModuleList>
+					<RTPCValueList ShowAll="true"/>
+					<CurrentStateList ShowAll="true"/>
+					<CurrentSwitchList ShowAll="true"/>
+				</SoundcasterSession>
+			</ChildrenList>
+		</WorkUnit>
 	</SoundcasterSessions>
 </WwiseDocument>

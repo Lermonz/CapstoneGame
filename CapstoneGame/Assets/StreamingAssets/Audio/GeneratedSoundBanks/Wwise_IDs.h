@@ -27,7 +27,9 @@ namespace AK
         static const AkUniqueID PLAYER_DASH = 2394582229U;
         static const AkUniqueID PLAYER_FASTFALL = 4179545512U;
         static const AkUniqueID PLAYER_JUMP = 1305133589U;
+        static const AkUniqueID PLAYMENU = 1862289782U;
         static const AkUniqueID PLAYWORLD1 = 4039638074U;
+        static const AkUniqueID STOPMENU = 2273031176U;
         static const AkUniqueID STOPWORLD1 = 2443977444U;
     } // namespace EVENTS
 

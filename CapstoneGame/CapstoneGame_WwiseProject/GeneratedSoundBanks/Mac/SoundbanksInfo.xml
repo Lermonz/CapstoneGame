@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{613B1EAE-466D-F00B-E988-5B0D9123ADF5}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{FB19C414-6289-B433-1543-5A9D2364A156}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -25,7 +25,7 @@
 				<Bus Id="4283257371" Name="PlayerSFX"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{CE6DFC12-177F-2510-7CC3-47BF99AE725A}">
+		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{041D9382-BEE1-E6B1-57B4-F0508DA13025}">
 			<ShortName>SoundbankAll</ShortName>
 			<Path>SoundbankAll.bnk</Path>
 			<Media>
@@ -80,6 +80,10 @@
 				<File Id="479308673" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_select7_1.wav</ShortName>
 					<CachePath>SFX/button_select7_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="610240063" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>RumblerLoop_2.wav</ShortName>
+					<CachePath>SFX/RumblerLoop_2_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="713058177" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_highlight1.wav</ShortName>
@@ -165,15 +169,21 @@
 						<MediaRef Id="291109648"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="1862289782" Name="PlayMenu" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="610240063"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="4039638074" Name="PlayWorld1" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="193719762"/>
 						<MediaRef Id="223842354"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="2273031176" Name="StopMenu" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="2443977444" Name="StopWorld1" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{787B76FD-6886-4C19-8A21-099BE2BFCDD3}</FileHash>
+	<FileHash>{B44C1797-9D80-06C0-73F6-83AC62D4E6BC}</FileHash>
 </SoundBanksInfo>

@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy/Default Work Unit
     guid: c9a97c197515a745be7087e8c5be52db
     GuidInternal: 
-    m_lastTime: -8584580867033842548
+    m_lastTime: -8584571736900533040
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -357,8 +357,25 @@ MonoBehaviour:
     ParentPath: Events/Music
     guid: 3509c7a70499334f80eb9e8b4c10de23
     GuidInternal: 
-    m_lastTime: -8584583098722090250
+    m_lastTime: -8584571744234620690
     List:
+    - name: PlayMenu
+      guid: 59d1e48d3868b64d8c8241637d5038df
+      id: 1862289782
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Music
+        ObjectType: 12
+        guid: 3509c7a70499334f80eb9e8b4c10de23
+      - ElementName: PlayMenu
+        ObjectType: 3
+        guid: 59d1e48d3868b64d8c8241637d5038df
+      Path: Events/Music/PlayMenu
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: PlayWorld1
       guid: 1a6f224ffba4814fbe4a37022c52f9cd
       id: 4039638074
@@ -376,6 +393,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: StopMenu
+      guid: 26d2100ac7abb344aedaaa6a0c29d9a3
+      id: 2273031176
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Music
+        ObjectType: 12
+        guid: 3509c7a70499334f80eb9e8b4c10de23
+      - ElementName: StopMenu
+        ObjectType: 3
+        guid: 26d2100ac7abb344aedaaa6a0c29d9a3
+      Path: Events/Music/StopMenu
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - name: StopWorld1
       guid: 0eb7190d897ced42b4eed64d9cd63260
       id: 2443977444
