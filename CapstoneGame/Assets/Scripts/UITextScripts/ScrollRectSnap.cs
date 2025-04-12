@@ -12,19 +12,25 @@ public class ScrollRectSnap : MonoBehaviour
     Button[] _button;
     Button[][] _buttonsArray;
     public RectTransform _centerForLevels;
-    public RectTransform _centerForWorlds;
-    public RectTransform[] _worlds;
 
     float[] _distance;
     bool dragging = false;
     int _buttonDistance;    //distance between the buttons
-    int _minButtonNum;      //to hold number of the butten with smallest distance to center
-    int _selectedButtonNum;
+    public int _minButtonNum;      //to hold number of the butten with smallest distance to center=
     int _currentWorld;
     int _worldDistance;
 
-    void Start()
-    {
+    public static ScrollRectSnap Instance;
+    void Awake() {
+        if (Instance != null && Instance != this) {
+            Destroy(this);
+            return;
+        }
+        else
+            Instance = this;
+    }
+
+    void Start() {
         int buttonLength = _world1Levels.Length;
         _distance = new float[buttonLength];
         _buttonsArray = new Button[][] {_world1Levels, _world2Levels, _world3Levels};
@@ -33,10 +39,8 @@ public class ScrollRectSnap : MonoBehaviour
         _buttonDistance = (int)Mathf.Abs(_world1Levels[1].GetComponent<RectTransform>().anchoredPosition.y - _world1Levels[0].GetComponent<RectTransform>().anchoredPosition.y);
         _worldDistance = (int)Mathf.Abs(_panelForLevels[1].anchoredPosition.x - _panelForLevels[0].anchoredPosition.x);
     }
-    void Update()
-    {
-        _button = 
-        _buttonsArray[_currentWorld];
+    void Update() {
+        _button = _buttonsArray[_currentWorld];
         for(int i = 0; i<_button.Length; i++) {
             _distance[i] = Mathf.Abs(_centerForLevels.transform.position.y - _button[i].transform.position.y);
             _distance[i] = Mathf.Abs(_centerForLevels.transform.position.y - _button[i].transform.position.y);
