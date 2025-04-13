@@ -13,7 +13,8 @@ public class CheckIfMinButton : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log("MinButton is this: "+_levelIDAsInt);
-        _animator.SetBool("MinButton", ScrollRectSnap.Instance._minButtonNum == _levelIDAsInt%10-1);
+        if(ScrollRectSnap.Instance._minButtonNum == _levelIDAsInt%10-1)
+            Debug.Log("MinButton is this: "+(_levelIDAsInt%10-1));
+       // _animator.SetBool("MinButton", ScrollRectSnap.Instance._minButtonNum == _levelIDAsInt%10-1);
     }
 }

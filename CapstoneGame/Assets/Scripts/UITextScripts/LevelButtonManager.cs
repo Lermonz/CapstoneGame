@@ -9,6 +9,7 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
     [SerializeField]
     private Button _levelButton;
     public int _totalCount;
+    bool _shouldBeUnlocked = false;
     private void Awake()
     {
         _levelButton = this.GetComponent<Button>();
@@ -46,6 +47,8 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
     }
     private void MakeButtonInteractable(GameData data) {
         _levelButton.interactable = data.unlockedLevels[_buttonData._levelID];
+        _shouldBeUnlocked = _levelButton.interactable;
+        Debug.Log("should be unlocked?: "+_shouldBeUnlocked+",  "+_buttonData._levelID);
     }
     private void TotalGolds(GameData data) {
         _totalCount = 0;
@@ -61,6 +64,11 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
             if(data.medals.ElementAt(i).Value == "gold") {
                 _totalCount++;
             }
+        }
+    }
+    void Update() {
+        if(_shouldBeUnlocked) {
+            _levelButton.interactable = ScrollRectSnap.Instance._currentWorld == _buttonData._world-1;
         }
     }
 }

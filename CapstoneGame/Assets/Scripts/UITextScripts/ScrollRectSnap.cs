@@ -17,7 +17,7 @@ public class ScrollRectSnap : MonoBehaviour
     bool dragging = false;
     int _buttonDistance;    //distance between the buttons
     public int _minButtonNum;      //to hold number of the butten with smallest distance to center=
-    int _currentWorld;
+    public int _currentWorld;
     int _worldDistance;
 
     public static ScrollRectSnap Instance;
