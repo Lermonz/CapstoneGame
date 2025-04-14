@@ -120,7 +120,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780dba77b709b4b76889b51177b21521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderers: []
+  _renderers:
+  - {fileID: 4094838286068065800}
+  - {fileID: 3639116680179588090}
+  - {fileID: 4690560761243012186}
+  - {fileID: 1319741080959922933}
+  _transform: {fileID: 4999550637390579543}
 --- !u!95 &8889965956315291082
 Animator:
   serializedVersion: 5
