@@ -19,7 +19,7 @@ public class SelectLevel : MonoBehaviour
             LoadLevel(nextLevel.buildIndex+1);
     }
     public void Reload() {
-        LoadLevel(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(DelayThenLoad(SceneManager.GetActiveScene().buildIndex));
     }
     void SetGameBehavior(bool game) {
         GameBehaviour.Instance._isGame = game;

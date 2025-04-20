@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     bool _canDoubleJump = true;
     bool _canDownBoost = true;
     bool _isJumping = false;
+    bool _canTeleport = true;
 
     bool _boostDeceling;
     float _boostSpeed = 12f;
@@ -45,6 +46,7 @@ public class Player : MonoBehaviour
     float _doubleJumpCooldown = 8f;
 
     bool _jumpOverride = false;
+    bool _dead;
     
     void Start()
     {
@@ -54,12 +56,14 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
         //_particles = GetComponent<ParticleSystem>();
         _terminalVelocity = _termV;
+        _dead = false;
     }
     void Update() {
         float delta = Time.deltaTime;
+        //Debug.Log("Dead: "+_dead);
         _animator.SetBool("Running", InputManager.Instance.HorizontalInput != 0 && _controller._isGrounded);
-        _animator.SetBool("Jumping", _velocity.y > 0.2 && !_controller._isGrounded);
-        _animator.SetBool("Falling", _velocity.y < -0.2 && !_controller._isGrounded);
+        _animator.SetBool("Jumping", _velocity.y > 0.2 && !_controller._isGrounded && !_dead);
+        _animator.SetBool("Falling", _velocity.y < -0.2 && !_controller._isGrounded && !_dead);
         //_dpad = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         
         if ((InputManager.Instance.HorizontalInput > 0 && _renderer.flipX) || (InputManager.Instance.HorizontalInput < 0 && !_renderer.flipX)) {
@@ -121,12 +125,12 @@ public class Player : MonoBehaviour
             else{
                 Accelerate(ref _velocity.x, Mathf.Sign(_velocity.x), _baseAirDecel, delta, true);
             }
-            if(Mathf.Abs(_velocity.x) <= 1) {
+            if(!_inBlackHole && Mathf.Abs(_velocity.x) <= 1) {
                 _velocity.x = 0;
             }
         }
         //TREATING GRAVITY LIKE ACCELERATION
-        if(!PauseMenu.Instance._isPaused && !_inBlackHole) {
+        if(!PauseMenu.Instance._isPaused && !_inBlackHole && !_dead) {
             if(_isGravityFlipped ? _velocity.y < _terminalVelocity : _velocity.y > _terminalVelocity) {
                 Accelerate(ref _velocity.y, _gravityMult, _gravity, delta);
             }
@@ -145,6 +149,7 @@ public class Player : MonoBehaviour
             //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._boostSFX);
             AkSoundEngine.PostEvent("Player_Dash", gameObject);
             _vfxPlayer.Boost_AfterImage(_renderer.flipX);
+            _animator.Play("Player_Dash");
             StartCoroutine(BoostCoroutine());
         }
         
@@ -166,6 +171,7 @@ public class Player : MonoBehaviour
             //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._spinSFX);
             AkSoundEngine.PostEvent("Player_Attack", gameObject);
             _vfxPlayer.Spin_Sparkle();
+            _animator.Play("Player_Spin");
             if(!_controller._isGrounded && _canDoubleJump) {
                 _canDoubleJump = false;
                 _vfxPlayer.Woosh(-0.5f);
@@ -192,10 +198,12 @@ public class Player : MonoBehaviour
         
         // if(_inBlackHole)
         //     _velocity.y += _gravity;
-        if(Mathf.Abs(_velocity.x) < 0.02) {
+        if(!_inBlackHole && Mathf.Abs(_velocity.x) < 0.02) {
             _velocity.x = 0;
         }
-        _controller.Move(_velocity * delta);
+        if(!_dead) {
+            _controller.Move(_velocity * delta);
+        }
     }
     IEnumerator ShortenJumpTo(int delay, float amount) {
         for(int i = 0; i < delay; i++) {
@@ -235,7 +243,6 @@ public class Player : MonoBehaviour
             yield return null;
         }
         _boostDeceling = true;
-        Debug.Log("Set boostDeceling to "+_boostDeceling);
         StartCoroutine(BoostDecelCoroutine(amount));
     }
     IEnumerator BoostDecelCoroutine(int amount) {
@@ -243,7 +250,6 @@ public class Player : MonoBehaviour
             yield return null;
         }
         _boostDeceling = false;
-        Debug.Log("Set boostDeceling to "+_boostDeceling);
     }
     IEnumerator SpinCooldown(float cooldown) {
         for(int i = 0; i < cooldown; i++) {
@@ -274,6 +280,13 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         _canJump = false;
     }
+    IEnumerator TeleportCooldown() {
+        _canTeleport = false;
+        for(int i = 0; i < 24; i++) {
+            yield return null;
+        }
+        _canTeleport = true;
+    }
     void Accelerate(ref float axis, float input, float mult, float delta, bool decel = false) {
         int dir = decel ? -1 : 1;
         axis += input * mult * delta * dir;
@@ -297,13 +310,17 @@ public class Player : MonoBehaviour
             StartCoroutine(BoostDecelCoroutine(15,13));
             StartCoroutine(NegateGravityFor(19*(int)Mathf.Abs(Mathf.Sin(Mathf.Deg2Rad*other.gameObject.transform.localEulerAngles.z))));
         }
+        if(other.gameObject.CompareTag("Teleport") && _canTeleport) {
+            StartCoroutine(TeleportCooldown());
+            this.transform.position = other.gameObject.GetComponent<Teleporter>().LinkedTo.transform.position;
+        }
     }
     void OnTriggerStay2D(Collider2D other) {
         if(other.gameObject.CompareTag("BlackHole")) {
             //_terminalVelocity = 0;
             _inBlackHole = true;
             //Strength of black hole pull is increased when player is closer to it
-            float strength = 1/Vector2.Distance(other.gameObject.transform.position,this.transform.position);
+            float strength = 0.1f+0.85f/Vector2.Distance(other.gameObject.transform.position,this.transform.position);
             //Debug.Log("Strength: "+strength);
             PullTowards(other.gameObject.transform.position, strength);
         }
@@ -368,8 +385,25 @@ public class Player : MonoBehaviour
     //     ("XPos: "+this.transform.position.x.ToString("#.00")+
     //     "\nY Pos: "+this.transform.position.y.ToString("#.00")+
     //     "\nX Vel: "+_velocity.x.ToString("#.00")+
-    //     "\nY Vel: "+_velocity.y.ToString("#.00")+
-    //     "\nIs Ground: "+_controller._isGrounded+
-    //     "\nGravity Mult: "+_gravityMult));
+    //     "\nY Vel: "+_velocity.y.ToString("#.00")
+    //     // "\nIs Ground: "+_controller._isGrounded+
+    //     // "\nGravity Mult: "+_gravityMult
+    //     ));
     // }
+    public void DeathNormal() {
+        _animator.SetTrigger("DeathNormal");
+        InputManager.Instance.NegateAllInput();
+        LevelManager.Instance.FreezePlayerAndTimer();
+        _dead = true;
+        // freeze player movement
+        // trigger animation for dying to spikes
+    }
+    public void DeathBlackHole() {
+        if(!_dead) {
+            _animator.SetTrigger("DeathBlackHole");
+        }
+        _dead = true;
+        // negate player control
+        // trigger animation for dying to black hole (shrink and rotate into it)
+    }
 }

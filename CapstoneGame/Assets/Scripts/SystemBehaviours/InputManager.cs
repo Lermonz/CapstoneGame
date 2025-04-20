@@ -64,4 +64,7 @@ public class InputManager : MonoBehaviour
     public void EnablePlayerInput() {
         PlayerInput.SwitchCurrentActionMap("Player");
     }
+    public void NegateAllInput() {
+        PlayerInput.SwitchCurrentActionMap("None");
+    }
 }
