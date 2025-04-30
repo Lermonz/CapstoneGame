@@ -13,6 +13,7 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID BOOST_OBJECT = 476417308U;
         static const AkUniqueID BUTTONBACKOUT1 = 817870589U;
         static const AkUniqueID BUTTONCONFIRM1 = 3348213544U;
         static const AkUniqueID BUTTONCONFIRM2 = 3348213547U;
@@ -25,12 +26,14 @@ namespace AK
         static const AkUniqueID CRYSTAL_BREAK = 756738409U;
         static const AkUniqueID PLAYER_ATTACK = 2824512041U;
         static const AkUniqueID PLAYER_DASH = 2394582229U;
+        static const AkUniqueID PLAYER_DIE = 1542330065U;
         static const AkUniqueID PLAYER_FASTFALL = 4179545512U;
         static const AkUniqueID PLAYER_JUMP = 1305133589U;
         static const AkUniqueID PLAYMENU = 1862289782U;
         static const AkUniqueID PLAYWORLD1 = 4039638074U;
         static const AkUniqueID STOPMENU = 2273031176U;
         static const AkUniqueID STOPWORLD1 = 2443977444U;
+        static const AkUniqueID TELE_OBJECT = 405211869U;
     } // namespace EVENTS
 
     namespace BANKS

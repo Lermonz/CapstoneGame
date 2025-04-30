@@ -296,6 +296,10 @@ public class Player : MonoBehaviour
         HitBoxObject = Instantiate(_hitBox, this.transform);
         HitBoxObject.transform.localScale = new Vector3(width, height, 20);
     }
+    void Teleport(Teleporter teleporter) {
+        this.transform.position = teleporter.LinkedTo.transform.position;
+        teleporter.PlaySFX();
+    }
     /// COLLISIONS WITH OBJECTS ///
     // GRAVITY FIELD
     void OnTriggerEnter2D(Collider2D other) {
@@ -312,7 +316,8 @@ public class Player : MonoBehaviour
         }
         if(other.gameObject.CompareTag("Teleport") && _canTeleport) {
             StartCoroutine(TeleportCooldown());
-            this.transform.position = other.gameObject.GetComponent<Teleporter>().LinkedTo.transform.position;
+            Teleport(other.gameObject.GetComponent<Teleporter>());
+            // this.transform.position = other.gameObject.GetComponent<Teleporter>().LinkedTo.transform.position;
         }
     }
     void OnTriggerStay2D(Collider2D other) {
@@ -363,6 +368,7 @@ public class Player : MonoBehaviour
         }
     }
     void ForceVelocityToVector(Vector2 v) {
+        AkSoundEngine.PostEvent("Boost_Object", gameObject);
         _velocity = v;
     }
     void FlipGravity() {
@@ -394,7 +400,7 @@ public class Player : MonoBehaviour
         _animator.SetTrigger("DeathNormal");
         InputManager.Instance.NegateAllInput();
         LevelManager.Instance.FreezePlayerAndTimer();
-        _dead = true;
+        PlayerIsDead();
         // freeze player movement
         // trigger animation for dying to spikes
     }
@@ -402,8 +408,12 @@ public class Player : MonoBehaviour
         if(!_dead) {
             _animator.SetTrigger("DeathBlackHole");
         }
-        _dead = true;
+        PlayerIsDead();
         // negate player control
         // trigger animation for dying to black hole (shrink and rotate into it)
+    }
+    void PlayerIsDead() {
+        _dead = true;
+        AkSoundEngine.PostEvent("Player_Die", gameObject);
     }
 }

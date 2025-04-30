@@ -161,8 +161,25 @@ MonoBehaviour:
     ParentPath: Events/GameSFX
     guid: 05ee0bcbce7a324ebbc6c118fc70317f
     GuidInternal: 
-    m_lastTime: -8584583228202756171
+    m_lastTime: -8584556165611038734
     List:
+    - name: Boost_Object
+      guid: d76abc89bd36ae4fa187455767d081eb
+      id: 476417308
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: GameSFX
+        ObjectType: 12
+        guid: 05ee0bcbce7a324ebbc6c118fc70317f
+      - ElementName: Boost_Object
+        ObjectType: 3
+        guid: d76abc89bd36ae4fa187455767d081eb
+      Path: Events/GameSFX/Boost_Object
+      maxAttenuation: 0
+      maxDuration: 1.3593333
+      minDuration: 1.3593333
     - name: Crystal_Break
       guid: 607940a7202dee4687986dff01732d79
       id: 756738409
@@ -180,6 +197,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.7742083
       minDuration: 0.7742083
+    - name: Tele_Object
+      guid: f7362413750eb64ca2d38c6f76725dca
+      id: 405211869
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: GameSFX
+        ObjectType: 12
+        guid: 05ee0bcbce7a324ebbc6c118fc70317f
+      - ElementName: Tele_Object
+        ObjectType: 3
+        guid: f7362413750eb64ca2d38c6f76725dca
+      Path: Events/GameSFX/Tele_Object
+      maxAttenuation: 0
+      maxDuration: 1.3593333
+      minDuration: 1.3593333
   - PhysicalPath: Events/MenuSFX.wwu
     PathAndIcons:
     - ElementName: Events
@@ -438,7 +472,7 @@ MonoBehaviour:
     ParentPath: Events/PlayerSFX
     guid: c633003bf6fc254295f8b2ab6db94f9c
     GuidInternal: 
-    m_lastTime: -8584583228202711120
+    m_lastTime: -8584556165610994782
     List:
     - name: Player_Attack
       guid: 68704625de7f8948863121cafed1691a
@@ -474,6 +508,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 1.3653333
       minDuration: 1.3653333
+    - name: Player_Die
+      guid: 7513306acc365b4981014480ae28ce42
+      id: 1542330065
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: PlayerSFX
+        ObjectType: 12
+        guid: c633003bf6fc254295f8b2ab6db94f9c
+      - ElementName: Player_Die
+        ObjectType: 3
+        guid: 7513306acc365b4981014480ae28ce42
+      Path: Events/PlayerSFX/Player_Die
+      maxAttenuation: 0
+      maxDuration: 1.5384583
+      minDuration: 1.5384583
     - name: Player_FastFall
       guid: d399a205fcc06a4281e192f87fdcd43d
       id: 4179545512

@@ -46,12 +46,24 @@
 							<Position X="2" Y="1"/>
 						</Module>
 						<Module>
+							<ObjectRef Name="Tele_Object" ID="{132436F7-0E75-4CB6-A2D3-8C6F76725DCA}" WorkUnitID="{CB0BEE05-7ACE-4E32-BBC6-C118FC70317F}"/>
+							<Position X="2" Y="3"/>
+						</Module>
+						<Module>
 							<ObjectRef Name="Player_FastFall" ID="{05A299D3-C0FC-426A-81E1-92F87FDCD43D}" WorkUnitID="{3B0033C6-FCF6-4225-95F8-B2AB6DB94F9C}"/>
 							<Position X="3" Y="0"/>
 						</Module>
 						<Module>
 							<ObjectRef Name="Player_Jump" ID="{A0F29F18-10D2-4D42-9C82-DE2839317BA5}" WorkUnitID="{3B0033C6-FCF6-4225-95F8-B2AB6DB94F9C}"/>
 							<Position X="3" Y="1"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Boost_Object" ID="{89BC6AD7-36BD-4FAE-A187-455767D081EB}" WorkUnitID="{CB0BEE05-7ACE-4E32-BBC6-C118FC70317F}"/>
+							<Position X="3" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Player_Die" ID="{6A301375-36CC-495B-8101-4480AE28CE42}" WorkUnitID="{3B0033C6-FCF6-4225-95F8-B2AB6DB94F9C}"/>
+							<Position X="4" Y="0"/>
 						</Module>
 					</ModuleList>
 					<RTPCValueList ShowAll="true"/>

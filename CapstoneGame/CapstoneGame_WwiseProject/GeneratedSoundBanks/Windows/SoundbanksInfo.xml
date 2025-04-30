@@ -25,7 +25,7 @@
 				<Bus Id="4283257371" Name="PlayerSFX"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{041D9382-BEE1-E6B1-57B4-F0508DA13025}">
+		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{48E08421-70BB-AFF2-9C1B-3BF8BD359271}">
 			<ShortName>SoundbankAll</ShortName>
 			<Path>SoundbankAll.bnk</Path>
 			<Media>
@@ -48,6 +48,10 @@
 				<File Id="153599617" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_select1_1.wav</ShortName>
 					<CachePath>SFX/button_select1_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="162884650" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>teleObj.wav</ShortName>
+					<CachePath>SFX/teleObj_818F3B66.wem</CachePath>
 				</File>
 				<File Id="193719762" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>AntiworkIntro_2.wav</ShortName>
@@ -85,9 +89,17 @@
 					<ShortName>RumblerLoop_2.wav</ShortName>
 					<CachePath>SFX/RumblerLoop_2_FBC78EF0.wem</CachePath>
 				</File>
+				<File Id="658064967" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>boostObj.wav</ShortName>
+					<CachePath>SFX/boostObj_818F3B66.wem</CachePath>
+				</File>
 				<File Id="713058177" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_highlight1.wav</ShortName>
 					<CachePath>SFX/button_highlight1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="720226508" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>death.wav</ShortName>
+					<CachePath>SFX/death_818F3B66.wem</CachePath>
 				</File>
 				<File Id="914652543" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_select6_1.wav</ShortName>
@@ -99,6 +111,11 @@
 				</File>
 			</Media>
 			<Events>
+				<Event Id="476417308" Name="Boost_Object" DurationType="OneShot" DurationMin="1.3593333" DurationMax="1.3593333">
+					<MediaRefs>
+						<MediaRef Id="658064967"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="817870589" Name="ButtonBackOut1" DurationType="OneShot" DurationMin="0.8108125" DurationMax="0.8108125">
 					<MediaRefs>
 						<MediaRef Id="116333208"/>
@@ -159,6 +176,11 @@
 						<MediaRef Id="297365200"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="1542330065" Name="Player_Die" DurationType="OneShot" DurationMin="1.5384583" DurationMax="1.5384583">
+					<MediaRefs>
+						<MediaRef Id="720226508"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="4179545512" Name="Player_FastFall" DurationType="OneShot" DurationMin="1.2163737" DurationMax="1.5325348">
 					<MediaRefs>
 						<MediaRef Id="991962359"/>
@@ -182,8 +204,13 @@
 				</Event>
 				<Event Id="2273031176" Name="StopMenu" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="2443977444" Name="StopWorld1" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="405211869" Name="Tele_Object" DurationType="OneShot" DurationMin="1.3593333" DurationMax="1.3593333">
+					<MediaRefs>
+						<MediaRef Id="162884650"/>
+					</MediaRefs>
+				</Event>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{691E989B-D387-8080-73D1-F5C248BB22E7}</FileHash>
+	<FileHash>{BA2F6F1B-7E50-4D33-0579-0C2E9ADE08AE}</FileHash>
 </SoundBanksInfo>

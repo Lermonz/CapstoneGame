@@ -36,6 +36,57 @@
 						<ActiveSource Name="crystal_break2" ID="{5C1C5E98-37F0-4FDF-A6E8-3B6B68B8032E}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Sound Name="boostObj" ID="{85D40848-C756-4120-9188-A12998B09028}" ShortID="678348482">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="boostObj" ID="{A1A13472-9B00-467A-BFD2-6435D88A132B}">
+							<Language>SFX</Language>
+							<AudioFile>boostObj.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="658064967"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="boostObj" ID="{A1A13472-9B00-467A-BFD2-6435D88A132B}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="teleObj" ID="{81A0CC59-46A9-4398-8F5A-E0BD4B271F58}" ShortID="1008738606">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>6</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="teleObj" ID="{27191E9A-5D88-4A8E-BE1D-13B74C318F02}">
+							<Language>SFX</Language>
+							<AudioFile>teleObj.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="162884650"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="teleObj" ID="{27191E9A-5D88-4A8E-BE1D-13B74C318F02}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

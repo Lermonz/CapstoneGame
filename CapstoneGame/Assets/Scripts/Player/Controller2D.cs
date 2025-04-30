@@ -37,7 +37,9 @@ public class Controller2D : MonoBehaviour
         RayCastUpdate();
         VertCollisions(ref velocity);
         HorzCollisions(ref velocity);
-        transform.Translate(velocity);
+        if(!PauseMenu.Instance._isPaused) {
+            transform.Translate(velocity);
+        }
     }
     public void PullTowards(Vector2 goal, float str) {
         Vector2 dir = new Vector2(goal.x-this.transform.position.x,goal.y-this.transform.position.y);

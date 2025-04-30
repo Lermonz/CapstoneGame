@@ -18,6 +18,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Boost_Object" ID="{89BC6AD7-36BD-4FAE-A187-455767D081EB}">
+					<ChildrenList>
+						<Action Name="" ID="{AE54704E-ECA9-419D-8141-7D4100B70EDD}" ShortID="826016599">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="boostObj" ID="{85D40848-C756-4120-9188-A12998B09028}" WorkUnitID="{7FD96404-D09A-41C2-906C-4B91AF852793}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Tele_Object" ID="{132436F7-0E75-4CB6-A2D3-8C6F76725DCA}">
+					<ChildrenList>
+						<Action Name="" ID="{7DAD54F7-011B-4435-B371-A8543F05AD99}" ShortID="82547280">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="teleObj" ID="{81A0CC59-46A9-4398-8F5A-E0BD4B271F58}" WorkUnitID="{7FD96404-D09A-41C2-906C-4B91AF852793}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
