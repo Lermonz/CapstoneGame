@@ -417,7 +417,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1175623277
-  m_SortingLayer: -3
+  m_SortingLayer: -4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 76aa156543254445d84e6f649cd4c10d, type: 3}
   m_Color: {r: 0.51053494, g: 0.4117647, b: 0.8113208, a: 0.8}
@@ -846,7 +846,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1175623277
-  m_SortingLayer: -3
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cc6e1a1ed3e764e45b57b16a96a8b244, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.8}
@@ -1365,32 +1365,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7544471071273966076, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2095674694}
-    - targetCorrespondingSourceObject: {fileID: 6481648037648100731, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 391969083}
   m_SourcePrefab: {fileID: 100100000, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
 --- !u!224 &391969081 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 510457329583328831, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
   m_PrefabInstance: {fileID: 391969080}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &391969082 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6481648037648100731, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
-  m_PrefabInstance: {fileID: 391969080}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &391969083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 391969082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa87cc1af814346a581172990e5ef957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &400728012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,6 +1663,7 @@ GameObject:
   - component: {fileID: 512241731}
   - component: {fileID: 512241733}
   - component: {fileID: 512241732}
+  - component: {fileID: 512241734}
   m_Layer: 0
   m_Name: TextFF
   m_TagString: Untagged
@@ -1729,7 +1710,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press S midair to fastfall
+  m_text: Press [ midair to fastfall
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ab6ab841eb1c4ad79c3a7e10b420815, type: 2}
   m_sharedMaterial: {fileID: -1004688723081679492, guid: 0ab6ab841eb1c4ad79c3a7e10b420815, type: 2}
@@ -1843,6 +1824,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &512241734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512241730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78cb0f03aa0bd460cb5b4852c95e3307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _action: {fileID: -2994631019293767560, guid: 225d21e8a03cd4b42996ae9f869a41d3, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1923,7 +1917,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.218063, y: 0.49999988, z: 0}
+  m_LocalPosition: {x: -10.212765, y: 0.49999988, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3004,6 +2998,7 @@ GameObject:
   - component: {fileID: 965820148}
   - component: {fileID: 965820150}
   - component: {fileID: 965820149}
+  - component: {fileID: 965820151}
   m_Layer: 0
   m_Name: TextDash
   m_TagString: Untagged
@@ -3050,7 +3045,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press K to dash
+  m_text: Press [ to dash
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ab6ab841eb1c4ad79c3a7e10b420815, type: 2}
   m_sharedMaterial: {fileID: -1004688723081679492, guid: 0ab6ab841eb1c4ad79c3a7e10b420815, type: 2}
@@ -3164,6 +3159,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &965820151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965820147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78cb0f03aa0bd460cb5b4852c95e3307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _action: {fileID: 3522272535765188176, guid: 225d21e8a03cd4b42996ae9f869a41d3, type: 3}
 --- !u!1 &1065581934
 GameObject:
   m_ObjectHideFlags: 0
@@ -3906,6 +3914,7 @@ GameObject:
   - component: {fileID: 1231081369}
   - component: {fileID: 1231081372}
   - component: {fileID: 1231081371}
+  - component: {fileID: 1231081373}
   m_Layer: 0
   m_Name: TextJump
   m_TagString: Untagged
@@ -3952,7 +3961,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press W to Jump
+  m_text: Press [ to Jump
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ab6ab841eb1c4ad79c3a7e10b420815, type: 2}
   m_sharedMaterial: {fileID: -1004688723081679492, guid: 0ab6ab841eb1c4ad79c3a7e10b420815, type: 2}
@@ -4066,6 +4075,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1231081373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231081368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78cb0f03aa0bd460cb5b4852c95e3307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _action: {fileID: -7039094892405851226, guid: 225d21e8a03cd4b42996ae9f869a41d3, type: 3}
 --- !u!1 &1245809910
 GameObject:
   m_ObjectHideFlags: 0
@@ -4363,7 +4385,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -84033857
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -6475,6 +6497,7 @@ GameObject:
   - component: {fileID: 1596870657}
   - component: {fileID: 1596870659}
   - component: {fileID: 1596870658}
+  - component: {fileID: 1596870660}
   m_Layer: 0
   m_Name: TextAttack
   m_TagString: Untagged
@@ -6521,7 +6544,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press L to when near a crystal to break it
+  m_text: Press [ to break crystals
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0ab6ab841eb1c4ad79c3a7e10b420815, type: 2}
   m_sharedMaterial: {fileID: -1004688723081679492, guid: 0ab6ab841eb1c4ad79c3a7e10b420815, type: 2}
@@ -6635,6 +6658,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1596870660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596870656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78cb0f03aa0bd460cb5b4852c95e3307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _action: {fileID: -3830962237757504530, guid: 225d21e8a03cd4b42996ae9f869a41d3, type: 3}
 --- !u!1 &1622811606
 GameObject:
   m_ObjectHideFlags: 0

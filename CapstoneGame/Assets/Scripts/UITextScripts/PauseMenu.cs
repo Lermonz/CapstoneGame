@@ -48,7 +48,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void Unpause() {
         _isPaused = false;
-        FindAudioPlayerForButtons(5);
+        FindAudioPlayerForButtons(5); // change back to 5?
         CloseMenus();
         InputManager.Instance.EnablePlayerInput();
         Time.timeScale = 1;

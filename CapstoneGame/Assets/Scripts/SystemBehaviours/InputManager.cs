@@ -44,7 +44,6 @@ public class InputManager : MonoBehaviour
         _boostAction = PlayerInput.actions["Boost"];
         _spinAction = PlayerInput.actions["Spin"];
         _menuOpenAction = PlayerInput.actions["MenuOpen"];
-
         _menuCloseAction = PlayerInput.actions["MenuClose"];
     }
     void Update()
