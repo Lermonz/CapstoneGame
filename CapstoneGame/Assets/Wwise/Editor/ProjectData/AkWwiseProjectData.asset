@@ -38,7 +38,7 @@ MonoBehaviour:
     ParentPath: Master-Mixer Hierarchy/Default Work Unit
     guid: c9a97c197515a745be7087e8c5be52db
     GuidInternal: 
-    m_lastTime: -8584571736900533040
+    m_lastTime: -8584554746083284952
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -571,8 +571,36 @@ MonoBehaviour:
     ParentPath: Game Parameters/Default Work Unit
     guid: 0ac9380fe798fc4d8e5f2e74df9772cb
     GuidInternal: 
-    m_lastTime: -8584583388361783315
-    List: []
+    m_lastTime: -8584554746083166461
+    List:
+    - name: MusicMix
+      guid: 251d2bed3307fc449755bdc2383b897c
+      id: 3358493668
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0ac9380fe798fc4d8e5f2e74df9772cb
+      - ElementName: MusicMix
+        ObjectType: 13
+        guid: 251d2bed3307fc449755bdc2383b897c
+      Path: Game Parameters/Default Work Unit/MusicMix
+    - name: SoundMix
+      guid: 23812a7a56610741b06ce4da712d1a93
+      id: 1666124528
+      PathAndIcons:
+      - ElementName: Game Parameters
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0ac9380fe798fc4d8e5f2e74df9772cb
+      - ElementName: SoundMix
+        ObjectType: 13
+        guid: 23812a7a56610741b06ce4da712d1a93
+      Path: Game Parameters/Default Work Unit/SoundMix
   StateWwu:
   - PhysicalPath: States/Default Work Unit.wwu
     PathAndIcons:
@@ -616,7 +644,7 @@ MonoBehaviour:
     m_lastTime: -8584583243921055673
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 05000000070000001200000018000000190000001a0000001b0000001c0000001d0000002000000022000000
+  ExpandedWaapiItemIds: 05000000070000001200000018000000190000001a0000001b0000001c0000001d00000020000000220000002b0000002c000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

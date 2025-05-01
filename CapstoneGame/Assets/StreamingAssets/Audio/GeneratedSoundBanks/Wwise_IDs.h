@@ -36,6 +36,12 @@ namespace AK
         static const AkUniqueID TELE_OBJECT = 405211869U;
     } // namespace EVENTS
 
+    namespace GAME_PARAMETERS
+    {
+        static const AkUniqueID MUSICMIX = 3358493668U;
+        static const AkUniqueID SOUNDMIX = 1666124528U;
+    } // namespace GAME_PARAMETERS
+
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;

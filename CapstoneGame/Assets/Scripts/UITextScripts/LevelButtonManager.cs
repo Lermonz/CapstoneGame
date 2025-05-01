@@ -51,7 +51,7 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
     private void MakeButtonInteractable(GameData data) {
         _levelButton.interactable = data.unlockedLevels[_buttonData._levelID];
         _shouldBeUnlocked = _levelButton.interactable;
-        Debug.Log("should be unlocked?: "+_shouldBeUnlocked+",  "+_buttonData._levelID);
+        //Debug.Log("should be unlocked?: "+_shouldBeUnlocked+",  "+_buttonData._levelID);
     }
     private void TotalGolds(GameData data) {
         _totalCount = 0;
