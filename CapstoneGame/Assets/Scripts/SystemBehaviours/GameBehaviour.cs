@@ -21,6 +21,7 @@ public class GameBehaviour : MonoBehaviour
     void Start() {
         Application.targetFrameRate = 60;
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     public void ExitGame() {
         #if UNITY_EDITOR

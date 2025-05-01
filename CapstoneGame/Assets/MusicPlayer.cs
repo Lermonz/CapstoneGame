@@ -8,9 +8,9 @@ public class MusicManager : MonoBehaviour
     public static MusicManager Instance;
     int trackToPlay;
     bool playingTrack1 = false;
-    bool playingTrack2 = false;
-    bool playingTrack3 = false;
-    bool playingTrackMenu = false;
+    // bool playingTrack2 = false;
+    // bool playingTrack3 = false;
+    // bool playingTrackMenu = false;
     void Awake() {
         if (Instance != null && Instance != this) {
             Destroy(this);

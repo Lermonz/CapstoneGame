@@ -4,5 +4,5 @@ public enum LevelUnlockType : byte
     TotalGolds,
     GoldsInWorld,
     SpecificGold,
-    SpecificClear
+    PrevClear
 }

@@ -29,10 +29,17 @@ public class PauseMenu : MonoBehaviour
         if(InputManager.Instance.MenuOpenInput) {
             if(!_isPaused)
                 Pause();
+            else if(_isPaused) {
+                Debug.Log("Unpaused via MenuOpenInput");
+                Unpause();
+            }
+
         }
         if(InputManager.Instance.UIMenuCloseInput) {
-            if(_isPaused)
+            if(_isPaused) {
+                Debug.Log("Unpaused via UIMenuCloseInput");
                 Unpause();
+            }
         }
         /*
         if(EventSystem.current.currentSelectedGameObject == null) {

@@ -25,7 +25,7 @@
 				<Bus Id="4283257371" Name="PlayerSFX"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{48E08421-70BB-AFF2-9C1B-3BF8BD359271}">
+		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{632B8628-F664-7188-58BF-CB53E6B843A7}">
 			<ShortName>SoundbankAll</ShortName>
 			<Path>SoundbankAll.bnk</Path>
 			<Media>
@@ -89,10 +89,6 @@
 					<ShortName>RumblerLoop_2.wav</ShortName>
 					<CachePath>SFX/RumblerLoop_2_FBC78EF0.wem</CachePath>
 				</File>
-				<File Id="658064967" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>boostObj.wav</ShortName>
-					<CachePath>SFX/boostObj_818F3B66.wem</CachePath>
-				</File>
 				<File Id="713058177" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_highlight1.wav</ShortName>
 					<CachePath>SFX/button_highlight1_818F3B66.wem</CachePath>
@@ -100,6 +96,10 @@
 				<File Id="720226508" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>death.wav</ShortName>
 					<CachePath>SFX/death_818F3B66.wem</CachePath>
+				</File>
+				<File Id="875094519" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>boostObj2.wav</ShortName>
+					<CachePath>SFX/boostObj2_818F3B66.wem</CachePath>
 				</File>
 				<File Id="914652543" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_select6_1.wav</ShortName>
@@ -113,7 +113,7 @@
 			<Events>
 				<Event Id="476417308" Name="Boost_Object" DurationType="OneShot" DurationMin="1.3593333" DurationMax="1.3593333">
 					<MediaRefs>
-						<MediaRef Id="658064967"/>
+						<MediaRef Id="875094519"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="817870589" Name="ButtonBackOut1" DurationType="OneShot" DurationMin="0.8108125" DurationMax="0.8108125">
@@ -212,5 +212,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{BA2F6F1B-7E50-4D33-0579-0C2E9ADE08AE}</FileHash>
+	<FileHash>{195D1BC8-5C54-C5DA-4A92-AA14DA061255}</FileHash>
 </SoundBanksInfo>

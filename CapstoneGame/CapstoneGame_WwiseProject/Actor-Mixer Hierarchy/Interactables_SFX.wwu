@@ -87,6 +87,35 @@
 						<ActiveSource Name="teleObj" ID="{27191E9A-5D88-4A8E-BE1D-13B74C318F02}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Sound Name="boostObj2" ID="{AB88F322-2FCD-48F4-8701-BF40AAC59C7D}" ShortID="750936368">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-2</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="boostObj2" ID="{C40059CD-2ED2-4716-B96C-AB0957A25B51}">
+							<Language>SFX</Language>
+							<AudioFile>boostObj2.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="875094519"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="boostObj2" ID="{C40059CD-2ED2-4716-B96C-AB0957A25B51}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

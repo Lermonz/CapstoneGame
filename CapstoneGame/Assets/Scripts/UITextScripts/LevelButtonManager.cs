@@ -40,6 +40,9 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
         case LevelUnlockType.SpecificGold:
             data.unlockedLevels[_buttonData._levelID] = data.medals[_buttonData._requiredLevelID] == "gold";
             break;
+        case LevelUnlockType.PrevClear:
+            data.unlockedLevels[_buttonData._levelID] = data.personalBest.ContainsKey(_buttonData._requiredLevelID);
+            break;
         default:
             break;
         }
@@ -67,7 +70,7 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
         }
     }
     void Update() {
-        if(_shouldBeUnlocked) {
+        if(_shouldBeUnlocked && !GameBehaviour.Instance._isGame) {
             _levelButton.interactable = ScrollRectSnap.Instance._currentWorld == _buttonData._world-1;
         }
     }
