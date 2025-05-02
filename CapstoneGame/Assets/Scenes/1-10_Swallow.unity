@@ -797,7 +797,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.825686, y: -0.5, z: 0}
+  m_LocalPosition: {x: -0.824162, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1535,10 +1535,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 942024756297301062, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 851783408}
+    - target: {fileID: 942024756297301062, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1072000331708398820, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 851783407}
     - target: {fileID: 2670571161228460647, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
       propertyPath: _winMenu
       value: 
       objectReference: {fileID: 942314132}
+    - target: {fileID: 2982881412531039766, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3682164481103867481, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
       propertyPath: m_Name
       value: GameplayMenusPrefab
@@ -1587,6 +1603,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7319819142225545896, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
   m_PrefabInstance: {fileID: 851783403}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &851783407 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 942024756297301062, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+  m_PrefabInstance: {fileID: 851783403}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &851783408 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1072000331708398820, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+  m_PrefabInstance: {fileID: 851783403}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &942314130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2135,8 +2173,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -362040929
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}

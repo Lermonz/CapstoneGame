@@ -25,7 +25,7 @@ public class MainMenuManager : MonoBehaviour
     }
     void Update()
     {
-        if(_levelsMenu.activeSelf) {
+        if(_levelsMenu.GetComponent<Canvas>().enabled) {
             if(EventSystem.current.currentSelectedGameObject == null) {
                 EventSystem.current.SetSelectedGameObject(_levelsFirstButton);
             }
@@ -36,7 +36,8 @@ public class MainMenuManager : MonoBehaviour
         _mainMenu.SetActive(false);
         _settingsMenu.SetActive(false);
         _controlsMenu.SetActive(false);
-        _levelsMenu.SetActive(false);
+        //_levelsMenu.SetActive(false);
+        _levelsMenu.GetComponent<Canvas>().enabled = false;
         EventSystem.current.SetSelectedGameObject(null);
     }
     private void OpenMainMenu() {
@@ -46,7 +47,8 @@ public class MainMenuManager : MonoBehaviour
     }
     private void OpenLevelsMenu() {
         CloseMenus();
-        _levelsMenu.SetActive(true);
+        //_levelsMenu.SetActive(true);
+        _levelsMenu.GetComponent<Canvas>().enabled = true;
         DataPersistenceManager.Instance.LoadGame();
         EventSystem.current.SetSelectedGameObject(_levelsFirstButton);
     }

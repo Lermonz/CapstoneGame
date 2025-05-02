@@ -2079,7 +2079,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.99999756, y: 0.54999995, z: 0}
+  m_LocalPosition: {x: 0.9999915, y: 0.54999995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2631,7 +2631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0040b5c31c34adfb33f2e7106a7ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelID: 3
+  _levelID: 2
   _personalBest: 5999999
   _goldTime: {x: 0, y: 0, z: 0}
   _silverTime: {x: 0, y: 0, z: 0}
@@ -3018,6 +3018,14 @@ PrefabInstance:
     - target: {fileID: 6175757089237633219, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
       propertyPath: _buttonData._levelID
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175757089237633219, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: _buttonData._unlockType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6175757089237633219, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: _buttonData._requiredLevelID
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7319819142225545896, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
       propertyPath: m_IsActive
@@ -4391,8 +4399,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -362040929
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}

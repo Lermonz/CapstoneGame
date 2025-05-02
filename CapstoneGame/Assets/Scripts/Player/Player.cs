@@ -90,7 +90,9 @@ public class Player : MonoBehaviour
         }
         if(_isJumping && InputManager.Instance.JumpRelease) {
             _isJumping = false;
-            if(_velocity.y >= 4 )
+            if(_velocity.y >= 4 && !_isGravityFlipped)
+                StartCoroutine(ShortenJumpTo(2,4f));
+            else if(_velocity.y <= -4 && _isGravityFlipped)
                 StartCoroutine(ShortenJumpTo(2,4f));
         }
         if(!_controller._isGrounded && _canJump) {
@@ -325,7 +327,7 @@ public class Player : MonoBehaviour
             //_terminalVelocity = 0;
             _inBlackHole = true;
             //Strength of black hole pull is increased when player is closer to it
-            float strength = 0.1f+0.85f/Vector2.Distance(other.gameObject.transform.position,this.transform.position);
+            float strength = 0.08f+0.84f/Vector2.Distance(other.gameObject.transform.position,this.transform.position);
             //Debug.Log("Strength: "+strength);
             PullTowards(other.gameObject.transform.position, strength);
         }
@@ -407,8 +409,8 @@ public class Player : MonoBehaviour
     public void DeathBlackHole() {
         if(!_dead) {
             _animator.SetTrigger("DeathBlackHole");
+            PlayerIsDead();
         }
-        PlayerIsDead();
         // negate player control
         // trigger animation for dying to black hole (shrink and rotate into it)
     }
