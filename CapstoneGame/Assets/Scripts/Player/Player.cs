@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public GameObject _hitBox;
 
     float _jumpVelocity = 14f;
-    float _doubleJumpVelocity = 8.5f;
+    float _doubleJumpVelocity = 8.75f;
     float _downBoostVelocity = -10f;
     float _baseAccel = 18f;
     float _baseDecel = 20f;
@@ -43,7 +43,8 @@ public class Player : MonoBehaviour
     bool _isGravityFlipped = false;
 
     float _spinCooldown = 42f;
-    float _doubleJumpCooldown = 8f;
+    float _doubleJumpCooldown = 9f;
+    float _spinBoost = 0; // real value is in spinCoroutine
 
     bool _jumpOverride = false;
     bool _dead;
@@ -81,7 +82,7 @@ public class Player : MonoBehaviour
         }
         // Jump
         if(_canJump && InputManager.Instance.JumpInput) {
-            _velocity.y = _jumpVelocity + _velocity.x*0.1f;
+            _velocity.y = _jumpVelocity + Mathf.Pow(1.1f, _velocity.x)*0.05f + _spinBoost;
             //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._jumpSFX);
             AkSoundEngine.PostEvent("Player_Jump", gameObject);
             _canDownBoost = true;
@@ -215,6 +216,14 @@ public class Player : MonoBehaviour
     }
     IEnumerator BoostCoroutine() {
         _canBoost = false;
+        StartCoroutine(LockOut(6));
+        StartCoroutine(NegateGravityFor(12));
+        _velocity.y = Mathf.Clamp(_velocity.y, -0.4f, 0.4f);
+        yield return new WaitForSeconds(0.15f);
+        StartCoroutine(BoostDecelCoroutine(1,10));
+        StartCoroutine(BoostCooldown(70f));
+    }
+    IEnumerator LockOut(int delay) {
         if(_canSpin || _canJump)
             _jumpOverride = true;
         if(_jumpOverride) {
@@ -222,16 +231,14 @@ public class Player : MonoBehaviour
             _canSpin = false;
         }
         _canDownBoost = false;
-        StartCoroutine(NegateGravityFor(12));
-        _velocity.y = Mathf.Clamp(_velocity.y, -0.4f, 0.4f);
-        yield return new WaitForSeconds(0.15f);
+        for(int i = 0; i < delay; i++) {
+            yield return null;
+        }
         if(_jumpOverride) {
             _canSpin = true;
             _jumpOverride = false;
         }
         _canDownBoost = true;
-        StartCoroutine(BoostDecelCoroutine(1,10));
-        StartCoroutine(BoostCooldown(70f));
     }
     IEnumerator NegateGravityFor(int delay) {
         _gravityMult *= 0.125f;
@@ -254,7 +261,14 @@ public class Player : MonoBehaviour
         _boostDeceling = false;
     }
     IEnumerator SpinCooldown(float cooldown) {
+        if(_controller._isGrounded)
+            cooldown -= 8;
         for(int i = 0; i < cooldown; i++) {
+            if(i < 3) {
+                _spinBoost = 2.5f;
+            }
+            else
+                _spinBoost = 0;
             _canSpin = false;
             yield return null;
         }
@@ -374,6 +388,9 @@ public class Player : MonoBehaviour
         _velocity = v;
     }
     void FlipGravity() {
+        _velocity.y = 0;
+        StartCoroutine(NegateGravityFor(6));
+        StartCoroutine(LockOut(8));
         _isGravityFlipped = !_isGravityFlipped;
         _controller._groundIsDown = -_controller._groundIsDown;
         _jumpVelocity = -_jumpVelocity;
