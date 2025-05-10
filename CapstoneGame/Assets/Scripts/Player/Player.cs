@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     bool _canDownBoost = true;
     bool _isJumping = false;
     bool _canTeleport = true;
+    bool _dontLockOut = false;
 
     bool _boostDeceling;
     float _boostSpeed = 12f;
@@ -60,6 +61,7 @@ public class Player : MonoBehaviour
         _dead = false;
     }
     void Update() {
+        Debug.Log("dont lock out"+_dontLockOut);
         float delta = Time.deltaTime;
         //Debug.Log("Dead: "+_dead);
         _animator.SetBool("Running", InputManager.Instance.HorizontalInput != 0 && _controller._isGrounded);
@@ -323,6 +325,10 @@ public class Player : MonoBehaviour
             FlipGravity();
             _terminalVelocity = -_termV;
         }
+        if(other.gameObject.CompareTag("GravityTriggerTrigger")) {
+            Debug.Log("Colliding with GravityTriggerTrigger");
+            _dontLockOut = true;
+        }
         if(other.gameObject.CompareTag("Boost")) {
             _isJumping = false;
             StartCoroutine(BoostObjectPull(other.gameObject.transform.position, 
@@ -378,6 +384,9 @@ public class Player : MonoBehaviour
             _renderer.flipY = false;
             _terminalVelocity = _termV;
         }
+        if(other.gameObject.CompareTag("GravityTriggerTrigger")) {
+            _dontLockOut = false;
+        }
         if(other.gameObject.CompareTag("BlackHole")) {
             //_terminalVelocity = _termV;
             _inBlackHole = false;
@@ -388,8 +397,10 @@ public class Player : MonoBehaviour
         _velocity = v;
     }
     void FlipGravity() {
-        _velocity.y = 0;
-        StartCoroutine(NegateGravityFor(6));
+        if(!_dontLockOut) {
+            _velocity.y = 0;
+            StartCoroutine(NegateGravityFor(6));
+        }
         StartCoroutine(LockOut(8));
         _isGravityFlipped = !_isGravityFlipped;
         _controller._groundIsDown = -_controller._groundIsDown;
