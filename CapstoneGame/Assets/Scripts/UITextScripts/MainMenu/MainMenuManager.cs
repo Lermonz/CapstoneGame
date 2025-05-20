@@ -8,12 +8,14 @@ public class MainMenuManager : MonoBehaviour
     public GameObject _settingsMenu;
     public GameObject _controlsMenu;
     public GameObject _levelsMenu;
+    public GameObject _resetDataMenu;
 
     [Header ("Event System wants a first selected button")]
     [SerializeField] private GameObject _mainFirstButton;
     [SerializeField] private GameObject _settingsFirstButton;
     [SerializeField] private GameObject _controlsFirstButton;
     [SerializeField] private GameObject _levelsFirstButton;
+    [SerializeField] private GameObject _resetDataFirstButton;
     
     public WorldMenuColorChanger[] _colorChangers;
     public int CurrentWorld {get; private set;}
@@ -36,7 +38,7 @@ public class MainMenuManager : MonoBehaviour
         _mainMenu.SetActive(false);
         _settingsMenu.SetActive(false);
         _controlsMenu.SetActive(false);
-        //_levelsMenu.SetActive(false);
+        _resetDataMenu.SetActive(false);
         _levelsMenu.GetComponent<Canvas>().enabled = false;
         EventSystem.current.SetSelectedGameObject(null);
     }
@@ -62,6 +64,10 @@ public class MainMenuManager : MonoBehaviour
         _controlsMenu.SetActive(true);
         EventSystem.current.SetSelectedGameObject(_controlsFirstButton);
     }
+    private void OpenResetDataMenu() {
+        _resetDataMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(_resetDataFirstButton);
+    }
     private void IncrementWorld() {
         foreach(WorldMenuColorChanger i in _colorChangers) {
             i.ChangeColor(CurrentWorld, CurrentWorld+1);
@@ -82,6 +88,9 @@ public class MainMenuManager : MonoBehaviour
     }
     public void OnLevelsPress() {
         OpenLevelsMenu();
+    }
+    public void OnResetDataPress() {
+        OpenResetDataMenu();
     }
     public void OnBackPress() {
         OpenMainMenu();

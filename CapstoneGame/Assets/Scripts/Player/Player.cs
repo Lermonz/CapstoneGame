@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     Vector2 _velocity;
     public GameObject _hitBox;
 
-    float _jumpVelocity = 14f;
+    float _jumpVelocity = 13.6f;
     float _doubleJumpVelocity = 8.75f;
     float _downBoostVelocity = -10f;
     float _baseAccel = 18f;
@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         }
         // Jump
         if(_canJump && InputManager.Instance.JumpInput) {
-            _velocity.y = _jumpVelocity + Mathf.Pow(1.1f, _velocity.x)*0.05f + _spinBoost;
+            _velocity.y = _jumpVelocity + Mathf.Pow(1.08f, _velocity.x)*0.02f + _spinBoost;
             //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._jumpSFX);
             AkSoundEngine.PostEvent("Player_Jump", gameObject);
             _canDownBoost = true;
@@ -150,7 +150,12 @@ public class Player : MonoBehaviour
             if(InputManager.Instance.HorizontalInput != 0) {
                 facingDirection = Mathf.Sign(InputManager.Instance.HorizontalInput);
             }
+            if(Mathf.Sign(_velocity.x) != facingDirection) {
+                _velocity.x = -_velocity.x;
+            }
             _velocity.x += _boostSpeed * facingDirection;
+            //Mathf.Clamp(_velocity.x, (_boostSpeed + 3) * facingDirection, Mathf.Infinity*facingDirection);
+            Debug.Log("Boost Data: "+_velocity.x+", "+ facingDirection);
             //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._boostSFX);
             AkSoundEngine.PostEvent("Player_Dash", gameObject);
             _vfxPlayer.Boost_AfterImage(_renderer.flipX);
@@ -181,6 +186,7 @@ public class Player : MonoBehaviour
                 _canDoubleJump = false;
                 _vfxPlayer.Woosh(-0.5f);
                 _velocity.y = _doubleJumpVelocity;
+                _canDownBoost = true;
             }
             StartCoroutine(SpinCooldown(_spinCooldown));
         }
