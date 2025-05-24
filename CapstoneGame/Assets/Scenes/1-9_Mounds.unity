@@ -1377,6 +1377,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2670571161228460647, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: _vcam
+      value: 
+      objectReference: {fileID: 2012700811}
+    - target: {fileID: 2670571161228460647, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
       propertyPath: _winMenu
       value: 
       objectReference: {fileID: 55044259}
@@ -2017,7 +2021,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.2314415, y: 12.5, z: 0}
+  m_LocalPosition: {x: -10.215292, y: 12.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

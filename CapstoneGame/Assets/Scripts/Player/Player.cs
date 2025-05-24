@@ -14,9 +14,11 @@ public class Player : MonoBehaviour
     Vector2 _velocity;
     public GameObject _hitBox;
 
-    float _jumpVelocity = 13.6f;
-    float _doubleJumpVelocity = 8.75f;
-    float _downBoostVelocity = -10f;
+    float _horizontalInput;
+
+    float _jumpVelocity = 12.65f;
+    float _doubleJumpVelocity = 9.7f;
+    float _downBoostVelocity = -20f;
     float _baseAccel = 18f;
     float _baseDecel = 20f;
     float _baseAirDecel = 2.8f;
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
     bool _canSpin = true;
     bool _canDoubleJump = true;
     bool _canDownBoost = true;
+    bool _canDownBoostReal = true;
     bool _isJumping = false;
     bool _canTeleport = true;
     bool _dontLockOut = false;
@@ -48,6 +51,7 @@ public class Player : MonoBehaviour
     float _spinBoost = 0; // real value is in spinCoroutine
 
     bool _jumpOverride = false;
+    bool _overrideXInput = false;
     bool _dead;
     
     void Start()
@@ -61,15 +65,15 @@ public class Player : MonoBehaviour
         _dead = false;
     }
     void Update() {
-        Debug.Log("dont lock out"+_dontLockOut);
+        _horizontalInput = _overrideXInput ? 0 : InputManager.Instance.HorizontalInput;
         float delta = Time.deltaTime;
         //Debug.Log("Dead: "+_dead);
-        _animator.SetBool("Running", InputManager.Instance.HorizontalInput != 0 && _controller._isGrounded);
+        _animator.SetBool("Running", _horizontalInput != 0 && _controller._isGrounded);
         _animator.SetBool("Jumping", _velocity.y > 0.2 && !_controller._isGrounded && !_dead);
         _animator.SetBool("Falling", _velocity.y < -0.2 && !_controller._isGrounded && !_dead);
         //_dpad = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         
-        if ((InputManager.Instance.HorizontalInput > 0 && _renderer.flipX) || (InputManager.Instance.HorizontalInput < 0 && !_renderer.flipX)) {
+        if ((_horizontalInput > 0 && _renderer.flipX) || (_horizontalInput < 0 && !_renderer.flipX)) {
             _renderer.flipX = !_renderer.flipX;
         }
         if(_controller._isGrounded) {
@@ -82,9 +86,11 @@ public class Player : MonoBehaviour
             _isJumping = false;
             _velocity.y = 0;
         }
+        _canDownBoostReal = (_isGravityFlipped ? (_velocity.y > -2) : (_velocity.y < 2)) && _canDownBoost;
         // Jump
-        if(_canJump && InputManager.Instance.JumpInput) {
-            _velocity.y = _jumpVelocity + Mathf.Pow(1.08f, _velocity.x)*0.02f + _spinBoost;
+        if (_canJump && InputManager.Instance.JumpInput)
+        {
+            _velocity.y = _jumpVelocity + (_isGravityFlipped ? -(Mathf.Abs(_velocity.x) * 0.12f + _spinBoost) : (Mathf.Abs(_velocity.x) * 0.1f + _spinBoost));
             //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._jumpSFX);
             AkSoundEngine.PostEvent("Player_Jump", gameObject);
             _canDownBoost = true;
@@ -109,21 +115,21 @@ public class Player : MonoBehaviour
         // these are put in an else because otherwise they stack with boostdeceling and i dont want that
             // if not at max run speed yet, accelerate to max run speed
             if(Mathf.Abs(_velocity.x) < _maxRunSpeed) {
-                Accelerate(ref _velocity.x, InputManager.Instance.HorizontalInput, _baseAccel, delta);
+                Accelerate(ref _velocity.x, _horizontalInput, _baseAccel, delta);
             }
             // if over max run speed, decelerate to max run speed
             if(Mathf.Abs(_velocity.x) >= _maxRunSpeed) {
-                Accelerate(ref _velocity.x, InputManager.Instance.HorizontalInput, _baseAccel, delta, true);
+                Accelerate(ref _velocity.x, _horizontalInput, _baseAccel, delta, true);
                 //_velocity.x -= _dpad.x * _baseAccel * delta;
             }
             // deceleration for skidding on the ground
-            if(Mathf.Sign(InputManager.Instance.HorizontalInput) != Mathf.Sign(_velocity.x)) {
-                Accelerate(ref _velocity.x, InputManager.Instance.HorizontalInput, _skidDecel, delta);
+            if(Mathf.Sign(_horizontalInput) != Mathf.Sign(_velocity.x)) {
+                Accelerate(ref _velocity.x, _horizontalInput, _skidDecel, delta);
                 //_velocity.x += _dpad.x * _skidDecel * delta;
             }
         }
         // deceleration for when you are no longer pressing a direction
-        if(InputManager.Instance.HorizontalInput == 0 && _velocity.x != 0) {
+        if(_horizontalInput == 0 && _velocity.x != 0) {
             if(_controller._isGrounded) {
                 Accelerate(ref _velocity.x, Mathf.Sign(_velocity.x), _baseDecel, delta, true);
             }
@@ -147,15 +153,14 @@ public class Player : MonoBehaviour
         /// BOOST  ///
         if(_canBoost && InputManager.Instance.BoostInput) {
             float facingDirection = _renderer.flipX ? -1 : 1;
-            if(InputManager.Instance.HorizontalInput != 0) {
-                facingDirection = Mathf.Sign(InputManager.Instance.HorizontalInput);
+            if(_horizontalInput != 0) {
+                facingDirection = Mathf.Sign(_horizontalInput);
             }
             if(Mathf.Sign(_velocity.x) != facingDirection) {
                 _velocity.x = -_velocity.x;
             }
             _velocity.x += _boostSpeed * facingDirection;
             //Mathf.Clamp(_velocity.x, (_boostSpeed + 3) * facingDirection, Mathf.Infinity*facingDirection);
-            Debug.Log("Boost Data: "+_velocity.x+", "+ facingDirection);
             //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._boostSFX);
             AkSoundEngine.PostEvent("Player_Dash", gameObject);
             _vfxPlayer.Boost_AfterImage(_renderer.flipX);
@@ -199,12 +204,11 @@ public class Player : MonoBehaviour
         }
         
         //Fast Fall / Down Boost
-        if(InputManager.Instance.DownInput && _canDownBoost) {
-            _velocity.y += _downBoostVelocity;
-            //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._fastFallSFX);
+        if(InputManager.Instance.DownInput && _canDownBoostReal) {
+            // //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._fastFallSFX);
             AkSoundEngine.PostEvent("Player_FastFall", gameObject);
             _vfxPlayer.Woosh(0.5f);
-            _canDownBoost = false;
+            _velocity.y = _downBoostVelocity;
         }
         
         // if(_inBlackHole)
@@ -216,6 +220,13 @@ public class Player : MonoBehaviour
             _controller.Move(_velocity * delta);
         }
     }
+    IEnumerator OverrideXInput(int delay) {
+        _overrideXInput = true;
+        for (int i = 0; i < delay; i++) {
+            yield return null;
+        }
+        _overrideXInput = false;
+    }
     IEnumerator ShortenJumpTo(int delay, float amount) {
         for(int i = 0; i < delay; i++) {
             yield return null;
@@ -224,29 +235,36 @@ public class Player : MonoBehaviour
     }
     IEnumerator BoostCoroutine() {
         _canBoost = false;
-        StartCoroutine(LockOut(6));
+        StartCoroutine(LockOut(6,false,false,true));
         StartCoroutine(NegateGravityFor(12));
+        StartCoroutine(OverrideXInput(12));
         _velocity.y = Mathf.Clamp(_velocity.y, -0.4f, 0.4f);
         yield return new WaitForSeconds(0.15f);
         StartCoroutine(BoostDecelCoroutine(1,10));
         StartCoroutine(BoostCooldown(70f));
     }
-    IEnumerator LockOut(int delay) {
-        if(_canSpin || _canJump)
+    IEnumerator LockOut(int delay, bool ignoreSpinReset = false, bool ignoreDownBoostReset = false, bool ignoreBoostReset = false)
+    {
+        if (_canSpin || _canJump)
             _jumpOverride = true;
-        if(_jumpOverride) {
+        if (_jumpOverride)
+        {
             _canJump = false;
             _canSpin = false;
         }
         _canDownBoost = false;
-        for(int i = 0; i < delay; i++) {
+        _canBoost = false;
+        for (int i = 0; i < delay; i++)
+        {
             yield return null;
         }
-        if(_jumpOverride) {
-            _canSpin = true;
+        if (_jumpOverride)
+        {
+            _canSpin = !ignoreSpinReset;
             _jumpOverride = false;
         }
-        _canDownBoost = true;
+        _canDownBoost = !ignoreDownBoostReset;
+        _canBoost = !ignoreBoostReset;
     }
     IEnumerator NegateGravityFor(int delay) {
         _gravityMult *= 0.125f;
@@ -268,12 +286,15 @@ public class Player : MonoBehaviour
         }
         _boostDeceling = false;
     }
-    IEnumerator SpinCooldown(float cooldown) {
-        if(_controller._isGrounded)
+    IEnumerator SpinCooldown(float cooldown)
+    {
+        if (_controller._isGrounded)
             cooldown -= 8;
-        for(int i = 0; i < cooldown; i++) {
-            if(i < 3) {
-                _spinBoost = 2.5f;
+        for (int i = 0; i < cooldown; i++)
+        {
+            if (i < 3)
+            {
+                _spinBoost = 2.2f;
             }
             else
                 _spinBoost = 0;
@@ -281,6 +302,7 @@ public class Player : MonoBehaviour
             yield return null;
         }
         _canSpin = true;
+        _spinBoost = 0;
     }
     IEnumerator DoubleJumpCooldown(float cooldown) {
         for(int i = 0; i < cooldown; i++) {
@@ -332,7 +354,6 @@ public class Player : MonoBehaviour
             _terminalVelocity = -_termV;
         }
         if(other.gameObject.CompareTag("GravityTriggerTrigger")) {
-            Debug.Log("Colliding with GravityTriggerTrigger");
             _dontLockOut = true;
         }
         if(other.gameObject.CompareTag("Boost")) {

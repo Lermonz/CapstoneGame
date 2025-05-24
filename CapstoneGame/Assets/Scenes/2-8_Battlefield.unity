@@ -1138,6 +1138,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2053374628}
     m_Modifications:
+    - target: {fileID: 399260190269881182, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: m_text
+      value: battlefield
+      objectReference: {fileID: 0}
     - target: {fileID: 510457329583328831, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1254,6 +1258,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2670571161228460647, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: _vcam
+      value: 
+      objectReference: {fileID: 2012700811}
     - target: {fileID: 2670571161228460647, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
       propertyPath: _winMenu
       value: 

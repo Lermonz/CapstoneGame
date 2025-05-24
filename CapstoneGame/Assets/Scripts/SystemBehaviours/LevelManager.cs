@@ -51,9 +51,9 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         InputManager.Instance.EnablePlayerInput();
         InputManager.Instance._freezeVelocity = false;
     }
-    public void FreezePlayerAndTimer() {
-        _stopTimer = true;
-        InputManager.Instance._freezeVelocity = true;
+    public void FreezePlayerAndTimer(bool doIt = true) {
+        _stopTimer = doIt;
+        InputManager.Instance._freezeVelocity = doIt;
     }
     private void SetNewPB(float thisRunTime) {
         this._personalBest = thisRunTime;

@@ -5,38 +5,35 @@ using System.Collections;
 public class MakeVisible : MonoBehaviour
 {
     public TMP_Text _text;
-    bool prioritizeDisappear;
+    bool _appear = false;
+    float _elapsedTime = 0;
+    float _waitTime = 70f;
     void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Player")) {
-            StartCoroutine(TextAppear());
+        if (other.gameObject.CompareTag("Player")) {
+            _appear = true;
+            _elapsedTime = 0;
+            _waitTime = 35f;
         }
     }
     void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Player") && !prioritizeDisappear) {
-            StartCoroutine(TextDisappear());
+        if (other.gameObject.CompareTag("Player")) {
+            _appear = false;
+            _elapsedTime = 0;
+            _waitTime = 25f;
         }
     }
-    IEnumerator TextAppear() {
-        float elapsedTime = 0;
-        float waitTime = 35f;
-        while(elapsedTime <= waitTime) {
-            if(prioritizeDisappear)
-                elapsedTime = waitTime;
-            _text.alpha = (elapsedTime / waitTime);
-            elapsedTime++;
-            yield return null;
+    void Update()
+    {
+        if (_elapsedTime <= _waitTime) {
+            if (_appear) {
+                _text.alpha = (_elapsedTime*0.75f / _waitTime);
+                _elapsedTime++;
+            }
+            else {
+                float startNum = _text.alpha;
+                _text.alpha = startNum - (_elapsedTime*0.75f / _waitTime);
+                _elapsedTime++;
+            }
         }
-    }
-    IEnumerator TextDisappear() {
-        prioritizeDisappear = true;
-        yield return null;
-        float elapsedTime = 0;
-        float waitTime = 25f;
-        while(elapsedTime <= waitTime) {
-            _text.alpha = 1-(elapsedTime / waitTime);
-            elapsedTime++;
-            yield return null;
-        }
-        prioritizeDisappear = false;
     }
 }
