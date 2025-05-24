@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class CheckTimeFromLevel : MonoBehaviour, IDataPersistence
 {
@@ -7,14 +8,21 @@ public class CheckTimeFromLevel : MonoBehaviour, IDataPersistence
     public TimeType _timeType;
     public string _levelID;
     TMP_Text _text;
-    void Awake()
-    {
+    LevelManager _levelManager;
+    void Awake() {
         _text = GetComponent<TMP_Text>();
+        try {
+            _levelManager = GameObject.Find("LevelBehaviour").GetComponent<LevelManager>();
+            _levelID = _levelManager._levelID;
+        }
+        catch {
+            Debug.Log("levelmanager not found");
+        }
     }
     public void LoadData(GameData data) {
-        switch(_timeType) {
+        switch (_timeType) {
             case TimeType.PB:
-                if(!data.personalBest.ContainsKey(_levelID)){
+                if (!data.personalBest.ContainsKey(_levelID)) {
                     _text.text = "none";
                 }
                 else {

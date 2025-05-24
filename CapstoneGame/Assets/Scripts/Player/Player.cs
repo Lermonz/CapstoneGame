@@ -16,15 +16,15 @@ public class Player : MonoBehaviour
 
     float _horizontalInput;
 
-    float _jumpVelocity = 12.65f;
-    float _doubleJumpVelocity = 9.7f;
+    float _jumpVelocity = 13.2f;
+    float _doubleJumpVelocity = 10.5f;
     float _downBoostVelocity = -20f;
     float _baseAccel = 18f;
     float _baseDecel = 20f;
     float _baseAirDecel = 2.8f;
     float _skidDecel = 40f;
-    float _maxRunSpeed = 5.5f;
-    const float _gravity = -29f;
+    float _maxRunSpeed = 5.8f;
+    const float _gravity = -31f;
     float _gravityMult = 1;
     bool _inBlackHole = false;
     float _terminalVelocity;
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
         // Jump
         if (_canJump && InputManager.Instance.JumpInput)
         {
-            _velocity.y = _jumpVelocity + (_isGravityFlipped ? -(Mathf.Abs(_velocity.x) * 0.12f + _spinBoost) : (Mathf.Abs(_velocity.x) * 0.1f + _spinBoost));
+            _velocity.y = _jumpVelocity + (_isGravityFlipped ? -(Mathf.Abs(_velocity.x) * 0.125f + _spinBoost) : (Mathf.Abs(_velocity.x) * 0.125f + _spinBoost));
             //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._jumpSFX);
             AkSoundEngine.PostEvent("Player_Jump", gameObject);
             _canDownBoost = true;
@@ -99,10 +99,12 @@ public class Player : MonoBehaviour
         }
         if(_isJumping && InputManager.Instance.JumpRelease) {
             _isJumping = false;
-            if(_velocity.y >= 4 && !_isGravityFlipped)
-                StartCoroutine(ShortenJumpTo(2,4f));
-            else if(_velocity.y <= -4 && _isGravityFlipped)
-                StartCoroutine(ShortenJumpTo(2,4f));
+            if (_velocity.y >= 4 && !_isGravityFlipped) {
+                _velocity.y *= 0.4f;
+            }
+            else if (_velocity.y <= -4 && _isGravityFlipped) {
+                _velocity.y *= 0.4f;
+            }
         }
         if(!_controller._isGrounded && _canJump) {
             _canDownBoost = true;
@@ -237,7 +239,7 @@ public class Player : MonoBehaviour
         _canBoost = false;
         StartCoroutine(LockOut(6,false,false,true));
         StartCoroutine(NegateGravityFor(12));
-        StartCoroutine(OverrideXInput(12));
+        StartCoroutine(OverrideXInput(9));
         _velocity.y = Mathf.Clamp(_velocity.y, -0.4f, 0.4f);
         yield return new WaitForSeconds(0.15f);
         StartCoroutine(BoostDecelCoroutine(1,10));

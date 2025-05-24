@@ -61,6 +61,7 @@ public class PauseMenu : MonoBehaviour
         _isPaused = true;
         OpenMainPauseMenu();
         FindAudioPlayerForButtons(6);
+        DataPersistenceManager.Instance.LoadGame();
         InputManager.Instance.DisablePlayerInput();
         LevelManager.Instance.FreezePlayerAndTimer();
         //Time.timeScale = 0;
