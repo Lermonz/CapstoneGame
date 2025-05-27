@@ -10,7 +10,8 @@ public class GameBehaviour : MonoBehaviour
     public bool _isGame;
     void Awake()
     {
-        if (Instance != null && Instance != this) {
+        if (Instance != null && Instance != this)
+        {
             Destroy(this);
             return;
         }
@@ -18,25 +19,34 @@ public class GameBehaviour : MonoBehaviour
             Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    void Start() {
+    void Start()
+    {
         Application.targetFrameRate = 60;
+        SetQualitySettings();
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
     }
-    public void ExitGame() {
-        #if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
-        #else 
-            Application.Quit();
-        #endif
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
-    public Vector3 ConvertTimerToVector3(float time) {
-        float m = Mathf.FloorToInt(time/60000);
-        float s = Mathf.FloorToInt((time-m*60000)/1000);
-        float ms = Mathf.FloorToInt(time - m*60000 - s*1000);
-        return new Vector3(m,s,ms);
+    public Vector3 ConvertTimerToVector3(float time)
+    {
+        float m = Mathf.FloorToInt(time / 60000);
+        float s = Mathf.FloorToInt((time - m * 60000) / 1000);
+        float ms = Mathf.FloorToInt(time - m * 60000 - s * 1000);
+        return new Vector3(m, s, ms);
     }
-    public float ConvertTimerToFloat(Vector3 time) {
-        return (time.x*60+time.y)*1000+time.z;
+    public float ConvertTimerToFloat(Vector3 time)
+    {
+        return (time.x * 60 + time.y) * 1000 + time.z;
+    }
+    void SetQualitySettings()
+    {
+        QualitySettings.vSyncCount = 0;
     }
 }

@@ -330,7 +330,7 @@ public class Player : MonoBehaviour
     }
     IEnumerator TeleportCooldown() {
         _canTeleport = false;
-        for(int i = 0; i < 24; i++) {
+        for(int i = 0; i < 32; i++) {
             yield return null;
         }
         _canTeleport = true;

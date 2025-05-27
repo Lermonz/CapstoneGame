@@ -6,6 +6,7 @@ public class VFXPlayer : MonoBehaviour
     public GameObject _spinSparkle;
     public GameObject _boostAfterImage;
     public GameObject _wooshCircle;
+    public GameObject _dustEffect;
 
     public int _afterImageAmount;
     public float _afterImageFreq;
@@ -19,6 +20,9 @@ public class VFXPlayer : MonoBehaviour
     }
     public void Boost_AfterImage(bool _isFlip) {
         StartCoroutine(AfterImageCoroutine(_isFlip));
+    }
+    public void DustEffect(float offsetY) {
+        Instantiate(_dustEffect, new Vector3(this.transform.position.x, this.transform.position.y+offsetY,this.transform.position.z), this.transform.rotation);
     }
     IEnumerator AfterImageCoroutine(bool _isFlip) {
         for(int i = 0; i < _afterImageAmount; i++) {

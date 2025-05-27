@@ -17,7 +17,7 @@ public class Controller2D : MonoBehaviour
 
     public LayerMask collMask;
 
-    public bool _isGrounded;
+    public bool _isGrounded = true;
     public bool _hitCeiling;
     public bool _hitWall;
     public bool _canDoubleJump;
@@ -67,6 +67,9 @@ public class Controller2D : MonoBehaviour
                     _hitCeiling = true;
                 }
                 else {
+                    if (!_isGrounded) {
+                        this.GetComponent<VFXPlayer>().DustEffect(-0.45f*_groundIsDown);
+                    }
                     _isGrounded = true;
                 }
                 
