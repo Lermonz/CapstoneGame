@@ -16,7 +16,7 @@ public class CheckTimeFromLevel : MonoBehaviour, IDataPersistence
             _levelID = _levelManager._levelID;
         }
         catch {
-            Debug.Log("levelmanager not found");
+            //Debug.Log("levelmanager not found");
         }
     }
     public void LoadData(GameData data) {

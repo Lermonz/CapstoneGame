@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -19,27 +20,40 @@ public class MainMenuManager : MonoBehaviour
     
     public WorldMenuColorChanger[] _colorChangers;
     public int CurrentWorld {get; private set;}
+    int[] _lastSelectedLevelButton;
 
-    private void Start() {
+    public static MainMenuManager Instance;
+    void Awake() {
+        if (Instance != null && Instance != this) {
+            Destroy(this);
+            return;
+        }
+        else
+            Instance = this;
+    }
+    private void Start()
+    {
         OpenMainMenu();
         Time.timeScale = 1f;
         CurrentWorld = 0;
+        _lastSelectedLevelButton = new int[] { 0, 0, 0 };
     }
-    void Update()
-    {
-        if(_levelsMenu.GetComponent<Canvas>().enabled) {
-            if(EventSystem.current.currentSelectedGameObject == null) {
-                EventSystem.current.SetSelectedGameObject(_levelsFirstButton);
-            }
-        }
-    }
+    // void Update()
+    // {
+    //     if(_levelsMenu.GetComponent<Canvas>().enabled) {
+    //         if(EventSystem.current.currentSelectedGameObject == null) {
+    //             EventSystem.current.SetSelectedGameObject(_levelsFirstButton);
+    //         }
+    //     }
+    // }
 
     private void CloseMenus() {
         _mainMenu.SetActive(false);
         _settingsMenu.SetActive(false);
         _controlsMenu.SetActive(false);
         _resetDataMenu.SetActive(false);
-        _levelsMenu.GetComponent<Canvas>().enabled = false;
+        _levelsMenu.SetActive(false);
+        //_levelsMenu.GetComponent<Canvas>().enabled = false;
         EventSystem.current.SetSelectedGameObject(null);
     }
     private void OpenMainMenu() {
@@ -50,7 +64,7 @@ public class MainMenuManager : MonoBehaviour
     private void OpenLevelsMenu() {
         CloseMenus();
         //_levelsMenu.SetActive(true);
-        _levelsMenu.GetComponent<Canvas>().enabled = true;
+        _levelsMenu.SetActive(true);
         DataPersistenceManager.Instance.LoadGame();
         EventSystem.current.SetSelectedGameObject(_levelsFirstButton);
     }
@@ -68,17 +82,25 @@ public class MainMenuManager : MonoBehaviour
         _resetDataMenu.SetActive(true);
         EventSystem.current.SetSelectedGameObject(_resetDataFirstButton);
     }
-    private void IncrementWorld() {
-        foreach(WorldMenuColorChanger i in _colorChangers) {
-            i.ChangeColor(CurrentWorld, CurrentWorld+1);
+    private void IncrementWorld()
+    {
+        _lastSelectedLevelButton[CurrentWorld] = ScrollRectSnap.Instance._minButtonNum;
+        foreach (WorldMenuColorChanger i in _colorChangers)
+        {
+            i.ChangeColor(CurrentWorld, CurrentWorld + 1);
         }
         CurrentWorld++;
+        EventSystem.current.SetSelectedGameObject(ScrollRectSnap.Instance._buttonsArray[CurrentWorld][_lastSelectedLevelButton[CurrentWorld]].gameObject);
     }
-    private void DecrementWorld() {
-        foreach(WorldMenuColorChanger i in _colorChangers) {
-            i.ChangeColor(CurrentWorld, CurrentWorld-1);
+    private void DecrementWorld()
+    {
+        _lastSelectedLevelButton[CurrentWorld] = ScrollRectSnap.Instance._minButtonNum;
+        foreach (WorldMenuColorChanger i in _colorChangers)
+        {
+            i.ChangeColor(CurrentWorld, CurrentWorld - 1);
         }
         CurrentWorld--;
+        EventSystem.current.SetSelectedGameObject(ScrollRectSnap.Instance._buttonsArray[CurrentWorld][_lastSelectedLevelButton[CurrentWorld]].gameObject);
     }
     public void OnSettingsPress() {
         OpenSettingsMenu();

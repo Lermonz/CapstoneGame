@@ -99,10 +99,10 @@ public class Player : MonoBehaviour
         }
         if(_isJumping && InputManager.Instance.JumpRelease) {
             _isJumping = false;
-            if (_velocity.y >= 4 && !_isGravityFlipped) {
+            if (!_isGravityFlipped && _velocity.y >= 7) {
                 _velocity.y *= 0.4f;
             }
-            else if (_velocity.y <= -4 && _isGravityFlipped) {
+            else if (_isGravityFlipped && _velocity.y <= -7) {
                 _velocity.y *= 0.4f;
             }
         }
@@ -184,6 +184,7 @@ public class Player : MonoBehaviour
 
         /// SPIN ///
         if(InputManager.Instance.SpinInput && _canSpin) {
+            _isJumping = false;
             Hitbox(1.5f, 0.8f);
             //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._spinSFX);
             AkSoundEngine.PostEvent("Player_Attack", gameObject);

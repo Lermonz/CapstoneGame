@@ -10,7 +10,7 @@ public class ScrollRectSnap : MonoBehaviour
     public Button[] _world2Levels;
     public Button[] _world3Levels;
     Button[] _button;
-    Button[][] _buttonsArray;
+    public Button[][] _buttonsArray;
     public RectTransform _centerForLevels;
 
     float[] _distance;

@@ -1,10 +1,9 @@
-Shader "Unlit/SlightWobbleSprite"
+Shader "Unlit/MovingShader"
 {
     Properties
     {
         [PerRendererData]  _MainTex ("Sprite Texture", 2D) = "white" { }
         _Color ("Tint", Color) = (1,1,1,1)
-        _Offset ("Offset", Range(0,50)) = 0
     }
     SubShader
     {
@@ -38,7 +37,6 @@ Shader "Unlit/SlightWobbleSprite"
             sampler2D _MainTex;
             fixed4 _Color;
             float4 _MainTex_ST;
-            float _Offset;
 
             v2f vert (appdata v)
             {
@@ -53,7 +51,8 @@ Shader "Unlit/SlightWobbleSprite"
             fixed4 frag (v2f i, UNITY_VPOS_TYPE screenPos : SV_POSITION) : SV_Target
             {
                 // sample the texture
-                i.texcoord.x += cos(i.texcoord.y*3 + (_Time.y+screenPos.xy*0.1))*0.009+0.0085;
+                i.texcoord.y -= _Time.y*0.13;
+                i.texcoord.x += cos(i.texcoord.y*_CosTime.y)*0.5;
                 fixed4 col = tex2D(_MainTex, i.texcoord)*i.color;
                 return col;
             }
