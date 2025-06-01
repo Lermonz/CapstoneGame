@@ -13,6 +13,7 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID ALLCRYSTALS = 1432241047U;
         static const AkUniqueID BOOST_OBJECT = 476417308U;
         static const AkUniqueID BUTTONBACKOUT1 = 817870589U;
         static const AkUniqueID BUTTONCONFIRM1 = 3348213544U;

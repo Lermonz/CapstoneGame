@@ -1,6 +1,7 @@
 Shader "Unlit/VertexID"
 {
     Properties {
+        _Speed ("Speed", Range(0.1,5)) = 1
         _Color1 ("Color 1", Color) = (1,1,1,1)
         _Color2 ("Color 2", Color) = (0,0,0,1)
         _MainTex ("Sprite Texture", 2D) = "white" { }
@@ -33,6 +34,7 @@ Shader "Unlit/VertexID"
             };
             
             sampler2D _MainTex;
+            half _Speed;
             fixed4 _Color1;
             fixed4 _Color2;
 
@@ -40,7 +42,7 @@ Shader "Unlit/VertexID"
             {
                 v2f OUT;
                 OUT.vertex = UnityObjectToClipPos(v.vertex);
-                v.texcoord.y += _Time.y*2;
+                v.texcoord.y += _Time.y*_Speed;
                 OUT.color = lerp(_Color2,_Color1, pow(cos(v.texcoord.y*1.28),2)*0.6-0.22)*v.color;
                 return OUT;
             }

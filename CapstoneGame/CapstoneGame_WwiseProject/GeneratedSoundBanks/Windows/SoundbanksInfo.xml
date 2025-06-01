@@ -29,7 +29,7 @@
 				<GameParameter Id="3358493668" Name="MusicMix"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{3B1C628B-7A70-E1CB-9158-3236DCFD48FA}">
+		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{5A0C7177-2B85-B2F0-42EA-8DC9865CE020}">
 			<ShortName>SoundbankAll</ShortName>
 			<Path>SoundbankAll.bnk</Path>
 			<Media>
@@ -40,6 +40,10 @@
 				<File Id="49204311" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_select8_1.wav</ShortName>
 					<CachePath>SFX/button_select8_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="94089198" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>allCrystals1.wav</ShortName>
+					<CachePath>SFX/allCrystals1_818F3B66.wem</CachePath>
 				</File>
 				<File Id="116333208" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_select5_1.wav</ShortName>
@@ -115,6 +119,11 @@
 				</File>
 			</Media>
 			<Events>
+				<Event Id="1432241047" Name="AllCrystals" DurationType="OneShot" DurationMin="2.7246666" DurationMax="2.7246666">
+					<MediaRefs>
+						<MediaRef Id="94089198"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="476417308" Name="Boost_Object" DurationType="OneShot" DurationMin="1.3593333" DurationMax="1.3593333">
 					<MediaRefs>
 						<MediaRef Id="875094519"/>
@@ -216,5 +225,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{8B3D56E6-6861-32B1-02EA-1359495E15BD}</FileHash>
+	<FileHash>{C373D082-697C-6AB2-520D-D289F9564594}</FileHash>
 </SoundBanksInfo>

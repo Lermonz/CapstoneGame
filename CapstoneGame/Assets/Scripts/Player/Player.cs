@@ -363,7 +363,7 @@ public class Player : MonoBehaviour
             _isJumping = false;
             StartCoroutine(BoostObjectPull(other.gameObject.transform.position, 
                 other.gameObject.GetComponent<BoostObjectBehaviour>().BoostInDirection()));
-            StartCoroutine(BoostDecelCoroutine(15,13));
+            StartCoroutine(BoostDecelCoroutine(15,9));
             StartCoroutine(NegateGravityFor(19*(int)Mathf.Abs(Mathf.Sin(Mathf.Deg2Rad*other.gameObject.transform.localEulerAngles.z))));
         }
         if(other.gameObject.CompareTag("Teleport") && _canTeleport) {

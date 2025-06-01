@@ -90,6 +90,7 @@ public class MainMenuManager : MonoBehaviour
             i.ChangeColor(CurrentWorld, CurrentWorld + 1);
         }
         CurrentWorld++;
+        DebugIt();
         EventSystem.current.SetSelectedGameObject(ScrollRectSnap.Instance._buttonsArray[CurrentWorld][_lastSelectedLevelButton[CurrentWorld]].gameObject);
     }
     private void DecrementWorld()
@@ -100,9 +101,15 @@ public class MainMenuManager : MonoBehaviour
             i.ChangeColor(CurrentWorld, CurrentWorld - 1);
         }
         CurrentWorld--;
+        DebugIt();
         EventSystem.current.SetSelectedGameObject(ScrollRectSnap.Instance._buttonsArray[CurrentWorld][_lastSelectedLevelButton[CurrentWorld]].gameObject);
     }
-    public void OnSettingsPress() {
+    void DebugIt()
+    {
+        Debug.Log("Actual World:" + CurrentWorld);
+    }
+    public void OnSettingsPress()
+    {
         OpenSettingsMenu();
     }
     public void OnControlsPress() {

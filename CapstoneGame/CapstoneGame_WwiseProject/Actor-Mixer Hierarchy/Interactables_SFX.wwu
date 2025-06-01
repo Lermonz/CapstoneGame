@@ -116,6 +116,28 @@
 						<ActiveSource Name="boostObj2" ID="{C40059CD-2ED2-4716-B96C-AB0957A25B51}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Sound Name="allCrystals1" ID="{886F9054-8111-43F2-B82C-3225913BB1D3}" ShortID="124187274">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="allCrystals1" ID="{FC912DD7-7325-4A55-A826-4630ED553361}">
+							<Language>SFX</Language>
+							<AudioFile>allCrystals1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="94089198"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="allCrystals1" ID="{FC912DD7-7325-4A55-A826-4630ED553361}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

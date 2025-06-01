@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     public bool _canExit;
     public bool _stopTimer;
     public bool _countdownDone = false;
+    bool _hasPlayedSoundEffect = false;
 
     void Awake()
     {
@@ -40,8 +41,14 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     }
     void Update() {
         // if you've destroyed enough targets for this level, you can touch the goal
-        if(_targetsDestroyed >= _targetReq) {
+        if (_targetsDestroyed >= _targetReq)
+        {
             _canExit = true;
+            if (!_hasPlayedSoundEffect)
+            {
+                AkSoundEngine.PostEvent("AllCrystals", gameObject);
+                _hasPlayedSoundEffect = true;
+            }
         }
     }
     IEnumerator Countdown() {

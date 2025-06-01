@@ -9,8 +9,9 @@ public class WorldTitleText : MonoBehaviour
     void Awake() {
         _textText = this.GetComponent<TMP_Text>();
     }
-    void Start()
+    void Update()
     {
-        this._textText.text = _textText.text.Replace("[", ""+(MainMenuManager.Instance.CurrentWorld+1));
+        this._textText.text = _textText.text.Replace("[", "" + (MainMenuManager.Instance.CurrentWorld + 1));
+        Debug.Log("Current world according to Text:" + (MainMenuManager.Instance.CurrentWorld + 1));
     }
 }

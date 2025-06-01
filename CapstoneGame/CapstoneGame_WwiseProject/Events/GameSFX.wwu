@@ -3,7 +3,7 @@
 	<Events>
 		<WorkUnit Name="GameSFX" ID="{CB0BEE05-7ACE-4E32-BBC6-C118FC70317F}" PersistMode="Standalone">
 			<PropertyList>
-				<Property Name="Color" Type="int16" Value="13"/>
+				<Property Name="Color" Type="int16" Value="15"/>
 				<Property Name="OverrideColor" Type="bool" Value="True"/>
 			</PropertyList>
 			<ChildrenList>
@@ -35,6 +35,17 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="teleObj" ID="{81A0CC59-46A9-4398-8F5A-E0BD4B271F58}" WorkUnitID="{7FD96404-D09A-41C2-906C-4B91AF852793}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="AllCrystals" ID="{FE634461-4282-485E-90FA-EBA5B6525C54}">
+					<ChildrenList>
+						<Action Name="" ID="{B9D40F00-87BC-499F-8389-B545F5334E4A}" ShortID="240751120">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="allCrystals1" ID="{886F9054-8111-43F2-B82C-3225913BB1D3}" WorkUnitID="{7FD96404-D09A-41C2-906C-4B91AF852793}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

@@ -6,11 +6,16 @@ using UnityEngine;
 public class PortalBehaviour : MonoBehaviour
 {
     public SpriteRenderer[] _renderers;
-    public Transform _transform;
     private bool dontRetrigger = false;
+    bool _canExit;
+    void Update()
+    {
+        _canExit = LevelManager.Instance._canExit;
+        this.GetComponent<Animator>().SetBool("canExit", _canExit);
+    }
     void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player") && !dontRetrigger) {
-            if(LevelManager.Instance._canExit) {
+            if(_canExit) {
                 ExitSuccess();
             }
             else
@@ -28,14 +33,14 @@ public class PortalBehaviour : MonoBehaviour
     }
     void ExitFail() {
         foreach(SpriteRenderer i in _renderers) {
-            i.color = new Color (0.5f,0.5f,0.5f,1);
+            i.color = new Color (0.6f,0.6f,0.6f,1);
         }
-        _transform.localScale = Vector3.one*0.8f;
+        this.transform.localScale *= 0.8f;
     }
     void ResetTransform() {
         foreach(SpriteRenderer i in _renderers) {
             i.color = Color.white;
         }
-        _transform.localScale = Vector3.one;
+        this.transform.localScale *= 1.25f;
     }
 }

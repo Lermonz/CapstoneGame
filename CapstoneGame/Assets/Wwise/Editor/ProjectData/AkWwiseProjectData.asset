@@ -161,8 +161,25 @@ MonoBehaviour:
     ParentPath: Events/GameSFX
     guid: 05ee0bcbce7a324ebbc6c118fc70317f
     GuidInternal: 
-    m_lastTime: -8584554970625935567
+    m_lastTime: -8584527964076939990
     List:
+    - name: AllCrystals
+      guid: 614463fe82425e4890faeba5b6525c54
+      id: 1432241047
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: GameSFX
+        ObjectType: 12
+        guid: 05ee0bcbce7a324ebbc6c118fc70317f
+      - ElementName: AllCrystals
+        ObjectType: 3
+        guid: 614463fe82425e4890faeba5b6525c54
+      Path: Events/GameSFX/AllCrystals
+      maxAttenuation: 0
+      maxDuration: 2.7246666
+      minDuration: 2.7246666
     - name: Boost_Object
       guid: d76abc89bd36ae4fa187455767d081eb
       id: 476417308
@@ -391,7 +408,7 @@ MonoBehaviour:
     ParentPath: Events/Music
     guid: 3509c7a70499334f80eb9e8b4c10de23
     GuidInternal: 
-    m_lastTime: -8584571744234620690
+    m_lastTime: -8584527964076883253
     List:
     - name: PlayMenu
       guid: 59d1e48d3868b64d8c8241637d5038df
