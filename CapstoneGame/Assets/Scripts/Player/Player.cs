@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [RequireComponent (typeof (Controller2D))]
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
     bool _inBlackHole = false;
     float _terminalVelocity;
     const float _termV = -16;
+    Vector2 _wind;
 
     bool _canJump = true;
     bool _canBoost = true;
@@ -39,6 +41,12 @@ public class Player : MonoBehaviour
     bool _isJumping = false;
     bool _canTeleport = true;
     bool _dontLockOut = false;
+
+    bool _grabbedMode = false;
+    float _grabbedMaxSpeed = 8;
+    float _grabbedSpeed;
+    float _grabbedAccel = 45;
+    GrabberBehavior _grabbedBy;
 
     bool _boostDeceling;
     float _boostSpeed = 12f;
@@ -69,20 +77,22 @@ public class Player : MonoBehaviour
         float delta = Time.deltaTime;
         //Debug.Log("Dead: "+_dead);
         _animator.SetBool("Running", _horizontalInput != 0 && _controller._isGrounded);
-        _animator.SetBool("Jumping", _velocity.y > 0.2 && !_controller._isGrounded && !_dead);
-        _animator.SetBool("Falling", _velocity.y < -0.2 && !_controller._isGrounded && !_dead);
+        _animator.SetBool("Jumping", _velocity.y >= 0 && !_controller._isGrounded && !_dead);
+        _animator.SetBool("Falling", _velocity.y < 0 && !_controller._isGrounded && !_dead);
         //_dpad = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         
         if ((_horizontalInput > 0 && _renderer.flipX) || (_horizontalInput < 0 && !_renderer.flipX)) {
             _renderer.flipX = !_renderer.flipX;
         }
         if(_controller._isGrounded) {
+            _wind.y = 0;
             _isJumping = false;
             _canJump = !_jumpOverride;
             _velocity.y = 0;
             _canDownBoost = false;
         }
         if(_controller._hitCeiling) {
+            EndGrabbedMode();
             _isJumping = false;
             _velocity.y = 0;
         }
@@ -143,7 +153,7 @@ public class Player : MonoBehaviour
             }
         }
         //TREATING GRAVITY LIKE ACCELERATION
-        if(!PauseMenu.Instance._isPaused && !_inBlackHole && !_dead) {
+        if(!PauseMenu.Instance._isPaused && !_inBlackHole && !_dead && !_grabbedMode) {
             if(_isGravityFlipped ? _velocity.y < _terminalVelocity : _velocity.y > _terminalVelocity) {
                 Accelerate(ref _velocity.y, _gravityMult, _gravity, delta);
             }
@@ -152,13 +162,26 @@ public class Player : MonoBehaviour
                 //_velocity.x -= _dpad.x * _baseAccel * delta;
             }
         }
+        if (_grabbedMode)
+        {
+            Debug.Log("GrabbedMode "+_grabbedSpeed);
+            Accelerate(ref _velocity.y, 1, _grabbedSpeed, delta);
+            if (_grabbedSpeed < _grabbedMaxSpeed)
+            {
+                Accelerate(ref _grabbedSpeed, 1, _grabbedAccel, delta);
+            }
+        }
         /// BOOST  ///
-        if(_canBoost && InputManager.Instance.BoostInput) {
+        if (_canBoost && InputManager.Instance.BoostInput)
+        {
             float facingDirection = _renderer.flipX ? -1 : 1;
-            if(_horizontalInput != 0) {
+            EndGrabbedMode();
+            if (_horizontalInput != 0)
+            {
                 facingDirection = Mathf.Sign(_horizontalInput);
             }
-            if(Mathf.Sign(_velocity.x) != facingDirection) {
+            if (Mathf.Sign(_velocity.x) != facingDirection)
+            {
                 _velocity.x = -_velocity.x;
             }
             _velocity.x += _boostSpeed * facingDirection;
@@ -172,18 +195,21 @@ public class Player : MonoBehaviour
         
         // when player hits wall they can bounce off of it at high enough speeds
         if(_controller._hitWall) {
-            if(Mathf.Abs(_velocity.x) > _maxRunSpeed * 1.5f) {
-                _velocity.x = -_velocity.x*0.4f;
+            EndGrabbedMode();
+            if (Mathf.Abs(_velocity.x) > _maxRunSpeed * 1.5f)
+            {
+                _velocity.x = -_velocity.x * 0.4f;
                 _velocity.y = _isGravityFlipped ? -Mathf.Abs(_velocity.x) : Mathf.Abs(_velocity.x);
                 _velocity.y *= 0.9f; //scale bounce with gravity changes
             }
             else
-                _velocity.x = Mathf.Clamp(_velocity.x,-5,5);
+                _velocity.x = Mathf.Clamp(_velocity.x, -5, 5);
             _boostDeceling = false;
         }
 
         /// SPIN ///
         if(InputManager.Instance.SpinInput && _canSpin) {
+            EndGrabbedMode();
             _isJumping = false;
             Hitbox(1.5f, 0.8f);
             //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._spinSFX);
@@ -208,6 +234,7 @@ public class Player : MonoBehaviour
         
         //Fast Fall / Down Boost
         if(InputManager.Instance.DownInput && _canDownBoostReal) {
+            _grabbedMode = false;
             // //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._fastFallSFX);
             AkSoundEngine.PostEvent("Player_FastFall", gameObject);
             _vfxPlayer.Woosh(0.5f);
@@ -220,7 +247,7 @@ public class Player : MonoBehaviour
             _velocity.x = 0;
         }
         if(!_dead) {
-            _controller.Move(_velocity * delta);
+            _controller.Move((_velocity + _wind) * delta);
         }
     }
     IEnumerator OverrideXInput(int delay) {
@@ -349,6 +376,15 @@ public class Player : MonoBehaviour
         this.transform.position = teleporter.LinkedTo.transform.position;
         teleporter.PlaySFX();
     }
+    void EndGrabbedMode()
+    {
+        _grabbedMode = false;
+        if (_grabbedBy != null)
+        {
+            _grabbedBy.Detach(new Vector2(_velocity.x*0.5f, 9));
+        }
+        _grabbedBy = null;
+    }
     /// COLLISIONS WITH OBJECTS ///
     // GRAVITY FIELD
     void OnTriggerEnter2D(Collider2D other) {
@@ -359,12 +395,21 @@ public class Player : MonoBehaviour
         if(other.gameObject.CompareTag("GravityTriggerTrigger")) {
             _dontLockOut = true;
         }
-        if(other.gameObject.CompareTag("Boost")) {
+        if (other.gameObject.CompareTag("Grabber"))
+        {
+            _velocity.y *= 0.2f;
+            _grabbedSpeed = -15;
+            _grabbedMode = true;
+            _grabbedBy = other.gameObject.GetComponent<GrabberBehavior>();
+            _grabbedBy.Attach();
+        }
+        if (other.gameObject.CompareTag("Boost"))
+        {
             _isJumping = false;
-            StartCoroutine(BoostObjectPull(other.gameObject.transform.position, 
+            StartCoroutine(BoostObjectPull(other.gameObject.transform.position,
                 other.gameObject.GetComponent<BoostObjectBehaviour>().BoostInDirection()));
-            StartCoroutine(BoostDecelCoroutine(15,9));
-            StartCoroutine(NegateGravityFor(19*(int)Mathf.Abs(Mathf.Sin(Mathf.Deg2Rad*other.gameObject.transform.localEulerAngles.z))));
+            StartCoroutine(BoostDecelCoroutine(15, 9));
+            StartCoroutine(NegateGravityFor(19 * (int)Mathf.Abs(Mathf.Sin(Mathf.Deg2Rad * other.gameObject.transform.localEulerAngles.z))));
         }
         if(other.gameObject.CompareTag("Teleport") && _canTeleport) {
             StartCoroutine(TeleportCooldown());
@@ -372,14 +417,20 @@ public class Player : MonoBehaviour
             // this.transform.position = other.gameObject.GetComponent<Teleporter>().LinkedTo.transform.position;
         }
     }
-    void OnTriggerStay2D(Collider2D other) {
-        if(other.gameObject.CompareTag("BlackHole")) {
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("BlackHole"))
+        {
             //_terminalVelocity = 0;
             _inBlackHole = true;
             //Strength of black hole pull is increased when player is closer to it
-            float strength = 0.08f+0.84f/Vector2.Distance(other.gameObject.transform.position,this.transform.position);
+            float strength = 0.08f + 0.84f / Vector2.Distance(other.gameObject.transform.position, this.transform.position);
             //Debug.Log("Strength: "+strength);
             PullTowards(other.gameObject.transform.position, strength);
+        }
+        if (other.gameObject.CompareTag("Wind"))
+        {
+            _wind = other.gameObject.GetComponent<BoostObjectBehaviour>().BoostInDirection();
         }
     }
     void PullTowards(Vector2 goal, float str) {
@@ -408,18 +459,26 @@ public class Player : MonoBehaviour
 
     }
     // GRAVITY FIELD EXIT
-    void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject.CompareTag("GravityFlip")) {
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("GravityFlip"))
+        {
             FlipGravity();
             _renderer.flipY = false;
             _terminalVelocity = _termV;
         }
-        if(other.gameObject.CompareTag("GravityTriggerTrigger")) {
+        if (other.gameObject.CompareTag("GravityTriggerTrigger"))
+        {
             _dontLockOut = false;
         }
-        if(other.gameObject.CompareTag("BlackHole")) {
+        if (other.gameObject.CompareTag("BlackHole"))
+        {
             //_terminalVelocity = _termV;
             _inBlackHole = false;
+        }
+        if (other.gameObject.CompareTag("Wind"))
+        {
+            _wind = Vector2.zero;
         }
     }
     void ForceVelocityToVector(Vector2 v) {
