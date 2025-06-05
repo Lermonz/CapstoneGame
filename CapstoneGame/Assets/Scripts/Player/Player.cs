@@ -91,10 +91,12 @@ public class Player : MonoBehaviour
             _velocity.y = 0;
             _canDownBoost = false;
         }
-        if(_controller._hitCeiling) {
+        if (_controller._hitCeiling)
+        {
             EndGrabbedMode();
             _isJumping = false;
-            _velocity.y = 0;
+            _velocity.y = _wind.y > 0 ? -2 : 0;
+            _wind.y = 0;
         }
         _canDownBoostReal = (_isGravityFlipped ? (_velocity.y > -2) : (_velocity.y < 2)) && _canDownBoost;
         // Jump
