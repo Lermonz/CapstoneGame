@@ -43,9 +43,9 @@ public class Player : MonoBehaviour
     bool _dontLockOut = false;
 
     bool _grabbedMode = false;
-    float _grabbedMaxSpeed = 8;
+    float _grabbedMaxSpeed = 10.2f;
     float _grabbedSpeed;
-    float _grabbedAccel = 45;
+    float _grabbedAccel = 124;
     GrabberBehavior _grabbedBy;
 
     bool _boostDeceling;
@@ -400,7 +400,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Grabber"))
         {
             _velocity.y *= 0.2f;
-            _grabbedSpeed = -15;
+            _grabbedSpeed = -20;
             _grabbedMode = true;
             _grabbedBy = other.gameObject.GetComponent<GrabberBehavior>();
             _grabbedBy.Attach();
