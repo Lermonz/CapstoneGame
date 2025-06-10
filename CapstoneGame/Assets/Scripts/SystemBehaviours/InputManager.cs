@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent (typeof(PlayerInput))]
-public class InputManager : MonoBehaviour
+[RequireComponent(typeof(PlayerInput))]
+public class InputManager : MonoBehaviour, IDataPersistence
 {
     public static InputManager Instance;
     public static PlayerInput PlayerInput;
@@ -12,15 +12,15 @@ public class InputManager : MonoBehaviour
     public bool _freezeVelocity = false;
 
     // Input Properties //
-    public float HorizontalInput {get; private set;}
-    public bool JumpInput {get; private set;}
-    public bool JumpRelease {get; private set;}
-    public bool DownInput {get; private set;}
-    public bool BoostInput {get; private set;}
-    public bool SpinInput {get; private set;}
-    public bool MenuOpenInput {get; private set;}
+    public float HorizontalInput { get; private set; }
+    public bool JumpInput { get; private set; }
+    public bool JumpRelease { get; private set; }
+    public bool DownInput { get; private set; }
+    public bool BoostInput { get; private set; }
+    public bool SpinInput { get; private set; }
+    public bool MenuOpenInput { get; private set; }
 
-    public bool UIMenuCloseInput {get; private set;}
+    public bool UIMenuCloseInput { get; private set; }
 
     private InputAction _horizontalAction;
     private InputAction _jumpAction;
@@ -57,13 +57,24 @@ public class InputManager : MonoBehaviour
         MenuOpenInput = _menuOpenAction.WasPressedThisFrame();
         UIMenuCloseInput = _menuCloseAction.WasPressedThisFrame();
     }
-    public void DisablePlayerInput() {
+    public void DisablePlayerInput()
+    {
         PlayerInput.SwitchCurrentActionMap("UI");
     }
-    public void EnablePlayerInput() {
+    public void EnablePlayerInput()
+    {
         PlayerInput.SwitchCurrentActionMap("Player");
     }
-    public void NegateAllInput() {
+    public void NegateAllInput()
+    {
         PlayerInput.SwitchCurrentActionMap("None");
+    }
+    public void SaveData(GameData data)
+    {
+        data.rebinds = PlayerInput.actions.SaveBindingOverridesAsJson();
+    }
+    public void LoadData(GameData data)
+    {
+        PlayerInput.actions.LoadBindingOverridesFromJson(data.rebinds);
     }
 }

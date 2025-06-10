@@ -25,6 +25,7 @@ public class GameBehaviour : MonoBehaviour
         SetQualitySettings();
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
+        LoadGame();
     }
     public void ExitGame()
     {
@@ -48,5 +49,17 @@ public class GameBehaviour : MonoBehaviour
     void SetQualitySettings()
     {
         QualitySettings.vSyncCount = 0;
+    }
+    public void SaveGame()
+    {
+        DataPersistenceManager.Instance.SaveGame();
+    }
+    public void LoadGame()
+    {
+        DataPersistenceManager.Instance.LoadGame();
+    }
+    public void OnResetProgressPress() {
+        DataPersistenceManager.Instance.NewGame();
+        SaveGame();
     }
 }

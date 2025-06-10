@@ -9,6 +9,11 @@ public class GameData
     public SerializableDictionary<string, float> personalBest;
     public SerializableDictionary<string, string> medals;
 
+    //CONTROLS DATA
+    public string rebinds;
+    public int musicVolume;
+    public int soundVolume;
+
     //GLOBAL LEVEL DATA
     public SerializableDictionary<string, float> levelGolds;
     public SerializableDictionary<string, float> levelSilvers;
@@ -16,6 +21,8 @@ public class GameData
     public SerializableDictionary<string, bool> unlockedLevels;
     // default initialized values of the constructor
     public GameData() {
+        rebinds = string.Empty;
+        musicVolume = 69;
         personalBest = new SerializableDictionary<string, float>();
         medals = new SerializableDictionary<string, string>();
         unlockedLevels = new SerializableDictionary<string, bool>();

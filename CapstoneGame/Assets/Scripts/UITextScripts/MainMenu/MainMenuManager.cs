@@ -130,13 +130,6 @@ public class MainMenuManager : MonoBehaviour
     public void OnPrevWorldPress() {
         DecrementWorld();
     }
-    public void SaveGame() {
-        DataPersistenceManager.Instance.SaveGame();
-    }
-    public void OnResetProgressPress() {
-        DataPersistenceManager.Instance.NewGame();
-        SaveGame();
-    }
     public void FindAudioPlayerForButtons(int fileNum) {
         AudioSelecterButtons.Instance.PlaySFX(fileNum);
     }

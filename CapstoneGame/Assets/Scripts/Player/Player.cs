@@ -426,7 +426,7 @@ public class Player : MonoBehaviour
             //_terminalVelocity = 0;
             _inBlackHole = true;
             //Strength of black hole pull is increased when player is closer to it
-            float strength = 0.08f + 0.84f / Vector2.Distance(other.gameObject.transform.position, this.transform.position);
+            float strength = 0.1f + 0.84f / Vector2.Distance(other.gameObject.transform.position, this.transform.position);
             //Debug.Log("Strength: "+strength);
             PullTowards(other.gameObject.transform.position, strength);
         }

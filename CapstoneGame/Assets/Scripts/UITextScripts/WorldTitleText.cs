@@ -11,7 +11,7 @@ public class WorldTitleText : MonoBehaviour
     }
     void Update()
     {
-        this._textText.text = _textText.text.Replace("[", "" + (MainMenuManager.Instance.CurrentWorld + 1));
+        _textText.text = "World " + (MainMenuManager.Instance.CurrentWorld + 1);
         Debug.Log("Current world according to Text:" + (MainMenuManager.Instance.CurrentWorld + 1));
     }
 }

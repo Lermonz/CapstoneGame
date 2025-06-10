@@ -3,25 +3,30 @@ using TMPro;
 
 public class MusicVolume : MonoBehaviour
 {
-    [SerializeField] AK.Wwise.RTPC _rtpc;
+    [SerializeField] AudioMixType _audioType;
     [SerializeField] TMP_Text _text;
-    int _volume;
     void Start()
     {
-        _volume = 70;
+        UpdateText();   
     }
-    public void IncreaseVolume() {
-        if (_volume < 100)
-            _volume += 10;
-        SetRTPC();
+    public void IncreaseVolume()
+    {
+        if (MusicManager.Instance.GetVolume(_audioType) < 100)
+        {
+            MusicManager.Instance.SetVolume(_audioType, 10);
+            UpdateText();
+        }
     }
-    public void DecreaseVolume() {
-        if (_volume > 0)
-            _volume -= 10;
-        SetRTPC();
+    public void DecreaseVolume()
+    {
+        if (MusicManager.Instance.GetVolume(_audioType) > 0)
+        {
+            MusicManager.Instance.SetVolume(_audioType, -10);
+            UpdateText();
+        }
     }
-    void SetRTPC() {
-        _rtpc.SetGlobalValue(_volume);
-        _text.text = ""+_volume;
+    void UpdateText()
+    {
+        _text.text = "" + MusicManager.Instance.GetVolume(_audioType);
     }
 }
