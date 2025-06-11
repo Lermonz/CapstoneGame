@@ -41,6 +41,6 @@ public class PortalBehaviour : MonoBehaviour
         foreach(SpriteRenderer i in _renderers) {
             i.color = Color.white;
         }
-        this.transform.localScale *= 1.25f;
+        this.transform.localScale = new Vector3(0.85f,0.85f,1);
     }
 }

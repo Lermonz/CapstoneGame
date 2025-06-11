@@ -1,4 +1,5 @@
 using System.Collections;
+using Cinemachine;
 using UnityEngine;
 
 [RequireComponent (typeof (BoxCollider2D))]
@@ -16,6 +17,7 @@ public class Controller2D : MonoBehaviour
 
 
     public LayerMask collMask;
+    CinemachineFramingTransposer _vcamTransposer;
 
     public bool _isGrounded = true;
     public bool _hitCeiling;
@@ -30,6 +32,7 @@ public class Controller2D : MonoBehaviour
     RayCastOrigins _raycastOrigins;
     void Start() {
         _collider = GetComponent<BoxCollider2D>();
+        _vcamTransposer = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
         CalcRays();
     }
     public void Move(Vector2 velocity) {
@@ -60,22 +63,29 @@ public class Controller2D : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collMask);
             Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
 
-            if(hit) {
-                velocity.y = (hit.distance-boundInset) * directionY;
+            if (hit)
+            {
+                velocity.y = (hit.distance - boundInset) * directionY;
                 rayLength = hit.distance;
-                if(directionY == _groundIsDown) {
+                if (directionY == _groundIsDown)
+                {
                     _hitCeiling = true;
                 }
-                else {
-                    if (!_isGrounded) {
-                        this.GetComponent<VFXPlayer>().DustEffect(-0.45f*_groundIsDown);
+                else
+                {
+                    if (!_isGrounded)
+                    {
+                        this.GetComponent<VFXPlayer>().DustEffect(-0.45f * _groundIsDown);
                     }
                     _isGrounded = true;
+                    _vcamTransposer.m_DeadZoneHeight = 0;
                 }
-                
+
             }
-            else {
+            else
+            {
                 _vertElseCount++;
+                _vcamTransposer.m_DeadZoneHeight = 0.2f;
             }
         }
         if(_vertElseCount >= _vertRayCount) {

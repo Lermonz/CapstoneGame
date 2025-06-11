@@ -106,6 +106,7 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     }
     public void UpdateMedals(GameData data, string medal) {
         if(data.medals.ContainsKey(_levelID)){
+            GameObject.Find("RewardStar").GetComponent<CheckNewMedal>().MedalLoad(data.medals[_levelID], medal);
             data.medals.Remove(_levelID);
         }
         data.medals.Add(_levelID, medal);

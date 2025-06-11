@@ -8,6 +8,7 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
     public Button_LvlButtonData _buttonData;
     [SerializeField]
     private Button _levelButton;
+    [SerializeField] CheckNewMedal _medalImage;
     public int _totalCount;
     bool _shouldBeUnlocked = false;
     private void Awake()
@@ -49,6 +50,10 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
         MakeButtonInteractable(data);
     }
     private void MakeButtonInteractable(GameData data) {
+        if (data.medals.ContainsKey(_buttonData._levelID))
+        {
+            _medalImage.MedalLoad(data.medals[_buttonData._levelID]);
+        }
         _levelButton.interactable = data.unlockedLevels[_buttonData._levelID];
         _shouldBeUnlocked = _levelButton.interactable;
         //Debug.Log("should be unlocked?: "+_shouldBeUnlocked+",  "+_buttonData._levelID);
@@ -69,9 +74,9 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
             }
         }
     }
-    void Update() {
-        if(_shouldBeUnlocked && !GameBehaviour.Instance._isGame) {
-            _levelButton.interactable = ScrollRectSnap.Instance._currentWorld == _buttonData._world-1;
-        }
-    }
+    // void Update() {
+    //     if(_shouldBeUnlocked && !GameBehaviour.Instance._isGame) {
+    //         _levelButton.interactable = ScrollRectSnap.Instance._currentWorld == _buttonData._world-1;
+    //     }
+    // }
 }
