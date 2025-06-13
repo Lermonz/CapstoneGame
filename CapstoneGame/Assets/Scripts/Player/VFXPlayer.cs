@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class VFXPlayer : MonoBehaviour
@@ -10,7 +11,8 @@ public class VFXPlayer : MonoBehaviour
 
     public int _afterImageAmount;
     public float _afterImageFreq;
-    public void Spin_Sparkle() {
+    public void Spin_Sparkle()
+    {
         Instantiate(_spinSparkle, this.transform);
     }
     public void Woosh(float offsetY) {

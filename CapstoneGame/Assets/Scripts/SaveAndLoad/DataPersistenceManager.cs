@@ -38,14 +38,17 @@ public class DataPersistenceManager : MonoBehaviour
         this._gameData = new GameData();
     }
     public void SaveGame(){
+        Debug.Log("game is saved :)");
         this._dataPersistenceObjects = FindAllDataPersistenceObjects();
         if(this._gameData == null) {
             Debug.LogWarning("No data found when trying to save.");
             return;
         }
         // pass the data to other scripts so they can update it
-        foreach(IDataPersistence dataPersistenceObj in _dataPersistenceObjects) {
+        foreach (IDataPersistence dataPersistenceObj in _dataPersistenceObjects)
+        {
             dataPersistenceObj.SaveData(_gameData);
+            Debug.Log("we did the foreach");
         }
 
         // save that data to a file using the data handler
@@ -66,7 +69,7 @@ public class DataPersistenceManager : MonoBehaviour
     }
     private List<IDataPersistence> FindAllDataPersistenceObjects() 
     {
-        IEnumerable<IDataPersistence> dataPersistenceObjects = 
+        IEnumerable<IDataPersistence> dataPersistenceObjects =
             FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
         return new List<IDataPersistence>(dataPersistenceObjects);
     }

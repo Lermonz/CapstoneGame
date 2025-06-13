@@ -86,26 +86,38 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         }
         //this._personalBest = data.personalBestOLD;
     }
-    public void SaveData(GameData data) {
-        if(data.personalBest.ContainsKey(_levelID)){
+    public void SaveData(GameData data)
+    {
+        Debug.Log("SAVE THE FUCKIGN DATAAAAAAAAAAAAAAAAAAAAAAAAA");
+        if (data.personalBest.ContainsKey(_levelID))
+        {
             data.personalBest.Remove(_levelID);
         }
         data.personalBest.Add(_levelID, this._personalBest);
-        if(data.personalBest.ContainsKey(_levelID)){
-            if(data.personalBest[_levelID] <= data.levelGolds[_levelID]) {
-                UpdateMedals(data, "gold");
-            }
-            else if(data.personalBest[_levelID] <= data.levelSilvers[_levelID]) {
-                UpdateMedals(data, "silver");
-            }
-            else if(data.personalBest[_levelID] <= data.levelBronzes[_levelID]) {
-                UpdateMedals(data, "bronze");
-            }
+        if (data.personalBest[_levelID] <= data.levelGolds[_levelID])
+        {
+            UpdateMedals(data, "gold");
         }
+        else if (data.personalBest[_levelID] <= data.levelSilvers[_levelID])
+        {
+            UpdateMedals(data, "silver");
+        }
+        else if (data.personalBest[_levelID] <= data.levelBronzes[_levelID])
+        {
+            UpdateMedals(data, "bronze");
+        }
+        else
+        {
+            UpdateMedals(data, "none");
+        }
+        
         //data.personalBestOLD = this._personalBest;
     }
     public void UpdateMedals(GameData data, string medal) {
-        if(data.medals.ContainsKey(_levelID)){
+        Debug.Log("levelmanager.updatemedals");
+        if (data.medals.ContainsKey(_levelID))
+        {
+            Debug.Log("Show medal correct please");
             GameObject.Find("RewardStar").GetComponent<CheckNewMedal>().MedalLoad(data.medals[_levelID], medal);
             data.medals.Remove(_levelID);
         }

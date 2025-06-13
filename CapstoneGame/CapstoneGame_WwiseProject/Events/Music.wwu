@@ -61,6 +61,33 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="PlayWorld2" ID="{785F1B7C-251E-423B-937A-32577B8B97AE}">
+					<ChildrenList>
+						<Action Name="" ID="{95957B49-5669-420A-B1DF-B21B3E64883E}" ShortID="601653949">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="UnsupportedPlaylist" ID="{2F83C783-47A5-473D-B2BC-B5951FC80F4E}" WorkUnitID="{F83EF719-3023-4062-A5F7-61746B97202D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="StopWorld2" ID="{1119AE46-6BB1-488C-943C-0E9F9B4F83B7}">
+					<ChildrenList>
+						<Action Name="" ID="{2F319FC3-5EEC-4758-B7CF-05835248196A}" ShortID="576024616">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeOutCurve" Type="int16" Value="6"/>
+								<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="UnsupportedPlaylist" ID="{2F83C783-47A5-473D-B2BC-B5951FC80F4E}" WorkUnitID="{F83EF719-3023-4062-A5F7-61746B97202D}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

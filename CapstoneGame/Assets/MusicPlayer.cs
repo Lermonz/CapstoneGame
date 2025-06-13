@@ -12,7 +12,7 @@ public class MusicManager : MonoBehaviour, IDataPersistence
     int _soundVolume;
     int trackToPlay;
     bool playingTrack1 = false;
-    // bool playingTrack2 = false;
+    bool playingTrack2 = false;
     // bool playingTrack3 = false;
     // bool playingTrackMenu = false;
     void Awake()
@@ -67,8 +67,14 @@ public class MusicManager : MonoBehaviour, IDataPersistence
         {
             trackToPlay = 0;
         }
-        else if (sceneID != 0)
+        else if (sceneID <= 10)
         {
+            trackToPlay = 1;
+        }
+        else if (sceneID <= 20) {
+            trackToPlay = 2;
+        }
+        else {
             trackToPlay = 1;
         }
         Debug.Log(sceneID + " <- sceneID\n" + trackToPlay + " <- trackToPlay");
@@ -76,9 +82,13 @@ public class MusicManager : MonoBehaviour, IDataPersistence
         {
             if (playingTrack1)
             {
-                //Debug.Log("StopyWorld1");
                 AkSoundEngine.PostEvent("StopWorld1", gameObject);
                 playingTrack1 = false;
+            }
+            if (playingTrack2)
+            {
+                AkSoundEngine.PostEvent("StopWorld2", gameObject);
+                playingTrack2 = false;
             }
             AkSoundEngine.PostEvent("PlayMenu", gameObject);
         }
@@ -88,6 +98,13 @@ public class MusicManager : MonoBehaviour, IDataPersistence
             AkSoundEngine.PostEvent("StopMenu", gameObject);
             AkSoundEngine.PostEvent("PlayWorld1", gameObject);
             playingTrack1 = true;
+        }
+        else if (trackToPlay == 2 && !playingTrack2)
+        {
+            //Debug.Log("PlayWorld1");
+            AkSoundEngine.PostEvent("StopMenu", gameObject);
+            AkSoundEngine.PostEvent("PlayWorld2", gameObject);
+            playingTrack2 = true;
         }
     }
     public void SaveData(GameData data)

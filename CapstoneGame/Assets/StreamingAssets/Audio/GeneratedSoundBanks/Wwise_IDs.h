@@ -32,8 +32,10 @@ namespace AK
         static const AkUniqueID PLAYER_JUMP = 1305133589U;
         static const AkUniqueID PLAYMENU = 1862289782U;
         static const AkUniqueID PLAYWORLD1 = 4039638074U;
+        static const AkUniqueID PLAYWORLD2 = 4039638073U;
         static const AkUniqueID STOPMENU = 2273031176U;
         static const AkUniqueID STOPWORLD1 = 2443977444U;
+        static const AkUniqueID STOPWORLD2 = 2443977447U;
         static const AkUniqueID TELE_OBJECT = 405211869U;
     } // namespace EVENTS
 

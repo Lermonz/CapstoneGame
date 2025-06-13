@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -218,7 +219,9 @@ public class Player : MonoBehaviour
             AkSoundEngine.PostEvent("Player_Attack", gameObject);
             _vfxPlayer.Spin_Sparkle();
             _animator.Play("Player_Spin");
-            if(!_controller._isGrounded && _canDoubleJump) {
+            SwapBlocks(FindAllOnOffBlockObjects());
+            if (!_controller._isGrounded && _canDoubleJump)
+            {
                 _canDoubleJump = false;
                 _vfxPlayer.Woosh(-0.5f);
                 _velocity.y = _doubleJumpVelocity;
@@ -386,6 +389,18 @@ public class Player : MonoBehaviour
             _grabbedBy.Detach(new Vector2(_velocity.x*0.5f, 9));
         }
         _grabbedBy = null;
+    }
+    private List<OnOffBlockBehaviour> FindAllOnOffBlockObjects() 
+    {
+        IEnumerable<OnOffBlockBehaviour> OnOffObjects =
+            FindObjectsByType<OnOffBlockBehaviour>(FindObjectsSortMode.None);
+        return new List<OnOffBlockBehaviour>(OnOffObjects);
+    }
+    void SwapBlocks(List<OnOffBlockBehaviour> AllBlocks) {
+        foreach (OnOffBlockBehaviour OnOff in AllBlocks)
+        {
+            OnOff.SwapState();
+        }
     }
     /// COLLISIONS WITH OBJECTS ///
     // GRAVITY FIELD

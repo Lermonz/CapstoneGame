@@ -29,7 +29,7 @@
 				<GameParameter Id="3358493668" Name="MusicMix"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{5A0C7177-2B85-B2F0-42EA-8DC9865CE020}">
+		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{44A9ED11-635D-C90B-BEDB-990234E5F009}">
 			<ShortName>SoundbankAll</ShortName>
 			<Path>SoundbankAll.bnk</Path>
 			<Media>
@@ -68,6 +68,10 @@
 				<File Id="223842354" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>AntiworkLoop_2.wav</ShortName>
 					<CachePath>SFX/AntiworkLoop_2_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="242646987" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Unsupported.wav</ShortName>
+					<CachePath>SFX/Unsupported_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="291109648" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>player_Jump1.wav</ShortName>
@@ -215,8 +219,14 @@
 						<MediaRef Id="223842354"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="4039638073" Name="PlayWorld2" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="242646987"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="2273031176" Name="StopMenu" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="2443977444" Name="StopWorld1" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="2443977447" Name="StopWorld2" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="405211869" Name="Tele_Object" DurationType="OneShot" DurationMin="1.3593333" DurationMax="1.3593333">
 					<MediaRefs>
 						<MediaRef Id="162884650"/>
@@ -225,5 +235,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{3760E921-12F4-4629-A078-9CC08177F5F6}</FileHash>
+	<FileHash>{B5B08D4C-0438-A484-AE99-8345ED4C5364}</FileHash>
 </SoundBanksInfo>
