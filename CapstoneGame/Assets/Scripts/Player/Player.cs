@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 
     float _horizontalInput;
 
-    float _jumpVelocity = 13.2f;
+    float _jumpVelocity = 13.7f;
     float _doubleJumpVelocity = 10.5f;
     float _downBoostVelocity = -20f;
     float _baseAccel = 18f;
@@ -329,7 +329,7 @@ public class Player : MonoBehaviour
         {
             if (i < 3)
             {
-                _spinBoost = 2.2f;
+                _spinBoost = 2f;
             }
             else
                 _spinBoost = 0;

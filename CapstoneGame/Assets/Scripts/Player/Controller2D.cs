@@ -1,5 +1,6 @@
 using System.Collections;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent (typeof (BoxCollider2D))]
@@ -17,6 +18,7 @@ public class Controller2D : MonoBehaviour
 
 
     public LayerMask collMask;
+    public LayerMask getOutMask;
     CinemachineFramingTransposer _vcamTransposer;
 
     public bool _isGrounded = true;
@@ -30,6 +32,7 @@ public class Controller2D : MonoBehaviour
 
     BoxCollider2D _collider;
     RayCastOrigins _raycastOrigins;
+    Vector2 _center;
     void Start() {
         _collider = GetComponent<BoxCollider2D>();
         _vcamTransposer = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
@@ -42,7 +45,9 @@ public class Controller2D : MonoBehaviour
         RayCastUpdate();
         VertCollisions(ref velocity);
         HorzCollisions(ref velocity);
-        if(!PauseMenu.Instance._isPaused) {
+        ReverseHorzCollision(ref velocity);
+        if (!PauseMenu.Instance._isPaused)
+        {
             transform.Translate(velocity);
         }
     }
@@ -105,10 +110,17 @@ public class Controller2D : MonoBehaviour
             Vector2 rayOrigin = directionX == -1 ? _raycastOrigins.botleft : _raycastOrigins.botright;
             rayOrigin += Vector2.up * (_horzRaySpacing * _vertMult * i);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collMask);
-            Debug.DrawRay(rayOrigin, Vector2.up * directionX * rayLength, Color.red);
+            Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
 
             if(hit) {
-                velocity.x = (hit.distance-boundInset) * directionX;
+                if (hit.distance == 0)
+                {
+                    GetOutOfWallCollision(ref velocity);
+                }
+                else
+                {
+                    velocity.x = (hit.distance-boundInset) * directionX;
+                }
                 //velocity.y = Mathf.Clamp(velocity.y, -Mathf.Infinity, 0);
                 rayLength = hit.distance;
                 _hitWall = true;
@@ -122,13 +134,44 @@ public class Controller2D : MonoBehaviour
         }
 
     }
+    void ReverseHorzCollision(ref Vector2 velocity)
+    {
+        float directionX = Mathf.Sign(velocity.x);
+        float rayLength = Mathf.Abs(velocity.x) + boundInset;
+        Vector2 rayOrigin = directionX == 1 ? _raycastOrigins.botleft + Vector2.right * 0.25f : _raycastOrigins.botright - Vector2.right * 0.25f;
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collMask);
+        Vector2 rayOrigin2 = directionX == 1 ? _raycastOrigins.topleft + Vector2.right * 0.25f : _raycastOrigins.topright - Vector2.right * 0.25f;
+        RaycastHit2D hit2 = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collMask);
+        if (hit && hit2)
+        {
+            if (hit.distance == 0)
+            {
+                GetOutOfWallCollision(ref velocity);
+            }
+            else
+            {
+                velocity.x = (hit.distance + 0.25f) * directionX;
+            }
+        }
+    }
+    void GetOutOfWallCollision(ref Vector2 velocity)
+    {
+        RaycastHit2D escapeRight = Physics2D.Raycast(_raycastOrigins.botright, Vector2.right, 4, getOutMask);
+        RaycastHit2D escapeLeft = Physics2D.Raycast(_raycastOrigins.botleft, Vector2.left, 4, getOutMask);
+        Debug.DrawRay(_raycastOrigins.botright, Vector2.right* 4, Color.red);
+        Debug.DrawRay(_raycastOrigins.botleft, Vector2.left* 4, Color.red);
+        float shortestDistance = escapeRight.distance < escapeLeft.distance ? escapeRight.distance : -escapeLeft.distance;
+        velocity.x = shortestDistance;
+        Debug.Log("escapeRight: " + escapeRight.distance + "\nescapeLeft: " + escapeLeft.distance + "\nshortest: " + shortestDistance + "\nvelocity.x:" + velocity.x);
+    }
     void RayCastUpdate() {
         Bounds bounds = getBounds();
 
-        _raycastOrigins.botleft = new Vector2(bounds.min.x,bounds.min.y);
-        _raycastOrigins.botright = new Vector2(bounds.max.x,bounds.min.y);
-        _raycastOrigins.topleft = new Vector2(bounds.min.x,bounds.max.y);
-        _raycastOrigins.topright = new Vector2(bounds.max.x,bounds.max.y);
+        _raycastOrigins.botleft = new Vector2(bounds.min.x, bounds.min.y);
+        _raycastOrigins.botright = new Vector2(bounds.max.x, bounds.min.y);
+        _raycastOrigins.topleft = new Vector2(bounds.min.x, bounds.max.y);
+        _raycastOrigins.topright = new Vector2(bounds.max.x, bounds.max.y);
+        //_center = new Vector2((bounds.max.x+bounds.min.x)/2, (bounds.min.y+bounds.max.y)/2);
     }
     void CalcRays(){
         Bounds bounds = getBounds();
