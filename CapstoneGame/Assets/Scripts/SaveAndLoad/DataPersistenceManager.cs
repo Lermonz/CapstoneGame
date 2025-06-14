@@ -45,10 +45,10 @@ public class DataPersistenceManager : MonoBehaviour
             return;
         }
         // pass the data to other scripts so they can update it
-        foreach (IDataPersistence dataPersistenceObj in _dataPersistenceObjects)
-        {
+        foreach(IDataPersistence dataPersistenceObj in _dataPersistenceObjects) {
+            Debug.Log("DataPersistenceManager SaveData foreach SAVE\n"+dataPersistenceObj);
             dataPersistenceObj.SaveData(_gameData);
-            Debug.Log("we did the foreach");
+            Debug.Log("DataPersistenceManager SaveData foreach SAVE2!!! 2! 2!");
         }
 
         // save that data to a file using the data handler
@@ -64,13 +64,16 @@ public class DataPersistenceManager : MonoBehaviour
         }
         // push the loaded data to all scripts that need it
         foreach(IDataPersistence dataPersistenceObj in _dataPersistenceObjects) {
+            Debug.Log("DataPersistenceManager LoadData foreach LOAD");
             dataPersistenceObj.LoadData(_gameData);
         }
     }
     private List<IDataPersistence> FindAllDataPersistenceObjects() 
     {
         IEnumerable<IDataPersistence> dataPersistenceObjects =
+            //FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IDataPersistence>();
             FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
+        Debug.Log("why no list of IDataPersistence??? " + (new List<IDataPersistence>(dataPersistenceObjects)));
         return new List<IDataPersistence>(dataPersistenceObjects);
     }
 }

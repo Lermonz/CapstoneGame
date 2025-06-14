@@ -52,7 +52,10 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
     private void MakeButtonInteractable(GameData data) {
         if (data.medals.ContainsKey(_buttonData._levelID))
         {
-            _medalImage.MedalLoad(data.medals[_buttonData._levelID]);
+            if (_medalImage != null)
+            { 
+                _medalImage.MedalLoad(data.medals[_buttonData._levelID]);
+            }
         }
         _levelButton.interactable = data.unlockedLevels[_buttonData._levelID];
         _shouldBeUnlocked = _levelButton.interactable;
