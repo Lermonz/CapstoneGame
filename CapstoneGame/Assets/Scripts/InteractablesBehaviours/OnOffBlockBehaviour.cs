@@ -11,14 +11,10 @@ public class OnOffBlockBehaviour : MonoBehaviour
     // }
     [SerializeField] SpriteRenderer _renderer;
     [SerializeField] BoxCollider2D _collider;
-    [SerializeField] GameObject escapeRight;
-    [SerializeField] GameObject escapeLeft;
     [SerializeField] bool _state;
     void Start()
     {
         ActivateState();
-        escapeRight.transform.localPosition = new Vector3((this.transform.localScale.x + 1) / this.transform.localScale.x, 0, 0);
-        escapeLeft.transform.localPosition = new Vector3(-(this.transform.localScale.x + 1) / this.transform.localScale.x, 0, 0);
     }
     void ActivateState()
     {
