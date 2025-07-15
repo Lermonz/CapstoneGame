@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class MainMenuManager : MonoBehaviour
 {
-    [Header ("Panels")]
+    [Header("Panels")]
     public GameObject _mainMenu;
     public GameObject _costumesMenu;
     public GameObject _settingsMenu;
@@ -12,21 +12,23 @@ public class MainMenuManager : MonoBehaviour
     public GameObject _levelsMenu;
     public GameObject _resetDataMenu;
 
-    [Header ("Event System wants a first selected button")]
+    [Header("Event System wants a first selected button")]
     [SerializeField] private GameObject _mainFirstButton;
     [SerializeField] private GameObject _costumesFirstButton;
     [SerializeField] private GameObject _settingsFirstButton;
     [SerializeField] private GameObject _controlsFirstButton;
     [SerializeField] private GameObject _levelsFirstButton;
     [SerializeField] private GameObject _resetDataFirstButton;
-    
+
     public WorldMenuColorChanger[] _colorChangers;
-    public int CurrentWorld {get; private set;}
+    public int CurrentWorld { get; private set; }
     int[] _lastSelectedLevelButton;
 
     public static MainMenuManager Instance;
-    void Awake() {
-        if (Instance != null && Instance != this) {
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
             Destroy(this);
             return;
         }
@@ -49,7 +51,8 @@ public class MainMenuManager : MonoBehaviour
     //     }
     // }
 
-    private void CloseMenus() {
+    private void CloseMenus()
+    {
         _mainMenu.SetActive(false);
         _costumesMenu.SetActive(false);
         NillyDisplay.Instance.ShowNilly(false);
@@ -60,35 +63,41 @@ public class MainMenuManager : MonoBehaviour
         //_levelsMenu.GetComponent<Canvas>().enabled = false;
         EventSystem.current.SetSelectedGameObject(null);
     }
-    private void OpenMainMenu() {
+    private void OpenMainMenu()
+    {
         CloseMenus();
         _mainMenu.SetActive(true);
         EventSystem.current.SetSelectedGameObject(_mainFirstButton);
     }
-    private void OpenLevelsMenu() {
+    private void OpenLevelsMenu()
+    {
         CloseMenus();
         //_levelsMenu.SetActive(true);
         _levelsMenu.SetActive(true);
         DataPersistenceManager.Instance.LoadGame();
         EventSystem.current.SetSelectedGameObject(_levelsFirstButton);
     }
-    private void OpenCostumesMenu() {
+    private void OpenCostumesMenu()
+    {
         CloseMenus();
         _costumesMenu.SetActive(true);
         NillyDisplay.Instance.ShowNilly(true);
         EventSystem.current.SetSelectedGameObject(_costumesFirstButton);
     }
-    private void OpenSettingsMenu() {
+    private void OpenSettingsMenu()
+    {
         CloseMenus();
         _settingsMenu.SetActive(true);
         EventSystem.current.SetSelectedGameObject(_settingsFirstButton);
     }
-    private void OpenControlsMenu() {
+    private void OpenControlsMenu()
+    {
         CloseMenus();
         _controlsMenu.SetActive(true);
         EventSystem.current.SetSelectedGameObject(_controlsFirstButton);
     }
-    private void OpenResetDataMenu() {
+    private void OpenResetDataMenu()
+    {
         _resetDataMenu.SetActive(true);
         EventSystem.current.SetSelectedGameObject(_resetDataFirstButton);
     }
@@ -126,25 +135,42 @@ public class MainMenuManager : MonoBehaviour
     {
         OpenSettingsMenu();
     }
-    public void OnControlsPress() {
+    public void OnControlsPress()
+    {
         OpenControlsMenu();
     }
-    public void OnLevelsPress() {
+    public void OnLevelsPress()
+    {
         OpenLevelsMenu();
     }
-    public void OnResetDataPress() {
+    public void OnResetDataPress()
+    {
         OpenResetDataMenu();
     }
-    public void OnBackPress() {
+    public void OnBackPress()
+    {
         OpenMainMenu();
     }
-    public void OnNextWorldPress() {
+    public void OnNextWorldPress()
+    {
         IncrementWorld();
     }
-    public void OnPrevWorldPress() {
+    public void OnPrevWorldPress()
+    {
         DecrementWorld();
     }
-    public void FindAudioPlayerForButtons(int fileNum) {
+    public void FindAudioPlayerForButtons(int fileNum)
+    {
         AudioSelecterButtons.Instance.PlaySFX(fileNum);
+    }
+    // METHODS THAT REDIRECT TO SCRIPTS THAT PERSIST BETWEEN SCENES (dont destroy on loads)
+    // so that buttons on the menu can access them
+    public void OnQuitButton()
+    {
+        GameBehaviour.Instance.ExitGame();
+    }
+    public void OnCostumeChangeButton(int cID)
+    {
+        GameBehaviour.Instance.SetCostume(cID);
     }
 }

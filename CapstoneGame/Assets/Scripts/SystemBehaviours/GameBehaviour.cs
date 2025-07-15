@@ -6,12 +6,13 @@ using UnityEditor;
 #endif
 
 [DisallowMultipleComponent]
-public class GameBehaviour : MonoBehaviour
+public class GameBehaviour : MonoBehaviour, IDataPersistence
 {
     public static GameBehaviour Instance;
     public bool _isGame;
     public List<Texture> _costumes;
     public Texture SelectedCostume { get; private set; }
+    int _costumeID;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -69,6 +70,16 @@ public class GameBehaviour : MonoBehaviour
     }
     public void SetCostume(int cID = 0)
     {
+        _costumeID = cID;
         SelectedCostume = _costumes[cID];
+        SaveGame();
+    }
+    public void SaveData(GameData data)
+    {
+        data.selectedCostume = _costumeID;
+    }
+    public void LoadData(GameData data)
+    {
+        SelectedCostume = _costumes[data.selectedCostume];
     }
 }

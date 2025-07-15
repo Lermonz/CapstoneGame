@@ -77,7 +77,6 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         }
     }
     public void LoadData(GameData data) {
-        Debug.Log("does load data in level manager get called??");
         this._bronzeTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelBronzes[_levelID]);
         this._silverTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelSilvers[_levelID]);
         this._goldTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelGolds[_levelID]);
@@ -91,7 +90,6 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     }
     public void SaveData(GameData data)
     {
-        Debug.Log("SAVE THE FUCKIGN DATAAAAAAAAAAAAAAAAAAAAAAAAA");
         if (data.personalBest.ContainsKey(_levelID))
         {
             data.personalBest.Remove(_levelID);

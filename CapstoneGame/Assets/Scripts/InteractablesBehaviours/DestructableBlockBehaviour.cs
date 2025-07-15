@@ -56,6 +56,6 @@ public class DestructableBlockBehaviour : MonoBehaviour
         yield return new WaitForSeconds(delay);
         _renderer.enabled = true;
         _collider.enabled = true;
-        _renderer.color = new Color(0.6f, 0.63f, 0.66f, 1);
+        _renderer.color = Color.white;
     }
 }

@@ -9,6 +9,7 @@ public class GameData
     public SerializableDictionary<string, float> personalBest;
     public SerializableDictionary<string, string> medals;
     public SerializableDictionary<string, bool> costumes;
+    public int selectedCostume;
 
     //CONTROLS DATA
     public string rebinds;
@@ -24,6 +25,7 @@ public class GameData
     public GameData()
     {
         rebinds = string.Empty;
+        selectedCostume = 0;
         musicVolume = 69;
         costumes = new SerializableDictionary<string, bool>
         {
