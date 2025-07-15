@@ -6,6 +6,7 @@ public class MainMenuManager : MonoBehaviour
 {
     [Header ("Panels")]
     public GameObject _mainMenu;
+    public GameObject _costumesMenu;
     public GameObject _settingsMenu;
     public GameObject _controlsMenu;
     public GameObject _levelsMenu;
@@ -13,6 +14,7 @@ public class MainMenuManager : MonoBehaviour
 
     [Header ("Event System wants a first selected button")]
     [SerializeField] private GameObject _mainFirstButton;
+    [SerializeField] private GameObject _costumesFirstButton;
     [SerializeField] private GameObject _settingsFirstButton;
     [SerializeField] private GameObject _controlsFirstButton;
     [SerializeField] private GameObject _levelsFirstButton;
@@ -49,6 +51,8 @@ public class MainMenuManager : MonoBehaviour
 
     private void CloseMenus() {
         _mainMenu.SetActive(false);
+        _costumesMenu.SetActive(false);
+        NillyDisplay.Instance.ShowNilly(false);
         _settingsMenu.SetActive(false);
         _controlsMenu.SetActive(false);
         _resetDataMenu.SetActive(false);
@@ -67,6 +71,12 @@ public class MainMenuManager : MonoBehaviour
         _levelsMenu.SetActive(true);
         DataPersistenceManager.Instance.LoadGame();
         EventSystem.current.SetSelectedGameObject(_levelsFirstButton);
+    }
+    private void OpenCostumesMenu() {
+        CloseMenus();
+        _costumesMenu.SetActive(true);
+        NillyDisplay.Instance.ShowNilly(true);
+        EventSystem.current.SetSelectedGameObject(_costumesFirstButton);
     }
     private void OpenSettingsMenu() {
         CloseMenus();
@@ -107,6 +117,10 @@ public class MainMenuManager : MonoBehaviour
     void DebugIt()
     {
         Debug.Log("Actual World:" + CurrentWorld);
+    }
+    public void OnCostumesPress()
+    {
+        OpenCostumesMenu();
     }
     public void OnSettingsPress()
     {

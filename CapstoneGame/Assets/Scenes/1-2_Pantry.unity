@@ -2130,7 +2130,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.999995, y: 0.5, z: 0}
+  m_LocalPosition: {x: -8.999999, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7459,6 +7459,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2175378675514505406, guid: 8ee05fd044866443981128910a2d57bb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 64fe653a235ac4c518e212b32e1a4522, type: 2}
     - target: {fileID: 2368737537841638160, guid: 8ee05fd044866443981128910a2d57bb, type: 3}
       propertyPath: _vcamTransposer
       value: 

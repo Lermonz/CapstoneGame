@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 919afcedf51c0445b8335888e32a9482
+guid: 928df3431cb1c4742a3a09bd6cb0f53f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: la_creatura_spritesheet7_0
+      name: la_creatura_spritesheet9_0
       rect:
         serializedVersion: 2
         x: 32
@@ -131,20 +131,41 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.70161307, y: 0.5}
+      pivot: {x: 0.6875, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca1918c825c6d4aad8bd8fe174d5b21c
-      internalID: -739782120
+      spriteID: a18004b441b0d49d6adcbbe0719c4f65
+      internalID: -253541089
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: la_creatura_spritesheet7_1
+      name: la_creatura_spritesheet9_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 176
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.6875, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3836543b04c14279afeaddb8259f12e
+      internalID: 858140565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: la_creatura_spritesheet9_2
       rect:
         serializedVersion: 2
         x: 96
@@ -152,41 +173,41 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.6, y: 0.5}
+      pivot: {x: 0.625, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bb50b343856146ac9b0631fec934428
-      internalID: 74969852
+      spriteID: 0ee53f3db781646b4afcc7ae081e5942
+      internalID: -1531418049
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: la_creatura_spritesheet7_2
+      name: la_creatura_spritesheet9_3
       rect:
         serializedVersion: 2
         x: 128
         y: 176
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.53125, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c1d8809883984522b51ecaed7a0ed0d
-      internalID: -224000224
+      spriteID: 85bf9d5dab0be44afaabb9079499ea5a
+      internalID: -285456584
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: la_creatura_spritesheet7_3
+      name: la_creatura_spritesheet9_4
       rect:
         serializedVersion: 2
         x: 160
@@ -200,14 +221,56 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e2391f6ff1a84ebca101bc2da7cb490
-      internalID: 522874915
+      spriteID: 5bb9a2e8b4cc349bd8ab1399ad87702b
+      internalID: 141967721
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: la_creatura_spritesheet7_4
+      name: la_creatura_spritesheet9_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 144
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.6875, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41487819a8b1546fab8c6b97618e603d
+      internalID: -560014070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: la_creatura_spritesheet9_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 144
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.6875, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ef875621399e4a0686b04c4bf78d03f
+      internalID: -1121568732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: la_creatura_spritesheet9_7
       rect:
         serializedVersion: 2
         x: 96
@@ -215,62 +278,62 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.6, y: 0.5}
+      pivot: {x: 0.625, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b5e4ff1a75304b10a143a5dca7fcbbe
-      internalID: -1184617854
+      spriteID: bfa2b06b399de41c9bd0242dd2dbb0ac
+      internalID: -1042719252
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: la_creatura_spritesheet7_5
+      name: la_creatura_spritesheet9_8
       rect:
         serializedVersion: 2
         x: 128
         y: 144
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.53125, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ef605068028d4d408aa466d3410ad40
-      internalID: 1514005796
+      spriteID: 3c4a58c0dc4684e528ab0276c34b3f6b
+      internalID: -1034698596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: la_creatura_spritesheet7_6
+      name: la_creatura_spritesheet9_9
       rect:
         serializedVersion: 2
         x: 32
         y: 112
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.53125, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61b03906c477841558f3068592f1355e
-      internalID: -1620801974
+      spriteID: 416f3165210c04b968e6bfd17f80fdec
+      internalID: 856233039
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: la_creatura_spritesheet7_7
+      name: la_creatura_spritesheet9_10
       rect:
         serializedVersion: 2
         x: 96
@@ -278,41 +341,41 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.6, y: 0.5}
+      pivot: {x: 0.625, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7137513f51e5c43cea32a9d894f8a3a9
-      internalID: -1492705759
+      spriteID: b714507e82f6a4d2196345830bd77777
+      internalID: 1392883138
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: la_creatura_spritesheet7_8
+      name: la_creatura_spritesheet9_11
       rect:
         serializedVersion: 2
         x: 32
         y: 80
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.53125, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4a1659a5643a4824bd3c0e6764bcdef
-      internalID: 409407994
+      spriteID: f8c2692d96ef54ffe9571e3dfcdde372
+      internalID: 1875342787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: la_creatura_spritesheet7_9
+      name: la_creatura_spritesheet9_12
       rect:
         serializedVersion: 2
         x: 96
@@ -320,20 +383,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.6, y: 0.5}
+      pivot: {x: 0.625, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1ed5f68835fc4abfbebcbcbd20f087f
-      internalID: 1316579993
+      spriteID: c716ac3cb9e3a4ee4814c76a17531b08
+      internalID: 1863681746
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: la_creatura_spritesheet7_10
+      name: la_creatura_spritesheet9_13
       rect:
         serializedVersion: 2
         x: 32
@@ -341,20 +404,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.4, y: 0.5}
+      pivot: {x: 0.4375, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99a7f0510cba8438a963979cf42763d2
-      internalID: -1588316720
+      spriteID: 8bb1c3dcc0552497b9c298b5768d0d7b
+      internalID: 293241012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: la_creatura_spritesheet7_11
+      name: la_creatura_spritesheet9_14
       rect:
         serializedVersion: 2
         x: 96
@@ -362,20 +425,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.6, y: 0.5}
+      pivot: {x: 0.625, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 970b4000c62874f3ab28f7e8d02f8b45
-      internalID: 1583546190
+      spriteID: 5356aec2d44b74a19a5c20c79a9eda6b
+      internalID: -606011256
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: la_creatura_spritesheet7_13
+      name: la_creatura_spritesheet9_16
       rect:
         serializedVersion: 2
         x: 29
@@ -383,20 +446,20 @@ TextureImporter:
         width: 45
         height: 32
       alignment: 9
-      pivot: {x: 0.48, y: 0.5}
+      pivot: {x: 0.51111114, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b585c69a7dbc24347be5ada8002ebe23
-      internalID: -1368481133
+      spriteID: 8f363f8f3321548c2ad7275a40e0845a
+      internalID: -2019222611
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: la_creatura_spritesheet7_15
+      name: la_creatura_spritesheet9_18
       rect:
         serializedVersion: 2
         x: 96
@@ -404,20 +467,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.6, y: 0.5}
+      pivot: {x: 0.625, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fa77a3f39b0f422895b3b2bfad4d95a
-      internalID: 697012822
+      spriteID: 6517dcb40095940398dff9ef86c7a6b2
+      internalID: 689233899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: la_creatura_spritesheet7_16
+      name: la_creatura_spritesheet9_19
       rect:
         serializedVersion: 2
         x: 128
@@ -425,14 +488,14 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.6, y: 0.5}
+      pivot: {x: 0.65625, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af3d2387a67d4429aa57a36c995f19bd
-      internalID: -462500685
+      spriteID: 977ed4a53d20440cdab344ef47d91d6f
+      internalID: 1828204739
       vertices: []
       indices: 
       edges: []
@@ -448,23 +511,26 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      la_creatura_spritesheet7_0: -739782120
-      la_creatura_spritesheet7_1: 74969852
-      la_creatura_spritesheet7_10: -1588316720
-      la_creatura_spritesheet7_11: 1583546190
-      la_creatura_spritesheet7_12: 2141399460
-      la_creatura_spritesheet7_13: -1368481133
-      la_creatura_spritesheet7_14: -462409876
-      la_creatura_spritesheet7_15: 697012822
-      la_creatura_spritesheet7_16: -462500685
-      la_creatura_spritesheet7_2: -224000224
-      la_creatura_spritesheet7_3: 522874915
-      la_creatura_spritesheet7_4: -1184617854
-      la_creatura_spritesheet7_5: 1514005796
-      la_creatura_spritesheet7_6: -1620801974
-      la_creatura_spritesheet7_7: -1492705759
-      la_creatura_spritesheet7_8: 409407994
-      la_creatura_spritesheet7_9: 1316579993
+      la_creatura_spritesheet9_0: -253541089
+      la_creatura_spritesheet9_1: 858140565
+      la_creatura_spritesheet9_10: 1392883138
+      la_creatura_spritesheet9_11: 1875342787
+      la_creatura_spritesheet9_12: 1863681746
+      la_creatura_spritesheet9_13: 293241012
+      la_creatura_spritesheet9_14: -606011256
+      la_creatura_spritesheet9_15: -1612114060
+      la_creatura_spritesheet9_16: -2019222611
+      la_creatura_spritesheet9_17: -1296193008
+      la_creatura_spritesheet9_18: 689233899
+      la_creatura_spritesheet9_19: 1828204739
+      la_creatura_spritesheet9_2: -1531418049
+      la_creatura_spritesheet9_3: -285456584
+      la_creatura_spritesheet9_4: 141967721
+      la_creatura_spritesheet9_5: -560014070
+      la_creatura_spritesheet9_6: -1121568732
+      la_creatura_spritesheet9_7: -1042719252
+      la_creatura_spritesheet9_8: -1034698596
+      la_creatura_spritesheet9_9: 856233039
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

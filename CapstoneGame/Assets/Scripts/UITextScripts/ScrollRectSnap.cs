@@ -37,7 +37,10 @@ public class ScrollRectSnap : MonoBehaviour
 
         //Get distance between buttons
         _buttonDistance = (int)Mathf.Abs(_world1Levels[1].GetComponent<RectTransform>().anchoredPosition.y - _world1Levels[0].GetComponent<RectTransform>().anchoredPosition.y);
-        _worldDistance = (int)Mathf.Abs(_panelForLevels[1].anchoredPosition.x - _panelForLevels[0].anchoredPosition.x);
+        if (_panelForLevels.Length > 1)
+        {  
+            _worldDistance = (int)Mathf.Abs(_panelForLevels[1].anchoredPosition.x - _panelForLevels[0].anchoredPosition.x);
+        }
     }
     void Update() {
         _button = _buttonsArray[_currentWorld];

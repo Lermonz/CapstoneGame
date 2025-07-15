@@ -26,7 +26,7 @@ public class DestructableBlockBehaviour : MonoBehaviour
     {
         Debug.Log("Fragile left");
         this.gameObject.GetComponent<SpriteRenderer>().color *= 0.75f;
-        StartCoroutine(Deactivate(0.9f));
+        StartCoroutine(Deactivate(0.3f));
         _beenTouched = true;
     }
     void Update()
@@ -37,7 +37,7 @@ public class DestructableBlockBehaviour : MonoBehaviour
         }
         if (_blockIsGone)
         {
-            StartCoroutine(Reactivate(4));
+            StartCoroutine(Reactivate(6));
         }
     }
     IEnumerator Deactivate(float delay)

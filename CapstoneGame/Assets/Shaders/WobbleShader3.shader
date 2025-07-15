@@ -50,9 +50,7 @@ Shader "Unlit/WobbleShader3"
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                i.uv.x *= cos(i.uv.y*2)+8;
-                i.uv.x -= 0.5;
-                i.uv.y -= 0.025+_Time.y*0.45;
+                i.uv.y -= _Time.y*0.65;
                 fixed4 col = tex2D(_MainTex, i.uv)*i.color;
                 return col;
             }

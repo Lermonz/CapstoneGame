@@ -51,12 +51,14 @@ public class LevelManager : MonoBehaviour, IDataPersistence
             }
         }
     }
-    IEnumerator Countdown() {
+    IEnumerator Countdown()
+    {
         yield return new WaitForSeconds(2f);
-        _stopTimer = false;
         _countdownDone = true;
         InputManager.Instance.EnablePlayerInput();
         InputManager.Instance._freezeVelocity = false;
+        yield return new WaitForSeconds(0.5f);
+        _stopTimer = false;
     }
     public void FreezePlayerAndTimer(bool doIt = true) {
         _stopTimer = doIt;

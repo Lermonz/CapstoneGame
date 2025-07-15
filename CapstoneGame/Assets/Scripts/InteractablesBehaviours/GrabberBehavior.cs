@@ -28,7 +28,7 @@ public class GrabberBehavior : MonoBehaviour
     }
     IEnumerator FlyOffAndReset(Vector2 velocity)
     {
-        for (int i = 0; i < 120; i++)
+        for (int i = 0; i < 300; i++)
         {
             this.transform.Translate(velocity * Time.deltaTime);
             yield return null;

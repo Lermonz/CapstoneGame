@@ -17,6 +17,6 @@ public class CountdownText : MonoBehaviour
     }
     void CountGo() {
         _text.text = "Go!";
-        Destroy(this.gameObject, 0.6f);
+        Destroy(this.gameObject, 0.5f);
     }
 }

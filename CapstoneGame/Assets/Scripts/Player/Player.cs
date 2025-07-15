@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
     bool _jumpOverride = false;
     bool _overrideXInput = false;
     bool _dead;
-    
+
     void Start()
     {
         _controller = GetComponent<Controller2D>();
@@ -72,6 +72,11 @@ public class Player : MonoBehaviour
         //_particles = GetComponent<ParticleSystem>();
         _terminalVelocity = _termV;
         _dead = false;
+        SetCostume();
+    }
+    void SetCostume()
+    {
+        _renderer.material.SetTexture("_Palette", GameBehaviour.Instance.SelectedCostume);
     }
     void Update() {
         _horizontalInput = _overrideXInput ? 0 : InputManager.Instance.HorizontalInput;
@@ -79,6 +84,10 @@ public class Player : MonoBehaviour
         //Debug.Log("Dead: "+_dead);
         _animator.SetBool("Running", _horizontalInput != 0 && _controller._isGrounded);
         _animator.SetBool("Jumping", _velocity.y >= 0 && !_controller._isGrounded && !_dead);
+        if (_velocity.y >= 0 && !_controller._isGrounded && !_dead)
+        {
+            Debug.Log("animator should be jumping");
+        }
         _animator.SetBool("Falling", _velocity.y < 0 && !_controller._isGrounded && !_dead);
         //_dpad = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         
@@ -414,6 +423,7 @@ public class Player : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Grabber"))
         {
+            _velocity.y = Mathf.Clamp(_velocity.y, _terminalVelocity, 0);
             _velocity.y *= 0.2f;
             _grabbedSpeed = -20;
             _grabbedMode = true;

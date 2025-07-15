@@ -1,6 +1,8 @@
 using UnityEngine;
+using System.Collections.Generic;
+
 #if UNITY_EDITOR
-    using UnityEditor;
+using UnityEditor;
 #endif
 
 [DisallowMultipleComponent]
@@ -8,6 +10,8 @@ public class GameBehaviour : MonoBehaviour
 {
     public static GameBehaviour Instance;
     public bool _isGame;
+    public List<Texture> _costumes;
+    public Texture SelectedCostume { get; private set; }
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -58,8 +62,13 @@ public class GameBehaviour : MonoBehaviour
     {
         DataPersistenceManager.Instance.LoadGame();
     }
-    public void OnResetProgressPress() {
+    public void OnResetProgressPress()
+    {
         DataPersistenceManager.Instance.NewGame();
         SaveGame();
+    }
+    public void SetCostume(int cID = 0)
+    {
+        SelectedCostume = _costumes[cID];
     }
 }

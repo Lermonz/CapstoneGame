@@ -67,7 +67,8 @@ public class Controller2D : MonoBehaviour
         for (int i = 0; i < _vertRayCount; i++)
         {
             float _tempVertRaySpacing = directionY == -1 ? _vertRaySpacing * 0.9f : _vertRaySpacing * 0.7f;
-            Vector2 rayOrigin = directionY == -1 ? _raycastOrigins.botleft + Vector2.right * 0.05f : _raycastOrigins.topleft + Vector2.right * 0.15f;
+            Vector2 rayOrigin = directionY == -1 ? _raycastOrigins.botleft : _raycastOrigins.topleft;
+            rayOrigin += directionY == -_groundIsDown ? (Vector2.right * 0.05f) : (Vector2.right * 0.15f + Vector2.up * -0.1f);
             rayOrigin += Vector2.right * i * _tempVertRaySpacing;
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collMask);
             Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
