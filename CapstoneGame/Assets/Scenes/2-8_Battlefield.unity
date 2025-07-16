@@ -3020,17 +3020,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 668707617600971281, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Size.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 668707617600971281, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Size.y
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2215785520891321108, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
       propertyPath: m_MaskInteraction
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2521277708147922210, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2521277708147922210, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2521277708147922210, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3076,25 +3084,57 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2907785404727316965, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
-      value: -0.49
+      value: -9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
-      value: -0.49
+      value: -9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
-      value: 0.49
+      value: 9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
-      value: 0.49
+      value: 9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8178026012033243743, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
       propertyPath: m_Name
       value: GravityBlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416075589415062439, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5977,6 +6017,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134102b9c6e9941eb99b5497d25da0ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _akMusicVolume:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  _akSoundVolume:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
 --- !u!4 &1828627964
 Transform:
   m_ObjectHideFlags: 0

@@ -1393,7 +1393,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.2434707, y: 7.5, z: 0}
+  m_LocalPosition: {x: -2.23133, y: 7.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2970,6 +2970,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 668707617600971281, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Size.x
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 668707617600971281, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Size.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 668707617600971281, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
       propertyPath: m_MaskInteraction
       value: 2
       objectReference: {fileID: 0}
@@ -2979,11 +2987,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2521277708147922210, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2521277708147922210, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2521277708147922210, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
       propertyPath: m_LocalScale.z
@@ -3033,9 +3041,57 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2907785404727316965, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627114730709953796, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8178026012033243743, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
       propertyPath: m_Name
       value: GravityBlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416075589415062439, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7824,6 +7880,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134102b9c6e9941eb99b5497d25da0ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _akMusicVolume:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  _akSoundVolume:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
 --- !u!4 &1828627964
 Transform:
   m_ObjectHideFlags: 0
@@ -8496,7 +8560,7 @@ Transform:
   m_GameObject: {fileID: 2012700809}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.4999995, y: 7.5, z: 0}
+  m_LocalPosition: {x: -6.5, y: 7.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
