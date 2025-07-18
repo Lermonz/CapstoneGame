@@ -26,6 +26,8 @@ public class Controller2D : MonoBehaviour
     public bool _hitWall;
     public bool _canDoubleJump;
     bool _destructable;
+    bool _touchConveyer;
+    public float _conveyerSpeed;
     DestructableBlockBehaviour _destructableBlock;
 
     float _vertMult = 0.95f;
@@ -34,7 +36,6 @@ public class Controller2D : MonoBehaviour
 
     BoxCollider2D _collider;
     RayCastOrigins _raycastOrigins;
-    Vector2 _center;
     void Start() {
         _collider = GetComponent<BoxCollider2D>();
         _vcamTransposer = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
@@ -68,7 +69,7 @@ public class Controller2D : MonoBehaviour
         {
             float _tempVertRaySpacing = directionY == -1 ? _vertRaySpacing * 0.9f : _vertRaySpacing * 0.7f;
             Vector2 rayOrigin = directionY == -1 ? _raycastOrigins.botleft : _raycastOrigins.topleft;
-            rayOrigin += directionY == -_groundIsDown ? (Vector2.right * 0.05f) : (Vector2.right * 0.15f + Vector2.up * -0.1f);
+            rayOrigin += directionY == -_groundIsDown ? (Vector2.right * 0.05f) : (Vector2.right * 0.15f);
             rayOrigin += Vector2.right * i * _tempVertRaySpacing;
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collMask);
             Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
@@ -83,7 +84,7 @@ public class Controller2D : MonoBehaviour
                 }
                 else
                 {
-                    if (!_isGrounded)
+                    if (!_isGrounded && !LevelManager.Instance._stopTimer)
                     {
                         this.GetComponent<VFXPlayer>().DustEffect(-0.45f * _groundIsDown);
                     }
@@ -95,6 +96,13 @@ public class Controller2D : MonoBehaviour
                     _destructable = true;
                     _destructableBlock = hit.collider.GetComponent<DestructableBlockBehaviour>();
                 }
+                if(_touchConveyer) {_conveyerSpeed = hit.collider.GetComponent<ConveyerBehaviour>()._speed;}
+                else { _conveyerSpeed = 0; }
+                if (hit.collider.CompareTag("Conveyer"))
+                {
+                    _touchConveyer = true;
+                }
+                    Debug.Log("conveyer? " + _touchConveyer + " " + _conveyerSpeed);
 
             }
             else
@@ -105,6 +113,7 @@ public class Controller2D : MonoBehaviour
         }
         if (_vertElseCount >= _vertRayCount)
         {
+            _touchConveyer = false;
             _isGrounded = false;
             _hitCeiling = false;
             _destructable = false;
@@ -217,7 +226,7 @@ public class Controller2D : MonoBehaviour
         _vertRayCount = Mathf.Clamp(_vertRayCount,2,20);
 
         _horzRaySpacing = bounds.size.y / (_horzRayCount-1);
-        _vertRaySpacing = bounds.size.y / (_vertRayCount-1);
+        _vertRaySpacing = bounds.size.x / (_vertRayCount-1);
     }
     Bounds getBounds() {
         Bounds bounds = _collider.bounds;

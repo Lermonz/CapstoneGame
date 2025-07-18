@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
@@ -18,7 +19,7 @@ public class Player : MonoBehaviour
 
     float _horizontalInput;
 
-    float _jumpVelocity = 13.7f;
+    float _jumpVelocity = 14f;
     float _doubleJumpVelocity = 10.5f;
     float _downBoostVelocity = -20f;
     float _baseAccel = 18f;
@@ -26,11 +27,11 @@ public class Player : MonoBehaviour
     float _baseAirDecel = 2.8f;
     float _skidDecel = 40f;
     float _maxRunSpeed = 5.8f;
-    const float _gravity = -31f;
+    const float _gravity = -32f;
     float _gravityMult = 1;
     bool _inBlackHole = false;
     float _terminalVelocity;
-    const float _termV = -16;
+    const float _termV = -20;
     Vector2 _wind;
 
     bool _canJump = true;
@@ -48,6 +49,8 @@ public class Player : MonoBehaviour
     float _grabbedSpeed;
     float _grabbedAccel = 124;
     GrabberBehavior _grabbedBy;
+
+    float _bounceVelocity = 18f;
 
     bool _boostDeceling;
     float _boostSpeed = 12f;
@@ -84,10 +87,6 @@ public class Player : MonoBehaviour
         //Debug.Log("Dead: "+_dead);
         _animator.SetBool("Running", _horizontalInput != 0 && _controller._isGrounded);
         _animator.SetBool("Jumping", _velocity.y >= 0 && !_controller._isGrounded && !_dead);
-        if (_velocity.y >= 0 && !_controller._isGrounded && !_dead)
-        {
-            Debug.Log("animator should be jumping");
-        }
         _animator.SetBool("Falling", _velocity.y < 0 && !_controller._isGrounded && !_dead);
         //_dpad = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         
@@ -112,12 +111,8 @@ public class Player : MonoBehaviour
         // Jump
         if (_canJump && InputManager.Instance.JumpInput)
         {
-            _velocity.y = _jumpVelocity + (_isGravityFlipped ? -(Mathf.Abs(_velocity.x) * 0.125f + _spinBoost) : (Mathf.Abs(_velocity.x) * 0.125f + _spinBoost));
-            //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._jumpSFX);
             AkSoundEngine.PostEvent("Player_Jump", gameObject);
-            _canDownBoost = true;
-            _canJump = false;
-            _isJumping = true;
+            Jump(_jumpVelocity);
         }
         if(_isJumping && InputManager.Instance.JumpRelease) {
             _isJumping = false;
@@ -132,6 +127,7 @@ public class Player : MonoBehaviour
             _canDownBoost = true;
             StartCoroutine(CoyoteTime());
         } 
+        _velocity.x += _controller._conveyerSpeed * delta;
         if(_boostDeceling) {
             Accelerate(ref _velocity.x, Mathf.Sign(_velocity.x), _boostDecel, delta, true);
         }
@@ -139,7 +135,7 @@ public class Player : MonoBehaviour
         // these are put in an else because otherwise they stack with boostdeceling and i dont want that
             // if not at max run speed yet, accelerate to max run speed
             if(Mathf.Abs(_velocity.x) < _maxRunSpeed) {
-                Accelerate(ref _velocity.x, _horizontalInput, _baseAccel, delta);
+                Accelerate(ref _velocity.x, _horizontalInput, _baseAccel, delta, false);
             }
             // if over max run speed, decelerate to max run speed
             if(Mathf.Abs(_velocity.x) >= _maxRunSpeed) {
@@ -148,7 +144,7 @@ public class Player : MonoBehaviour
             }
             // deceleration for skidding on the ground
             if(Mathf.Sign(_horizontalInput) != Mathf.Sign(_velocity.x)) {
-                Accelerate(ref _velocity.x, _horizontalInput, _skidDecel, delta);
+                Accelerate(ref _velocity.x, _horizontalInput, _skidDecel, delta, false);
                 //_velocity.x += _dpad.x * _skidDecel * delta;
             }
         }
@@ -210,6 +206,7 @@ public class Player : MonoBehaviour
             EndGrabbedMode();
             if (Mathf.Abs(_velocity.x) > _maxRunSpeed * 1.5f)
             {
+                _vfxPlayer.DustEffect(0,0.05f*Mathf.Sign(_velocity.x),Mathf.Sign(_velocity.x));
                 _velocity.x = -_velocity.x * 0.4f;
                 _velocity.y = _isGravityFlipped ? -Mathf.Abs(_velocity.x) : Mathf.Abs(_velocity.x);
                 _velocity.y *= 0.9f; //scale bounce with gravity changes
@@ -254,14 +251,16 @@ public class Player : MonoBehaviour
             _vfxPlayer.Woosh(0.5f);
             _velocity.y = _downBoostVelocity;
         }
-        
+
         // if(_inBlackHole)
         //     _velocity.y += _gravity;
-        if(!_inBlackHole && Mathf.Abs(_velocity.x) < 0.02) {
+        //Conveyer belt
+        if (!_inBlackHole && Mathf.Abs(_velocity.x) < 0.02)
+        {
             _velocity.x = 0;
         }
         if(!_dead) {
-            _controller.Move((_velocity + _wind) * delta);
+            _controller.Move((_velocity + _wind + Vector2.right*_controller._conveyerSpeed) * delta);
         }
     }
     IEnumerator OverrideXInput(int delay) {
@@ -377,9 +376,17 @@ public class Player : MonoBehaviour
         }
         _canTeleport = true;
     }
-    void Accelerate(ref float axis, float input, float mult, float delta, bool decel = false) {
+    void Jump(float jumpVelocity)
+    {
+        _velocity.y = jumpVelocity + (_isGravityFlipped ? -(Mathf.Abs(_velocity.x) * 0.125f + _spinBoost) : (Mathf.Abs(_velocity.x) * 0.125f + _spinBoost));
+        //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._jumpSFX);
+        _canDownBoost = true;
+        _canJump = false;
+        _isJumping = true;
+    }
+    void Accelerate(ref float axis, float input, float mult, float delta, bool decel = false, float conveyer = 0) {
         int dir = decel ? -1 : 1;
-        axis += input * mult * delta * dir;
+        axis += (input * mult * dir + conveyer) * delta;
     }
     void Hitbox(float width, float height) {
         GameObject HitBoxObject;
@@ -413,12 +420,15 @@ public class Player : MonoBehaviour
     }
     /// COLLISIONS WITH OBJECTS ///
     // GRAVITY FIELD
-    void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.CompareTag("GravityFlip")) {
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("GravityFlip"))
+        {
             FlipGravity();
             _terminalVelocity = -_termV;
         }
-        if(other.gameObject.CompareTag("GravityTriggerTrigger")) {
+        if (other.gameObject.CompareTag("GravityTriggerTrigger"))
+        {
             _dontLockOut = true;
         }
         if (other.gameObject.CompareTag("Grabber"))
@@ -438,10 +448,15 @@ public class Player : MonoBehaviour
             StartCoroutine(BoostDecelCoroutine(15, 9));
             StartCoroutine(NegateGravityFor(19 * (int)Mathf.Abs(Mathf.Sin(Mathf.Deg2Rad * other.gameObject.transform.localEulerAngles.z))));
         }
-        if(other.gameObject.CompareTag("Teleport") && _canTeleport) {
+        if (other.gameObject.CompareTag("Teleport") && _canTeleport)
+        {
             StartCoroutine(TeleportCooldown());
             Teleport(other.gameObject.GetComponent<Teleporter>());
             // this.transform.position = other.gameObject.GetComponent<Teleporter>().LinkedTo.transform.position;
+        }
+        if (other.gameObject.CompareTag("Bounce"))
+        {
+            Jump(_bounceVelocity);
         }
     }
     void OnTriggerStay2D(Collider2D other)
@@ -532,16 +547,16 @@ public class Player : MonoBehaviour
         _canBoost = boost;
         _canDownBoost = fastFall;
     }
-    // void OnGUI() {
-    //     string CoordText = GUI.TextArea(new Rect(0, 0, 150, 150), 
-    //     ("XPos: "+this.transform.position.x.ToString("#.00")+
-    //     "\nY Pos: "+this.transform.position.y.ToString("#.00")+
-    //     "\nX Vel: "+_velocity.x.ToString("#.00")+
-    //     "\nY Vel: "+_velocity.y.ToString("#.00")
-    //     // "\nIs Ground: "+_controller._isGrounded+
-    //     // "\nGravity Mult: "+_gravityMult
-    //     ));
-    // }
+    void OnGUI() {
+        string CoordText = GUI.TextArea(new Rect(0, 0, 150, 150), 
+        ("XPos: "+this.transform.position.x.ToString("#.00")+
+        "\nY Pos: "+this.transform.position.y.ToString("#.00")+
+        "\nX Vel: "+_velocity.x.ToString("#.00")+
+        "\nY Vel: "+_velocity.y.ToString("#.00")
+        // "\nIs Ground: "+_controller._isGrounded+
+        // "\nGravity Mult: "+_gravityMult
+        ));
+    }
     public void DeathNormal() {
         _animator.SetTrigger("DeathNormal");
         InputManager.Instance.NegateAllInput();
