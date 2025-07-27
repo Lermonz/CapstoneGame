@@ -61,6 +61,7 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         _stopTimer = false;
     }
     public void FreezePlayerAndTimer(bool doIt = true) {
+        Debug.Log("PlayerFroze");
         _stopTimer = doIt;
         InputManager.Instance._freezeVelocity = doIt;
     }

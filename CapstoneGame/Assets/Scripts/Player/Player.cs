@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     float _jumpVelocity = 14f;
     float _doubleJumpVelocity = 10.5f;
-    float _downBoostVelocity = -20f;
+    float _downBoostVelocity = -24f;
     float _baseAccel = 18f;
     float _baseDecel = 20f;
     float _baseAirDecel = 2.8f;
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     float _gravityMult = 1;
     bool _inBlackHole = false;
     float _terminalVelocity;
-    const float _termV = -20;
+    const float _termV = -18;
     Vector2 _wind;
 
     bool _canJump = true;
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
     float _grabbedAccel = 124;
     GrabberBehavior _grabbedBy;
 
-    float _bounceVelocity = 18f;
+    float _bounceVelocity = 16f;
 
     bool _boostDeceling;
     float _boostSpeed = 12f;
@@ -283,7 +283,7 @@ public class Player : MonoBehaviour
         StartCoroutine(OverrideXInput(9));
         _velocity.y = Mathf.Clamp(_velocity.y, -0.4f, 0.4f);
         yield return new WaitForSeconds(0.15f);
-        StartCoroutine(BoostDecelCoroutine(1,10));
+        StartCoroutine(BoostDecelCoroutine(1,9));
         StartCoroutine(BoostCooldown(70f));
     }
     IEnumerator LockOut(int delay, bool ignoreSpinReset = false, bool ignoreDownBoostReset = false, bool ignoreBoostReset = false)
@@ -457,11 +457,12 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Bounce"))
         {
             Jump(_bounceVelocity);
+            SetAllPlayerActions();
         }
     }
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("BlackHole"))
+        if (other.gameObject.CompareTag("BlackHole") && !_dead)
         {
             //_terminalVelocity = 0;
             _inBlackHole = true;
@@ -475,7 +476,7 @@ public class Player : MonoBehaviour
             _wind = other.gameObject.GetComponent<BoostObjectBehaviour>().BoostInDirection();
         }
     }
-    void PullTowards(Vector2 goal, float str) {
+    public void PullTowards(Vector2 goal, float str) {
         _velocity.x += (goal.x-this.transform.position.x)*str;
         _velocity.y += (goal.y-this.transform.position.y)*str;
     }
@@ -527,12 +528,24 @@ public class Player : MonoBehaviour
         AkSoundEngine.PostEvent("Boost_Object", gameObject);
         _velocity = v;
     }
-    void FlipGravity() {
-        if(!_dontLockOut) {
+    void FlipGravity()
+    {
+        int lockOutFrames = 7;
+        if (!_dontLockOut)
+        {
             _velocity.y = 0;
             StartCoroutine(NegateGravityFor(6));
         }
-        StartCoroutine(LockOut(8));
+        else
+        {
+            lockOutFrames = 2;
+            _canDoubleJump = true;
+            if (Mathf.Abs(_velocity.y) < 12)
+            {
+                _velocity.y = 12 * Mathf.Sign(_velocity.y);
+            }
+        }
+        StartCoroutine(LockOut(lockOutFrames));
         _isGravityFlipped = !_isGravityFlipped;
         _controller._groundIsDown = -_controller._groundIsDown;
         _jumpVelocity = -_jumpVelocity;
@@ -540,6 +553,7 @@ public class Player : MonoBehaviour
         _downBoostVelocity = -_downBoostVelocity;
         _gravityMult = -_gravityMult;
         _renderer.flipY = true;
+        this.GetComponent<BoxCollider2D>().offset = -this.GetComponent<BoxCollider2D>().offset;
     }
     void SetAllPlayerActions(bool spin = true, bool doubleJump = true, bool boost = true, bool fastFall = true) {
         _canSpin = spin;
@@ -547,16 +561,16 @@ public class Player : MonoBehaviour
         _canBoost = boost;
         _canDownBoost = fastFall;
     }
-    void OnGUI() {
-        string CoordText = GUI.TextArea(new Rect(0, 0, 150, 150), 
-        ("XPos: "+this.transform.position.x.ToString("#.00")+
-        "\nY Pos: "+this.transform.position.y.ToString("#.00")+
-        "\nX Vel: "+_velocity.x.ToString("#.00")+
-        "\nY Vel: "+_velocity.y.ToString("#.00")
-        // "\nIs Ground: "+_controller._isGrounded+
-        // "\nGravity Mult: "+_gravityMult
-        ));
-    }
+    // void OnGUI() {
+    //     string CoordText = GUI.TextArea(new Rect(0, 0, 150, 150), 
+    //     ("XPos: "+this.transform.position.x.ToString("#.00")+
+    //     "\nY Pos: "+this.transform.position.y.ToString("#.00")+
+    //     "\nX Vel: "+_velocity.x.ToString("#.00")+
+    //     "\nY Vel: "+_velocity.y.ToString("#.00")
+    //     // "\nIs Ground: "+_controller._isGrounded+
+    //     // "\nGravity Mult: "+_gravityMult
+    //     ));
+    // }
     public void DeathNormal() {
         _animator.SetTrigger("DeathNormal");
         InputManager.Instance.NegateAllInput();
@@ -566,7 +580,9 @@ public class Player : MonoBehaviour
         // trigger animation for dying to spikes
     }
     public void DeathBlackHole() {
-        if(!_dead) {
+        _velocity = Vector2.zero;
+        if (!_dead)
+        {
             _animator.SetTrigger("DeathBlackHole");
             PlayerIsDead();
         }

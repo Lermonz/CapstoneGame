@@ -9,20 +9,22 @@ public class BlackHoleBehaviour : MonoBehaviour
     void Start() {
         _sceneManager = GetComponent<SelectLevel>();
     }
-    int elapsedFrames = 0;
-    int totalFrames = 60;
     void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")) {
             InputManager.Instance.NegateAllInput();
             // LevelManager.Instance.FreezePlayerAndTimer();
             other.GetComponent<Player>().DeathBlackHole();
+            this.GetComponent<CircleCollider2D>().radius = 1;
             _sceneManager.Reload();
         }
     }
-    void OnTriggerStay2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Player")) {
-            other.gameObject.transform.position = Vector3.Lerp(other.gameObject.transform.position, this.transform.position, elapsedFrames/totalFrames);
-            elapsedFrames++;
-        }
-    }
+    // void OnTriggerStay2D(Collider2D other) {
+    //     if (other.gameObject.CompareTag("Player"))
+    //     {
+    //         Debug.Log("PlayerTriggerStay " + other.gameObject.transform.position);
+    //         other.GetComponent<Player>().PullTowards(this.transform.position, 2f);
+    //         //other.gameObject.transform.position = Vector3.Lerp(other.gameObject.transform.position, this.transform.position, elapsedFrames/totalFrames);
+    //         //elapsedFrames++;
+    //     }
+    // }
 }

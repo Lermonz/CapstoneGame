@@ -3,31 +3,39 @@ using UnityEngine;
 
 public class DestructableBlockBehaviour : MonoBehaviour
 {
-    [SerializeField] Vector2 _size = new Vector2(2,2);
+    [SerializeField] Vector2 _size = new Vector2(2, 2);
     [SerializeField] SpriteRenderer _renderer;
     [SerializeField] BoxCollider2D _collider;
+    [SerializeField] SpriteRenderer _outlineRenderer;
+    [SerializeField] ParticleSystem _particles;
     Vector3 _startPos;
     public bool _beenTouched;
     bool _blockIsGone;
+    bool _invulnerable = false;
+    public bool _checkOverlap;
+    bool _canRespawn;
+    ParticleSystem.ShapeModule shapeMod;
     void Awake()
     {
         _size = this.transform.localScale;
         this.transform.localScale = Vector3.one;
-        _renderer = this.gameObject.GetComponent<SpriteRenderer>();
-        _collider = this.gameObject.GetComponent<BoxCollider2D>();
         _startPos = this.transform.position;
-    }
-    void Start()
-    {
         _renderer.size = _size;
         _collider.size = _size;
+        shapeMod = _particles.shape;
+        shapeMod.scale = _size;
+        _outlineRenderer.size = _size * 0.9f;
+        var emission = _particles.emission;
+        emission.rateOverTime = (_size.x * _size.y) * 8 + 3;
     }
     public void BeenTouched()
     {
-        Debug.Log("Fragile left");
-        this.gameObject.GetComponent<SpriteRenderer>().color *= 0.75f;
-        StartCoroutine(Deactivate(0.5f));
-        _beenTouched = true;
+        if (!_invulnerable)
+        {
+            _renderer.color = new Color(0.75f, 0.75f, 0.79f, 1f);
+            StartCoroutine(Deactivate(0.3f));
+            _beenTouched = true;
+        }
     }
     void Update()
     {
@@ -37,13 +45,30 @@ public class DestructableBlockBehaviour : MonoBehaviour
         }
         if (_blockIsGone)
         {
-            StartCoroutine(Reactivate(6));
+            StartCoroutine(Reactivate(3));
         }
+        if (_canRespawn && !_checkOverlap)
+        {
+            RespawnBlock();
+        }
+    }
+    void RespawnBlock()
+    {
+        _canRespawn = false;
+        StartCoroutine(Invulnerability(3));
+        _renderer.enabled = true;
+        _collider.enabled = true;
+        _renderer.color = Color.white;
+        shapeMod.radius = 0.75f;
+        shapeMod.radiusThickness = 0.75f;
+        _particles.Play();
     }
     IEnumerator Deactivate(float delay)
     {
-        Debug.Log("getmeoutta here");
         yield return new WaitForSeconds(delay);
+        shapeMod.radius = 0.55f;
+        shapeMod.radiusThickness = 0.5f;
+        _particles.Play();
         _renderer.enabled = false;
         _collider.enabled = false;
         _blockIsGone = true;
@@ -54,8 +79,15 @@ public class DestructableBlockBehaviour : MonoBehaviour
         _beenTouched = false;
         this.transform.position = _startPos;
         yield return new WaitForSeconds(delay);
-        _renderer.enabled = true;
-        _collider.enabled = true;
-        _renderer.color = Color.white;
+        _canRespawn = true;
+    }
+    IEnumerator Invulnerability(float delay)
+    {
+        _invulnerable = true;
+        for (int i = 0; i < delay; i++)
+        {
+            yield return null;
+        }
+        _invulnerable = false;
     }
 }

@@ -67,7 +67,7 @@ public class Controller2D : MonoBehaviour
 
         for (int i = 0; i < _vertRayCount; i++)
         {
-            float _tempVertRaySpacing = directionY == -1 ? _vertRaySpacing * 0.9f : _vertRaySpacing * 0.7f;
+            float _tempVertRaySpacing = directionY == -_groundIsDown ? _vertRaySpacing * 0.9f : _vertRaySpacing * 0.7f;
             Vector2 rayOrigin = directionY == -1 ? _raycastOrigins.botleft : _raycastOrigins.topleft;
             rayOrigin += directionY == -_groundIsDown ? (Vector2.right * 0.05f) : (Vector2.right * 0.15f);
             rayOrigin += Vector2.right * i * _tempVertRaySpacing;
@@ -132,6 +132,7 @@ public class Controller2D : MonoBehaviour
         float directionX = Mathf.Sign(velocity.x);
         float rayLength = Mathf.Abs(velocity.x) + boundInset;
         _horzElseCount = 0;
+        float hitDistanceSum = 0;
         _destructable = false;
 
         for (int i = 1; i < _vertRayCount; i++)
@@ -152,6 +153,7 @@ public class Controller2D : MonoBehaviour
                     _destructable = true;
                     _destructableBlock = hit.collider.GetComponent<DestructableBlockBehaviour>();
                 }
+                hitDistanceSum += hit.distance;
             }
             else
             {
@@ -163,7 +165,7 @@ public class Controller2D : MonoBehaviour
             _hitWall = false;
             _destructable = false;
         }
-        if (_horzElseCount == 0)
+        if (_horzElseCount == 0 && hitDistanceSum < 0.01f)
         {
             GetOutOfWallCollision(ref velocity);
         }
@@ -177,10 +179,12 @@ public class Controller2D : MonoBehaviour
     {
         float directionX = Mathf.Sign(velocity.x);
         float rayLength = Mathf.Abs(velocity.x) + boundInset;
-        Vector2 rayOrigin = directionX == 1 ? _raycastOrigins.botleft + Vector2.right * 0.25f : _raycastOrigins.botright - Vector2.right * 0.25f;
+        Vector2 rayOrigin = directionX == 1 ? _raycastOrigins.botleft : _raycastOrigins.botright;
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collMask);
-        Vector2 rayOrigin2 = directionX == 1 ? _raycastOrigins.topleft + Vector2.right * 0.25f : _raycastOrigins.topright - Vector2.right * 0.25f;
+        Vector2 rayOrigin2 = directionX == 1 ? _raycastOrigins.topleft : _raycastOrigins.topright;
         RaycastHit2D hit2 = Physics2D.Raycast(rayOrigin2, Vector2.right * directionX, rayLength, collMask);
+        Debug.DrawRay(rayOrigin, Vector2.left * directionX * rayLength, Color.red);
+        Debug.DrawRay(rayOrigin2, Vector2.left * directionX * rayLength, Color.red);
         if (hit && hit2)
         {
             if (hit.distance == 0 && hit2.distance == 0)
