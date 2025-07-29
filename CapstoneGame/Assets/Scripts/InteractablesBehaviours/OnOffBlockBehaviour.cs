@@ -25,7 +25,7 @@ public class OnOffBlockBehaviour : MonoBehaviour
         }
         else
         {
-            _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, 0.2f);
+            _renderer.color = new Color(_renderer.color.r, _renderer.color.g, _renderer.color.b, 0.7f);
             _collider.enabled = false;
         }
     }

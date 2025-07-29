@@ -14,7 +14,7 @@ public class TargetBehaviour : MonoBehaviour
         //this.GetComponent<AudioSource>().PlayOneShot(this.GetComponent<AudioSource>().clip);
         AkSoundEngine.PostEvent("Crystal_Break", gameObject);
         StartCoroutine(BreakApartAnim());
-        LevelManager.Instance.HitTarget();
+        LevelManager.Instance.HitTarget(this.transform.position);
     }
     IEnumerator BreakApartAnim() {
         float realX = this.transform.position.x;

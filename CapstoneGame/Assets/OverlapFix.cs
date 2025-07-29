@@ -30,7 +30,7 @@ public class OverlapFix : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("overlapfix trigger exit");
+        //Debug.Log("overlapfix trigger exit");
         if (collision.CompareTag("Player"))
         {
             escapeRight.GetComponent<BoxCollider2D>().enabled = false;

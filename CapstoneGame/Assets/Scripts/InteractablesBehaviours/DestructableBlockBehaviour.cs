@@ -13,6 +13,7 @@ public class DestructableBlockBehaviour : MonoBehaviour
     bool _blockIsGone;
     bool _invulnerable = false;
     public bool _checkOverlap;
+    [SerializeField] bool _flippedGravity;
     bool _canRespawn;
     ParticleSystem.ShapeModule shapeMod;
     void Awake()
@@ -41,7 +42,7 @@ public class DestructableBlockBehaviour : MonoBehaviour
     {
         if (_beenTouched)
         {
-            this.transform.position -= Vector3.up * 0.25f * Time.deltaTime;
+            this.transform.position -= Vector3.up * 0.25f * Time.deltaTime * (_flippedGravity ? -1 : 1);
         }
         if (_blockIsGone)
         {

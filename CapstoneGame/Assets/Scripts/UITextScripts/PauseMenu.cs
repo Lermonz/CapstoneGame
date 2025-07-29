@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject _settingsMenu;
     public GameObject _controlsMenu;
     public GameObject _winMenu;
+    public ScaleScreenWipeMask _screenWipe;
 
     [Header("Event System wants a first selected button")]
     [SerializeField] private GameObject _mainFirstButton;
@@ -123,6 +124,10 @@ public class PauseMenu : MonoBehaviour
     public void OnBackPress()
     {
         OpenMainPauseMenu();
+    }
+    public void OnPlayerDeath()
+    {
+        _screenWipe.ScaleDown();
     }
     public void FindAudioPlayerForButtons(int fileNum)
     {

@@ -7,6 +7,7 @@ public class PortalBehaviour : MonoBehaviour
 {
     public SpriteRenderer[] _renderers;
     private bool dontRetrigger = false;
+    public bool HasWon { get => dontRetrigger; set {dontRetrigger = value;}}
     bool _canExit;
     void Update()
     {

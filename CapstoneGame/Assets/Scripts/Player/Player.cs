@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     const float _gravity = -32f;
     float _gravityMult = 1;
     bool _inBlackHole = false;
+    float _blackHoleBaseStrength = 1.1f;
     float _terminalVelocity;
     const float _termV = -18;
     Vector2 _wind;
@@ -76,6 +77,7 @@ public class Player : MonoBehaviour
         _terminalVelocity = _termV;
         _dead = false;
         SetCostume();
+        LevelManager.Instance.SetRespawnPoint(this.transform.position);
     }
     void SetCostume()
     {
@@ -112,6 +114,7 @@ public class Player : MonoBehaviour
         if (_canJump && InputManager.Instance.JumpInput)
         {
             AkSoundEngine.PostEvent("Player_Jump", gameObject);
+            _isJumping = true;
             Jump(_jumpVelocity);
         }
         if(_isJumping && InputManager.Instance.JumpRelease) {
@@ -382,7 +385,7 @@ public class Player : MonoBehaviour
         //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._jumpSFX);
         _canDownBoost = true;
         _canJump = false;
-        _isJumping = true;
+        //_isJumping = true;
     }
     void Accelerate(ref float axis, float input, float mult, float delta, bool decel = false, float conveyer = 0) {
         int dir = decel ? -1 : 1;
@@ -456,8 +459,14 @@ public class Player : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Bounce"))
         {
+            _isJumping = false;
             Jump(_bounceVelocity);
             SetAllPlayerActions();
+        }
+        if (other.gameObject.CompareTag("BlackHole"))
+        {
+            _velocity.x *= 0.8f;
+            _velocity.y *= 0.5f;
         }
     }
     void OnTriggerStay2D(Collider2D other)
@@ -467,8 +476,10 @@ public class Player : MonoBehaviour
             //_terminalVelocity = 0;
             _inBlackHole = true;
             //Strength of black hole pull is increased when player is closer to it
-            float strength = 0.1f + 0.84f / Vector2.Distance(other.gameObject.transform.position, this.transform.position);
-            //Debug.Log("Strength: "+strength);
+            float strength = _blackHoleBaseStrength - 0.33f*Vector2.Distance(other.gameObject.transform.position, this.transform.position);
+            // float strength = _blackHoleStrength (2.85 in this instance) - 2 * Mathf.Pow(x,0.2); x is the distance
+            _blackHoleBaseStrength += _blackHoleBaseStrength*0.05f*Time.deltaTime;
+            //Debug.Log("Distance: "+Vector2.Distance(other.gameObject.transform.position, this.transform.position)+"\nStrength: "+strength);
             PullTowards(other.gameObject.transform.position, strength);
         }
         if (other.gameObject.CompareTag("Wind"))
@@ -518,6 +529,7 @@ public class Player : MonoBehaviour
         {
             //_terminalVelocity = _termV;
             _inBlackHole = false;
+            _blackHoleBaseStrength = 1.1f;
         }
         if (other.gameObject.CompareTag("Wind"))
         {
@@ -571,26 +583,52 @@ public class Player : MonoBehaviour
     //     // "\nGravity Mult: "+_gravityMult
     //     ));
     // }
-    public void DeathNormal() {
+    public void DeathNormal(float delay, bool sceneResets) {
         _animator.SetTrigger("DeathNormal");
         InputManager.Instance.NegateAllInput();
         LevelManager.Instance.FreezePlayerAndTimer();
-        PlayerIsDead();
+        PlayerIsDead(delay,sceneResets);
         // freeze player movement
         // trigger animation for dying to spikes
     }
-    public void DeathBlackHole() {
+    public void DeathBlackHole(float delay, bool sceneResets) {
         _velocity = Vector2.zero;
         if (!_dead)
         {
             _animator.SetTrigger("DeathBlackHole");
-            PlayerIsDead();
+            PlayerIsDead(delay,sceneResets);
         }
         // negate player control
         // trigger animation for dying to black hole (shrink and rotate into it)
     }
-    void PlayerIsDead() {
+    IEnumerator DelayRespawn(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PauseMenu.Instance.OnPlayerDeath();
+        for (int i = 0; i < 30; i++)
+        {
+            yield return null;
+        }
+        Respawn();
+    }
+    void Respawn()
+    {
+        _animator.SetTrigger("Respawns");
+        _dead = false;
+        _velocity = Vector2.zero;
+        this.transform.position = LevelManager.Instance.Checkpoint;
+        StartCoroutine(ReturnPlayerControl());
+    }
+    IEnumerator ReturnPlayerControl()
+    {
+        yield return new WaitForSeconds(1.02f);
+        LevelManager.Instance.FreezePlayerAndTimer(false);
+        InputManager.Instance.EnablePlayerInput();
+    }
+    void PlayerIsDead(float delay, bool sceneResets)
+    {
         _dead = true;
         AkSoundEngine.PostEvent("Player_Die", gameObject);
+        if (!sceneResets) { StartCoroutine(DelayRespawn(delay)); }
     }
 }

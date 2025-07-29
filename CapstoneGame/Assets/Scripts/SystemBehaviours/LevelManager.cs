@@ -22,6 +22,8 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     public bool _stopTimer;
     public bool _countdownDone = false;
     bool _hasPlayedSoundEffect = false;
+    //Vector2 _checkpoint;
+    public Vector2 Checkpoint { get; private set; }
 
     void Awake()
     {
@@ -36,8 +38,14 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         InputManager.Instance.DisablePlayerInput();
         StartCoroutine(Countdown());
     }
-    public void HitTarget() {
+    public void HitTarget(Vector2 position)
+    {
         TargetsDestroyed++;
+        SetRespawnPoint(position);
+    }
+    public void SetRespawnPoint(Vector2 position)
+    {
+        Checkpoint = position;
     }
     void Update() {
         // if you've destroyed enough targets for this level, you can touch the goal

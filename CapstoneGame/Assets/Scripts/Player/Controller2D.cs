@@ -102,7 +102,7 @@ public class Controller2D : MonoBehaviour
                 {
                     _touchConveyer = true;
                 }
-                    Debug.Log("conveyer? " + _touchConveyer + " " + _conveyerSpeed);
+                    //Debug.Log("conveyer? " + _touchConveyer + " " + _conveyerSpeed);
 
             }
             else
