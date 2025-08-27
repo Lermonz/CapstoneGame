@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 
 public class TargetBehaviour : MonoBehaviour
 {
+    public Vector2 _checkpointOffset;
     void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Hitbox")) {
             GotHit();
@@ -14,7 +15,7 @@ public class TargetBehaviour : MonoBehaviour
         //this.GetComponent<AudioSource>().PlayOneShot(this.GetComponent<AudioSource>().clip);
         AkSoundEngine.PostEvent("Crystal_Break", gameObject);
         StartCoroutine(BreakApartAnim());
-        LevelManager.Instance.HitTarget(this.transform.position);
+        LevelManager.Instance.HitTarget(this.transform.position, _checkpointOffset);
     }
     IEnumerator BreakApartAnim() {
         float realX = this.transform.position.x;

@@ -38,14 +38,15 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         InputManager.Instance.DisablePlayerInput();
         StartCoroutine(Countdown());
     }
-    public void HitTarget(Vector2 position)
+    public void HitTarget(Vector2 position, Vector2 offset)
     {
         TargetsDestroyed++;
-        SetRespawnPoint(position);
+        SetRespawnPoint(position, offset.x, offset.y);
     }
-    public void SetRespawnPoint(Vector2 position)
+    public void SetRespawnPoint(Vector2 position, float offsetX = 0, float offsetY = 0)
     {
-        Checkpoint = position;
+        Vector2 offset = new Vector2(offsetX, offsetY);
+        Checkpoint = position+offset;
     }
     void Update() {
         // if you've destroyed enough targets for this level, you can touch the goal

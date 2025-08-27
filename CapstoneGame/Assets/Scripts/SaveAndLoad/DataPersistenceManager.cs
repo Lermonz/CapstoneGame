@@ -68,7 +68,16 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.LoadData(_gameData);
         }
     }
-    private List<IDataPersistence> FindAllDataPersistenceObjects() 
+    public void LoadSingleObjectData(IDataPersistence dataGameObject)
+    {
+        if (this._gameData == null)
+        {
+            NewGame();
+        }
+        //push loaded data to the script that called it
+        dataGameObject.LoadData(_gameData);
+    }
+    private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
         IEnumerable<IDataPersistence> dataPersistenceObjects =
             //FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IDataPersistence>();

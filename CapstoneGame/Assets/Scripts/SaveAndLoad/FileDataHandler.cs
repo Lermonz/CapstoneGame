@@ -42,7 +42,7 @@ public class FileDataHandler
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
 
             // serialize the C# game data object into JSON
-            string dataToStore = JsonUtility.ToJson(data); // can add a second input "true" to make it easy to read
+            string dataToStore = JsonUtility.ToJson(data,true); // can add a second input "true" to make it easy to read
         
             // write the serialize data to the file
             using (FileStream stream = new FileStream(fullPath, FileMode.Create)) {

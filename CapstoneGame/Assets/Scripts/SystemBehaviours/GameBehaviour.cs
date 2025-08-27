@@ -12,6 +12,7 @@ public class GameBehaviour : MonoBehaviour, IDataPersistence
     public bool _isGame;
     public List<Texture> _costumes;
     public Texture SelectedCostume { get; private set; }
+    public bool PlayerIsDead { get; private set; }
     int _costumeID;
     void Awake()
     {
@@ -73,6 +74,10 @@ public class GameBehaviour : MonoBehaviour, IDataPersistence
         _costumeID = cID;
         SelectedCostume = _costumes[cID];
         SaveGame();
+    }
+    public void SetPlayerDeath(bool _isDead)
+    {
+        PlayerIsDead = _isDead;
     }
     public void SaveData(GameData data)
     {

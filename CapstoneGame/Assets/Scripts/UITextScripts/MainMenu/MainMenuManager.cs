@@ -82,6 +82,7 @@ public class MainMenuManager : MonoBehaviour
         CloseMenus();
         _costumesMenu.SetActive(true);
         NillyDisplay.Instance.ShowNilly(true);
+        DataPersistenceManager.Instance.LoadGame();
         EventSystem.current.SetSelectedGameObject(_costumesFirstButton);
     }
     private void OpenSettingsMenu()

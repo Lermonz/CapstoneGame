@@ -29,8 +29,8 @@ public class GameData
         musicVolume = 69;
         costumes = new SerializableDictionary<string, bool>
         {
-            {"Vanilla", true}, {"Green", false}, {"Chocolate", false}, {"Lava-Dipped", false},
-            {"Gameboy", false}, {"Transgender", false}, {"Golden", false}, {"Philip", false}
+            {"Vanilla", true}, {"Green", false}, {"Fox", false}, {"Gameboy", false},
+            {"Wario", false}, {"Transgender", false}, {"Invert", false}, {"Hornet", false}
          };
         personalBest = new SerializableDictionary<string, float>();
         medals = new SerializableDictionary<string, string>();

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class Player : MonoBehaviour
     SpriteRenderer _renderer;
     VFXPlayer _vfxPlayer;
     Animator _animator;
+    CinemachineVirtualCamera _vcam;
+    [SerializeField] Transform _cameraFollow;
 
     Vector2 _velocity;
     public GameObject _hitBox;
@@ -30,10 +33,11 @@ public class Player : MonoBehaviour
     const float _gravity = -32f;
     float _gravityMult = 1;
     bool _inBlackHole = false;
-    float _blackHoleBaseStrength = 1.1f;
+    float _blackHoleBaseStrength = 1.2f;
     float _terminalVelocity;
     const float _termV = -18;
     Vector2 _wind;
+    float _windMult = 1;
 
     bool _canJump = true;
     bool _canBoost = true;
@@ -43,12 +47,14 @@ public class Player : MonoBehaviour
     bool _canDownBoostReal = true;
     bool _isJumping = false;
     bool _canTeleport = true;
+    bool _teleporting = false;
     bool _dontLockOut = false;
+    bool _invulnerable;
 
     bool _grabbedMode = false;
-    float _grabbedMaxSpeed = 10.2f;
+    float _grabbedMaxSpeed = 6f;
     float _grabbedSpeed;
-    float _grabbedAccel = 124;
+    float _grabbedAccel = 160;
     GrabberBehavior _grabbedBy;
 
     float _bounceVelocity = 16f;
@@ -73,6 +79,7 @@ public class Player : MonoBehaviour
         _renderer = GetComponent<SpriteRenderer>();
         _vfxPlayer = GetComponent<VFXPlayer>();
         _animator = GetComponent<Animator>();
+        _vcam = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
         //_particles = GetComponent<ParticleSystem>();
         _terminalVelocity = _termV;
         _dead = false;
@@ -91,9 +98,11 @@ public class Player : MonoBehaviour
         _animator.SetBool("Jumping", _velocity.y >= 0 && !_controller._isGrounded && !_dead);
         _animator.SetBool("Falling", _velocity.y < 0 && !_controller._isGrounded && !_dead);
         //_dpad = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        
-        if ((_horizontalInput > 0 && _renderer.flipX) || (_horizontalInput < 0 && !_renderer.flipX)) {
+
+        if ((_horizontalInput > 0 && _renderer.flipX) || (_horizontalInput < 0 && !_renderer.flipX))
+        {
             _renderer.flipX = !_renderer.flipX;
+            _cameraFollow.localPosition *= -1;
         }
         if(_controller._isGrounded) {
             _wind.y = 0;
@@ -164,7 +173,7 @@ public class Player : MonoBehaviour
             }
         }
         //TREATING GRAVITY LIKE ACCELERATION
-        if(!PauseMenu.Instance._isPaused && !_inBlackHole && !_dead && !_grabbedMode) {
+        if(!PauseMenu.Instance._isPaused && !_inBlackHole && !_dead && !_grabbedMode && !_teleporting) {
             if(_isGravityFlipped ? _velocity.y < _terminalVelocity : _velocity.y > _terminalVelocity) {
                 Accelerate(ref _velocity.y, _gravityMult, _gravity, delta);
             }
@@ -177,6 +186,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("GrabbedMode "+_grabbedSpeed);
             Accelerate(ref _velocity.y, 1, _grabbedSpeed, delta);
+            Debug.Log(_grabbedSpeed+" : "+_grabbedAccel);
             if (_grabbedSpeed < _grabbedMaxSpeed)
             {
                 Accelerate(ref _grabbedSpeed, 1, _grabbedAccel, delta);
@@ -263,7 +273,7 @@ public class Player : MonoBehaviour
             _velocity.x = 0;
         }
         if(!_dead) {
-            _controller.Move((_velocity + _wind + Vector2.right*_controller._conveyerSpeed) * delta);
+            _controller.Move((_velocity + _wind * _windMult + Vector2.right*_controller._conveyerSpeed) * delta);
         }
     }
     IEnumerator OverrideXInput(int delay) {
@@ -396,16 +406,36 @@ public class Player : MonoBehaviour
         HitBoxObject = Instantiate(_hitBox, this.transform);
         HitBoxObject.transform.localScale = new Vector3(width, height, 20);
     }
-    void Teleport(Teleporter teleporter) {
-        this.transform.position = teleporter.LinkedTo.transform.position;
-        teleporter.PlaySFX();
+    IEnumerator Teleport(Teleporter teleporter)
+    {
+        teleporter.Teleport();
+        _renderer.enabled = false;
+        _controller._collider.enabled = false;
+        InputManager.Instance._freezeVelocity = true;
+        _teleporting = true;
+        _vcam.Follow = teleporter._teleportTravelCameraFollow.transform;
+        float offsetY = _controller._vcamTransposer.m_TrackedObjectOffset.y;
+        _controller._vcamTransposer.m_TrackedObjectOffset.y = 0;
+        for (int i = 0; i < teleporter._time + 3; i++)
+        {
+            yield return null;
+        }
+        _renderer.enabled = true;
+        _controller._collider.enabled = true;
+        InputManager.Instance._freezeVelocity = false;
+        _teleporting = false;
+        _vcam.Follow = _cameraFollow;
+        _controller._vcamTransposer.m_TrackedObjectOffset.y = offsetY;
+        this.transform.position = teleporter.LinkedTo.position;
+        StartCoroutine(TeleportCooldown());
     }
     void EndGrabbedMode()
     {
         _grabbedMode = false;
+        _windMult = 1;
         if (_grabbedBy != null)
         {
-            _grabbedBy.Detach(new Vector2(_velocity.x*0.5f, 9));
+            _grabbedBy.Detach(new Vector2(_velocity.x * 0.5f, 9));
         }
         _grabbedBy = null;
     }
@@ -434,7 +464,7 @@ public class Player : MonoBehaviour
         {
             _dontLockOut = true;
         }
-        if (other.gameObject.CompareTag("Grabber"))
+        if (other.gameObject.CompareTag("Grabber") && !_grabbedMode)
         {
             _velocity.y = Mathf.Clamp(_velocity.y, _terminalVelocity, 0);
             _velocity.y *= 0.2f;
@@ -442,6 +472,7 @@ public class Player : MonoBehaviour
             _grabbedMode = true;
             _grabbedBy = other.gameObject.GetComponent<GrabberBehavior>();
             _grabbedBy.Attach();
+            _windMult = 0.5f;
         }
         if (other.gameObject.CompareTag("Boost"))
         {
@@ -453,8 +484,7 @@ public class Player : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Teleport") && _canTeleport)
         {
-            StartCoroutine(TeleportCooldown());
-            Teleport(other.gameObject.GetComponent<Teleporter>());
+            StartCoroutine(Teleport(other.gameObject.GetComponent<Teleporter>()));
             // this.transform.position = other.gameObject.GetComponent<Teleporter>().LinkedTo.transform.position;
         }
         if (other.gameObject.CompareTag("Bounce"))
@@ -467,6 +497,14 @@ public class Player : MonoBehaviour
         {
             _velocity.x *= 0.8f;
             _velocity.y *= 0.5f;
+        }
+        if (other.gameObject.CompareTag("SecretOrb"))
+        {
+            other.GetComponent<SecretOrb>().TouchedByPlayer();
+        }
+        if (other.gameObject.CompareTag("ConfinerChange"))
+        {
+            other.GetComponent<ChangeConfiner>().ChangeCameraConfiner();
         }
     }
     void OnTriggerStay2D(Collider2D other)
@@ -558,6 +596,7 @@ public class Player : MonoBehaviour
             }
         }
         StartCoroutine(LockOut(lockOutFrames));
+        _controller._vcamTransposer.m_TrackedObjectOffset.y = -_controller._vcamTransposer.m_TrackedObjectOffset.y;
         _isGravityFlipped = !_isGravityFlipped;
         _controller._groundIsDown = -_controller._groundIsDown;
         _jumpVelocity = -_jumpVelocity;
@@ -584,23 +623,29 @@ public class Player : MonoBehaviour
     //     ));
     // }
     public void DeathNormal(float delay, bool sceneResets) {
-        _animator.SetTrigger("DeathNormal");
-        InputManager.Instance.NegateAllInput();
-        LevelManager.Instance.FreezePlayerAndTimer();
-        PlayerIsDead(delay,sceneResets);
+        if (!_invulnerable)
+        {
+            _animator.SetTrigger("DeathNormal");
+            InputManager.Instance.NegateAllInput();
+            LevelManager.Instance.FreezePlayerAndTimer();
+            PlayerIsDead(delay,sceneResets);
+        }
         // freeze player movement
         // trigger animation for dying to spikes
     }
     public void DeathBlackHole(float delay, bool sceneResets) {
-        _velocity = Vector2.zero;
-        if (!_dead)
+        if (!_invulnerable)
         {
-            _animator.SetTrigger("DeathBlackHole");
-            PlayerIsDead(delay,sceneResets);
+            _velocity = Vector2.zero;
+            if (!_dead)
+            {
+                _animator.SetTrigger("DeathBlackHole");
+                PlayerIsDead(delay, sceneResets);
+            }
         }
         // negate player control
-        // trigger animation for dying to black hole (shrink and rotate into it)
-    }
+            // trigger animation for dying to black hole (shrink and rotate into it)
+        }
     IEnumerator DelayRespawn(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -615,9 +660,20 @@ public class Player : MonoBehaviour
     {
         _animator.SetTrigger("Respawns");
         _dead = false;
+        GameBehaviour.Instance.SetPlayerDeath(_dead);
         _velocity = Vector2.zero;
         this.transform.position = LevelManager.Instance.Checkpoint;
         StartCoroutine(ReturnPlayerControl());
+        StartCoroutine(Invulnerability(90));
+    }
+    IEnumerator Invulnerability(int delay)
+    {
+        _invulnerable = true;
+        for (int i = 0; i < delay; i++)
+        {
+            yield return null;
+        }
+        _invulnerable = false;
     }
     IEnumerator ReturnPlayerControl()
     {
@@ -628,6 +684,7 @@ public class Player : MonoBehaviour
     void PlayerIsDead(float delay, bool sceneResets)
     {
         _dead = true;
+        GameBehaviour.Instance.SetPlayerDeath(_dead);
         AkSoundEngine.PostEvent("Player_Die", gameObject);
         if (!sceneResets) { StartCoroutine(DelayRespawn(delay)); }
     }

@@ -163,7 +163,7 @@ SpriteRenderer:
   m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.65300006, g: 0.4782137, b: 0.17631, a: 0.32156864}
+  m_Color: {r: 0.8396226, g: 0.7715728, b: 0.37624598, a: 0.05882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 568df7f23e049419b8f7c45b1b555971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _force: 2
+  _force: 1.75
 --- !u!198 &1369786189106506160
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -333,7 +333,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 2
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -394,7 +394,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 10
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -512,7 +512,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.01
+      scalar: 0.05
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -889,15 +889,15 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 5
+    type: 18
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: -0.3, z: 0}
+    m_Position: {x: 0, y: -0.15, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 0.9, z: 1}
+    m_Scale: {x: 1, y: 1.05, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -1095,7 +1095,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 20
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1773,8 +1773,8 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.3
-      minScalar: 0.8
+      scalar: 2
+      minScalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1879,7 +1879,7 @@ ParticleSystem:
     orbitalX:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5029,7 +5029,7 @@ ParticleSystemRenderer:
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
-  m_VelocityScale: 0.1
+  m_VelocityScale: 0.25
   m_LengthScale: 0
   m_SortingFudge: 0
   m_NormalDirection: 1
@@ -5040,7 +5040,7 @@ ParticleSystemRenderer:
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
-  m_FreeformStretching: 0
+  m_FreeformStretching: 1
   m_RotateWithStretchDirection: 1
   m_UseCustomVertexStreams: 0
   m_VertexStreams: 00010304

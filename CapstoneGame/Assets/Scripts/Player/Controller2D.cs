@@ -19,7 +19,7 @@ public class Controller2D : MonoBehaviour
 
     public LayerMask collMask;
     public LayerMask getOutMask;
-    CinemachineFramingTransposer _vcamTransposer;
+    public CinemachineFramingTransposer _vcamTransposer;
 
     public bool _isGrounded = true;
     public bool _hitCeiling;
@@ -29,12 +29,14 @@ public class Controller2D : MonoBehaviour
     bool _touchConveyer;
     public float _conveyerSpeed;
     DestructableBlockBehaviour _destructableBlock;
+    bool _touchFallingBlock;
+    FallingBlock _fallingBlock;
 
     float _vertMult = 0.95f;
 
     public int _groundIsDown = 1;
 
-    BoxCollider2D _collider;
+    public BoxCollider2D _collider;
     RayCastOrigins _raycastOrigins;
     void Start() {
         _collider = GetComponent<BoxCollider2D>();
@@ -96,19 +98,24 @@ public class Controller2D : MonoBehaviour
                     _destructable = true;
                     _destructableBlock = hit.collider.GetComponent<DestructableBlockBehaviour>();
                 }
-                if(_touchConveyer) {_conveyerSpeed = hit.collider.GetComponent<ConveyerBehaviour>()._speed;}
+                if (_touchConveyer) { _conveyerSpeed = hit.collider.GetComponent<ConveyerBehaviour>()._speed; }
                 else { _conveyerSpeed = 0; }
                 if (hit.collider.CompareTag("Conveyer"))
                 {
                     _touchConveyer = true;
                 }
-                    //Debug.Log("conveyer? " + _touchConveyer + " " + _conveyerSpeed);
+                if (hit.collider.CompareTag("FallingBlock"))
+                {
+                    _touchFallingBlock = true;
+                    _fallingBlock = hit.collider.GetComponent<FallingBlock>();
+                }
+                //Debug.Log("conveyer? " + _touchConveyer + " " + _conveyerSpeed);
 
             }
             else
             {
                 _vertElseCount++;
-                _vcamTransposer.m_DeadZoneHeight = 0.2f;
+                _vcamTransposer.m_DeadZoneHeight = 0.1f;
             }
         }
         if (_vertElseCount >= _vertRayCount)
@@ -117,6 +124,7 @@ public class Controller2D : MonoBehaviour
             _isGrounded = false;
             _hitCeiling = false;
             _destructable = false;
+            _touchFallingBlock = false;
         }
         if (_hitWall && _vertElseCount > 0)
         {
@@ -125,6 +133,22 @@ public class Controller2D : MonoBehaviour
         if (_destructable)
         {
             TouchedDestructableBlock(ref _destructableBlock);
+        }
+        if (_touchFallingBlock && _isGrounded)
+        {
+            if (_fallingBlock.MoveDown())
+            {
+                velocity.y -= _fallingBlock._fallSpeed * Time.deltaTime;
+                Debug.Log("Descending player with plat");
+            }
+            else
+            {
+                Debug.Log("Player should not be moving");
+            }
+        }
+        if (_fallingBlock != null)
+        {
+            _fallingBlock.SetIsGoingDown(_touchFallingBlock);
         }
     }
     void HorzCollisions(ref Vector2 velocity)

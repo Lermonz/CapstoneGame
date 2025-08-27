@@ -30,6 +30,10 @@ public class PauseMenu : MonoBehaviour
             Instance = this;
         _isPaused = false;
     }
+    void Start()
+    {
+        _vcam = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
+    }
     private void Update()
     {
         if (InputManager.Instance.MenuOpenInput)

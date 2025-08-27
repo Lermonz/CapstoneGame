@@ -4,5 +4,6 @@ public enum LevelUnlockType : byte
     TotalGolds,
     GoldsInWorld,
     SpecificGold,
-    PrevClear
+    PrevClear,
+    CostumeSecret
 }

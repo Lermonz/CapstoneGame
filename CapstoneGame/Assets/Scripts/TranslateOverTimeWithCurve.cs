@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class TranslateOverTimeWithCurve : MonoBehaviour
 {
+    [SerializeField] GameObject _movingObj;
     [SerializeField] AnimationCurve _curve;
-    [SerializeField] Vector3 _startPosition;
-    [SerializeField] Vector3 _endPosition;
+    public Vector3 _startPosition;
+    public Vector3 _endPosition;
     [SerializeField] float _speed = 1;
     float currentTime = 0;
+    void Start()
+    {
+        if (_movingObj == null)
+        {
+            _movingObj = this.gameObject;
+        }
+    }
     void Update()
     {
         currentTime += Time.deltaTime * (_speed*0.1f);
-        this.transform.position = Vector3.LerpUnclamped(_startPosition, _endPosition, _curve.Evaluate(currentTime));
+        _movingObj.transform.position = Vector3.LerpUnclamped(_startPosition, _endPosition, _curve.Evaluate(currentTime));
     }
 
 }
