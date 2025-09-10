@@ -47,12 +47,12 @@ public class Controller2D : MonoBehaviour
         if(InputManager.Instance._freezeVelocity) {
             velocity = Vector2.zero;
         }
-        RayCastUpdate();
-        VertCollisions(ref velocity);
-        HorzCollisions(ref velocity);
-        ReverseHorzCollision(ref velocity);
         if (!PauseMenu.Instance._isPaused)
         {
+            RayCastUpdate();
+            VertCollisions(ref velocity);
+            HorzCollisions(ref velocity);
+            ReverseHorzCollision(ref velocity);
             transform.Translate(velocity);
         }
     }
@@ -118,7 +118,7 @@ public class Controller2D : MonoBehaviour
                 _vcamTransposer.m_DeadZoneHeight = 0.1f;
             }
         }
-        if (_vertElseCount >= _vertRayCount)
+        if (_vertElseCount >= _vertRayCount && !PauseMenu.Instance._isPausedPhysics)
         {
             _touchConveyer = false;
             _isGrounded = false;

@@ -94,9 +94,12 @@ public class Player : MonoBehaviour
         _horizontalInput = _overrideXInput ? 0 : InputManager.Instance.HorizontalInput;
         float delta = Time.deltaTime;
         //Debug.Log("Dead: "+_dead);
-        _animator.SetBool("Running", _horizontalInput != 0 && _controller._isGrounded);
-        _animator.SetBool("Jumping", _velocity.y >= 0 && !_controller._isGrounded && !_dead);
-        _animator.SetBool("Falling", _velocity.y < 0 && !_controller._isGrounded && !_dead);
+        if (!PauseMenu.Instance._isPausedPhysics)
+        {
+            _animator.SetBool("Running", _horizontalInput != 0 && _controller._isGrounded);
+            _animator.SetBool("Jumping", _velocity.y >= 0 && !_controller._isGrounded && !_dead);
+            _animator.SetBool("Falling", _velocity.y < 0 && !_controller._isGrounded && !_dead);
+        }
         //_dpad = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if ((_horizontalInput > 0 && _renderer.flipX) || (_horizontalInput < 0 && !_renderer.flipX))

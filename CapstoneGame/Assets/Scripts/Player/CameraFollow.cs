@@ -8,7 +8,9 @@ public class CameraFollow : MonoBehaviour
     float _z;
     [SerializeField] Vector2 _offset;
     [SerializeField] private GameObject _toFollow;
-    void Awake() {
+    [SerializeField] private GameObject _toFollowY;
+    void Awake()
+    {
         _startPos = this.transform.position;
         _z = this.transform.position.z;
     }
@@ -18,8 +20,15 @@ public class CameraFollow : MonoBehaviour
         {
             _toFollow = GameObject.Find("Main Camera");
         }
+        if (_toFollowY == null)
+        {
+            _toFollowY = _toFollow;
+        }
     }
-    void Update(){
-        this.transform.position = new Vector3(_toFollow.transform.position.x*_speed+_offset.x,_toFollow.transform.position.y*_speed+_offset.y,_z);
+    void Update()
+    {
+        if(!PauseMenu.Instance._isPaused) {
+            this.transform.position = new Vector3(_toFollow.transform.position.x * _speed + _offset.x, _toFollowY.transform.position.y * _speed + _offset.y, _z);
+        }
     }
 }

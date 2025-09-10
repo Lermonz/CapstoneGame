@@ -12,6 +12,6 @@ public class WorldTitleText : MonoBehaviour
     void Update()
     {
         _textText.text = "World " + (MainMenuManager.Instance.CurrentWorld + 1);
-        Debug.Log("Current world according to Text:" + (MainMenuManager.Instance.CurrentWorld + 1));
+        //Debug.Log("Current world according to Text:" + (MainMenuManager.Instance.CurrentWorld + 1));
     }
 }

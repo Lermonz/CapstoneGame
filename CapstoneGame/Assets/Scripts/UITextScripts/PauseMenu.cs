@@ -1,13 +1,16 @@
 using System.Collections;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
     public bool _isPaused = false;
+    public bool _isPausedPhysics = false;
     public static PauseMenu Instance;
     public CinemachineVirtualCamera _vcam;
+    public CinemachineVirtualCamera _vcamPaused;
 
     [Header("Panels")]
     public GameObject _pauseMenu;
@@ -33,6 +36,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         _vcam = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
+        _vcamPaused = GameObject.Find("Virtual Camera Paused").GetComponent<CinemachineVirtualCamera>();
     }
     private void Update()
     {
@@ -64,22 +68,24 @@ public class PauseMenu : MonoBehaviour
     {
         MoveCameraOffset();
         _isPaused = true;
+        _isPausedPhysics = true;
         OpenMainPauseMenu();
         FindAudioPlayerForButtons(6);
         DataPersistenceManager.Instance.LoadGame();
         InputManager.Instance.DisablePlayerInput();
-        LevelManager.Instance.FreezePlayerAndTimer();
-        //Time.timeScale = 0;
+        //LevelManager.Instance.FreezePlayerAndTimer();
+        Time.timeScale = 0;
     }
     public void Unpause()
     {
         ResetCameraOffset();
-        _isPaused = false;
-        FindAudioPlayerForButtons(5); // change back to 5?
+        FindAudioPlayerForButtons(5);
         CloseMenus();
         InputManager.Instance.EnablePlayerInput();
         LevelManager.Instance.FreezePlayerAndTimer(false);
-        //Time.timeScale = 1;
+        Time.timeScale = 1;
+        _isPaused = false;
+        StartCoroutine(MaintainPrePausedState());
     }
     private void CloseMenus()
     {
@@ -139,11 +145,20 @@ public class PauseMenu : MonoBehaviour
     }
     void MoveCameraOffset()
     {
-        var transposer = _vcam.GetCinemachineComponent<CinemachineFramingTransposer>();
-        transposer.m_TrackedObjectOffset.x = 6;
+        _vcam.enabled = false;
+        _vcamPaused.enabled = true;
+        // var transposer = _vcam.GetCinemachineComponent<CinemachineFramingTransposer>();
+        // transposer.m_TrackedObjectOffset.x = 6;
     }
     void ResetCameraOffset()
     {
-        _vcam.GetCinemachineComponent<CinemachineFramingTransposer>().m_TrackedObjectOffset.x = 0;
+        _vcamPaused.enabled = false;
+        _vcam.enabled = true;
+        //_vcam.GetCinemachineComponent<CinemachineFramingTransposer>().m_TrackedObjectOffset.x = 0;
+    }
+    IEnumerator MaintainPrePausedState()
+    {
+        yield return null;
+        _isPausedPhysics = false;
     }
 }

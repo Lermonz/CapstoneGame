@@ -5,28 +5,33 @@ public class MusicVolume : MonoBehaviour
 {
     [SerializeField] AudioMixType _audioType;
     [SerializeField] TMP_Text _text;
+    [SerializeField] VolumeManager _volumeManager;
     void Start()
     {
-        UpdateText();   
+        if (_volumeManager == null)
+        {
+            _volumeManager = this.gameObject.AddComponent<VolumeManager>();
+        }
+        UpdateText();
     }
     public void IncreaseVolume()
     {
-        if (MusicManager.Instance.GetVolume(_audioType) < 100)
+        if (_volumeManager.GetVolume(_audioType) < 100)
         {
-            MusicManager.Instance.SetVolume(_audioType, 10);
+            _volumeManager.SetVolume(_audioType, 10);
             UpdateText();
         }
     }
     public void DecreaseVolume()
     {
-        if (MusicManager.Instance.GetVolume(_audioType) > 0)
+        if (_volumeManager.GetVolume(_audioType) > 0)
         {
-            MusicManager.Instance.SetVolume(_audioType, -10);
+            _volumeManager.SetVolume(_audioType, -10);
             UpdateText();
         }
     }
     void UpdateText()
     {
-        _text.text = "" + MusicManager.Instance.GetVolume(_audioType);
+        _text.text = "" + _volumeManager.GetVolume(_audioType);
     }
 }

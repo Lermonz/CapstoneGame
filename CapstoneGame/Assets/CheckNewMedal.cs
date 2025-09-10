@@ -17,15 +17,19 @@ public class CheckNewMedal : MonoBehaviour
     }
     public void MedalLoad(string medal)
     {
-        _image.color = Color.white;
-        Debug.Log("MedalLoad has been called!!!!");
-        if (medal == "gold")
-            _image.sprite = _medalSprites[0];
-        else if (medal == "silver")
-            _image.sprite = _medalSprites[1];
-        else if (medal == "bronze")
-            _image.sprite = _medalSprites[2];
-        else
-            _image.color = Color.black;
+        _image.color = Color.black;
+        if (medal != null)
+        {
+            _image.color = Color.white;
+            //Debug.Log("MedalLoad has been called!!!!" + medal);
+            if (medal == "gold")
+                _image.sprite = _medalSprites[0];
+            else if (medal == "silver")
+                _image.sprite = _medalSprites[1];
+            else if (medal == "bronze")
+                _image.sprite = _medalSprites[2];
+            else
+                _image.color = Color.black;
+        }
     }
 }

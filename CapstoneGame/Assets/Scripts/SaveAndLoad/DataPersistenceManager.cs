@@ -46,9 +46,9 @@ public class DataPersistenceManager : MonoBehaviour
         }
         // pass the data to other scripts so they can update it
         foreach(IDataPersistence dataPersistenceObj in _dataPersistenceObjects) {
-            Debug.Log("DataPersistenceManager SaveData foreach SAVE\n"+dataPersistenceObj);
+            //Debug.Log("DataPersistenceManager SaveData foreach SAVE\n"+dataPersistenceObj);
             dataPersistenceObj.SaveData(_gameData);
-            Debug.Log("DataPersistenceManager SaveData foreach SAVE2!!! 2! 2!");
+            Debug.Log("GAME SAVED");
         }
 
         // save that data to a file using the data handler
@@ -64,7 +64,7 @@ public class DataPersistenceManager : MonoBehaviour
         }
         // push the loaded data to all scripts that need it
         foreach(IDataPersistence dataPersistenceObj in _dataPersistenceObjects) {
-            Debug.Log("DataPersistenceManager LoadData foreach LOAD");
+            Debug.Log("GAME LOADED");
             dataPersistenceObj.LoadData(_gameData);
         }
     }
@@ -82,7 +82,7 @@ public class DataPersistenceManager : MonoBehaviour
         IEnumerable<IDataPersistence> dataPersistenceObjects =
             //FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IDataPersistence>();
             FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
-        Debug.Log("why no list of IDataPersistence??? " + (new List<IDataPersistence>(dataPersistenceObjects)));
+        //Debug.Log("why no list of IDataPersistence??? " + (new List<IDataPersistence>(dataPersistenceObjects)));
         return new List<IDataPersistence>(dataPersistenceObjects);
     }
 }

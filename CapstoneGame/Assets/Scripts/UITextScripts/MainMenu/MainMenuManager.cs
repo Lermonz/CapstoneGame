@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -173,5 +174,13 @@ public class MainMenuManager : MonoBehaviour
     public void OnCostumeChangeButton(int cID)
     {
         GameBehaviour.Instance.SetCostume(cID);
+    }
+    public void SaveGame()
+    {
+        DataPersistenceManager.Instance.SaveGame();
+    }
+    public void LoadGame()
+    {
+        DataPersistenceManager.Instance.LoadGame();
     }
 }
