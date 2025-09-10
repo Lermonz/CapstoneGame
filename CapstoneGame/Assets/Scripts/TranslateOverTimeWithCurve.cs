@@ -20,7 +20,7 @@ public class TranslateOverTimeWithCurve : MonoBehaviour
     void Update()
     {
         currentTime += Time.deltaTime * (_speed*0.1f);
-        _movingObj.transform.position = Vector3.LerpUnclamped(_startPosition, _endPosition, _curve.Evaluate(currentTime));
+        _movingObj.transform.localPosition = Vector3.LerpUnclamped(_startPosition, _endPosition, _curve.Evaluate(currentTime));
     }
 
 }

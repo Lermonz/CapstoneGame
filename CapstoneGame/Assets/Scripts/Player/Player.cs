@@ -52,16 +52,16 @@ public class Player : MonoBehaviour
     bool _invulnerable;
 
     bool _grabbedMode = false;
-    float _grabbedMaxSpeed = 6f;
+    float _grabbedMaxSpeed = 4.5f;
     float _grabbedSpeed;
-    float _grabbedAccel = 160;
+    float _grabbedAccel = 0.5f;
     GrabberBehavior _grabbedBy;
 
     float _bounceVelocity = 16f;
 
     bool _boostDeceling;
-    float _boostSpeed = 12f;
-    float _boostDecel = 50f;
+    float _boostSpeed = 11.5f;
+    float _boostDecel = 55f;
 
     bool _isGravityFlipped = false;
 
@@ -184,12 +184,11 @@ public class Player : MonoBehaviour
         }
         if (_grabbedMode)
         {
-            Debug.Log("GrabbedMode "+_grabbedSpeed);
             Accelerate(ref _velocity.y, 1, _grabbedSpeed, delta);
             Debug.Log(_grabbedSpeed+" : "+_grabbedAccel);
-            if (_grabbedSpeed < _grabbedMaxSpeed)
+            if (_grabbedSpeed < (_grabbedMaxSpeed+_wind.y))
             {
-                Accelerate(ref _grabbedSpeed, 1, _grabbedAccel, delta);
+                Accelerate(ref _grabbedSpeed, 1, _grabbedAccel, 1);
             }
         }
         /// BOOST  ///
@@ -433,6 +432,9 @@ public class Player : MonoBehaviour
     {
         _grabbedMode = false;
         _windMult = 1;
+        _skidDecel = 40f;
+        _baseAccel = 18f;
+        _maxRunSpeed = 5.8f;
         if (_grabbedBy != null)
         {
             _grabbedBy.Detach(new Vector2(_velocity.x * 0.5f, 9));
@@ -467,12 +469,16 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Grabber") && !_grabbedMode)
         {
             _velocity.y = Mathf.Clamp(_velocity.y, _terminalVelocity, 0);
-            _velocity.y *= 0.2f;
-            _grabbedSpeed = -20;
+            _velocity.y *= 0.12f;
+            _grabbedSpeed = -3f;
             _grabbedMode = true;
             _grabbedBy = other.gameObject.GetComponent<GrabberBehavior>();
             _grabbedBy.Attach();
             _windMult = 0.5f;
+            _skidDecel = 80f;
+            _baseAccel = 24f;
+            _maxRunSpeed = 6.8f;
+            SetAllPlayerActions();
         }
         if (other.gameObject.CompareTag("Boost"))
         {
@@ -516,7 +522,7 @@ public class Player : MonoBehaviour
             //Strength of black hole pull is increased when player is closer to it
             float strength = _blackHoleBaseStrength - 0.33f*Vector2.Distance(other.gameObject.transform.position, this.transform.position);
             // float strength = _blackHoleStrength (2.85 in this instance) - 2 * Mathf.Pow(x,0.2); x is the distance
-            _blackHoleBaseStrength += _blackHoleBaseStrength*0.05f*Time.deltaTime;
+            _blackHoleBaseStrength += _blackHoleBaseStrength*0.1f*Time.deltaTime;
             //Debug.Log("Distance: "+Vector2.Distance(other.gameObject.transform.position, this.transform.position)+"\nStrength: "+strength);
             PullTowards(other.gameObject.transform.position, strength);
         }
@@ -625,6 +631,7 @@ public class Player : MonoBehaviour
     public void DeathNormal(float delay, bool sceneResets) {
         if (!_invulnerable)
         {
+            _invulnerable = true;
             _animator.SetTrigger("DeathNormal");
             InputManager.Instance.NegateAllInput();
             LevelManager.Instance.FreezePlayerAndTimer();
@@ -684,6 +691,7 @@ public class Player : MonoBehaviour
     void PlayerIsDead(float delay, bool sceneResets)
     {
         _dead = true;
+        EndGrabbedMode();
         GameBehaviour.Instance.SetPlayerDeath(_dead);
         AkSoundEngine.PostEvent("Player_Die", gameObject);
         if (!sceneResets) { StartCoroutine(DelayRespawn(delay)); }

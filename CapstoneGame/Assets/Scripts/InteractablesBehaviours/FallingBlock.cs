@@ -13,10 +13,12 @@ public class FallingBlock : MonoBehaviour
     public LayerMask collMask;
     bool _isGoingDown;
     bool _resetOnRespawn = false;
+    float _ySize;
     void Start()
     {
         _home = this.transform.position;
         _moveBy = new Vector2(0, -_fallSpeed);
+        _ySize = this.GetComponent<ReassignScaleToRendererAndCollider>()._size.y;
     }
     void Update()
     {
@@ -40,7 +42,7 @@ public class FallingBlock : MonoBehaviour
     }
     public bool MoveDown()
     {
-        RaycastHit2D hit = Physics2D.Raycast(this.transform.position+rayOffset, Vector2.down, this.transform.localScale.y * 0.5f, collMask);
+        RaycastHit2D hit = Physics2D.Raycast(this.transform.position+rayOffset, Vector2.down, _ySize * 0.5f, collMask);
         if (!hit)
         {
             this.transform.Translate(_moveBy * Time.deltaTime);

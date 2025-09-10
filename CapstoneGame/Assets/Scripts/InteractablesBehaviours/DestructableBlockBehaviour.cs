@@ -46,7 +46,7 @@ public class DestructableBlockBehaviour : MonoBehaviour
         }
         if (_blockIsGone)
         {
-            StartCoroutine(Reactivate(3));
+            StartCoroutine(Reactivate(2.1f));
         }
         if (_canRespawn && !_checkOverlap)
         {

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CheckNewMedal : MonoBehaviour
 {
     public Image _image;
+    [SerializeField] Sprite[] _medalSprites;
     public void MedalLoad(string oldMedal, string newMedal)
     {
         MedalLoad(newMedal);
@@ -16,14 +17,15 @@ public class CheckNewMedal : MonoBehaviour
     }
     public void MedalLoad(string medal)
     {
+        _image.color = Color.white;
         Debug.Log("MedalLoad has been called!!!!");
         if (medal == "gold")
-            _image.color = Color.yellow;
+            _image.sprite = _medalSprites[0];
         else if (medal == "silver")
-            _image.color = Color.grey;
+            _image.sprite = _medalSprites[1];
         else if (medal == "bronze")
-            _image.color = Color.red;
+            _image.sprite = _medalSprites[2];
         else
-            _image.color = Color.white;
+            _image.color = Color.black;
     }
 }

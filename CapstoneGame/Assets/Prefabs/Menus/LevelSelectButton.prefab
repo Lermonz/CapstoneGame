@@ -103,7 +103,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7a08a5ccec8844347993357ac7a4b7e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2f25c68afecdf4ead86de1bbd74010e6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -126,6 +126,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _image: {fileID: 7121202276652729642}
+  _medalSprites:
+  - {fileID: 21300000, guid: 2f25c68afecdf4ead86de1bbd74010e6, type: 3}
+  - {fileID: 21300000, guid: 8c7539696c7be4d539e9f85322ec956c, type: 3}
+  - {fileID: 21300000, guid: 8669e95d01a304c3893308a5a04a4aa7, type: 3}
 --- !u!1 &2472504000303455962
 GameObject:
   m_ObjectHideFlags: 0

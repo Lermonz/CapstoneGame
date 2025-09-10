@@ -7,6 +7,8 @@ public class GrabberBehavior : MonoBehaviour
     bool _attach;
     Vector3 _home;
     [SerializeField] Animator _animator;
+    [SerializeField] ParticleSystem _particlesSmall;
+    [SerializeField] ParticleSystem _particlesBig;
     public void Attach()
     {
         _attach = true;
@@ -30,12 +32,18 @@ public class GrabberBehavior : MonoBehaviour
     }
     IEnumerator FlyOffAndReset(Vector2 velocity)
     {
-        for (int i = 0; i < 300; i++)
+        for (int i = 0; i < 150; i++)
         {
             this.transform.Translate(velocity * Time.deltaTime);
             yield return null;
         }
+        Respawn();
+    }
+    void Respawn()
+    {
         this.transform.position = _home;
         _animator.speed = 1;
+        _particlesSmall.Play();
+        _particlesBig.Play();
     }
 }

@@ -52,7 +52,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movingObj: {fileID: 0}
   _radius: {x: 2, y: 2}
-  _center: {x: 0, y: 0, z: 0}
   _speed: 16
   _offset: 0
   _clockwise: 0
@@ -316,9 +315,9 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -362040929
+  m_SortingLayer: -3
+  m_SortingOrder: 8
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 1, y: 1, z: 0}

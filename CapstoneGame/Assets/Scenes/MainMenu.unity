@@ -714,11 +714,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._unlockType
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._goldTotalReq
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
+      propertyPath: _buttonData._requiredLevelID
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 6950312783646007008, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: m_text
@@ -1418,11 +1422,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._unlockType
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._goldTotalReq
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
+      propertyPath: _buttonData._requiredLevelID
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 6950312783646007008, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: m_text
@@ -2593,7 +2601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &316173831
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2972,7 +2980,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &377688917
 Transform:
   m_ObjectHideFlags: 0
@@ -5116,11 +5124,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._unlockType
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._goldTotalReq
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
+      propertyPath: _buttonData._requiredLevelID
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 6950312783646007008, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: m_text
@@ -6027,11 +6039,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._unlockType
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._goldTotalReq
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
+      propertyPath: _buttonData._requiredLevelID
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 6950312783646007008, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: m_text
@@ -6884,7 +6900,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1175623277
-  m_SortingLayer: -4
+  m_SortingLayer: -5
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.36598745, g: 0.2516465, b: 0.8207547, a: 0}
@@ -8582,7 +8598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._unlockType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._goldTotalReq
@@ -10601,11 +10617,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._unlockType
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._goldTotalReq
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
+      propertyPath: _buttonData._requiredLevelID
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 6950312783646007008, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: m_text
@@ -11570,11 +11590,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._unlockType
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._goldTotalReq
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
+      propertyPath: _buttonData._requiredLevelID
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6950312783646007008, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: m_text
@@ -15158,11 +15182,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._unlockType
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._goldTotalReq
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
+      propertyPath: _buttonData._requiredLevelID
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 6950312783646007008, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: m_text
@@ -16624,11 +16652,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._unlockType
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._goldTotalReq
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
+      propertyPath: _buttonData._requiredLevelID
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6950312783646007008, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: m_text
@@ -18300,11 +18332,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._unlockType
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: _buttonData._goldTotalReq
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6217422383859881728, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
+      propertyPath: _buttonData._requiredLevelID
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 6950312783646007008, guid: f86964df28d9e474394e2b7da23dbf0a, type: 3}
       propertyPath: m_text
@@ -19147,7 +19183,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1175623277
-  m_SortingLayer: -4
+  m_SortingLayer: -5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 32044eb802b4a4452b0522eed277a67b, type: 3}
   m_Color: {r: 0.6435983, g: 0.3915094, b: 1, a: 1}
