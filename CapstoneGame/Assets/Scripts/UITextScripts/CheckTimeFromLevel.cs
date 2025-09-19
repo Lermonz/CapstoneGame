@@ -29,6 +29,9 @@ public class CheckTimeFromLevel : MonoBehaviour, IDataPersistence
                     _text.text = DataToStringText(data.personalBest[_levelID]);
                 }
                 break;
+            case TimeType.Diamond:
+                _text.text = DataToStringText(data.levelDiamonds[_levelID]);
+                break;
             case TimeType.Gold:
                 _text.text = DataToStringText(data.levelGolds[_levelID]);
                 break;

@@ -51,6 +51,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Costume_Get" ID="{C849B7E8-05EE-489C-8598-9FF03C0DAF6D}">
+					<ChildrenList>
+						<Action Name="" ID="{67308A32-9AEE-4E34-BFA0-36B1456AD81D}" ShortID="991710148">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="collected_costume1" ID="{596C3441-273D-4C0D-A016-C49D39B52B53}" WorkUnitID="{7FD96404-D09A-41C2-906C-4B91AF852793}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

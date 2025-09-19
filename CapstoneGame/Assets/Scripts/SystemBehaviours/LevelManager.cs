@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     public float _personalBest = 99*60000+59*1000+999;
     [Header("Level Times (in ms)")]
     [Tooltip("minute : second : millisecond")]
+    public Vector3 _diamondTime;
     public Vector3 _goldTime;
     public Vector3 _silverTime;
     public Vector3 _bronzeTime;
@@ -22,6 +23,7 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     public bool _stopTimer;
     public bool _countdownDone = false;
     bool _hasPlayedSoundEffect = false;
+    bool _canReset = false;
     //Vector2 _checkpoint;
     public Vector2 Checkpoint { get; private set; }
 
@@ -48,7 +50,8 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         Vector2 offset = new Vector2(offsetX, offsetY);
         Checkpoint = position+offset;
     }
-    void Update() {
+    void Update()
+    {
         // if you've destroyed enough targets for this level, you can touch the goal
         if (_targetsDestroyed >= _targetReq)
         {
@@ -59,6 +62,11 @@ public class LevelManager : MonoBehaviour, IDataPersistence
                 _hasPlayedSoundEffect = true;
             }
         }
+        if (InputManager.Instance.QuickResetInput && _canReset)
+        {
+            _canReset = false;
+            this.GetComponent<SelectLevel>().Reload();
+        }
     }
     IEnumerator Countdown()
     {
@@ -68,6 +76,7 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         InputManager.Instance._freezeVelocity = false;
         yield return new WaitForSeconds(0.5f);
         _stopTimer = false;
+        _canReset = true;
     }
     public void FreezePlayerAndTimer(bool doIt = true) {
         Debug.Log("PlayerFroze");
@@ -90,6 +99,7 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         this._bronzeTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelBronzes[_levelID]);
         this._silverTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelSilvers[_levelID]);
         this._goldTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelGolds[_levelID]);
+        this._diamondTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelDiamonds[_levelID]);
         if(data.personalBest.ContainsKey(_levelID)){
             data.personalBest.TryGetValue(_levelID, out this._personalBest);
         }
@@ -100,38 +110,51 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     }
     public void SaveData(GameData data)
     {
-        if (data.personalBest.ContainsKey(_levelID))
+        if (_canExit)
         {
-            data.personalBest.Remove(_levelID);
-        }
-        data.personalBest.Add(_levelID, this._personalBest);
-        if (data.personalBest[_levelID] <= data.levelGolds[_levelID])
-        {
-            UpdateMedals(data, "gold");
-        }
-        else if (data.personalBest[_levelID] <= data.levelSilvers[_levelID])
-        {
-            UpdateMedals(data, "silver");
-        }
-        else if (data.personalBest[_levelID] <= data.levelBronzes[_levelID])
-        {
-            UpdateMedals(data, "bronze");
-        }
-        else
-        {
-            UpdateMedals(data, "none");
+            if (data.personalBest.ContainsKey(_levelID))
+            {
+                data.personalBest.Remove(_levelID);
+            }
+            data.personalBest.Add(_levelID, this._personalBest);
+            if (data.personalBest[_levelID] <= data.levelDiamonds[_levelID])
+            {
+                UpdateMedals(data, "diamond");
+            }
+            else if (data.personalBest[_levelID] <= data.levelGolds[_levelID])
+            {
+                UpdateMedals(data, "gold");
+            }
+            else if (data.personalBest[_levelID] <= data.levelSilvers[_levelID])
+            {
+                UpdateMedals(data, "silver");
+            }
+            else if (data.personalBest[_levelID] <= data.levelBronzes[_levelID])
+            {
+                UpdateMedals(data, "bronze");
+            }
+            else
+            {
+                UpdateMedals(data, "none");
+            }
         }
         
         //data.personalBestOLD = this._personalBest;
     }
     public void UpdateMedals(GameData data, string medal) {
-        Debug.Log("levelmanager.updatemedals");
-        if (data.medals.ContainsKey(_levelID))
+        if (GameObject.Find("RewardStar") != null)
         {
-            Debug.Log("Show medal correct please");
-            GameObject.Find("RewardStar").GetComponent<CheckNewMedal>().MedalLoad(data.medals[_levelID], medal);
-            data.medals.Remove(_levelID);
+            CheckNewMedal MedalSprite = GameObject.Find("RewardStar").GetComponent<CheckNewMedal>();
+            if (data.medals.ContainsKey(_levelID))
+            {
+                MedalSprite.MedalLoad(data.medals[_levelID], medal);
+                data.medals.Remove(_levelID);
+            }
+            else
+            {
+                MedalSprite.MedalLoad("none", medal);
+            }
+            data.medals.Add(_levelID, medal);
         }
-        data.medals.Add(_levelID, medal);
     }
 }

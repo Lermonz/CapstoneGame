@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 
@@ -16,7 +18,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
     public class RebindActionUI : MonoBehaviour
     {
         /// <summary>
-        /// Reference to the action that is to be rebound.
+        /// Reference to the action that is to be rebound blah blah blee blah.
         /// </summary>
         public InputActionReference actionReference
         {
@@ -28,6 +30,16 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 UpdateBindingDisplay();
             }
         }
+        public InputActionReference secondActionReference
+        {
+            get => m_SecondAction;
+            set
+            {
+                m_SecondAction = value;
+                UpdateBindingDisplay();
+                }
+        }
+        
 
         /// <summary>
         /// ID (in string form) of the binding that is to be rebound on the action.
@@ -42,16 +54,25 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 UpdateBindingDisplay();
             }
         }
-
-        public InputBinding.DisplayStringOptions displayStringOptions
+        public string secondBindingId
         {
-            get => m_DisplayStringOptions;
+            get => m_BindingId2;
             set
             {
-                m_DisplayStringOptions = value;
+                m_BindingId2 = value;
                 UpdateBindingDisplay();
             }
         }
+
+        public InputBinding.DisplayStringOptions displayStringOptions
+    {
+        get => m_DisplayStringOptions;
+        set
+        {
+            m_DisplayStringOptions = value;
+            UpdateBindingDisplay();
+        }
+    }
 
         /// <summary>
         /// Text component that receives the name of the action. Optional.
@@ -254,15 +275,39 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 PerformInteractiveRebind(action, bindingIndex);
             }
         }
+        private void StartSecondRebind(InputAction action, InputAction firstAction, int bindingIndex, string prevPath)
+        {
+            action.ApplyBindingOverride(new InputBinding
+            {
+                path = prevPath,
+                overridePath = firstAction.bindings[bindingIndex].effectivePath
+            });
+            Debug.Log("Set menu button: " + action + "\nto new binding of: "+firstAction.bindings[bindingIndex].effectivePath);
+            // void CleanUp()
+            // {
+            //     m_RebindOperation2?.Dispose();
+            //     m_RebindOperation2 = null;
+            // }
+            // action.Disable();
+            // m_RebindOperation2 = new InputActionRebindingExtensions.RebindingOperation()
+            //     .WithAction(action)
+            //     .WithCancelingThrough(firstAction.bindings[bindingIndex].effectivePath)
+            //     .OnComplete(operation => { CleanUp(); action.Enable();  });
+            // m_RebindOperation2.Start();
+            // m_RebindOperation2.Complete();
+        }
 
         private void PerformInteractiveRebind(InputAction action, int bindingIndex, bool allCompositeParts = false)
         {
             m_RebindOperation?.Cancel(); // Will null out m_RebindOperation.
+            string prevPath = action.bindings[bindingIndex].effectivePath;
 
             void CleanUp()
             {
                 m_RebindOperation?.Dispose();
                 m_RebindOperation = null;
+                if (secondActionReference != null)
+                    StartSecondRebind(secondActionReference.action, action, bindingIndex, prevPath);
             }
             action.Disable();
 
@@ -371,9 +416,12 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             }
         }
 
-        [Tooltip("Reference to action that is to be rebound from the UI.")]
+        [Tooltip("Reference to action that is to be rebound from the UI AAAAGGB FUCK YOUOU.")]
         [SerializeField]
         private InputActionReference m_Action;
+        
+        [Tooltip("UI Action Map equivalent button.")]
+        [SerializeField] private InputActionReference m_SecondAction;
 
         [SerializeField]
         private string m_BindingId;
@@ -381,8 +429,12 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         [SerializeField]
         private InputBinding.DisplayStringOptions m_DisplayStringOptions;
 
+        
+
+        [SerializeField] private string m_BindingId2;
+
         [Tooltip("Text label that will receive the name of the action. Optional. Set to None to have the "
-            + "rebind UI not show a label for the action.")]
+    + "rebind UI not show a label for the action.")]
         [SerializeField]
         private TMPro.TextMeshProUGUI m_ActionLabel;
 
@@ -414,6 +466,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         private InteractiveRebindEvent m_RebindStopEvent;
 
         private InputActionRebindingExtensions.RebindingOperation m_RebindOperation;
+        private InputActionRebindingExtensions.RebindingOperation m_RebindOperation2;
 
         private static List<RebindActionUI> s_RebindActionUIs;
 

@@ -17,6 +17,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject _settingsMenu;
     public GameObject _controlsMenu;
     public GameObject _winMenu;
+    public GameObject _collectedOrb;
     public ScaleScreenWipeMask _screenWipe;
 
     [Header("Event System wants a first selected button")]
@@ -135,9 +136,13 @@ public class PauseMenu : MonoBehaviour
     {
         OpenMainPauseMenu();
     }
-    public void OnPlayerDeath()
+    public void OnResetLevel()
     {
         _screenWipe.ScaleDown();
+    }
+    public void CollectedOrb()
+    {
+        StartCoroutine(CollectedOrbTextAnimation());
     }
     public void FindAudioPlayerForButtons(int fileNum)
     {
@@ -160,5 +165,24 @@ public class PauseMenu : MonoBehaviour
     {
         yield return null;
         _isPausedPhysics = false;
+    }
+    IEnumerator CollectedOrbTextAnimation()
+    {
+        _collectedOrb.transform.localScale = Vector3.zero;
+        yield return new WaitForSeconds(0.15f);
+        _collectedOrb.SetActive(true);
+        for (int i = 0; i < 6; i++)
+        {
+            _collectedOrb.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, i / 6f);
+            yield return null;
+        }
+        _collectedOrb.transform.localScale = Vector3.one;
+        yield return new WaitForSeconds(4);
+        for (int i = 0; i < 6; i++)
+        {
+            _collectedOrb.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, i / 6f);
+            yield return null;
+        }
+        _collectedOrb.SetActive(false);
     }
 }

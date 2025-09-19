@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     float _baseDecel = 20f;
     float _baseAirDecel = 2.8f;
     float _skidDecel = 40f;
-    float _maxRunSpeed = 5.8f;
+    float _maxRunSpeed = 5.4f;
     const float _gravity = -32f;
     float _gravityMult = 1;
     bool _inBlackHole = false;
@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
         _renderer.material.SetTexture("_Palette", GameBehaviour.Instance.SelectedCostume);
     }
     void Update() {
-        _horizontalInput = _overrideXInput ? 0 : InputManager.Instance.HorizontalInput;
+        _horizontalInput = _overrideXInput ? 0 : InputManager.Instance.Dpad.x;
         float delta = Time.deltaTime;
         //Debug.Log("Dead: "+_dead);
         if (!PauseMenu.Instance._isPausedPhysics)
@@ -259,13 +259,13 @@ public class Player : MonoBehaviour
         }
         
         //Fast Fall / Down Boost
-        if(InputManager.Instance.DownInput && _canDownBoostReal) {
-            _grabbedMode = false;
-            // //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._fastFallSFX);
-            AkSoundEngine.PostEvent("Player_FastFall", gameObject);
-            _vfxPlayer.Woosh(0.5f);
-            _velocity.y = _downBoostVelocity;
-        }
+        // if(InputManager.Instance.DownInput && _canDownBoostReal) {
+        //     _grabbedMode = false;
+        //     // //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._fastFallSFX);
+        //     AkSoundEngine.PostEvent("Player_FastFall", gameObject);
+        //     _vfxPlayer.Woosh(0.5f);
+        //     _velocity.y = _downBoostVelocity;
+        // }
 
         // if(_inBlackHole)
         //     _velocity.y += _gravity;
@@ -322,6 +322,7 @@ public class Player : MonoBehaviour
             _jumpOverride = false;
         }
         _canDownBoost = !ignoreDownBoostReset;
+        //if (!ignoreBoostReset) { RegenerateBoost(); } 
         _canBoost = !ignoreBoostReset;
     }
     IEnumerator NegateGravityFor(int delay) {
@@ -378,7 +379,8 @@ public class Player : MonoBehaviour
                 i = (int)cooldown - adjuster;
             yield return null;
         }
-        _canBoost = true;
+        RegenerateBoost();
+        //_canBoost = true;
     }
     IEnumerator CoyoteTime() {
         yield return new WaitForSeconds(0.1f);
@@ -394,6 +396,11 @@ public class Player : MonoBehaviour
     void Jump(float jumpVelocity)
     {
         _velocity.y = jumpVelocity + (_isGravityFlipped ? -(Mathf.Abs(_velocity.x) * 0.125f + _spinBoost) : (Mathf.Abs(_velocity.x) * 0.125f + _spinBoost));
+        if (_spinBoost != 0)
+        {
+            _vfxPlayer.SpecialJump();
+            AkSoundEngine.PostEvent("Player_JumpSpecial", gameObject);
+        }
         //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._jumpSFX);
         _canDownBoost = true;
         _canJump = false;
@@ -407,6 +414,11 @@ public class Player : MonoBehaviour
         GameObject HitBoxObject;
         HitBoxObject = Instantiate(_hitBox, this.transform);
         HitBoxObject.transform.localScale = new Vector3(width, height, 20);
+    }
+    void RegenerateBoost()
+    {
+        _canBoost = true;
+        _vfxPlayer.RegenerateBoost();
     }
     IEnumerator Teleport(Teleporter teleporter)
     {
@@ -526,6 +538,11 @@ public class Player : MonoBehaviour
             float strength = _blackHoleBaseStrength - 0.33f*Vector2.Distance(other.gameObject.transform.position, this.transform.position);
             // float strength = _blackHoleStrength (2.85 in this instance) - 2 * Mathf.Pow(x,0.2); x is the distance
             _blackHoleBaseStrength += _blackHoleBaseStrength*0.1f*Time.deltaTime;
+            //dont pull player into the ground from below
+            if ((this.transform.position.y - other.gameObject.transform.position.y) > 0 && _controller._isGrounded)
+            {
+                ExitBlackHole();
+            }
             //Debug.Log("Distance: "+Vector2.Distance(other.gameObject.transform.position, this.transform.position)+"\nStrength: "+strength);
             PullTowards(other.gameObject.transform.position, strength);
         }
@@ -575,13 +592,16 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("BlackHole"))
         {
             //_terminalVelocity = _termV;
-            _inBlackHole = false;
-            _blackHoleBaseStrength = 1.1f;
+            ExitBlackHole();
         }
         if (other.gameObject.CompareTag("Wind"))
         {
             _wind = Vector2.zero;
         }
+    }
+    void ExitBlackHole() {
+        _inBlackHole = false;
+            _blackHoleBaseStrength = 1.1f;
     }
     void ForceVelocityToVector(Vector2 v) {
         AkSoundEngine.PostEvent("Boost_Object", gameObject);
@@ -658,8 +678,9 @@ public class Player : MonoBehaviour
         }
     IEnumerator DelayRespawn(float delay)
     {
+        //this coroutine only occurs if the scene does not reset
         yield return new WaitForSeconds(delay);
-        PauseMenu.Instance.OnPlayerDeath();
+        PauseMenu.Instance.OnResetLevel();
         for (int i = 0; i < 30; i++)
         {
             yield return null;

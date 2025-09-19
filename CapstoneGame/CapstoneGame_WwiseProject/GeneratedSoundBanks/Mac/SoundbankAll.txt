@@ -13,6 +13,8 @@ Event	ID	Name			Wwise Object Path	Notes
 	2394582229	Player_Dash			\PlayerSFX\Player_Dash	
 	2443977444	StopWorld1			\Music\StopWorld1	
 	2443977447	StopWorld2			\Music\StopWorld2	
+	2716839384	Costume_Get			\GameSFX\Costume_Get	
+	2749803129	ButtonCostume			\MenuSFX\ButtonCostume	
 	2824512041	Player_Attack			\PlayerSFX\Player_Attack	
 	3070336346	ButtonNext			\MenuSFX\ButtonNext	
 	3278968191	ButtonHighlight			\MenuSFX\ButtonHighlight	
@@ -20,12 +22,14 @@ Event	ID	Name			Wwise Object Path	Notes
 	3348213546	ButtonConfirm3			\MenuSFX\ButtonConfirm3	
 	3348213547	ButtonConfirm2			\MenuSFX\ButtonConfirm2	
 	3348213549	ButtonConfirm4			\MenuSFX\ButtonConfirm4	
+	3457997290	Player_JumpSpecial			\PlayerSFX\Player_JumpSpecial	
 	4039638073	PlayWorld2			\Music\PlayWorld2	
 	4039638074	PlayWorld1			\Music\PlayWorld1	
 	4179545512	Player_FastFall			\PlayerSFX\Player_FastFall	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	33559383	button_select3_1	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Mac\SFX\button_select3_1_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_select3_1		155832
+	35565956	player_JumpSpecial2	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Mac\SFX\player_JumpSpecial2_818F3B66.wem		\Actor-Mixer Hierarchy\Player_SFX\player_JumpSpecial2		384208
 	49204311	button_select8_1	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Mac\SFX\button_select8_1_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_select8_1		155836
 	94089198	allCrystals1	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Mac\SFX\allCrystals1_818F3B66.wem		\Actor-Mixer Hierarchy\Interactables_SFX\allCrystals1		523344
 	116333208	button_select5_1	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Mac\SFX\button_select5_1_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_select5_1		155836
@@ -39,9 +43,11 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	297365200	player_Boost2	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Mac\SFX\player_Boost2_818F3B66.wem		\Actor-Mixer Hierarchy\Player_SFX\player_Boost2		262672
 	354589701	crystal_break2	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Mac\SFX\crystal_break2_818F3B66.wem		\Actor-Mixer Hierarchy\Interactables_SFX\crystal_break2		148808
 	355843960	button_select2_1	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Mac\SFX\button_select2_1_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_select2_1		173008
+	453961029	button_select9	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Mac\SFX\button_select9_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_select9		261200
 	468924835	player_Spin2	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Mac\SFX\player_Spin2_818F3B66.wem		\Actor-Mixer Hierarchy\Player_SFX\player_Spin2		262304
 	479308673	button_select7_1	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Mac\SFX\button_select7_1_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_select7_1		155836
 	610240063	RumblerLoop_2	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Mac\SFX\RumblerLoop_2_FBC78EF0.wem		\Interactive Music Hierarchy\Menu\menuSwitch\menuPlaylist\RumblerLoop_2\RumblerLoop_2		13824160
+	699266740	collected_costume1	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Mac\SFX\collected_costume1_818F3B66.wem		\Actor-Mixer Hierarchy\Interactables_SFX\collected_costume1		785488
 	713058177	button_highlight1	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Mac\SFX\button_highlight1_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_highlight1		78000
 	720226508	death	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Mac\SFX\death_818F3B66.wem		\Actor-Mixer Hierarchy\Player_SFX\death		295544
 	875094519	boostObj2	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Mac\SFX\boostObj2_818F3B66.wem		\Actor-Mixer Hierarchy\Interactables_SFX\boostObj2		261152

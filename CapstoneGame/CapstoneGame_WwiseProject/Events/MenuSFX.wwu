@@ -106,6 +106,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="ButtonCostume" ID="{E848E78F-2E8F-4474-9FFB-50EB2E79DBEE}">
+					<ChildrenList>
+						<Action Name="" ID="{E6E341FF-E260-4DC1-ADBE-CC08C7126B51}" ShortID="272508761">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="button_select9" ID="{B3DA2313-8493-4145-921E-BF7768A394EC}" WorkUnitID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

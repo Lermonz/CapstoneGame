@@ -36,7 +36,7 @@ public class ScrollRectSnapCostumes : MonoBehaviour
         }
         for(int i = 0; i < _buttonsArray.Length; i++) {
             if(_buttonsArray[i].GetComponent<ButtonSelectionHandler>().IsSelected) {
-                NillyDisplay.Instance.ShowCostume(i);
+                NillyDisplay.Instance.ShowCostume(_buttonsArray[i].interactable ? i : -1);
                 _minButtonNum = i;
             }
         }

@@ -24,6 +24,12 @@ public class NillyDisplay : MonoBehaviour
     }
     public void ShowCostume(int cID)
     {
+        if (cID < 0)
+        {
+            _renderer.color = Color.black;
+            return;
+        }
+        _renderer.color = Color.white;
         _renderer.material.SetTexture("_Palette", GameBehaviour.Instance._costumes[cID]);
     }
 }

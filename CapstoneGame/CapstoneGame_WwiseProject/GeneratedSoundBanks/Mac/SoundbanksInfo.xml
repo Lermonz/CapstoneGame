@@ -29,13 +29,17 @@
 				<GameParameter Id="3358493668" Name="MusicMix"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{44A9ED11-635D-C90B-BEDB-990234E5F009}">
+		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{5CBB3E06-9504-0B5F-4935-D694EF6EB9D9}">
 			<ShortName>SoundbankAll</ShortName>
 			<Path>SoundbankAll.bnk</Path>
 			<Media>
 				<File Id="33559383" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_select3_1.wav</ShortName>
 					<CachePath>SFX/button_select3_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="35565956" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>player_JumpSpecial2.wav</ShortName>
+					<CachePath>SFX/player_JumpSpecial2_818F3B66.wem</CachePath>
 				</File>
 				<File Id="49204311" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_select8_1.wav</ShortName>
@@ -89,6 +93,10 @@
 					<ShortName>button_select2_1.wav</ShortName>
 					<CachePath>SFX/button_select2_1_818F3B66.wem</CachePath>
 				</File>
+				<File Id="453961029" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>button_select9.wav</ShortName>
+					<CachePath>SFX/button_select9_818F3B66.wem</CachePath>
+				</File>
 				<File Id="468924835" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>player_Spin2.wav</ShortName>
 					<CachePath>SFX/player_Spin2_818F3B66.wem</CachePath>
@@ -100,6 +108,10 @@
 				<File Id="610240063" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>RumblerLoop_2.wav</ShortName>
 					<CachePath>SFX/RumblerLoop_2_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="699266740" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>collected_costume1.wav</ShortName>
+					<CachePath>SFX/collected_costume1_818F3B66.wem</CachePath>
 				</File>
 				<File Id="713058177" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_highlight1.wav</ShortName>
@@ -158,6 +170,11 @@
 						<MediaRef Id="146638624"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="2749803129" Name="ButtonCostume" DurationType="OneShot" DurationMin="1.3593333" DurationMax="1.3593333">
+					<MediaRefs>
+						<MediaRef Id="453961029"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="3278968191" Name="ButtonHighlight" DurationType="OneShot" DurationMin="0.40541667" DurationMax="0.40541667">
 					<MediaRefs>
 						<MediaRef Id="713058177"/>
@@ -176,6 +193,11 @@
 				<Event Id="279279475" Name="ButtonWarning" DurationType="OneShot" DurationMin="0.8108125" DurationMax="0.8108125">
 					<MediaRefs>
 						<MediaRef Id="49204311"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2716839384" Name="Costume_Get" DurationType="OneShot" DurationMin="4.09" DurationMax="4.09">
+					<MediaRefs>
+						<MediaRef Id="699266740"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="756738409" Name="Crystal_Break" DurationType="OneShot" DurationMin="0.7742083" DurationMax="0.7742083">
@@ -208,6 +230,11 @@
 						<MediaRef Id="291109648"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="3457997290" Name="Player_JumpSpecial" DurationType="OneShot" DurationMin="2" DurationMax="2">
+					<MediaRefs>
+						<MediaRef Id="35565956"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="1862289782" Name="PlayMenu" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="610240063"/>
@@ -235,5 +262,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{B5B08D4C-0438-A484-AE99-8345ED4C5364}</FileHash>
+	<FileHash>{512BD3C4-BCA4-EA40-9625-E56999FB17BC}</FileHash>
 </SoundBanksInfo>

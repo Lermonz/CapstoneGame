@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour, IDataPersistence
     public bool _freezeVelocity = false;
 
     // Input Properties //
+    public Vector2 Dpad { get; private set; }
     public float HorizontalInput { get; private set; }
     public bool JumpInput { get; private set; }
     public bool JumpRelease { get; private set; }
@@ -19,17 +20,25 @@ public class InputManager : MonoBehaviour, IDataPersistence
     public bool BoostInput { get; private set; }
     public bool SpinInput { get; private set; }
     public bool MenuOpenInput { get; private set; }
+    public bool QuickResetInput { get; private set; }
 
     public bool UIMenuCloseInput { get; private set; }
+    public bool UIConfirm { get; private set; }
+    public bool UICancel { get; private set; }
 
+    private InputAction _dpadAction;
     private InputAction _horizontalAction;
     private InputAction _jumpAction;
     private InputAction _downAction;
     private InputAction _boostAction;
     private InputAction _spinAction;
     private InputAction _menuOpenAction;
+    private InputAction _quickResetAction;
 
     private InputAction _menuCloseAction;
+    private InputAction _uiMove;
+    private InputAction _uiConfirm;
+    private InputAction _uiCancel;
 
     void Awake()
     {
@@ -38,16 +47,21 @@ public class InputManager : MonoBehaviour, IDataPersistence
         else
             Instance = this;
         PlayerInput = GetComponent<PlayerInput>();
+        _dpadAction = PlayerInput.actions["Movement"];
         _horizontalAction = PlayerInput.actions["Horizontal"];
         _jumpAction = PlayerInput.actions["Jump"];
         _downAction = PlayerInput.actions["Down"];
         _boostAction = PlayerInput.actions["Boost"];
         _spinAction = PlayerInput.actions["Spin"];
         _menuOpenAction = PlayerInput.actions["MenuOpen"];
+        _quickResetAction = PlayerInput.actions["QuickReset"];
         _menuCloseAction = PlayerInput.actions["MenuClose"];
+        _uiConfirm = PlayerInput.actions["UI_Confirm"];
+        _uiCancel = PlayerInput.actions["UI_Cancel"];
     }
     void Update()
     {
+        Dpad = _dpadAction.ReadValue<Vector2>();
         HorizontalInput = _horizontalAction.ReadValue<float>();
         JumpInput = _jumpAction.WasPressedThisFrame();
         JumpRelease = _jumpAction.WasReleasedThisFrame();
@@ -55,7 +69,10 @@ public class InputManager : MonoBehaviour, IDataPersistence
         BoostInput = _boostAction.WasPressedThisFrame();
         SpinInput = _spinAction.WasPressedThisFrame();
         MenuOpenInput = _menuOpenAction.WasPressedThisFrame();
+        QuickResetInput = _quickResetAction.WasPressedThisFrame();
         UIMenuCloseInput = _menuCloseAction.WasPressedThisFrame();
+        UIConfirm = _uiConfirm.WasPressedThisFrame();
+        UICancel = _uiCancel.WasPressedThisFrame();
     }
     public void DisablePlayerInput()
     {

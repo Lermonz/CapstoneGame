@@ -7,8 +7,11 @@ public class EvilVoid : MonoBehaviour
     [SerializeField] PortalBehaviour _exitPortal;
     [SerializeField] SpriteRenderer _renderer;
     [SerializeField] float _baseSpeed;
+    [SerializeField] float _linearSpeed;
     [SerializeField] float _growthSpeed;
+    [SerializeField] float _growthExponent;
     [SerializeField] float _thresholdDistance;
+    [SerializeField] float _slowdownMult;
     [SerializeField] bool _horizontal;
     float _speed;
     float diffX;
@@ -27,15 +30,15 @@ public class EvilVoid : MonoBehaviour
             diffX = _horizontal ? Mathf.Abs(this.transform.position.x - _player.position.x) : Mathf.Abs(this.transform.position.y - _player.position.y);
             if (diffX >= _thresholdDistance)
             {
-                _max = Mathf.Pow(diffX * 0.5f - (_thresholdDistance * 0.5f - 0.5f), _growthSpeed) + _baseSpeed;
+                _max = Mathf.Pow((diffX-_thresholdDistance)*_growthSpeed, _growthExponent) + _baseSpeed;
             }
             else if (diffX >= 1)
             {
-                _max = _baseSpeed;
+                _max = _baseSpeed+(diffX-_thresholdDistance)*_linearSpeed;
             }
             else
             {
-                _max = _baseSpeed * 0.5f;
+                _max = _baseSpeed * _slowdownMult;
             }
             if (_speed < _max)
             {

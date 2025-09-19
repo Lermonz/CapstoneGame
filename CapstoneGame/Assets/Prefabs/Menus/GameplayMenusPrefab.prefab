@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62eb12cf59fe14a809d8ea4ae3218889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _time: 26
+  _time: 24
   _holdTime: 16
 --- !u!1 &3682164481103867481
 GameObject:
@@ -253,11 +253,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPaused: 0
+  _isPausedPhysics: 0
   _vcam: {fileID: 0}
+  _vcamPaused: {fileID: 0}
   _pauseMenu: {fileID: 7961737686054703928}
   _settingsMenu: {fileID: 5004144696068933552}
   _controlsMenu: {fileID: 4916985182860240084}
   _winMenu: {fileID: 7319819142225545896}
+  _collectedOrb: {fileID: 6533980128531651203}
   _screenWipe: {fileID: 4878925673537665397}
   _mainFirstButton: {fileID: 6481648037648100731}
   _settingsFirstButton: {fileID: 275366596047658991}
@@ -1274,6 +1277,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6533980128531651203 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1013292130079053832, guid: c9203039d4c4649c6b8341f1a0b9ca97, type: 3}
+  m_PrefabInstance: {fileID: 6098634328707203723}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6740707149428954829 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 660198374095361094, guid: c9203039d4c4649c6b8341f1a0b9ca97, type: 3}

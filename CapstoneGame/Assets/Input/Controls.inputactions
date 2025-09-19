@@ -6,6 +6,15 @@
             "id": "617fe0fb-b063-4ed6-b800-f286df6b1b9a",
             "actions": [
                 {
+                    "name": "Movement",
+                    "type": "Button",
+                    "id": "c552ad85-5a91-4cc9-ae56-9baafac21e95",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Horizontal",
                     "type": "Button",
                     "id": "8f92125f-4e59-45f9-9420-21cf5be01a0a",
@@ -58,9 +67,73 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "QuickReset",
+                    "type": "Button",
+                    "id": "acbda82b-4832-4b61-bd62-d3d175ab5ffe",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
+                {
+                    "name": "",
+                    "id": "b5599e5b-9a2f-486a-9b71-f6a76e595cd3",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "da9764a3-b499-4b36-8b31-b7219f1dd9ea",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "11fb55d9-7415-4a05-9ab9-9622293b5374",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Spin",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fd5e6523-4a70-4288-9c4a-52a3088cebb0",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Boost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f88b038e-25d5-45cf-8209-f1302c7c8489",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "MenuOpen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
                 {
                     "name": "1D Axis",
                     "id": "5d1c8e46-8eb2-4378-8f74-77c987803332",
@@ -117,57 +190,112 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "b5599e5b-9a2f-486a-9b71-f6a76e595cd3",
+                    "name": "WASD",
+                    "id": "bb5bd2a8-f6e8-4195-92a2-66ac677035e9",
+                    "path": "Dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "43920806-86a0-46ea-a446-4b4940e94986",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Jump",
+                    "action": "Movement",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "da9764a3-b499-4b36-8b31-b7219f1dd9ea",
+                    "name": "up",
+                    "id": "b0d40109-84c2-496c-9357-58213dc1ac90",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "93033714-e441-4266-a3d2-77c36d434aa2",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Down",
+                    "action": "Movement",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "11fb55d9-7415-4a05-9ab9-9622293b5374",
-                    "path": "<Keyboard>/l",
+                    "name": "down",
+                    "id": "7170ab0b-ae8f-48c2-b602-077e8c21261a",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Spin",
+                    "action": "Movement",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "fd5e6523-4a70-4288-9c4a-52a3088cebb0",
-                    "path": "<Keyboard>/k",
+                    "name": "left",
+                    "id": "74d78041-8a3b-4aec-9bd1-d61a490b735d",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Boost",
+                    "action": "Movement",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "f88b038e-25d5-45cf-8209-f1302c7c8489",
-                    "path": "<Keyboard>/escape",
+                    "name": "left",
+                    "id": "bf2e0cfb-28fe-42d0-821a-5baf51f715d8",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "MenuOpen",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "d77159df-e8bd-4b81-98bf-69b155847706",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "52b4d516-fb0a-422f-8b22-9f96e0da4cdf",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "d2a09400-425b-47ee-923d-d73a91ebb305",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "QuickReset",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -187,7 +315,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Move",
+                    "name": "UI_Move",
                     "type": "Button",
                     "id": "a2f3f56f-5acf-434a-95f6-6ae0cff0e575",
                     "expectedControlType": "Button",
@@ -196,7 +324,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Submit",
+                    "name": "UI_Confirm",
                     "type": "Button",
                     "id": "fd1e9990-f076-4dbd-8853-34a0d7b3a14e",
                     "expectedControlType": "Button",
@@ -205,7 +333,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Cancel",
+                    "name": "UI_Cancel",
                     "type": "Button",
                     "id": "602646cd-6a74-4b8f-acee-16340d189f39",
                     "expectedControlType": "Button",
@@ -233,7 +361,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "UI_Move",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -244,7 +372,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Move",
+                    "action": "UI_Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -255,7 +383,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Move",
+                    "action": "UI_Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -266,7 +394,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Move",
+                    "action": "UI_Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -277,7 +405,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Move",
+                    "action": "UI_Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -288,7 +416,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Move",
+                    "action": "UI_Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -299,7 +427,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Move",
+                    "action": "UI_Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -310,7 +438,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Move",
+                    "action": "UI_Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -321,7 +449,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Move",
+                    "action": "UI_Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -332,7 +460,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Submit",
+                    "action": "UI_Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -343,7 +471,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Submit",
+                    "action": "UI_Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -354,7 +482,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Cancel",
+                    "action": "UI_Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -365,7 +493,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Cancel",
+                    "action": "UI_Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

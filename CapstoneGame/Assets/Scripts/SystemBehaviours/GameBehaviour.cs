@@ -85,6 +85,7 @@ public class GameBehaviour : MonoBehaviour, IDataPersistence
     }
     public void LoadData(GameData data)
     {
+        _costumeID = data.selectedCostume;
         SelectedCostume = _costumes[data.selectedCostume];
     }
 }

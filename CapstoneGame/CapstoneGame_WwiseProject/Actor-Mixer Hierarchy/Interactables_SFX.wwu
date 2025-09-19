@@ -11,7 +11,7 @@
 					<PropertyList>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>-3</Value>
+								<Value>-1</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -136,6 +136,28 @@
 					</ChildrenList>
 					<ActiveSourceList>
 						<ActiveSource Name="allCrystals1" ID="{FC912DD7-7325-4A55-A826-4630ED553361}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="collected_costume1" ID="{596C3441-273D-4C0D-A016-C49D39B52B53}" ShortID="28465">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{2E7BE83C-3992-4C46-87AB-26ED72F5CAEA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFXMixer" ID="{AD02C5C1-0AB3-45AA-B002-905E66A3E352}" WorkUnitID="{197CA9C9-1575-45A7-BE70-87E8C5BE52DB}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="collected_costume1" ID="{7C3B4F05-FAFD-4A87-AA72-58C7B802AA40}">
+							<Language>SFX</Language>
+							<AudioFile>collected_costume1.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="699266740"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="collected_costume1" ID="{7C3B4F05-FAFD-4A87-AA72-58C7B802AA40}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
 			</ChildrenList>

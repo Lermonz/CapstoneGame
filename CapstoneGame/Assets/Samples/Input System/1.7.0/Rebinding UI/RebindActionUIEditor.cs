@@ -16,7 +16,9 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         protected void OnEnable()
         {
             m_ActionProperty = serializedObject.FindProperty("m_Action");
+            m_SecondActionProperty = serializedObject.FindProperty("m_SecondAction");
             m_BindingIdProperty = serializedObject.FindProperty("m_BindingId");
+            m_SecondBindingIdProperty = serializedObject.FindProperty("m_BindingId2");
             m_ActionLabelProperty = serializedObject.FindProperty("m_ActionLabel");
             m_BindingTextProperty = serializedObject.FindProperty("m_BindingText");
             m_RebindOverlayProperty = serializedObject.FindProperty("m_RebindOverlay");
@@ -38,6 +40,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             using (new EditorGUI.IndentLevelScope())
             {
                 EditorGUILayout.PropertyField(m_ActionProperty);
+                EditorGUILayout.PropertyField(m_SecondActionProperty);
 
                 var newSelectedBinding = EditorGUILayout.Popup(m_BindingLabel, m_SelectedBindingOption, m_BindingOptions);
                 if (newSelectedBinding != m_SelectedBindingOption)
@@ -150,7 +153,9 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         }
 
         private SerializedProperty m_ActionProperty;
+        private SerializedProperty m_SecondActionProperty;
         private SerializedProperty m_BindingIdProperty;
+        private SerializedProperty m_SecondBindingIdProperty;
         private SerializedProperty m_ActionLabelProperty;
         private SerializedProperty m_BindingTextProperty;
         private SerializedProperty m_RebindOverlayProperty;

@@ -24,6 +24,8 @@ public class MainMenuManager : MonoBehaviour
     public WorldMenuColorChanger[] _colorChangers;
     public int CurrentWorld { get; private set; }
     int[] _lastSelectedLevelButton;
+    int _lastSelectedCostumeButton;
+    MenuScreens _currentScreen;
 
     public static MainMenuManager Instance;
     void Awake()
@@ -43,14 +45,18 @@ public class MainMenuManager : MonoBehaviour
         CurrentWorld = 0;
         _lastSelectedLevelButton = new int[] { 0, 0, 0 };
     }
-    // void Update()
-    // {
-    //     if(_levelsMenu.GetComponent<Canvas>().enabled) {
-    //         if(EventSystem.current.currentSelectedGameObject == null) {
-    //             EventSystem.current.SetSelectedGameObject(_levelsFirstButton);
-    //         }
-    //     }
-    // }
+    void Update()
+    {
+        if (InputManager.Instance.UICancel)
+        {
+            OnCancelInput();
+        }
+        // if(_levelsMenu.GetComponent<Canvas>().enabled) {
+        //     if(EventSystem.current.currentSelectedGameObject == null) {
+        //         EventSystem.current.SetSelectedGameObject(_levelsFirstButton);
+        //     }
+        // }
+    }
 
     private void CloseMenus()
     {
@@ -68,6 +74,7 @@ public class MainMenuManager : MonoBehaviour
     {
         CloseMenus();
         _mainMenu.SetActive(true);
+        _currentScreen = MenuScreens.Title;
         EventSystem.current.SetSelectedGameObject(_mainFirstButton);
     }
     private void OpenLevelsMenu()
@@ -75,6 +82,7 @@ public class MainMenuManager : MonoBehaviour
         CloseMenus();
         //_levelsMenu.SetActive(true);
         _levelsMenu.SetActive(true);
+        _currentScreen = MenuScreens.LevelSelect;
         DataPersistenceManager.Instance.LoadGame();
         EventSystem.current.SetSelectedGameObject(_levelsFirstButton);
     }
@@ -82,6 +90,7 @@ public class MainMenuManager : MonoBehaviour
     {
         CloseMenus();
         _costumesMenu.SetActive(true);
+        _currentScreen = MenuScreens.Costumes;
         NillyDisplay.Instance.ShowNilly(true);
         DataPersistenceManager.Instance.LoadGame();
         EventSystem.current.SetSelectedGameObject(_costumesFirstButton);
@@ -90,17 +99,20 @@ public class MainMenuManager : MonoBehaviour
     {
         CloseMenus();
         _settingsMenu.SetActive(true);
+        _currentScreen = MenuScreens.Settings;
         EventSystem.current.SetSelectedGameObject(_settingsFirstButton);
     }
     private void OpenControlsMenu()
     {
         CloseMenus();
         _controlsMenu.SetActive(true);
+        _currentScreen = MenuScreens.Controls;
         EventSystem.current.SetSelectedGameObject(_controlsFirstButton);
     }
     private void OpenResetDataMenu()
     {
         _resetDataMenu.SetActive(true);
+        _currentScreen = MenuScreens.ResetDataCheck;
         EventSystem.current.SetSelectedGameObject(_resetDataFirstButton);
     }
     private void IncrementWorld()
@@ -171,9 +183,40 @@ public class MainMenuManager : MonoBehaviour
     {
         GameBehaviour.Instance.ExitGame();
     }
+    public void OnResetData()
+    {
+        GameBehaviour.Instance.OnResetProgressPress();
+        OpenSettingsMenu();
+    }
     public void OnCostumeChangeButton(int cID)
     {
         GameBehaviour.Instance.SetCostume(cID);
+    }
+    public void OnCancelInput()
+    {
+        FindAudioPlayerForButtons(4);
+        SaveGame();
+        switch (_currentScreen)
+        {
+            case MenuScreens.Title:
+                OnQuitButton();
+                break;
+            case MenuScreens.Costumes:
+                OnBackPress();
+                break;
+            case MenuScreens.Settings:
+                OnBackPress();
+                break;
+            case MenuScreens.Controls:
+                OnSettingsPress();
+                break;
+            case MenuScreens.LevelSelect:
+                OnBackPress();
+                break;
+            case MenuScreens.ResetDataCheck:
+                OnSettingsPress();
+                break;
+        }
     }
     public void SaveGame()
     {

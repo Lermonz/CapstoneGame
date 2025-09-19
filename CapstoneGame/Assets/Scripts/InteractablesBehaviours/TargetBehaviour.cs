@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 public class TargetBehaviour : MonoBehaviour
 {
     public Vector2 _checkpointOffset;
+    [SerializeField] Animator _animator;
     void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Hitbox")) {
             GotHit();
@@ -18,13 +19,20 @@ public class TargetBehaviour : MonoBehaviour
         LevelManager.Instance.HitTarget(this.transform.position, _checkpointOffset);
     }
     IEnumerator BreakApartAnim() {
-        float realX = this.transform.position.x;
-        for(int i = 0; i < 3; i++) {
-            //this.transform.position = new Vector3(realX+Mathf.Sin(Time.deltaTime*100)*0.5f,this.transform.position.y,this.transform.position.z);
+        _animator.SetTrigger("Destroyed");
+        Destroy(gameObject, 1f);
+        InputManager.Instance._freezeVelocity = true;
+        for (int i = 0; i < 2; i++)
+        {
             yield return null;
         }
-        this.transform.localEulerAngles = new Vector3(90, 0, 0);
+        InputManager.Instance._freezeVelocity = false;
+        for (int i = 0; i < 2; i++)
+        {
+            yield return null;
+        }
+        //this.transform.localEulerAngles = new Vector3(90, 0, 0);
         this.GetComponent<ParticleSystem>().Play();
-        Destroy(gameObject, 1f);
+        
     }
 }

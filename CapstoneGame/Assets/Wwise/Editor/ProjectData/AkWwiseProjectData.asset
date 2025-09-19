@@ -161,7 +161,7 @@ MonoBehaviour:
     ParentPath: Events/GameSFX
     guid: 05ee0bcbce7a324ebbc6c118fc70317f
     GuidInternal: 
-    m_lastTime: -8584527964076939990
+    m_lastTime: -8584433590624906425
     List:
     - name: AllCrystals
       guid: 614463fe82425e4890faeba5b6525c54
@@ -197,6 +197,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 1.3593333
       minDuration: 1.3593333
+    - name: Costume_Get
+      guid: e8b749c8ee059c4885989ff03c0daf6d
+      id: 2716839384
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: GameSFX
+        ObjectType: 12
+        guid: 05ee0bcbce7a324ebbc6c118fc70317f
+      - ElementName: Costume_Get
+        ObjectType: 3
+        guid: e8b749c8ee059c4885989ff03c0daf6d
+      Path: Events/GameSFX/Costume_Get
+      maxAttenuation: 0
+      maxDuration: 4.09
+      minDuration: 4.09
     - name: Crystal_Break
       guid: 607940a7202dee4687986dff01732d79
       id: 756738409
@@ -242,7 +259,7 @@ MonoBehaviour:
     ParentPath: Events/MenuSFX
     guid: 058320f7803a91469593dd6787b4fc9b
     GuidInternal: 
-    m_lastTime: -8584581706764523047
+    m_lastTime: -8584433611122743244
     List:
     - name: ButtonBackOut1
       guid: 0356926ca3f27f41a576066ff8379020
@@ -329,6 +346,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.8108125
       minDuration: 0.8108125
+    - name: ButtonCostume
+      guid: 8fe748e88f2e74449ffb50eb2e79dbee
+      id: 2749803129
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: MenuSFX
+        ObjectType: 12
+        guid: 058320f7803a91469593dd6787b4fc9b
+      - ElementName: ButtonCostume
+        ObjectType: 3
+        guid: 8fe748e88f2e74449ffb50eb2e79dbee
+      Path: Events/MenuSFX/ButtonCostume
+      maxAttenuation: 0
+      maxDuration: 1.3593333
+      minDuration: 1.3593333
     - name: ButtonHighlight
       guid: 513bd523a4456745b379cdd46091db14
       id: 3278968191
@@ -523,7 +557,7 @@ MonoBehaviour:
     ParentPath: Events/PlayerSFX
     guid: c633003bf6fc254295f8b2ab6db94f9c
     GuidInternal: 
-    m_lastTime: -8584556165610994782
+    m_lastTime: -8584433611122697483
     List:
     - name: Player_Attack
       guid: 68704625de7f8948863121cafed1691a
@@ -610,6 +644,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 1.3653333
       minDuration: 1.3653333
+    - name: Player_JumpSpecial
+      guid: c60425467c94b045b528b89f3793fc3a
+      id: 3457997290
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: PlayerSFX
+        ObjectType: 12
+        guid: c633003bf6fc254295f8b2ab6db94f9c
+      - ElementName: Player_JumpSpecial
+        ObjectType: 3
+        guid: c60425467c94b045b528b89f3793fc3a
+      Path: Events/PlayerSFX/Player_JumpSpecial
+      maxAttenuation: 0
+      maxDuration: 2
+      minDuration: 2
   RtpcWwu:
   - PhysicalPath: Game Parameters/Default Work Unit.wwu
     PathAndIcons:
