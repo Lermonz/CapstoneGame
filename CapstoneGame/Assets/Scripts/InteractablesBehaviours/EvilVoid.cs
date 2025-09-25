@@ -30,7 +30,7 @@ public class EvilVoid : MonoBehaviour
             diffX = _horizontal ? Mathf.Abs(this.transform.position.x - _player.position.x) : Mathf.Abs(this.transform.position.y - _player.position.y);
             if (diffX >= _thresholdDistance)
             {
-                _max = Mathf.Pow((diffX-_thresholdDistance)*_growthSpeed, _growthExponent) + _baseSpeed;
+                _max = Mathf.Pow((diffX-_thresholdDistance)*_growthSpeed, _growthExponent) + _baseSpeed+_linearSpeed;
             }
             else if (diffX >= 1)
             {

@@ -57,6 +57,7 @@ public class PauseMenu : MonoBehaviour
             if (_isPaused)
             {
                 Debug.Log("Unpaused via UIMenuCloseInput");
+                
                 Unpause();
             }
         }

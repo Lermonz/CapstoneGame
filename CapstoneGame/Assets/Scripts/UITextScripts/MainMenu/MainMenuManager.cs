@@ -118,22 +118,30 @@ public class MainMenuManager : MonoBehaviour
     private void IncrementWorld()
     {
         _lastSelectedLevelButton[CurrentWorld] = ScrollRectSnap.Instance._minButtonNum;
-        foreach (WorldMenuColorChanger i in _colorChangers)
+        if (CurrentWorld < ScrollRectSnap.Instance._panelForLevels.Length - 1)
         {
-            i.ChangeColor(CurrentWorld, CurrentWorld + 1);
+            foreach (WorldMenuColorChanger i in _colorChangers)
+            {
+                i.ChangeColor(CurrentWorld, CurrentWorld + 1);
+            }
+            CurrentWorld++;
+            ScrollRectSnap.Instance.SnapToWorld(CurrentWorld);
         }
-        CurrentWorld++;
         DebugIt();
         EventSystem.current.SetSelectedGameObject(ScrollRectSnap.Instance._buttonsArray[CurrentWorld][_lastSelectedLevelButton[CurrentWorld]].gameObject);
     }
     private void DecrementWorld()
     {
         _lastSelectedLevelButton[CurrentWorld] = ScrollRectSnap.Instance._minButtonNum;
-        foreach (WorldMenuColorChanger i in _colorChangers)
+        if (CurrentWorld > 0)
         {
-            i.ChangeColor(CurrentWorld, CurrentWorld - 1);
+            foreach (WorldMenuColorChanger i in _colorChangers)
+            {
+                i.ChangeColor(CurrentWorld, CurrentWorld - 1);
+            }
+            CurrentWorld--;
+            ScrollRectSnap.Instance.SnapToWorld(CurrentWorld);
         }
-        CurrentWorld--;
         DebugIt();
         EventSystem.current.SetSelectedGameObject(ScrollRectSnap.Instance._buttonsArray[CurrentWorld][_lastSelectedLevelButton[CurrentWorld]].gameObject);
     }

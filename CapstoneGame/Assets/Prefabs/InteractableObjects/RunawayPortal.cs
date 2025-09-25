@@ -6,6 +6,13 @@ public class RunawayPortal : MonoBehaviour
 {
     bool _runaway;
     [SerializeField] float _stoppingX;
+    [SerializeField] float _boostThreshold;
+    [SerializeField] float _boostMaximum;
+    [SerializeField] float _boostBuffer;
+    [SerializeField] float _boostExponent;
+    [SerializeField] float _slowdownDiffX;
+    [SerializeField] float _baseSpeed;
+    [SerializeField] float _baseSlowSpeed;
     [SerializeField] GameObject _wings;
     float diffX;
     bool _startedFlying = false;
@@ -20,15 +27,18 @@ public class RunawayPortal : MonoBehaviour
         {
             diffX = this.transform.position.x - GameObject.Find("Player").transform.position.x;
             if (diffX < 1) { diffX = 1; }
-            float boostX = diffX < 11f ? 6f / Mathf.Pow(Mathf.Abs(diffX)+1.7f,0.72f) : 0;
-            this.transform.Translate((Vector3.right * (diffX > 19 ? 2f : 8f) + new Vector3(boostX, 0, 0)) * Time.deltaTime);
+            float boostX = diffX < _boostThreshold ? Mathf.Pow(-(diffX - _boostThreshold) * _boostBuffer,_boostExponent) : 0;
+            //float boostX = diffX < _boostThreshold ? _boostMaximum / Mathf.Pow(Mathf.Abs(diffX)+_boostBuffer,_boostExponent) : 0;
+            float realSlowSpeed = this.transform.position.x > -15 ? _baseSlowSpeed : _baseSpeed;
+            this.transform.Translate((Vector3.right * (diffX > _slowdownDiffX ? realSlowSpeed : _baseSpeed) + new Vector3(boostX, 0, 0)) * Time.deltaTime);
         }
     }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            _stoppingX = -999;
+            if(LevelManager.Instance._canExit)
+                _stoppingX = -999;
         }
     }
     IEnumerator ExpandWings()

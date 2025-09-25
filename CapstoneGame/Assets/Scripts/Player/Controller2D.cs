@@ -3,7 +3,7 @@ using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[RequireComponent (typeof (BoxCollider2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class Controller2D : MonoBehaviour
 {
     const float boundInset = 0.02f;
@@ -38,13 +38,20 @@ public class Controller2D : MonoBehaviour
 
     public BoxCollider2D _collider;
     RayCastOrigins _raycastOrigins;
-    void Start() {
+    Vector2 _hurtboxSize;
+    Vector2 _hurtboxOffset;
+    void Start()
+    {
         _collider = GetComponent<BoxCollider2D>();
         _vcamTransposer = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>();
         CalcRays();
+        _hurtboxOffset = _collider.offset;
+        _hurtboxSize = _collider.size;
     }
-    public void Move(Vector2 velocity) {
-        if(InputManager.Instance._freezeVelocity) {
+    public void Move(Vector2 velocity)
+    {
+        if (InputManager.Instance._freezeVelocity)
+        {
             velocity = Vector2.zero;
         }
         if (!PauseMenu.Instance._isPaused)
@@ -56,9 +63,10 @@ public class Controller2D : MonoBehaviour
             transform.Translate(velocity);
         }
     }
-    public void PullTowards(Vector2 goal, float str) {
-        Vector2 dir = new Vector2(goal.x-this.transform.position.x,goal.y-this.transform.position.y);
-        transform.Translate(dir*str);
+    public void PullTowards(Vector2 goal, float str)
+    {
+        Vector2 dir = new Vector2(goal.x - this.transform.position.x, goal.y - this.transform.position.y);
+        transform.Translate(dir * str);
     }
     void VertCollisions(ref Vector2 velocity)
     {
@@ -232,13 +240,14 @@ public class Controller2D : MonoBehaviour
     {
         RaycastHit2D escapeRight = Physics2D.Raycast(_raycastOrigins.botright, Vector2.right, 4, getOutMask);
         RaycastHit2D escapeLeft = Physics2D.Raycast(_raycastOrigins.botleft, Vector2.left, 4, getOutMask);
-        Debug.DrawRay(_raycastOrigins.botright, Vector2.right* 4, Color.red);
-        Debug.DrawRay(_raycastOrigins.botleft, Vector2.left* 4, Color.red);
+        Debug.DrawRay(_raycastOrigins.botright, Vector2.right * 4, Color.red);
+        Debug.DrawRay(_raycastOrigins.botleft, Vector2.left * 4, Color.red);
         float shortestDistance = escapeRight.distance < escapeLeft.distance ? escapeRight.distance : -escapeLeft.distance;
         velocity.x = shortestDistance;
         Debug.Log("escapeRight: " + escapeRight.distance + "\nescapeLeft: " + escapeLeft.distance + "\nshortest: " + shortestDistance + "\nvelocity.x:" + velocity.x);
     }
-    void RayCastUpdate() {
+    void RayCastUpdate()
+    {
         Bounds bounds = getBounds();
 
         _raycastOrigins.botleft = new Vector2(bounds.min.x, bounds.min.y);
@@ -247,22 +256,40 @@ public class Controller2D : MonoBehaviour
         _raycastOrigins.topright = new Vector2(bounds.max.x, bounds.max.y);
         //_center = new Vector2((bounds.max.x+bounds.min.x)/2, (bounds.min.y+bounds.max.y)/2);
     }
-    void CalcRays(){
+    void CalcRays()
+    {
         Bounds bounds = getBounds();
 
-        _horzRayCount = Mathf.Clamp(_horzRayCount,2,20);
-        _vertRayCount = Mathf.Clamp(_vertRayCount,2,20);
+        _horzRayCount = Mathf.Clamp(_horzRayCount, 2, 20);
+        _vertRayCount = Mathf.Clamp(_vertRayCount, 2, 20);
 
-        _horzRaySpacing = bounds.size.y / (_horzRayCount-1);
-        _vertRaySpacing = bounds.size.x / (_vertRayCount-1);
+        _horzRaySpacing = bounds.size.y / (_horzRayCount - 1);
+        _vertRaySpacing = bounds.size.x / (_vertRayCount - 1);
     }
-    Bounds getBounds() {
+    Bounds getBounds()
+    {
         Bounds bounds = _collider.bounds;
-        bounds.Expand(boundInset*-2);
+        bounds.Expand(boundInset * -2);
         return bounds;
     }
-    public struct RayCastOrigins {
+    public struct RayCastOrigins
+    {
         public Vector2 topleft, topright;
         public Vector2 botleft, botright;
+    }
+    public void CrouchHurtbox()
+    {
+        Vector2 offset = new Vector2(0, -0.25f);
+        Vector2 size = new Vector2(0.7f, 0.5f);
+        SetHurtbox(offset, size);
+    }
+    public void RegularHurtbox()
+    {
+        SetHurtbox(_hurtboxOffset, _hurtboxSize);
+    }
+    void SetHurtbox(Vector2 offset, Vector2 size)
+    {
+        _collider.offset = offset;
+        _collider.size = size;
     }
 }

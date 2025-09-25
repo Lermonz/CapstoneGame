@@ -853,7 +853,7 @@ MonoBehaviour:
       - m_Target: {fileID: 8936457013444214555}
         m_TargetAssemblyTypeName: SelectLevel, Assembly-CSharp
         m_MethodName: Reload
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2269,7 +2269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ef9a0b2a6cf4da8bc484db2a71bc6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delay: 0
+  _delay: 0.5
 --- !u!1 &5843883109864194182
 GameObject:
   m_ObjectHideFlags: 0

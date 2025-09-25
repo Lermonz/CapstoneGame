@@ -65,7 +65,7 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         if (InputManager.Instance.QuickResetInput && _canReset)
         {
             _canReset = false;
-            this.GetComponent<SelectLevel>().Reload();
+            this.GetComponent<SelectLevel>().Reload(false);
         }
     }
     IEnumerator Countdown()

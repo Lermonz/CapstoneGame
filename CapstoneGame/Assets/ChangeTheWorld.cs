@@ -10,12 +10,10 @@ public class ChangeTheWorld : MonoBehaviour
             if (_increase)
             {
                 MainMenuManager.Instance.OnNextWorldPress();
-                ScrollRectSnap.Instance.NextWorld();
             }
             else
             {
                 MainMenuManager.Instance.OnPrevWorldPress();
-                ScrollRectSnap.Instance.PrevWorld();
             }
         }
     }

@@ -46,6 +46,8 @@ public class Player : MonoBehaviour
     bool _canDownBoost = true;
     bool _canDownBoostReal = true;
     bool _isJumping = false;
+    bool _canCrouch = true;
+    bool _isCrouching = false;
     bool _canTeleport = true;
     bool _teleporting = false;
     bool _dontLockOut = false;
@@ -83,6 +85,7 @@ public class Player : MonoBehaviour
         //_particles = GetComponent<ParticleSystem>();
         _terminalVelocity = _termV;
         _dead = false;
+        _invulnerable = false;
         SetCostume();
         LevelManager.Instance.SetRespawnPoint(this.transform.position);
     }
@@ -93,19 +96,29 @@ public class Player : MonoBehaviour
     void Update() {
         _horizontalInput = _overrideXInput ? 0 : InputManager.Instance.Dpad.x;
         float delta = Time.deltaTime;
+        _isCrouching = InputManager.Instance.Dpad.y < 0 && _controller._isGrounded && _canCrouch;
         //Debug.Log("Dead: "+_dead);
         if (!PauseMenu.Instance._isPausedPhysics)
         {
+            _animator.SetBool("Crouch", _isCrouching);
             _animator.SetBool("Running", _horizontalInput != 0 && _controller._isGrounded);
             _animator.SetBool("Jumping", _velocity.y >= 0 && !_controller._isGrounded && !_dead);
             _animator.SetBool("Falling", _velocity.y < 0 && !_controller._isGrounded && !_dead);
         }
         //_dpad = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
         if ((_horizontalInput > 0 && _renderer.flipX) || (_horizontalInput < 0 && !_renderer.flipX))
         {
             _renderer.flipX = !_renderer.flipX;
             _cameraFollow.localPosition *= -1;
+        }
+        if (_isCrouching)
+        {
+            _horizontalInput = 0;
+            _controller.CrouchHurtbox();
+        }
+        else
+        {
+            _controller.RegularHurtbox();
         }
         if(_controller._isGrounded) {
             _wind.y = 0;
@@ -237,6 +250,7 @@ public class Player : MonoBehaviour
             _isJumping = false;
             Hitbox(1.5f, 0.8f);
             //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._spinSFX);
+            StartCoroutine(NotCrouchedFor(16));
             AkSoundEngine.PostEvent("Player_Attack", gameObject);
             _vfxPlayer.Spin_Sparkle();
             _animator.Play("Player_Spin");
@@ -372,19 +386,33 @@ public class Player : MonoBehaviour
     }
     IEnumerator BoostCooldown(float cooldown) {
         int adjuster = 12;
-        if(_controller._isGrounded)
+        bool didVFX = false;
+        if (_controller._isGrounded)
             adjuster += 14;
         for(int i = 0; i < cooldown; i++) {
             if(_controller._isGrounded && i < cooldown - adjuster)
                 i = (int)cooldown - adjuster;
+            if (cooldown - i < 7 && !didVFX)
+            {
+                _vfxPlayer.RegenerateBoost();
+                didVFX = true;
+            }
             yield return null;
         }
-        RegenerateBoost();
-        //_canBoost = true;
+        _canBoost = true;
     }
     IEnumerator CoyoteTime() {
         yield return new WaitForSeconds(0.1f);
         _canJump = false;
+    }
+    IEnumerator NotCrouchedFor(int delay)
+    {
+        _canCrouch = false;
+        for (int i = 0; i < delay; i++)
+        {
+            yield return null;
+        }
+        _canCrouch = true;
     }
     IEnumerator TeleportCooldown() {
         _canTeleport = false;
@@ -415,11 +443,11 @@ public class Player : MonoBehaviour
         HitBoxObject = Instantiate(_hitBox, this.transform);
         HitBoxObject.transform.localScale = new Vector3(width, height, 20);
     }
-    void RegenerateBoost()
-    {
-        _canBoost = true;
-        _vfxPlayer.RegenerateBoost();
-    }
+    // void RegenerateBoost()
+    // {
+    //     _canBoost = true;
+    //     _vfxPlayer.RegenerateBoost();
+    // }
     IEnumerator Teleport(Teleporter teleporter)
     {
         teleporter.Teleport();
@@ -666,6 +694,7 @@ public class Player : MonoBehaviour
     public void DeathBlackHole(float delay, bool sceneResets) {
         if (!_invulnerable)
         {
+            _invulnerable = true;
             _velocity = Vector2.zero;
             if (!_dead)
             {
@@ -705,6 +734,10 @@ public class Player : MonoBehaviour
             yield return null;
         }
         _invulnerable = false;
+    }
+    public void SetInvulnerable(bool invul = true)
+    {
+        _invulnerable = invul;
     }
     IEnumerator ReturnPlayerControl()
     {

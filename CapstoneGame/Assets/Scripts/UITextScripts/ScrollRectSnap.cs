@@ -43,6 +43,7 @@ public class ScrollRectSnap : MonoBehaviour
         }
     }
     void Update() {
+        _currentWorld = MainMenuManager.Instance.CurrentWorld;
         _button = _buttonsArray[_currentWorld];
         for(int i = 0; i<_button.Length; i++) {
             _distance[i] = Mathf.Abs(_centerForLevels.transform.position.y - _button[i].transform.position.y);
@@ -84,12 +85,8 @@ public class ScrollRectSnap : MonoBehaviour
             yield return null;
         }
     }
-    public void NextWorld() {
-        _currentWorld++;
-        StartCoroutine(LerpToWorld(_currentWorld * -_worldDistance));
-    }
-    public void PrevWorld() {
-        _currentWorld--;
-        StartCoroutine(LerpToWorld(_currentWorld * -_worldDistance));
+    public void SnapToWorld(int CurrentWorld) {
+        //_currentWorld++;
+        StartCoroutine(LerpToWorld(CurrentWorld * -_worldDistance));
     }
 }

@@ -21,9 +21,9 @@ public class SelectLevel : MonoBehaviour
         if (SceneManager.GetSceneByBuildIndex(nextLevel.buildIndex + 1) != null)
             LoadLevel(nextLevel.buildIndex + 1);
     }
-    public void Reload()
+    public void Reload(bool deathDelay = true)
     {
-        StartCoroutine(DelayThenLoad(SceneManager.GetActiveScene().buildIndex));
+        StartCoroutine(DelayThenLoad(SceneManager.GetActiveScene().buildIndex, deathDelay));
     }
     void SetGameBehavior(bool game)
     {
@@ -33,16 +33,18 @@ public class SelectLevel : MonoBehaviour
     {
         StartCoroutine(DelayThenLoad(level));
     }
-    IEnumerator DelayThenLoad(int level)
+    IEnumerator DelayThenLoad(int level, bool deathDelay = true)
     {
-        if(SceneManager.GetActiveScene().buildIndex > 0)
-            ScreenWipe();
-        yield return new WaitForSeconds(_delay);
+        float delayTime = deathDelay ? _delay : 0.05f;
+        yield return new WaitForSecondsRealtime(delayTime);
+        ScreenWipe();
+        yield return new WaitForSecondsRealtime(0.5f);
         LoadLevel(level);
     }
     void ScreenWipe()
     {
         Debug.Log("ScreenWipe");
-        PauseMenu.Instance.OnResetLevel();
+        if(SceneManager.GetActiveScene().buildIndex > 0)
+            PauseMenu.Instance.OnResetLevel();
     }
 }

@@ -17,6 +17,7 @@ public class PortalBehaviour : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player") && !dontRetrigger) {
             if(_canExit) {
+                other.gameObject.GetComponent<Player>().SetInvulnerable();
                 ExitSuccess();
             }
             else
@@ -24,7 +25,8 @@ public class PortalBehaviour : MonoBehaviour
         }
     }
     void OnTriggerExit2D(Collider2D other) {
-        ResetTransform();
+        if(!dontRetrigger)
+            ResetTransform();
     }
     void ExitSuccess() {
         dontRetrigger = true;
