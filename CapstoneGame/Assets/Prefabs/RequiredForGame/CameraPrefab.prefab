@@ -220,6 +220,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4458809787330823612}
   - component: {fileID: 7690882830567415173}
+  - component: {fileID: 1371328496626710048}
+  - component: {fileID: 2362127557510107439}
   m_Layer: 0
   m_Name: Virtual Camera Paused
   m_TagString: Untagged
@@ -282,6 +284,35 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1141118553573695091}
+--- !u!114 &1371328496626710048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7707592286761075335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BoundingShape2D: {fileID: 0}
+  m_Damping: 1
+  m_MaxWindowSize: -1
+--- !u!114 &2362127557510107439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7707592286761075335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebb966b217cbc40c9828a649e9dd9b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selfConfiner: {fileID: 1371328496626710048}
+  _referenceConfiner: {fileID: 7937406908422859060}
 --- !u!1 &8115047328140955686
 GameObject:
   m_ObjectHideFlags: 0

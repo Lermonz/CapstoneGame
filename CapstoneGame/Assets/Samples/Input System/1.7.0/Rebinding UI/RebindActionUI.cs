@@ -184,11 +184,12 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// <param name="action"></param>
         /// <param name="bindingIndex"></param>
         /// <returns></returns>
-        public bool ResolveActionAndBinding(out InputAction action, out int bindingIndex)
+        public bool ResolveActionAndBinding(out InputAction action, out InputAction secondAction, out int bindingIndex)
         {
             bindingIndex = -1;
 
             action = m_Action?.action;
+            secondAction = m_SecondAction?.action;
             if (action == null)
                 return false;
 
@@ -238,7 +239,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// </summary>
         public void ResetToDefault()
         {
-            if (!ResolveActionAndBinding(out var action, out var bindingIndex))
+            if (!ResolveActionAndBinding(out var action, out var secondAction, out var bindingIndex))
                 return;
 
             if (action.bindings[bindingIndex].isComposite)
@@ -250,6 +251,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             else
             {
                 action.RemoveBindingOverride(bindingIndex);
+                if (secondAction != null) { secondAction.RemoveBindingOverride(bindingIndex); }
             }
             UpdateBindingDisplay();
         }
@@ -260,7 +262,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// </summary>
         public void StartInteractiveRebind()
         {
-            if (!ResolveActionAndBinding(out var action, out var bindingIndex))
+            if (!ResolveActionAndBinding(out var action, out var secondAction, out var bindingIndex))
                 return;
 
             // If the binding is a composite, we need to rebind each part in turn.
@@ -275,14 +277,15 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 PerformInteractiveRebind(action, bindingIndex);
             }
         }
-        private void StartSecondRebind(InputAction action, InputAction firstAction, int bindingIndex, string prevPath)
+        private void StartSecondRebind(InputAction action, InputAction firstAction, int bindingIndex)
         {
+            action.RemoveBindingOverride(bindingIndex);
+            string prevPath = action.bindings[bindingIndex].effectivePath;
             action.ApplyBindingOverride(new InputBinding
             {
                 path = prevPath,
                 overridePath = firstAction.bindings[bindingIndex].effectivePath
             });
-            Debug.Log("Set menu button: " + action + "\nto new binding of: "+firstAction.bindings[bindingIndex].effectivePath);
             // void CleanUp()
             // {
             //     m_RebindOperation2?.Dispose();
@@ -300,7 +303,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         private void PerformInteractiveRebind(InputAction action, int bindingIndex, bool allCompositeParts = false)
         {
             m_RebindOperation?.Cancel(); // Will null out m_RebindOperation.
-            string prevPath = action.bindings[bindingIndex].effectivePath;
+            //string prevPath = action.bindings[bindingIndex].effectivePath;
             string ignoreThisScheme = m_IsKeyboard ? "Gamepad" : "Keyboard";
 
             void CleanUp()
@@ -308,7 +311,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 m_RebindOperation?.Dispose();
                 m_RebindOperation = null;
                 if (secondActionReference != null)
-                    StartSecondRebind(secondActionReference.action, action, bindingIndex, prevPath);
+                    StartSecondRebind(secondActionReference.action, action, bindingIndex);
             }
             action.Disable();
 
@@ -382,6 +385,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
         protected void OnEnable()
         {
+            UpdateBindingDisplay();
             if (s_RebindActionUIs == null)
                 s_RebindActionUIs = new List<RebindActionUI>();
             s_RebindActionUIs.Add(this);

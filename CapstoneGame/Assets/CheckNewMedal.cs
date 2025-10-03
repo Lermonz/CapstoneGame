@@ -24,25 +24,28 @@ public class CheckNewMedal : MonoBehaviour
             _image.color = Color.white;
             //Debug.Log("MedalLoad has been called!!!!" + medal);
             if (medal == "gold")
+            {
                 _image.sprite = _medalSprites[0];
+                return;
+            }
             else if (medal == "silver")
             {
                 _image.sprite = _medalSprites[1];
-                HideDiamondInfo();
             }
             else if (medal == "bronze")
             {
                 _image.sprite = _medalSprites[2];
-                HideDiamondInfo();
             }
-            else if (medal == "diamond")
+            else if (medal == "diamond") {
                 _image.sprite = _medalSprites[3];
+                return;
+            }
             else
             {
                 _image.color = Color.black;
-                HideDiamondInfo();
             }
         }
+        HideDiamondInfo();
     }
     void HideDiamondInfo()
     {

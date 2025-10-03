@@ -11,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     public static PauseMenu Instance;
     public CinemachineVirtualCamera _vcam;
     public CinemachineVirtualCamera _vcamPaused;
+    [SerializeField] AudioSelecterButtons _buttonAudio;
+    [SerializeField] CheckNewMedal _medalSpritePause;
 
     [Header("Panels")]
     public GameObject _pauseMenu;
@@ -69,11 +71,12 @@ public class PauseMenu : MonoBehaviour
     }
     public void Pause()
     {
-        MoveCameraOffset();
+        //MoveCameraOffset();
         _isPaused = true;
         _isPausedPhysics = true;
         OpenMainPauseMenu();
-        FindAudioPlayerForButtons(6);
+        FindAudioPlayerForButtons(2);
+        _medalSpritePause.MedalLoad(LevelManager.Instance._medalInLevel);
         DataPersistenceManager.Instance.LoadGame();
         InputManager.Instance.DisablePlayerInput();
         //LevelManager.Instance.FreezePlayerAndTimer();
@@ -81,9 +84,8 @@ public class PauseMenu : MonoBehaviour
     }
     public void Unpause()
     {
-        FindAudioPlayerForButtons(5);
         CloseMenus();
-        ResetCameraOffset();
+        //ResetCameraOffset();
         InputManager.Instance.EnablePlayerInput();
         LevelManager.Instance.FreezePlayerAndTimer(false);
         Time.timeScale = 1;
@@ -149,7 +151,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void FindAudioPlayerForButtons(int fileNum)
     {
-        //AudioSelecterButtons.Instance.PlaySFX(fileNum);
+        _buttonAudio.PlaySFX(fileNum);
     }
     void MoveCameraOffset()
     {

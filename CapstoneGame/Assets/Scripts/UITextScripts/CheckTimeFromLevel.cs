@@ -6,17 +6,22 @@ public class CheckTimeFromLevel : MonoBehaviour, IDataPersistence
 {
     //These two set in unity editor per instance
     public TimeType _timeType;
-    public string _levelID;
-    TMP_Text _text;
-    LevelManager _levelManager;
-    void Awake() {
-        _text = GetComponent<TMP_Text>();
-        try {
-            _levelManager = GameObject.Find("LevelBehaviour").GetComponent<LevelManager>();
-            _levelID = _levelManager._levelID;
+    [SerializeField] string _levelID;
+    [SerializeField] TMP_Text _text;
+    [SerializeField] LevelButtonManager _buttonManager;
+    void OnEnable()
+    {
+        if (_text == null)
+        {
+            _text = this.GetComponent<TMP_Text>();
         }
-        catch {
-            //Debug.Log("levelmanager not found");
+        if (_levelID == "levelmanager")
+        {
+            _levelID = LevelManager.Instance._levelID;
+        }
+        else if (_levelID == "levelbutton" && _buttonManager != null)
+        {
+            _levelID = _buttonManager._buttonData._levelID;
         }
     }
     public void LoadData(GameData data) {

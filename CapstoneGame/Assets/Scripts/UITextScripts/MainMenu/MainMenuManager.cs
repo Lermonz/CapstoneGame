@@ -16,6 +16,7 @@ public class MainMenuManager : MonoBehaviour
     public GameObject _levelsMenu;
     public GameObject _resetDataMenu;
     public GameObject _exitGameMenu;
+    [SerializeField] AudioSelecterButtons _buttonAudio;
 
     [Header("Event System wants a first selected button")]
     [SerializeField] private GameObject _mainFirstButton;
@@ -229,7 +230,7 @@ public class MainMenuManager : MonoBehaviour
     }
     public void FindAudioPlayerForButtons(int fileNum)
     {
-        AudioSelecterButtons.Instance.PlaySFX(fileNum);
+        _buttonAudio.PlaySFX(fileNum);
     }
     // METHODS THAT REDIRECT TO SCRIPTS THAT PERSIST BETWEEN SCENES (dont destroy on loads)
     // so that buttons on the menu can access them

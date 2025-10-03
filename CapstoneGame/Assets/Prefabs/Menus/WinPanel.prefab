@@ -1984,7 +1984,6 @@ GameObject:
   - component: {fileID: 6336437616807412044}
   - component: {fileID: 4431743344472895688}
   - component: {fileID: 5523027588404634733}
-  - component: {fileID: 7749103983053545677}
   m_Layer: 5
   m_Name: RewardStarSillhouette
   m_TagString: Untagged
@@ -2049,21 +2048,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7749103983053545677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4798193287848124471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d00f049aa8b14ad48030b7dfdce66f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _image: {fileID: 0}
-  _medalSprites: []
-  _diamondInfo: []
 --- !u!1 &4849953582981526857
 GameObject:
   m_ObjectHideFlags: 0

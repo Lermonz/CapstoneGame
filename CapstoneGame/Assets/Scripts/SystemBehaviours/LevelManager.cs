@@ -26,6 +26,8 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     bool _canReset = false;
     //Vector2 _checkpoint;
     public Vector2 Checkpoint { get; private set; }
+    public string _medalInLevel { get; private set; }
+    [SerializeField] CheckNewMedal[] _medalSprites;
 
     void Awake()
     {
@@ -105,10 +107,13 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         this._silverTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelSilvers[_levelID]);
         this._goldTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelGolds[_levelID]);
         this._diamondTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelDiamonds[_levelID]);
-        if(data.personalBest.ContainsKey(_levelID)){
+        if (data.personalBest.ContainsKey(_levelID))
+        {
             data.personalBest.TryGetValue(_levelID, out this._personalBest);
+            _medalInLevel = data.medals[_levelID];
         }
-        else{
+        else
+        {
             this._personalBest = 5999999;
         }
         //this._personalBest = data.personalBestOLD;
@@ -147,17 +152,23 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         //data.personalBestOLD = this._personalBest;
     }
     public void UpdateMedals(GameData data, string medal) {
+        _medalInLevel = medal;
         if (GameObject.Find("RewardStar") != null)
         {
-            CheckNewMedal MedalSprite = GameObject.Find("RewardStar").GetComponent<CheckNewMedal>();
             if (data.medals.ContainsKey(_levelID))
             {
-                MedalSprite.MedalLoad(data.medals[_levelID], medal);
+                foreach (CheckNewMedal MedalSprite in _medalSprites)
+                {
+                    MedalSprite.MedalLoad(data.medals[_levelID], medal);
+                }
                 data.medals.Remove(_levelID);
             }
             else
             {
-                MedalSprite.MedalLoad("none", medal);
+                foreach (CheckNewMedal MedalSprite in _medalSprites)
+                {
+                    MedalSprite.MedalLoad("none", medal);
+                }
             }
             data.medals.Add(_levelID, medal);
         }

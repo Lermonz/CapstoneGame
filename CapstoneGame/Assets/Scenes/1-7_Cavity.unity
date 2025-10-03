@@ -16547,6 +16547,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 510457329583328831, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
   m_PrefabInstance: {fileID: 391969080}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &391969082 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7539862944343815368, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+  m_PrefabInstance: {fileID: 391969080}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d00f049aa8b14ad48030b7dfdce66f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &391969083 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4437157955325952864, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+  m_PrefabInstance: {fileID: 391969080}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d00f049aa8b14ad48030b7dfdce66f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &426944906
 GameObject:
   m_ObjectHideFlags: 0
@@ -17262,7 +17284,7 @@ PrefabInstance:
       objectReference: {fileID: 190907396}
     - target: {fileID: 8082073715259999968, guid: 3b3fce2b06a9c45ba8cbe5743cb0768f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.714634
+      value: -13.745978
       objectReference: {fileID: 0}
     - target: {fileID: 8082073715259999968, guid: 3b3fce2b06a9c45ba8cbe5743cb0768f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19908,6 +19930,9 @@ MonoBehaviour:
   _canExit: 0
   _stopTimer: 0
   _countdownDone: 0
+  _medalSprites:
+  - {fileID: 391969082}
+  - {fileID: 391969083}
 --- !u!4 &1305881706
 Transform:
   m_ObjectHideFlags: 0
