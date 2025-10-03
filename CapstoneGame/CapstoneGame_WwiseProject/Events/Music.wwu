@@ -88,6 +88,33 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="PlayWorld3" ID="{A86B5DC5-F128-4010-A108-6D4E1928D132}">
+					<ChildrenList>
+						<Action Name="" ID="{0281F0FC-D7D5-4441-87E4-CDEE4F9D75BF}" ShortID="374445614">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="HighAbove" ID="{52745888-0FC7-45AA-AFBD-887A46D29E2E}" WorkUnitID="{466A954B-EA4E-4A82-B2AD-1177955B78D0}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="StopWorld3" ID="{B03E11FE-BE8E-41F1-BA85-5D9DB6384C21}">
+					<ChildrenList>
+						<Action Name="" ID="{F3E67DFF-1CA9-4A26-A592-DE55C44003B4}" ShortID="1050872352">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="2"/>
+								<Property Name="FadeOutCurve" Type="int16" Value="6"/>
+								<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="HighAbove" ID="{52745888-0FC7-45AA-AFBD-887A46D29E2E}" WorkUnitID="{466A954B-EA4E-4A82-B2AD-1177955B78D0}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

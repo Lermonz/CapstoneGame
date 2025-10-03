@@ -27,6 +27,8 @@ namespace AK
         static const AkUniqueID BUTTONWARNING = 279279475U;
         static const AkUniqueID COSTUME_GET = 2716839384U;
         static const AkUniqueID CRYSTAL_BREAK = 756738409U;
+        static const AkUniqueID FRAGILE_BREAK = 1755803531U;
+        static const AkUniqueID FRAGILE_STEP = 2620122712U;
         static const AkUniqueID PLAYER_ATTACK = 2824512041U;
         static const AkUniqueID PLAYER_DASH = 2394582229U;
         static const AkUniqueID PLAYER_DIE = 1542330065U;
@@ -36,9 +38,12 @@ namespace AK
         static const AkUniqueID PLAYMENU = 1862289782U;
         static const AkUniqueID PLAYWORLD1 = 4039638074U;
         static const AkUniqueID PLAYWORLD2 = 4039638073U;
+        static const AkUniqueID PLAYWORLD3 = 4039638072U;
+        static const AkUniqueID SPRING_OBJECT = 902328288U;
         static const AkUniqueID STOPMENU = 2273031176U;
         static const AkUniqueID STOPWORLD1 = 2443977444U;
         static const AkUniqueID STOPWORLD2 = 2443977447U;
+        static const AkUniqueID STOPWORLD3 = 2443977446U;
         static const AkUniqueID TELE_OBJECT = 405211869U;
     } // namespace EVENTS
 
@@ -51,7 +56,10 @@ namespace AK
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
-        static const AkUniqueID SOUNDBANKALL = 3877572401U;
+        static const AkUniqueID GLOBALFX = 534609534U;
+        static const AkUniqueID SOUNDBANKWORLD1 = 1685999685U;
+        static const AkUniqueID SOUNDBANKWORLD2 = 1685999686U;
+        static const AkUniqueID SOUNDBANKWORLD3 = 1685999687U;
     } // namespace BANKS
 
     namespace BUSSES

@@ -16,11 +16,14 @@ public class FileDataHandler
         string fullPath = Path.Combine(_dataDirPath, _dataFileName);
         GameData loadedData = null;
         if(File.Exists(fullPath)) {
-            try {
+            try
+            {
                 // Load the serialized data from the file
                 string dataToLoad = "";
-                using(FileStream stream = new FileStream(fullPath, FileMode.Open)) {
-                    using (StreamReader reader = new StreamReader(stream)) {
+                using (FileStream stream = new FileStream(fullPath, FileMode.Open))
+                {
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
                         dataToLoad = reader.ReadToEnd();
                     }
                 }
@@ -28,9 +31,10 @@ public class FileDataHandler
                 // deserialize the data from the Json back into the C# object
                 loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
             }
-            catch (Exception e) {
-            Debug.LogError("Error occured when trying to load data to file: "+fullPath+"\n"+e);
-        }
+            catch (Exception e)
+            {
+                Debug.LogError("Error occured when trying to load data to file: " + fullPath + "\n" + e);
+            }
         }
         return loadedData;
     }

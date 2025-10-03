@@ -18,12 +18,8 @@
 							<Position X="0" Y="2"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="ButtonHighlight" ID="{23D53B51-45A4-4567-B379-CDD46091DB14}" WorkUnitID="{F7208305-3A80-4691-9593-DD6787B4FC9B}"/>
+							<ObjectRef Name="PlayWorld3" ID="{A86B5DC5-F128-4010-A108-6D4E1928D132}" WorkUnitID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}"/>
 							<Position X="0" Y="3"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="ButtonConfirm2" ID="{8A051046-EE24-4404-9718-23B0007D440E}" WorkUnitID="{F7208305-3A80-4691-9593-DD6787B4FC9B}"/>
-							<Position X="0" Y="4"/>
 						</Module>
 						<Module>
 							<ObjectRef Name="StopMenu" ID="{0A10D226-ABC7-44B3-AEDA-AA6A0C29D9A3}" WorkUnitID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}"/>
@@ -38,12 +34,8 @@
 							<Position X="1" Y="2"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="ButtonConfirm1" ID="{C3EEC3C6-95F0-4E3F-8C9D-1D5C37EC6B69}" WorkUnitID="{F7208305-3A80-4691-9593-DD6787B4FC9B}"/>
+							<ObjectRef Name="StopWorld3" ID="{B03E11FE-BE8E-41F1-BA85-5D9DB6384C21}" WorkUnitID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}"/>
 							<Position X="1" Y="3"/>
-						</Module>
-						<Module>
-							<ObjectRef Name="ButtonBackOut1" ID="{6C925603-F2A3-417F-A576-066FF8379020}" WorkUnitID="{F7208305-3A80-4691-9593-DD6787B4FC9B}"/>
-							<Position X="1" Y="4"/>
 						</Module>
 						<Module>
 							<ObjectRef Name="Player_Attack" ID="{25467068-7FDE-4889-8631-21CAFED1691A}" WorkUnitID="{3B0033C6-FCF6-4225-95F8-B2AB6DB94F9C}"/>
@@ -58,8 +50,12 @@
 							<Position X="2" Y="2"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="Tele_Object" ID="{132436F7-0E75-4CB6-A2D3-8C6F76725DCA}" WorkUnitID="{CB0BEE05-7ACE-4E32-BBC6-C118FC70317F}"/>
+							<ObjectRef Name="ButtonHighlight" ID="{23D53B51-45A4-4567-B379-CDD46091DB14}" WorkUnitID="{F7208305-3A80-4691-9593-DD6787B4FC9B}"/>
 							<Position X="2" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ButtonBackOut1" ID="{6C925603-F2A3-417F-A576-066FF8379020}" WorkUnitID="{F7208305-3A80-4691-9593-DD6787B4FC9B}"/>
+							<Position X="2" Y="4"/>
 						</Module>
 						<Module>
 							<ObjectRef Name="Player_FastFall" ID="{05A299D3-C0FC-426A-81E1-92F87FDCD43D}" WorkUnitID="{3B0033C6-FCF6-4225-95F8-B2AB6DB94F9C}"/>
@@ -70,12 +66,32 @@
 							<Position X="3" Y="1"/>
 						</Module>
 						<Module>
-							<ObjectRef Name="Boost_Object" ID="{89BC6AD7-36BD-4FAE-A187-455767D081EB}" WorkUnitID="{CB0BEE05-7ACE-4E32-BBC6-C118FC70317F}"/>
+							<ObjectRef Name="Tele_Object" ID="{132436F7-0E75-4CB6-A2D3-8C6F76725DCA}" WorkUnitID="{CB0BEE05-7ACE-4E32-BBC6-C118FC70317F}"/>
+							<Position X="3" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ButtonConfirm1" ID="{C3EEC3C6-95F0-4E3F-8C9D-1D5C37EC6B69}" WorkUnitID="{F7208305-3A80-4691-9593-DD6787B4FC9B}"/>
 							<Position X="3" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="ButtonConfirm2" ID="{8A051046-EE24-4404-9718-23B0007D440E}" WorkUnitID="{F7208305-3A80-4691-9593-DD6787B4FC9B}"/>
+							<Position X="3" Y="4"/>
 						</Module>
 						<Module>
 							<ObjectRef Name="Player_Die" ID="{6A301375-36CC-495B-8101-4480AE28CE42}" WorkUnitID="{3B0033C6-FCF6-4225-95F8-B2AB6DB94F9C}"/>
 							<Position X="4" Y="0"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Boost_Object" ID="{89BC6AD7-36BD-4FAE-A187-455767D081EB}" WorkUnitID="{CB0BEE05-7ACE-4E32-BBC6-C118FC70317F}"/>
+							<Position X="4" Y="2"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Fragile_Step" ID="{B2AC14F6-506B-43AD-A179-BC762F4E7226}" WorkUnitID="{CB0BEE05-7ACE-4E32-BBC6-C118FC70317F}"/>
+							<Position X="4" Y="3"/>
+						</Module>
+						<Module>
+							<ObjectRef Name="Fragile_Break" ID="{2FE7A081-D00D-4C9E-8FCC-97C7B597A9BA}" WorkUnitID="{CB0BEE05-7ACE-4E32-BBC6-C118FC70317F}"/>
+							<Position X="4" Y="4"/>
 						</Module>
 					</ModuleList>
 					<RTPCValueList ShowAll="true">

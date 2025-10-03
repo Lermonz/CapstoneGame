@@ -6,6 +6,7 @@ using UnityEngine;
 public class PortalBehaviour : MonoBehaviour
 {
     public SpriteRenderer[] _renderers;
+    Player _player;
     private bool dontRetrigger = false;
     public bool HasWon { get => dontRetrigger; set {dontRetrigger = value;}}
     bool _canExit;
@@ -13,11 +14,19 @@ public class PortalBehaviour : MonoBehaviour
     {
         _canExit = LevelManager.Instance._canExit;
         this.GetComponent<Animator>().SetBool("canExit", _canExit);
+        if (dontRetrigger && _player != null)
+        {
+            float xDiff = this.transform.position.x - _player.transform.position.x;
+            float yDiff = this.transform.position.y - _player.transform.position.y;
+            _player.transform.position += new Vector3(xDiff, yDiff, 0)*3f*Time.deltaTime;
+        }
     }
     void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player") && !dontRetrigger) {
             if(_canExit) {
-                other.gameObject.GetComponent<Player>().SetInvulnerable();
+                _player = other.gameObject.GetComponent<Player>();
+                _player.SetInvulnerable();
+                _player.SetHasWon();
                 ExitSuccess();
             }
             else
@@ -31,7 +40,7 @@ public class PortalBehaviour : MonoBehaviour
     void ExitSuccess() {
         dontRetrigger = true;
         InputManager.Instance.DisablePlayerInput();
-        LevelManager.Instance.FreezePlayerAndTimer();
+        LevelManager.Instance.StopTimer();
         PauseMenu.Instance.OnWin();
     }
     void ExitFail() {

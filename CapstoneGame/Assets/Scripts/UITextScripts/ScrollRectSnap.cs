@@ -45,24 +45,43 @@ public class ScrollRectSnap : MonoBehaviour
     void Update() {
         _currentWorld = MainMenuManager.Instance.CurrentWorld;
         _button = _buttonsArray[_currentWorld];
-        for(int i = 0; i<_button.Length; i++) {
-            _distance[i] = Mathf.Abs(_centerForLevels.transform.position.y - _button[i].transform.position.y);
-            _distance[i] = Mathf.Abs(_centerForLevels.transform.position.y - _button[i].transform.position.y);
-        }
-        float minDistance = Mathf.Min(_distance);
+        if (MainMenuManager.Instance._currentScreen == MenuScreens.LevelSelect)
+        {
+            float compareTo = _centerForLevels.transform.position.y;
+            Debug.Log("mouseScrollInput: " + InputManager.Instance.MouseScrollInput);
+            if (_minButtonNum < _button.Length - 1 && InputManager.Instance.MouseScrollInput.y < 0)
+            {
+                _button[_minButtonNum + 1].Select();
+            }
+            else if (_minButtonNum > 0 && InputManager.Instance.MouseScrollInput.y > 0)
+            {
+                _button[_minButtonNum - 1].Select();
+            }
+            for (int i = 0; i < _button.Length; i++)
+            {
+                _distance[i] = Mathf.Abs(compareTo - _button[i].transform.position.y);
+                _distance[i] = Mathf.Abs(compareTo - _button[i].transform.position.y);
+            }
+            float minDistance = Mathf.Min(_distance);
 
-        for(int i = 0; i < _button.Length; i++) {
-            if(minDistance == _distance[i]) {
-                _minButtonNum = i;
+            for (int i = 0; i < _button.Length; i++)
+            {
+                if (minDistance == _distance[i])
+                {
+                    _minButtonNum = i;
+                }
             }
-        }
-        for(int i = 0; i < _button.Length; i++) {
-            if(_button[i].GetComponent<ButtonSelectionHandler>().IsSelected) {
-                _minButtonNum = i;
+            for (int i = 0; i < _button.Length; i++)
+            {
+                if (_button[i].GetComponent<ButtonSelectionHandler>().IsSelected)
+                {
+                    _minButtonNum = i;
+                }
             }
-        }
-        if(!dragging){
-            LerpToButton(_minButtonNum * _buttonDistance);
+            if (!dragging)
+            {
+                LerpToButton(_minButtonNum * _buttonDistance);
+            }
         }
     }
     void LerpToButton(int position) {

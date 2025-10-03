@@ -83,7 +83,12 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         _stopTimer = doIt;
         InputManager.Instance._freezeVelocity = doIt;
     }
-    private void SetNewPB(float thisRunTime) {
+    public void StopTimer()
+    {
+        _stopTimer = true;
+    }
+    private void SetNewPB(float thisRunTime)
+    {
         this._personalBest = thisRunTime;
     }
     public void CheckPB() {

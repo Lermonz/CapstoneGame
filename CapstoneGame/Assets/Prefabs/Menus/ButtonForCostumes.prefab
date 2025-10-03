@@ -313,8 +313,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unlockType: 5
+  _selectionHandler: {fileID: 1702514637569451354}
   _world: 0
   _costumeID: Vanilla
+  _unlockedDescription: unlocked!
+  _lockedDescription: locked...
+  _descriptionObject: {fileID: 0}
 --- !u!1 &5200039189602485066
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,14 +511,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.90428567, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.5259124, g: 0.4734781, b: 0.754717, a: 0.92156863}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f61cb59af9c2540f9880237daf660e74, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b1d2c4a645ea4452181b06de81a13144, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -523,7 +527,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1.8
+  m_PixelsPerUnitMultiplier: 32
 --- !u!1 &7399168307152297587
 GameObject:
   m_ObjectHideFlags: 0

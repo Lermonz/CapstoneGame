@@ -10,16 +10,16 @@ public class SelectLevel : MonoBehaviour
         SetGameBehavior(true);
         SceneManager.LoadScene(level);
     }
-    public void LoadMenu()
+    public void LoadMenu(bool deathDelay = true)
     {
         SetGameBehavior(false);
-        SceneManager.LoadScene(0);
+        StartCoroutine(DelayThenLoad(0, deathDelay));
     }
-    public void NextScene()
+    public void NextScene(bool deathDelay = true)
     {
         Scene nextLevel = SceneManager.GetActiveScene();
         if (SceneManager.GetSceneByBuildIndex(nextLevel.buildIndex + 1) != null)
-            LoadLevel(nextLevel.buildIndex + 1);
+            StartCoroutine(DelayThenLoad(nextLevel.buildIndex + 1, deathDelay));
     }
     public void Reload(bool deathDelay = true)
     {

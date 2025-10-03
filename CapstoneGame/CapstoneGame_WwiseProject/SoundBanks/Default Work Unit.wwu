@@ -3,13 +3,65 @@
 	<SoundBanks>
 		<WorkUnit Name="Default Work Unit" ID="{2988F7DC-BF29-4186-9545-70BD88CB6DFC}" PersistMode="Standalone">
 			<ChildrenList>
-				<SoundBank Name="SoundbankAll" ID="{20E86297-3903-44CD-9585-60E7D9927DEC}">
+				<SoundBank Name="GlobalFX" ID="{B144FA96-584F-4150-947E-68EB3D41D233}">
+					<PropertyList>
+						<Property Name="Maximum" Type="int32">
+							<ValueList>
+								<Value>100000000</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ObjectInclusionList>
 						<ObjectRef Name="PlayerSFX" ID="{3B0033C6-FCF6-4225-95F8-B2AB6DB94F9C}" WorkUnitID="{3B0033C6-FCF6-4225-95F8-B2AB6DB94F9C}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Default Work Unit" ID="{E5DC3333-B97D-43A0-A091-CAD01361477A}" WorkUnitID="{E5DC3333-B97D-43A0-A091-CAD01361477A}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="StopMenu" ID="{0A10D226-ABC7-44B3-AEDA-AA6A0C29D9A3}" WorkUnitID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="MenuSFX" ID="{F7208305-3A80-4691-9593-DD6787B4FC9B}" WorkUnitID="{F7208305-3A80-4691-9593-DD6787B4FC9B}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PlayMenu" ID="{8DE4D159-6838-4DB6-8C82-41637D5038DF}" WorkUnitID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="GameSFX" ID="{CB0BEE05-7ACE-4E32-BBC6-C118FC70317F}" WorkUnitID="{CB0BEE05-7ACE-4E32-BBC6-C118FC70317F}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Music" ID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}" WorkUnitID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="SoundbankWorld1" ID="{2DB49845-54F1-49A5-A75E-2A9937AE5AEF}">
+					<PropertyList>
+						<Property Name="Maximum" Type="int32">
+							<ValueList>
+								<Value>100000000</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ObjectInclusionList>
+						<ObjectRef Name="StopWorld1" ID="{0D19B70E-7C89-42ED-B4EE-D64D9CD63260}" WorkUnitID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="PlayWorld1" ID="{4F226F1A-A4FB-4F81-BE4A-37022C52F9CD}" WorkUnitID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="SoundbankWorld2" ID="{371E0836-5DEA-463F-8448-4F9757FF2D51}">
+					<PropertyList>
+						<Property Name="Maximum" Type="int32">
+							<ValueList>
+								<Value>100000000</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ObjectInclusionList>
+						<ObjectRef Name="PlayWorld2" ID="{785F1B7C-251E-423B-937A-32577B8B97AE}" WorkUnitID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="StopWorld2" ID="{1119AE46-6BB1-488C-943C-0E9F9B4F83B7}" WorkUnitID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+				<SoundBank Name="SoundbankWorld3" ID="{B0EB167E-E65B-4F80-9C23-5FA34394318C}">
+					<PropertyList>
+						<Property Name="Maximum" Type="int32">
+							<ValueList>
+								<Value>100000000</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ObjectInclusionList>
+						<ObjectRef Name="PlayWorld3" ID="{A86B5DC5-F128-4010-A108-6D4E1928D132}" WorkUnitID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="StopWorld3" ID="{B03E11FE-BE8E-41F1-BA85-5D9DB6384C21}" WorkUnitID="{A7C70935-9904-4F33-80EB-9E8B4C10DE23}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

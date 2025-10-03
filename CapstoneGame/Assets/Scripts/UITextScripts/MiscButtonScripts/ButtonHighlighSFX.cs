@@ -13,14 +13,19 @@ public class ButtonHighlighSFX : MonoBehaviour, ISelectHandler
     {
         canPlaySFX = false;
     }
-    public void OnSelect (BaseEventData eventData) 
-	{
-        if(canPlaySFX)
-            AkSoundEngine.PostEvent("ButtonHighlight",gameObject);
+    public void OnSelect(BaseEventData eventData)
+    {
+        if (canPlaySFX)
+            AkSoundEngine.PostEvent("ButtonHighlight", gameObject);
     }
-    IEnumerator DelayForAudio() {
+    IEnumerator DelayForAudio()
+    {
         yield return null;
         yield return null;
         canPlaySFX = true;
+    }
+    public void CanPlayHighlightSFX(bool value)
+    {
+        canPlaySFX = value;
     }
 }

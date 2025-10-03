@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -11,8 +13,11 @@ public class GameBehaviour : MonoBehaviour, IDataPersistence
     public static GameBehaviour Instance;
     public bool _isGame;
     public List<Texture> _costumes;
+    public RuntimeAnimatorController _philipController;
+    public Material _philipMaterial;
     public Texture SelectedCostume { get; private set; }
     public bool PlayerIsDead { get; private set; }
+    
     int _costumeID;
     void Awake()
     {
@@ -30,7 +35,7 @@ public class GameBehaviour : MonoBehaviour, IDataPersistence
         Application.targetFrameRate = 60;
         SetQualitySettings();
         //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
         LoadGame();
     }
     public void ExitGame()

@@ -62,6 +62,39 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Spring_Object" ID="{A6B26C97-00F5-4CAF-8A75-F505923BFFB1}">
+					<ChildrenList>
+						<Action Name="" ID="{8E9A64C3-8C42-41EF-B001-2EDDFC8B86DE}" ShortID="135649429">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="springBounce" ID="{2679CF31-EB02-4C8A-A4A8-D89C33839BBE}" WorkUnitID="{7FD96404-D09A-41C2-906C-4B91AF852793}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Fragile_Step" ID="{B2AC14F6-506B-43AD-A179-BC762F4E7226}">
+					<ChildrenList>
+						<Action Name="" ID="{ED6FE0BF-43B2-48FD-B7F5-79EACF7B4F79}" ShortID="830303066">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="fragileStep" ID="{C778238E-1B4B-44CE-BFA8-70C8DCC7CE83}" WorkUnitID="{7FD96404-D09A-41C2-906C-4B91AF852793}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Fragile_Break" ID="{2FE7A081-D00D-4C9E-8FCC-97C7B597A9BA}">
+					<ChildrenList>
+						<Action Name="" ID="{2EEB6A25-27C0-4100-81D9-6D337F210B6B}" ShortID="920399104">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="fragileBreak" ID="{79784E26-A845-402D-9E46-FDFCBCC6A7A5}" WorkUnitID="{7FD96404-D09A-41C2-906C-4B91AF852793}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

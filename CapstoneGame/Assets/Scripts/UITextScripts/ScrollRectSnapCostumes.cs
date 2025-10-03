@@ -23,25 +23,41 @@ public class ScrollRectSnapCostumes : MonoBehaviour
         _buttonDistance = (int)Mathf.Abs(_buttonsArray[1].GetComponent<RectTransform>().anchoredPosition.y - _buttonsArray[0].GetComponent<RectTransform>().anchoredPosition.y);
     }
     void Update() {
-        for(int i = 0; i<_buttonsArray.Length; i++) {
-            _distance[i] = Mathf.Abs(_centerForLevels.transform.position.y - _buttonsArray[i].transform.position.y);
-            _distance[i] = Mathf.Abs(_centerForLevels.transform.position.y - _buttonsArray[i].transform.position.y);
-        }
-        float minDistance = Mathf.Min(_distance);
-
-        for(int i = 0; i < _buttonsArray.Length; i++) {
-            if(minDistance == _distance[i]) {
-                _minButtonNum = i;
+        if (MainMenuManager.Instance._currentScreen == MenuScreens.Costumes)
+        {
+            for (int i = 0; i < _buttonsArray.Length; i++)
+            {
+                _distance[i] = Mathf.Abs(_centerForLevels.transform.position.y - _buttonsArray[i].transform.position.y);
+                _distance[i] = Mathf.Abs(_centerForLevels.transform.position.y - _buttonsArray[i].transform.position.y);
             }
-        }
-        for(int i = 0; i < _buttonsArray.Length; i++) {
-            if(_buttonsArray[i].GetComponent<ButtonSelectionHandler>().IsSelected) {
-                NillyDisplay.Instance.ShowCostume(_buttonsArray[i].interactable ? i : -1);
-                _minButtonNum = i;
+            float minDistance = Mathf.Min(_distance);
+            if (_minButtonNum < _buttonsArray.Length - 1 && InputManager.Instance.MouseScrollInput.y < 0)
+            {
+                _buttonsArray[_minButtonNum + 1].Select();
             }
-        }
-        if(!dragging){
-            LerpToButton(_minButtonNum * _buttonDistance);
+            else if (_minButtonNum > 0 && InputManager.Instance.MouseScrollInput.y > 0)
+            {
+                _buttonsArray[_minButtonNum - 1].Select();
+            }
+            for (int i = 0; i < _buttonsArray.Length; i++)
+            {
+                if (minDistance == _distance[i])
+                {
+                    _minButtonNum = i;
+                }
+            }
+            for (int i = 0; i < _buttonsArray.Length; i++)
+            {
+                if (_buttonsArray[i].GetComponent<ButtonSelectionHandler>().IsSelected)
+                {
+                    NillyDisplay.Instance.ShowCostume(_buttonsArray[i].interactable ? i : -1);
+                    _minButtonNum = i;
+                }
+            }
+            if (!dragging)
+            {
+                LerpToButton(_minButtonNum * _buttonDistance);
+            }
         }
     }
     void LerpToButton(int position) {

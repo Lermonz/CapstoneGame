@@ -18,6 +18,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             m_ActionProperty = serializedObject.FindProperty("m_Action");
             m_SecondActionProperty = serializedObject.FindProperty("m_SecondAction");
             m_BindingIdProperty = serializedObject.FindProperty("m_BindingId");
+            m_IsKeyboardProperty = serializedObject.FindProperty("m_IsKeyboard");
             m_SecondBindingIdProperty = serializedObject.FindProperty("m_BindingId2");
             m_ActionLabelProperty = serializedObject.FindProperty("m_ActionLabel");
             m_BindingTextProperty = serializedObject.FindProperty("m_BindingText");
@@ -41,6 +42,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             {
                 EditorGUILayout.PropertyField(m_ActionProperty);
                 EditorGUILayout.PropertyField(m_SecondActionProperty);
+                EditorGUILayout.PropertyField(m_IsKeyboardProperty);
 
                 var newSelectedBinding = EditorGUILayout.Popup(m_BindingLabel, m_SelectedBindingOption, m_BindingOptions);
                 if (newSelectedBinding != m_SelectedBindingOption)
@@ -155,6 +157,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         private SerializedProperty m_ActionProperty;
         private SerializedProperty m_SecondActionProperty;
         private SerializedProperty m_BindingIdProperty;
+        private SerializedProperty m_IsKeyboardProperty;
         private SerializedProperty m_SecondBindingIdProperty;
         private SerializedProperty m_ActionLabelProperty;
         private SerializedProperty m_BindingTextProperty;

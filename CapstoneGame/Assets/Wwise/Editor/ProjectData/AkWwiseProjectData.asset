@@ -120,11 +120,11 @@ MonoBehaviour:
     ParentPath: SoundBanks/Default Work Unit
     guid: dcf7882929bf8641954570bd88cb6dfc
     GuidInternal: 
-    m_lastTime: -8584583098722212598
+    m_lastTime: -8584421663365025821
     List:
-    - name: SoundbankAll
-      guid: 9762e8200339cd44958560e7d9927dec
-      id: 3877572401
+    - name: GlobalFX
+      guid: 96fa44b14f585041947e68eb3d41d233
+      id: 534609534
       PathAndIcons:
       - ElementName: SoundBanks
         ObjectType: 5
@@ -132,10 +132,52 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
         guid: dcf7882929bf8641954570bd88cb6dfc
-      - ElementName: SoundbankAll
+      - ElementName: GlobalFX
         ObjectType: 7
-        guid: 9762e8200339cd44958560e7d9927dec
-      Path: SoundBanks/Default Work Unit/SoundbankAll
+        guid: 96fa44b14f585041947e68eb3d41d233
+      Path: SoundBanks/Default Work Unit/GlobalFX
+    - name: SoundbankWorld1
+      guid: 4598b42df154a549a75e2a9937ae5aef
+      id: 1685999685
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: dcf7882929bf8641954570bd88cb6dfc
+      - ElementName: SoundbankWorld1
+        ObjectType: 7
+        guid: 4598b42df154a549a75e2a9937ae5aef
+      Path: SoundBanks/Default Work Unit/SoundbankWorld1
+    - name: SoundbankWorld2
+      guid: 36081e37ea5d3f4684484f9757ff2d51
+      id: 1685999686
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: dcf7882929bf8641954570bd88cb6dfc
+      - ElementName: SoundbankWorld2
+        ObjectType: 7
+        guid: 36081e37ea5d3f4684484f9757ff2d51
+      Path: SoundBanks/Default Work Unit/SoundbankWorld2
+    - name: SoundbankWorld3
+      guid: 7e16ebb05be6804f9c235fa34394318c
+      id: 1685999687
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: dcf7882929bf8641954570bd88cb6dfc
+      - ElementName: SoundbankWorld3
+        ObjectType: 7
+        guid: 7e16ebb05be6804f9c235fa34394318c
+      Path: SoundBanks/Default Work Unit/SoundbankWorld3
   EventWwu:
   - PhysicalPath: Events/Default Work Unit.wwu
     PathAndIcons:
@@ -161,7 +203,7 @@ MonoBehaviour:
     ParentPath: Events/GameSFX
     guid: 05ee0bcbce7a324ebbc6c118fc70317f
     GuidInternal: 
-    m_lastTime: -8584433590624906425
+    m_lastTime: -8584421675467589085
     List:
     - name: AllCrystals
       guid: 614463fe82425e4890faeba5b6525c54
@@ -231,6 +273,57 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.7742083
       minDuration: 0.7742083
+    - name: Fragile_Break
+      guid: 81a0e72f0dd09e4c8fcc97c7b597a9ba
+      id: 1755803531
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: GameSFX
+        ObjectType: 12
+        guid: 05ee0bcbce7a324ebbc6c118fc70317f
+      - ElementName: Fragile_Break
+        ObjectType: 3
+        guid: 81a0e72f0dd09e4c8fcc97c7b597a9ba
+      Path: Events/GameSFX/Fragile_Break
+      maxAttenuation: 0
+      maxDuration: 0.57150364
+      minDuration: 0.57150364
+    - name: Fragile_Step
+      guid: f614acb26b50ad43a179bc762f4e7226
+      id: 2620122712
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: GameSFX
+        ObjectType: 12
+        guid: 05ee0bcbce7a324ebbc6c118fc70317f
+      - ElementName: Fragile_Step
+        ObjectType: 3
+        guid: f614acb26b50ad43a179bc762f4e7226
+      Path: Events/GameSFX/Fragile_Step
+      maxAttenuation: 0
+      maxDuration: 0.31161457
+      minDuration: 0.31161457
+    - name: Spring_Object
+      guid: 976cb2a6f500af4c8a75f505923bffb1
+      id: 902328288
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: GameSFX
+        ObjectType: 12
+        guid: 05ee0bcbce7a324ebbc6c118fc70317f
+      - ElementName: Spring_Object
+        ObjectType: 3
+        guid: 976cb2a6f500af4c8a75f505923bffb1
+      Path: Events/GameSFX/Spring_Object
+      maxAttenuation: 0
+      maxDuration: 0.62322915
+      minDuration: 0.5159612
     - name: Tele_Object
       guid: f7362413750eb64ca2d38c6f76725dca
       id: 405211869
@@ -442,7 +535,7 @@ MonoBehaviour:
     ParentPath: Events/Music
     guid: 3509c7a70499334f80eb9e8b4c10de23
     GuidInternal: 
-    m_lastTime: -8584519255629683759
+    m_lastTime: -8584423311090270274
     List:
     - name: PlayMenu
       guid: 59d1e48d3868b64d8c8241637d5038df
@@ -495,6 +588,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: PlayWorld3
+      guid: c55d6ba828f11040a1086d4e1928d132
+      id: 4039638072
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Music
+        ObjectType: 12
+        guid: 3509c7a70499334f80eb9e8b4c10de23
+      - ElementName: PlayWorld3
+        ObjectType: 3
+        guid: c55d6ba828f11040a1086d4e1928d132
+      Path: Events/Music/PlayWorld3
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: StopMenu
       guid: 26d2100ac7abb344aedaaa6a0c29d9a3
       id: 2273031176
@@ -543,6 +653,23 @@ MonoBehaviour:
         ObjectType: 3
         guid: 46ae1911b16b8c48943c0e9f9b4f83b7
       Path: Events/Music/StopWorld2
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: StopWorld3
+      guid: fe113eb08ebef141ba855d9db6384c21
+      id: 2443977446
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Music
+        ObjectType: 12
+        guid: 3509c7a70499334f80eb9e8b4c10de23
+      - ElementName: StopWorld3
+        ObjectType: 3
+        guid: fe113eb08ebef141ba855d9db6384c21
+      Path: Events/Music/StopWorld3
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
@@ -746,7 +873,7 @@ MonoBehaviour:
     m_lastTime: -8584583243921055673
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 2d0000002f00000030000000
+  ExpandedWaapiItemIds: 2d0000002e0000002f00000030000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

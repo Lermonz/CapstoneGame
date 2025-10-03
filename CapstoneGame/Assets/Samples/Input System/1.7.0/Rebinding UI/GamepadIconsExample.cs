@@ -13,8 +13,8 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
     /// </summary>
     public class GamepadIconsExample : MonoBehaviour
     {
-        public GamepadIcons xbox;
-        public GamepadIcons ps4;
+        public GamepadIcons controller;
+        //public GamepadIcons ps4;
 
         protected void OnEnable()
         {
@@ -33,10 +33,11 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 return;
 
             var icon = default(Sprite);
-            if (InputSystem.IsFirstLayoutBasedOnSecond(deviceLayoutName, "DualShockGamepad"))
-                icon = ps4.GetSprite(controlPath);
-            else if (InputSystem.IsFirstLayoutBasedOnSecond(deviceLayoutName, "Gamepad"))
-                icon = xbox.GetSprite(controlPath);
+            // if (InputSystem.IsFirstLayoutBasedOnSecond(deviceLayoutName, "DualShockGamepad"))
+            //     icon = ps4.GetSprite(controlPath);
+            // else
+            if (InputSystem.IsFirstLayoutBasedOnSecond(deviceLayoutName, "Gamepad"))
+                icon = controller.GetSprite(controlPath);
 
             var textComponent = component.bindingText;
 
@@ -70,15 +71,18 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             public Sprite rightTrigger;
             public Sprite leftShoulder;
             public Sprite rightShoulder;
-            public Sprite dpad;
             public Sprite dpadUp;
             public Sprite dpadDown;
             public Sprite dpadLeft;
             public Sprite dpadRight;
-            public Sprite leftStick;
-            public Sprite rightStick;
-            public Sprite leftStickPress;
-            public Sprite rightStickPress;
+            public Sprite leftStickUp;
+            public Sprite leftStickDown;
+            public Sprite leftStickLeft;
+            public Sprite leftStickRight;
+            public Sprite rightStickUp;
+            public Sprite rightStickDown;
+            public Sprite rightStickLeft;
+            public Sprite rightStickRight;
 
             public Sprite GetSprite(string controlPath)
             {
@@ -96,15 +100,18 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                     case "rightTrigger": return rightTrigger;
                     case "leftShoulder": return leftShoulder;
                     case "rightShoulder": return rightShoulder;
-                    case "dpad": return dpad;
                     case "dpad/up": return dpadUp;
                     case "dpad/down": return dpadDown;
                     case "dpad/left": return dpadLeft;
                     case "dpad/right": return dpadRight;
-                    case "leftStick": return leftStick;
-                    case "rightStick": return rightStick;
-                    case "leftStickPress": return leftStickPress;
-                    case "rightStickPress": return rightStickPress;
+                    case "leftStick/up": return leftStickUp;
+                    case "leftStick/down": return leftStickDown;
+                    case "leftStick/left": return leftStickLeft;
+                    case "leftStick/right": return leftStickRight;
+                    case "rightStick/up": return rightStickUp;
+                    case "rightStick/down": return rightStickDown;
+                    case "rightStick/left": return rightStickLeft;
+                    case "rightStick/right": return rightStickRight;
                 }
                 return null;
             }

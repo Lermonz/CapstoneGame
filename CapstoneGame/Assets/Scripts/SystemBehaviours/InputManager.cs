@@ -25,6 +25,7 @@ public class InputManager : MonoBehaviour, IDataPersistence
     public bool UIMenuCloseInput { get; private set; }
     public bool UIConfirm { get; private set; }
     public bool UICancel { get; private set; }
+    public Vector2 MouseScrollInput { get; private set; }
 
     private InputAction _dpadAction;
     private InputAction _horizontalAction;
@@ -39,6 +40,7 @@ public class InputManager : MonoBehaviour, IDataPersistence
     private InputAction _uiMove;
     private InputAction _uiConfirm;
     private InputAction _uiCancel;
+    private InputAction _uiMouseScroll;
 
     void Awake()
     {
@@ -58,6 +60,7 @@ public class InputManager : MonoBehaviour, IDataPersistence
         _menuCloseAction = PlayerInput.actions["MenuClose"];
         _uiConfirm = PlayerInput.actions["UI_Confirm"];
         _uiCancel = PlayerInput.actions["UI_Cancel"];
+        _uiMouseScroll = PlayerInput.actions["UI_MouseScroll"];
     }
     void Update()
     {
@@ -73,6 +76,7 @@ public class InputManager : MonoBehaviour, IDataPersistence
         UIMenuCloseInput = _menuCloseAction.WasPressedThisFrame();
         UIConfirm = _uiConfirm.WasPressedThisFrame();
         UICancel = _uiCancel.WasPressedThisFrame();
+        MouseScrollInput = _uiMouseScroll.ReadValue<Vector2>();
     }
     public void DisablePlayerInput()
     {
@@ -85,6 +89,7 @@ public class InputManager : MonoBehaviour, IDataPersistence
     public void NegateAllInput()
     {
         PlayerInput.SwitchCurrentActionMap("None");
+        Debug.Log("input negated");
     }
     public void SaveData(GameData data)
     {

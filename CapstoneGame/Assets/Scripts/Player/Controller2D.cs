@@ -280,7 +280,7 @@ public class Controller2D : MonoBehaviour
     public void CrouchHurtbox()
     {
         Vector2 offset = new Vector2(0, -0.25f);
-        Vector2 size = new Vector2(0.7f, 0.5f);
+        Vector2 size = new Vector2(_hurtboxSize.x, 0.5f);
         SetHurtbox(offset, size);
     }
     public void RegularHurtbox()

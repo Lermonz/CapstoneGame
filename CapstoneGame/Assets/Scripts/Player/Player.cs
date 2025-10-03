@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [RequireComponent (typeof (Controller2D))]
@@ -11,13 +9,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Controller2D _controller;
-    SpriteRenderer _renderer;
+    [SerializeField] SpriteRenderer _renderer;
     VFXPlayer _vfxPlayer;
     Animator _animator;
     CinemachineVirtualCamera _vcam;
     [SerializeField] Transform _cameraFollow;
 
     Vector2 _velocity;
+    Vector2 _velocitySend;
     public GameObject _hitBox;
 
     float _horizontalInput;
@@ -52,6 +51,7 @@ public class Player : MonoBehaviour
     bool _teleporting = false;
     bool _dontLockOut = false;
     bool _invulnerable;
+    bool _hasWon = false;
 
     bool _grabbedMode = false;
     float _grabbedMaxSpeed = 4.5f;
@@ -74,11 +74,12 @@ public class Player : MonoBehaviour
     bool _jumpOverride = false;
     bool _overrideXInput = false;
     bool _dead;
+    bool _isPhilip;
 
     void Start()
     {
         _controller = GetComponent<Controller2D>();
-        _renderer = GetComponent<SpriteRenderer>();
+        //_renderer = GetComponent<SpriteRenderer>();
         _vfxPlayer = GetComponent<VFXPlayer>();
         _animator = GetComponent<Animator>();
         _vcam = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
@@ -86,12 +87,23 @@ public class Player : MonoBehaviour
         _terminalVelocity = _termV;
         _dead = false;
         _invulnerable = false;
+        _hasWon = false;
         SetCostume();
         LevelManager.Instance.SetRespawnPoint(this.transform.position);
     }
     void SetCostume()
     {
-        _renderer.material.SetTexture("_Palette", GameBehaviour.Instance.SelectedCostume);
+        Debug.Log("Costume Texture Name: "+GameBehaviour.Instance.SelectedCostume.ToString());
+        if (GameBehaviour.Instance.SelectedCostume.ToString() == "philip (UnityEngine.Texture2D)")
+        {
+            _animator.runtimeAnimatorController = GameBehaviour.Instance._philipController;
+            _renderer.material = GameBehaviour.Instance._philipMaterial;
+            _isPhilip = true;
+        }
+        else
+        {
+            _renderer.material.SetTexture("_Palette", GameBehaviour.Instance.SelectedCostume);
+        }
     }
     void Update() {
         _horizontalInput = _overrideXInput ? 0 : InputManager.Instance.Dpad.x;
@@ -189,7 +201,7 @@ public class Player : MonoBehaviour
             }
         }
         //TREATING GRAVITY LIKE ACCELERATION
-        if(!PauseMenu.Instance._isPaused && !_inBlackHole && !_dead && !_grabbedMode && !_teleporting) {
+        if(!PauseMenu.Instance._isPaused && !_inBlackHole && !_dead && !_grabbedMode && !_teleporting && !_hasWon) {
             if(_isGravityFlipped ? _velocity.y < _terminalVelocity : _velocity.y > _terminalVelocity) {
                 Accelerate(ref _velocity.y, _gravityMult, _gravity, delta);
             }
@@ -224,6 +236,10 @@ public class Player : MonoBehaviour
             //Mathf.Clamp(_velocity.x, (_boostSpeed + 3) * facingDirection, Mathf.Infinity*facingDirection);
             //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._boostSFX);
             AkSoundEngine.PostEvent("Player_Dash", gameObject);
+            if (_isPhilip && _renderer.flipX)
+            {
+                StartCoroutine(PhilipFlip());
+            }
             _vfxPlayer.Boost_AfterImage(_renderer.flipX);
             _animator.Play("Player_Dash");
             StartCoroutine(BoostCoroutine());
@@ -288,9 +304,15 @@ public class Player : MonoBehaviour
         {
             _velocity.x = 0;
         }
-        if(!_dead) {
-            _controller.Move((_velocity + _wind * _windMult + Vector2.right*_controller._conveyerSpeed) * delta);
+        if (!_dead && !_hasWon)
+        {
+            _velocitySend = _velocity + _wind * _windMult + Vector2.right * _controller._conveyerSpeed;
         }
+        else
+        {
+            _velocitySend = _velocity;
+        }
+        _controller.Move(_velocitySend * delta);
     }
     IEnumerator OverrideXInput(int delay) {
         _overrideXInput = true;
@@ -394,7 +416,7 @@ public class Player : MonoBehaviour
                 i = (int)cooldown - adjuster;
             if (cooldown - i < 7 && !didVFX)
             {
-                _vfxPlayer.RegenerateBoost();
+                if (!_dead) { _vfxPlayer.RegenerateBoost(); }
                 didVFX = true;
             }
             yield return null;
@@ -413,6 +435,16 @@ public class Player : MonoBehaviour
             yield return null;
         }
         _canCrouch = true;
+    }
+    IEnumerator PhilipFlip()
+    {
+        _renderer.flipX = false;
+        _renderer.flipY = !_isGravityFlipped;
+        for (int i = 0; i < 14; i++)
+        {
+            yield return null;
+        }
+        _renderer.flipY = _isGravityFlipped;
     }
     IEnumerator TeleportCooldown() {
         _canTeleport = false;
@@ -539,6 +571,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Bounce"))
         {
             _isJumping = false;
+            AkSoundEngine.PostEvent("Spring_Object", other.gameObject);
             Jump(_bounceVelocity);
             SetAllPlayerActions();
         }
@@ -558,7 +591,7 @@ public class Player : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("BlackHole") && !_dead)
+        if (other.gameObject.CompareTag("BlackHole"))
         {
             //_terminalVelocity = 0;
             _inBlackHole = true;
@@ -629,7 +662,7 @@ public class Player : MonoBehaviour
     }
     void ExitBlackHole() {
         _inBlackHole = false;
-            _blackHoleBaseStrength = 1.1f;
+            _blackHoleBaseStrength = 1.2f;
     }
     void ForceVelocityToVector(Vector2 v) {
         AkSoundEngine.PostEvent("Boost_Object", gameObject);
@@ -695,7 +728,7 @@ public class Player : MonoBehaviour
         if (!_invulnerable)
         {
             _invulnerable = true;
-            _velocity = Vector2.zero;
+            _blackHoleBaseStrength += 2;
             if (!_dead)
             {
                 _animator.SetTrigger("DeathBlackHole");
@@ -739,6 +772,15 @@ public class Player : MonoBehaviour
     {
         _invulnerable = invul;
     }
+    public void SetHasWon(bool value = true)
+    {
+        _hasWon = value;
+        if (value)
+        {
+            EndGrabbedMode();
+            _velocity = Vector2.zero;
+        }
+    }
     IEnumerator ReturnPlayerControl()
     {
         yield return new WaitForSeconds(1.02f);
@@ -747,6 +789,7 @@ public class Player : MonoBehaviour
     }
     void PlayerIsDead(float delay, bool sceneResets)
     {
+        _velocity = Vector2.zero;
         _dead = true;
         EndGrabbedMode();
         GameBehaviour.Instance.SetPlayerDeath(_dead);

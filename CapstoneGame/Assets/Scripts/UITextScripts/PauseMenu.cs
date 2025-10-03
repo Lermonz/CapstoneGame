@@ -19,6 +19,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject _winMenu;
     public GameObject _collectedOrb;
     public ScaleScreenWipeMask _screenWipe;
+    [SerializeField] GameObject _screenWipeParent;
 
     [Header("Event System wants a first selected button")]
     [SerializeField] private GameObject _mainFirstButton;
@@ -80,9 +81,9 @@ public class PauseMenu : MonoBehaviour
     }
     public void Unpause()
     {
-        ResetCameraOffset();
         FindAudioPlayerForButtons(5);
         CloseMenus();
+        ResetCameraOffset();
         InputManager.Instance.EnablePlayerInput();
         LevelManager.Instance.FreezePlayerAndTimer(false);
         Time.timeScale = 1;
@@ -139,6 +140,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void OnResetLevel()
     {
+        _screenWipeParent.SetActive(true);
         _screenWipe.ScaleDown();
     }
     public void CollectedOrb()
@@ -151,15 +153,16 @@ public class PauseMenu : MonoBehaviour
     }
     void MoveCameraOffset()
     {
-        _vcam.enabled = false;
+        _vcamPaused.transform.position = _vcam.transform.position;
         _vcamPaused.enabled = true;
+        _vcam.enabled = false;
         // var transposer = _vcam.GetCinemachineComponent<CinemachineFramingTransposer>();
         // transposer.m_TrackedObjectOffset.x = 6;
     }
     void ResetCameraOffset()
     {
-        _vcamPaused.enabled = false;
         _vcam.enabled = true;
+        _vcamPaused.enabled = false;
         //_vcam.GetCinemachineComponent<CinemachineFramingTransposer>().m_TrackedObjectOffset.x = 0;
     }
     IEnumerator MaintainPrePausedState()

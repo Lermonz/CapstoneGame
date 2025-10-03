@@ -66,7 +66,9 @@ public class DestructableBlockBehaviour : MonoBehaviour
     }
     IEnumerator Deactivate(float delay)
     {
+        AkSoundEngine.PostEvent("Fragile_Step", gameObject);
         yield return new WaitForSeconds(delay);
+        AkSoundEngine.PostEvent("Fragile_Break", gameObject);
         shapeMod.radius = 0.55f;
         shapeMod.radiusThickness = 0.5f;
         _particles.Play();

@@ -6,6 +6,7 @@ public class ScaleScreenWipeMask : MonoBehaviour
 {
     [SerializeField] float _time;
     [SerializeField] float _holdTime;
+    [SerializeField] GameObject _parent;
     void Start()
     {
         this.transform.localScale = Vector3.zero;
@@ -33,5 +34,6 @@ public class ScaleScreenWipeMask : MonoBehaviour
             yield return null;
         }
         if (goAgain) { ScaleUp(); }
+        else{ _parent.SetActive(false); }
     }
 }

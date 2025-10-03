@@ -1,17 +1,35 @@
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using TMPro;
 
 public class CostumeButtonManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField] LevelUnlockType _unlockType;
+    [SerializeField] ButtonSelectionHandler _selectionHandler;
     [SerializeField] int _world;
     [SerializeField] string _costumeID;
+    [SerializeField] string _unlockedDescription;
+    [SerializeField] string _lockedDescription;
+    [SerializeField] TextMeshProUGUI _descriptionObject;
     Button _button;
     bool _isUnlocked;
     void Awake()
     {
         _button = this.GetComponent<Button>();
+    }
+    void Update()
+    {
+        if (_selectionHandler.IsSelected)
+        {
+            if (_isUnlocked)
+            {
+                SetDescription(_unlockedDescription);
+            }
+            else {
+                SetDescription(_lockedDescription);
+            }
+        }
     }
     public void SaveData(GameData data) { return; }
     public void LoadData(GameData data)
@@ -33,6 +51,10 @@ public class CostumeButtonManager : MonoBehaviour, IDataPersistence
     void MakeButtonInteractable()
     {
         _button.interactable = _isUnlocked;
+    }
+    void SetDescription(string descriptionText)
+    {
+        _descriptionObject.text = descriptionText;
     }
     private int TotalGoldsInWorld(GameData data, int world)
     {

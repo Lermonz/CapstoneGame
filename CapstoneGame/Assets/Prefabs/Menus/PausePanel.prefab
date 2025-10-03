@@ -696,6 +696,7 @@ GameObject:
   - component: {fileID: 7145148286362917167}
   - component: {fileID: 4146211902568134825}
   - component: {fileID: 8476093318118128678}
+  - component: {fileID: 685101196743721966}
   - component: {fileID: 2431469068780276317}
   m_Layer: 5
   m_Name: Unpause
@@ -799,6 +800,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa87cc1af814346a581172990e5ef957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &685101196743721966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4104055982463907578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53af653d88a84cb2b64c87119e47940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!95 &2431469068780276317
@@ -909,6 +922,7 @@ GameObject:
   - component: {fileID: 8417235090630175600}
   - component: {fileID: 1793744584985559329}
   - component: {fileID: 229279120185469247}
+  - component: {fileID: 5750774310385535500}
   - component: {fileID: 8343602975983061485}
   m_Layer: 5
   m_Name: Reset
@@ -1012,6 +1026,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa87cc1af814346a581172990e5ef957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5750774310385535500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4500905357040295782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53af653d88a84cb2b64c87119e47940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!95 &8343602975983061485
@@ -1256,6 +1282,7 @@ GameObject:
   - component: {fileID: 8209717255701194074}
   - component: {fileID: 7525892743442140902}
   - component: {fileID: 5643663298708597870}
+  - component: {fileID: 3981258404949190105}
   - component: {fileID: 504724921284184920}
   m_Layer: 5
   m_Name: LevelSelect
@@ -1359,6 +1386,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa87cc1af814346a581172990e5ef957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3981258404949190105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5508365245979261250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53af653d88a84cb2b64c87119e47940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!95 &504724921284184920

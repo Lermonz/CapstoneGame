@@ -301,6 +301,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         {
             m_RebindOperation?.Cancel(); // Will null out m_RebindOperation.
             string prevPath = action.bindings[bindingIndex].effectivePath;
+            string ignoreThisScheme = m_IsKeyboard ? "Gamepad" : "Keyboard";
 
             void CleanUp()
             {
@@ -313,6 +314,18 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
             // Configure the rebind.
             m_RebindOperation = action.PerformInteractiveRebinding(bindingIndex)
+                //.WithControlsExcluding(ignoreThisScheme)
+                .WithControlsExcluding("Mouse")
+                .WithControlsExcluding("Joystick")
+                .WithControlsExcluding("<keyboard>/escape")
+                .WithControlsExcluding("<keyboard>/enter")
+                .WithControlsExcluding("<keyboard>/anyKey")
+                .WithControlsExcluding("<Gamepad>/leftStick/x")
+                .WithControlsExcluding("<Gamepad>/leftStick/y")
+                .WithControlsExcluding("<Gamepad>/rightStick/x")
+                .WithControlsExcluding("<Gamepad>/rightStick/y")
+                .WithControlsExcluding("<Gamepad>/dpad/x")
+                .WithControlsExcluding("<Gamepad>/dpad/y")
                 .OnCancel(
                     operation =>
                     {
@@ -432,6 +445,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         
 
         [SerializeField] private string m_BindingId2;
+        [SerializeField] private bool m_IsKeyboard;
 
         [Tooltip("Text label that will receive the name of the action. Optional. Set to None to have the "
     + "rebind UI not show a label for the action.")]

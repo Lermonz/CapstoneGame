@@ -9,7 +9,7 @@ public class MusicPlayer : MonoBehaviour
     int trackToPlay;
     bool playingTrack1 = false;
     bool playingTrack2 = false;
-    // bool playingTrack3 = false;
+    bool playingTrack3 = false;
     // bool playingTrackMenu = false;
     void Awake()
     {
@@ -40,6 +40,9 @@ public class MusicPlayer : MonoBehaviour
         else if (sceneID <= 20) {
             trackToPlay = 2;
         }
+        else if (sceneID <= 30) {
+            trackToPlay = 3;
+        }
         else {
             trackToPlay = 1;
         }
@@ -56,6 +59,11 @@ public class MusicPlayer : MonoBehaviour
                 AkSoundEngine.PostEvent("StopWorld2", gameObject);
                 playingTrack2 = false;
             }
+            if (playingTrack3)
+            {
+                AkSoundEngine.PostEvent("StopWorld3", gameObject);
+                playingTrack3 = false;
+            }
             AkSoundEngine.PostEvent("PlayMenu", gameObject);
         }
         else if (trackToPlay == 1 && !playingTrack1)
@@ -71,6 +79,13 @@ public class MusicPlayer : MonoBehaviour
             AkSoundEngine.PostEvent("StopMenu", gameObject);
             AkSoundEngine.PostEvent("PlayWorld2", gameObject);
             playingTrack2 = true;
+        }
+        else if (trackToPlay == 3 && !playingTrack3)
+        {
+            //Debug.Log("PlayWorld1");
+            AkSoundEngine.PostEvent("StopMenu", gameObject);
+            AkSoundEngine.PostEvent("PlayWorld3", gameObject);
+            playingTrack3 = true;
         }
     }
 }

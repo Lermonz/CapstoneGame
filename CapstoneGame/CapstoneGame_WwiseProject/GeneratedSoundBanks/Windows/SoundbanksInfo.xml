@@ -9,29 +9,9 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{F393364E-4881-85CE-C7E8-A1A8854100BA}">
-			<ShortName>Init</ShortName>
-			<Path>Init.bnk</Path>
-			<Plugins>
-				<AudioDevices>
-					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
-					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
-				</AudioDevices>
-			</Plugins>
-			<Busses>
-				<Bus Id="3599330521" Name="MusicMixer"/>
-				<Bus Id="3803692087" Name="Master Audio Bus"/>
-				<Bus Id="4084091105" Name="SFXMixer"/>
-				<Bus Id="4283257371" Name="PlayerSFX"/>
-			</Busses>
-			<GameParameters>
-				<GameParameter Id="1666124528" Name="SoundMix"/>
-				<GameParameter Id="3358493668" Name="MusicMix"/>
-			</GameParameters>
-		</SoundBank>
-		<SoundBank Id="3877572401" Type="User" Language="SFX" Hash="{5CBB3E06-9504-0B5F-4935-D694EF6EB9D9}">
-			<ShortName>SoundbankAll</ShortName>
-			<Path>SoundbankAll.bnk</Path>
+		<SoundBank Id="534609534" Type="User" Language="SFX" Hash="{060B5122-E1E7-7EF7-6EEC-F6DA3FA2C36A}">
+			<ShortName>GlobalFX</ShortName>
+			<Path>GlobalFX.bnk</Path>
 			<Media>
 				<File Id="33559383" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_select3_1.wav</ShortName>
@@ -45,9 +25,21 @@
 					<ShortName>button_select8_1.wav</ShortName>
 					<CachePath>SFX/button_select8_1_818F3B66.wem</CachePath>
 				</File>
+				<File Id="77465951" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>FragileStep5.wav</ShortName>
+					<CachePath>SFX/FragileStep5_818F3B66.wem</CachePath>
+				</File>
 				<File Id="94089198" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>allCrystals1.wav</ShortName>
 					<CachePath>SFX/allCrystals1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="103282352" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>FragileStep4.wav</ShortName>
+					<CachePath>SFX/FragileStep4_818F3B66.wem</CachePath>
+				</File>
+				<File Id="110073143" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>FragileBreak2.wav</ShortName>
+					<CachePath>SFX/FragileBreak2_818F3B66.wem</CachePath>
 				</File>
 				<File Id="116333208" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_select5_1.wav</ShortName>
@@ -57,6 +49,14 @@
 					<ShortName>button_select4_1.wav</ShortName>
 					<CachePath>SFX/button_select4_1_818F3B66.wem</CachePath>
 				</File>
+				<File Id="148741492" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>FragileStep1.wav</ShortName>
+					<CachePath>SFX/FragileStep1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="152986262" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>FragileBreak3.wav</ShortName>
+					<CachePath>SFX/FragileBreak3_818F3B66.wem</CachePath>
+				</File>
 				<File Id="153599617" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_select1_1.wav</ShortName>
 					<CachePath>SFX/button_select1_1_818F3B66.wem</CachePath>
@@ -65,18 +65,6 @@
 					<ShortName>teleObj.wav</ShortName>
 					<CachePath>SFX/teleObj_818F3B66.wem</CachePath>
 				</File>
-				<File Id="193719762" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>AntiworkIntro_2.wav</ShortName>
-					<CachePath>SFX/AntiworkIntro_2_FBC78EF0.wem</CachePath>
-				</File>
-				<File Id="223842354" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>AntiworkLoop_2.wav</ShortName>
-					<CachePath>SFX/AntiworkLoop_2_FBC78EF0.wem</CachePath>
-				</File>
-				<File Id="242646987" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Unsupported.wav</ShortName>
-					<CachePath>SFX/Unsupported_FBC78EF0.wem</CachePath>
-				</File>
 				<File Id="291109648" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>player_Jump1.wav</ShortName>
 					<CachePath>SFX/player_Jump1_818F3B66.wem</CachePath>
@@ -84,6 +72,10 @@
 				<File Id="297365200" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>player_Boost2.wav</ShortName>
 					<CachePath>SFX/player_Boost2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="309596854" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>FragileBreak1.wav</ShortName>
+					<CachePath>SFX/FragileBreak1_818F3B66.wem</CachePath>
 				</File>
 				<File Id="354589701" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>crystal_break2.wav</ShortName>
@@ -121,13 +113,25 @@
 					<ShortName>death.wav</ShortName>
 					<CachePath>SFX/death_818F3B66.wem</CachePath>
 				</File>
+				<File Id="798922989" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>FragileStep3.wav</ShortName>
+					<CachePath>SFX/FragileStep3_818F3B66.wem</CachePath>
+				</File>
 				<File Id="875094519" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>boostObj2.wav</ShortName>
 					<CachePath>SFX/boostObj2_818F3B66.wem</CachePath>
 				</File>
+				<File Id="876770729" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>FragileStep2.wav</ShortName>
+					<CachePath>SFX/FragileStep2_818F3B66.wem</CachePath>
+				</File>
 				<File Id="914652543" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>button_select6_1.wav</ShortName>
 					<CachePath>SFX/button_select6_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="949592029" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>springBounce.wav</ShortName>
+					<CachePath>SFX/springBounce_818F3B66.wem</CachePath>
 				</File>
 				<File Id="991962359" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>player_FastFall1.wav</ShortName>
@@ -205,6 +209,22 @@
 						<MediaRef Id="354589701"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="1755803531" Name="Fragile_Break" DurationType="OneShot" DurationMin="0.57150364" DurationMax="0.57150364">
+					<MediaRefs>
+						<MediaRef Id="110073143"/>
+						<MediaRef Id="152986262"/>
+						<MediaRef Id="309596854"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2620122712" Name="Fragile_Step" DurationType="OneShot" DurationMin="0.31161457" DurationMax="0.31161457">
+					<MediaRefs>
+						<MediaRef Id="77465951"/>
+						<MediaRef Id="103282352"/>
+						<MediaRef Id="148741492"/>
+						<MediaRef Id="798922989"/>
+						<MediaRef Id="876770729"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="2824512041" Name="Player_Attack" DurationType="OneShot" DurationMin="1.3653333" DurationMax="1.3653333">
 					<MediaRefs>
 						<MediaRef Id="468924835"/>
@@ -240,20 +260,12 @@
 						<MediaRef Id="610240063"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="4039638074" Name="PlayWorld1" DurationType="Infinite">
+				<Event Id="902328288" Name="Spring_Object" DurationType="OneShot" DurationMin="0.5159612" DurationMax="0.62322915">
 					<MediaRefs>
-						<MediaRef Id="193719762"/>
-						<MediaRef Id="223842354"/>
-					</MediaRefs>
-				</Event>
-				<Event Id="4039638073" Name="PlayWorld2" DurationType="Infinite">
-					<MediaRefs>
-						<MediaRef Id="242646987"/>
+						<MediaRef Id="949592029"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="2273031176" Name="StopMenu" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
-				<Event Id="2443977444" Name="StopWorld1" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
-				<Event Id="2443977447" Name="StopWorld2" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="405211869" Name="Tele_Object" DurationType="OneShot" DurationMin="1.3593333" DurationMax="1.3593333">
 					<MediaRefs>
 						<MediaRef Id="162884650"/>
@@ -261,6 +273,95 @@
 				</Event>
 			</Events>
 		</SoundBank>
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{F393364E-4881-85CE-C7E8-A1A8854100BA}">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+			<Plugins>
+				<AudioDevices>
+					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
+					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
+				</AudioDevices>
+			</Plugins>
+			<Busses>
+				<Bus Id="3599330521" Name="MusicMixer"/>
+				<Bus Id="3803692087" Name="Master Audio Bus"/>
+				<Bus Id="4084091105" Name="SFXMixer"/>
+				<Bus Id="4283257371" Name="PlayerSFX"/>
+			</Busses>
+			<GameParameters>
+				<GameParameter Id="1666124528" Name="SoundMix"/>
+				<GameParameter Id="3358493668" Name="MusicMix"/>
+			</GameParameters>
+		</SoundBank>
+		<SoundBank Id="1685999685" Type="User" Language="SFX" Hash="{362B1EDB-1AB6-265F-B709-C67C289A58CB}">
+			<ShortName>SoundbankWorld1</ShortName>
+			<Path>SoundbankWorld1.bnk</Path>
+			<Media>
+				<File Id="193719762" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>AntiworkIntro_2.wav</ShortName>
+					<CachePath>SFX/AntiworkIntro_2_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="223842354" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>AntiworkLoop_2.wav</ShortName>
+					<CachePath>SFX/AntiworkLoop_2_FBC78EF0.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="4039638074" Name="PlayWorld1" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="193719762"/>
+						<MediaRef Id="223842354"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2443977444" Name="StopWorld1" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="1685999686" Type="User" Language="SFX" Hash="{1C13F974-E8C1-7C37-FC3C-2BF5AE2663CB}">
+			<ShortName>SoundbankWorld2</ShortName>
+			<Path>SoundbankWorld2.bnk</Path>
+			<Media>
+				<File Id="482708802" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>UnsupportedIntro.wav</ShortName>
+					<CachePath>SFX/UnsupportedIntro_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="1050618428" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>UnsupportedLoop.wav</ShortName>
+					<CachePath>SFX/UnsupportedLoop_FBC78EF0.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="4039638073" Name="PlayWorld2" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="482708802"/>
+						<MediaRef Id="1050618428"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2443977447" Name="StopWorld2" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+			</Events>
+		</SoundBank>
+		<SoundBank Id="1685999687" Type="User" Language="SFX" Hash="{B691FF8E-FDFA-A8CE-2B1C-061405668445}">
+			<ShortName>SoundbankWorld3</ShortName>
+			<Path>SoundbankWorld3.bnk</Path>
+			<Media>
+				<File Id="551758519" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>HighAboveLoop.wav</ShortName>
+					<CachePath>SFX/HighAboveLoop_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="772665996" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>HighAboveIntro.wav</ShortName>
+					<CachePath>SFX/HighAboveIntro_FBC78EF0.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="4039638072" Name="PlayWorld3" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="551758519"/>
+						<MediaRef Id="772665996"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2443977446" Name="StopWorld3" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+			</Events>
+		</SoundBank>
 	</SoundBanks>
-	<FileHash>{83858555-B15F-1D40-BA1B-0B4BAF5EBFC9}</FileHash>
+	<FileHash>{425B476B-3EBD-DBD8-6529-5A282245359D}</FileHash>
 </SoundBanksInfo>

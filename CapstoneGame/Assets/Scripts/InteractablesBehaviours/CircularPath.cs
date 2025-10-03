@@ -36,12 +36,12 @@ public class CircularPath : MonoBehaviour
     }
 
 }
-[CustomEditor(typeof(CircularPath))]
-public class RadiusView : Editor
-{
-    void OnSceneGUI() {
-        CircularPath _circularPath = (CircularPath)target;
-        Handles.color = Color.yellow;
-        Handles.DrawWireDisc(_circularPath.transform.position, Vector3.forward, _circularPath._radius.x, 1);
-    }
-}
+// [CustomEditor(typeof(CircularPath))]
+// public class RadiusView : Editor
+// {
+//     void OnSceneGUI() {
+//         CircularPath _circularPath = (CircularPath)target;
+//         Handles.color = Color.yellow;
+//         Handles.DrawWireDisc(_circularPath.transform.position, Vector3.forward, _circularPath._radius.x, 1);
+//     }
+// }
