@@ -293,6 +293,8 @@ public class MainMenuManager : MonoBehaviour
         }
         else
         {
+            if(windowedResolution.x < 480) { windowedResolution.x = 480; }
+            if(windowedResolution.y < 270) { windowedResolution.y = 270; }
             Screen.SetResolution((int)windowedResolution.x, (int)windowedResolution.y, false);
         }
         SaveGame();

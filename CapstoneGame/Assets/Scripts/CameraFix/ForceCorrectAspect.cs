@@ -22,6 +22,8 @@ public class ForceCorrectAspect : MonoBehaviour
     }
     public void Adjust()
     {
+        if(Screen.width < 480) { Screen.SetResolution(480, Screen.height,false); }
+        if(Screen.height < 270) { Screen.SetResolution(Screen.width, 270, false); }
         float windowAspect = (float)Screen.width / (float)Screen.height;
         float scaleHeight = windowAspect / _targetAspect;
         Camera camera = this.GetComponent<Camera>();
