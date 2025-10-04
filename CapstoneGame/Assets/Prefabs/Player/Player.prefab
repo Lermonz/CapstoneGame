@@ -332,6 +332,7 @@ MonoBehaviour:
   _conveyerSpeed: 0
   _groundIsDown: 1
   _collider: {fileID: 0}
+  _player: {fileID: 966112127534140658}
 --- !u!114 &966112127534140658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +348,7 @@ MonoBehaviour:
   _renderer: {fileID: 8503133647995793567}
   _cameraFollow: {fileID: 3444695517069539564}
   _hitBox: {fileID: 2063255718363829880, guid: 2b313dbf4204a45b9b5e0f2049d45130, type: 3}
+  _isGravityFlipped: 0
 --- !u!114 &33188171023820415
 MonoBehaviour:
   m_ObjectHideFlags: 0

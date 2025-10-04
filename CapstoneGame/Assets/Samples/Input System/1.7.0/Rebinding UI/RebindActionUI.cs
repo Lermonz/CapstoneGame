@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 ////TODO: localization support
 
@@ -270,22 +271,25 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             {
                 var firstPartIndex = bindingIndex + 1;
                 if (firstPartIndex < action.bindings.Count && action.bindings[firstPartIndex].isPartOfComposite)
-                    PerformInteractiveRebind(action, firstPartIndex, allCompositeParts: true);
+                    PerformInteractiveRebind(action, secondAction, firstPartIndex, allCompositeParts: true);
             }
             else
             {
-                PerformInteractiveRebind(action, bindingIndex);
+                PerformInteractiveRebind(action, secondAction, bindingIndex);
             }
         }
-        private void StartSecondRebind(InputAction action, InputAction firstAction, int bindingIndex)
+        private void StartSecondRebind(InputAction action, InputAction firstAction, int bindingIndex, string prevPath)
         {
+            action.Disable();
             action.RemoveBindingOverride(bindingIndex);
-            string prevPath = action.bindings[bindingIndex].effectivePath;
+            prevPath = action.bindings[bindingIndex].effectivePath;
+            Debug.Log("prevPath --> " + prevPath + "\noverridePath --> " + firstAction.bindings[bindingIndex].effectivePath);
             action.ApplyBindingOverride(new InputBinding
             {
                 path = prevPath,
                 overridePath = firstAction.bindings[bindingIndex].effectivePath
             });
+            StartCoroutine(DelayButtonEnable(action));
             // void CleanUp()
             // {
             //     m_RebindOperation2?.Dispose();
@@ -299,21 +303,26 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             // m_RebindOperation2.Start();
             // m_RebindOperation2.Complete();
         }
+        private IEnumerator DelayButtonEnable(InputAction action)
+        {
+            yield return new WaitForSecondsRealtime(0.03f);
+            action.Enable();
+        }
 
-        private void PerformInteractiveRebind(InputAction action, int bindingIndex, bool allCompositeParts = false)
+        private void PerformInteractiveRebind(InputAction action, InputAction secondAction, int bindingIndex, bool allCompositeParts = false)
         {
             m_RebindOperation?.Cancel(); // Will null out m_RebindOperation.
-            //string prevPath = action.bindings[bindingIndex].effectivePath;
+            string prevPath = action.bindings[bindingIndex].effectivePath;
             string ignoreThisScheme = m_IsKeyboard ? "Gamepad" : "Keyboard";
 
             void CleanUp()
             {
                 m_RebindOperation?.Dispose();
                 m_RebindOperation = null;
-                if (secondActionReference != null)
-                    StartSecondRebind(secondActionReference.action, action, bindingIndex);
+                if (secondAction != null) { StartSecondRebind(secondAction, action, bindingIndex, prevPath); }
             }
             action.Disable();
+            if (secondAction != null) { secondAction.Disable(); }
 
             // Configure the rebind.
             m_RebindOperation = action.PerformInteractiveRebinding(bindingIndex)
@@ -332,20 +341,20 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 .OnCancel(
                     operation =>
                     {
-                        action.Enable();
                         m_RebindStopEvent?.Invoke(this, operation);
                         m_RebindOverlay?.SetActive(false);
                         UpdateBindingDisplay();
                         CleanUp();
+                        action.Enable();
                     })
                 .OnComplete(
                     operation =>
                     {
-                        action.Enable();
                         m_RebindOverlay?.SetActive(false);
                         m_RebindStopEvent?.Invoke(this, operation);
                         UpdateBindingDisplay();
                         CleanUp();
+                        action.Enable();
 
                         // If there's more composite parts we should bind, initiate a rebind
                         // for the next part.
@@ -353,7 +362,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                         {
                             var nextBindingIndex = bindingIndex + 1;
                             if (nextBindingIndex < action.bindings.Count && action.bindings[nextBindingIndex].isPartOfComposite)
-                                PerformInteractiveRebind(action, nextBindingIndex, true);
+                                PerformInteractiveRebind(action, secondAction, nextBindingIndex, true);
                         }
                     });
 

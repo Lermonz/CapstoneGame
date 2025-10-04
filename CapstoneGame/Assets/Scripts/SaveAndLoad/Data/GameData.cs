@@ -16,6 +16,10 @@ public class GameData
     public int musicVolume;
     public int soundVolume;
 
+    //RESOLUTION DATA
+    public Vector2 windowedResolution;
+    public bool fullscreen;
+
     //GLOBAL LEVEL DATA
     public SerializableDictionary<string, float> levelDiamonds;
     public SerializableDictionary<string, float> levelGolds;
@@ -26,6 +30,8 @@ public class GameData
     public GameData()
     {
         rebinds = string.Empty;
+        fullscreen = true;
+        windowedResolution = new Vector2(1600, 900);
         musicVolume = 60;
         soundVolume = 60;
         costumes = new SerializableDictionary<string, bool>

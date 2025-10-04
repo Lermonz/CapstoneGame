@@ -42,13 +42,13 @@ public class ScrollRectSnap : MonoBehaviour
             _worldDistance = (int)Mathf.Abs(_panelForLevels[1].anchoredPosition.x - _panelForLevels[0].anchoredPosition.x);
         }
     }
-    void Update() {
+    void Update()
+    {
         _currentWorld = MainMenuManager.Instance.CurrentWorld;
         _button = _buttonsArray[_currentWorld];
         if (MainMenuManager.Instance._currentScreen == MenuScreens.LevelSelect)
         {
             float compareTo = _centerForLevels.transform.position.y;
-            Debug.Log("mouseScrollInput: " + InputManager.Instance.MouseScrollInput);
             if (_minButtonNum < _button.Length - 1 && InputManager.Instance.MouseScrollInput.y < 0)
             {
                 _button[_minButtonNum + 1].Select();
@@ -84,9 +84,16 @@ public class ScrollRectSnap : MonoBehaviour
             }
         }
     }
-    void LerpToButton(int position) {
+    void LerpToButton(int position)
+    {
         float newY = Mathf.Lerp(_panelForLevels[_currentWorld].anchoredPosition.y, position, Time.deltaTime * 15f);
-        Vector2 newPosition = new Vector2 (_panelForLevels[_currentWorld].anchoredPosition.x, newY);
+        float yDiff = Mathf.Abs(position - newY);
+        //Debug.Log("newY --> " + newY + "\nyDiff --> " + yDiff);
+        if (yDiff < 0.1f && yDiff > 0)
+        {
+            newY = position;
+        }
+        Vector2 newPosition = new Vector2(_panelForLevels[_currentWorld].anchoredPosition.x, newY);
         _panelForLevels[_currentWorld].anchoredPosition = newPosition;
     }
     public void StartDrag() {
@@ -95,14 +102,17 @@ public class ScrollRectSnap : MonoBehaviour
     public void StopDrag() {
         dragging = false;
     }
-    IEnumerator LerpToWorld(int index) {
+    IEnumerator LerpToWorld(int index)
+    {
         int time = 30;
-        for(int i = 0; i < time; i++) {
+        for (int i = 0; i < time; i++)
+        {
             float newX = Mathf.Lerp(_panelForWorlds.anchoredPosition.x, index, Time.deltaTime * time);
-            Vector2 newPosition = new Vector2 (newX, _panelForWorlds.anchoredPosition.y);
+            Vector2 newPosition = new Vector2(newX, _panelForWorlds.anchoredPosition.y);
             _panelForWorlds.anchoredPosition = newPosition;
             yield return null;
         }
+        
     }
     public void SnapToWorld(int CurrentWorld) {
         //_currentWorld++;

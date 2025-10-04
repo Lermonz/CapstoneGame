@@ -42,7 +42,7 @@ public class NillyDisplay : MonoBehaviour
             _renderer.sprite = _philipSprite;
             _shadowRenderer.sprite = _philipSprite;
             _renderer.material = GameBehaviour.Instance._philipMaterial;
-            _renderer.transform.localScale = _nillySize * 0.32f;
+            _renderer.transform.localScale = _nillySize * 0.3f;
             _shadowRenderer.transform.localPosition = _philipShadowPosition;
         }
         else

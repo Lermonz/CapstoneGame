@@ -49,7 +49,7 @@ public class DataPersistenceManager : MonoBehaviour
         foreach(IDataPersistence dataPersistenceObj in _dataPersistenceObjects) {
             //Debug.Log("DataPersistenceManager SaveData foreach SAVE\n"+dataPersistenceObj);
             dataPersistenceObj.SaveData(_gameData);
-            Debug.Log("GAME SAVED");
+            //Debug.Log("GAME SAVED");
         }
 
         // save that data to a file using the data handler
@@ -65,7 +65,7 @@ public class DataPersistenceManager : MonoBehaviour
         }
         // push the loaded data to all scripts that need it
         foreach(IDataPersistence dataPersistenceObj in _dataPersistenceObjects) {
-            Debug.Log("GAME LOADED");
+            //Debug.Log("GAME LOADED");
             dataPersistenceObj.LoadData(_gameData);
         }
     }

@@ -170,7 +170,8 @@ public class Controller2D : MonoBehaviour
         for (int i = 1; i < _vertRayCount; i++)
         {
             Vector2 rayOrigin = directionX == -1 ? _raycastOrigins.botleft : _raycastOrigins.botright;
-            rayOrigin += Vector2.up * (_horzRaySpacing * _vertMult * i);
+            if (_groundIsDown == -1) { rayOrigin = directionX == -1 ? _raycastOrigins.topleft : _raycastOrigins.topright; }
+            rayOrigin += Vector2.up * (_horzRaySpacing * _vertMult * i * _groundIsDown);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collMask);
             Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
 
@@ -289,7 +290,7 @@ public class Controller2D : MonoBehaviour
     }
     void SetHurtbox(Vector2 offset, Vector2 size)
     {
-        _collider.offset = offset;
+        _collider.offset = _groundIsDown * offset;
         _collider.size = size;
     }
 }

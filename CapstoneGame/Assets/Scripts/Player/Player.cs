@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     float _boostSpeed = 11.5f;
     float _boostDecel = 55f;
 
-    bool _isGravityFlipped = false;
+    public bool _isGravityFlipped = false;
 
     float _spinCooldown = 42f;
     float _doubleJumpCooldown = 9f;

@@ -20,7 +20,7 @@ public class ForceCorrectAspect : MonoBehaviour
             _resolution.y = Screen.height;
         }
     }
-    void Adjust()
+    public void Adjust()
     {
         float windowAspect = (float)Screen.width / (float)Screen.height;
         float scaleHeight = windowAspect / _targetAspect;
@@ -34,6 +34,7 @@ public class ForceCorrectAspect : MonoBehaviour
             rect.y = (1 - scaleHeight) / 2.0f;
             camera.rect = rect;
             FixCanvasScaling.Instance.SetCanvasScalerMatch(0);
+            Debug.Log("screenHeight < 1 --> " + scaleHeight);
         }
         else
         {
@@ -45,6 +46,7 @@ public class ForceCorrectAspect : MonoBehaviour
             rect.y = 0;
             camera.rect = rect;
             FixCanvasScaling.Instance.SetCanvasScalerMatch(1);
+            Debug.Log("screenWidth < 1 --> " + scaleWidth);
         }
     }
 }

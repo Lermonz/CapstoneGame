@@ -22,7 +22,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject _mainFirstButton;
     [SerializeField] private GameObject _costumesFirstButton;
     [SerializeField] private GameObject _settingsFirstButton;
-    [SerializeField] private GameObject _controlsFirstButton;
+    [SerializeField] private GameObject _controlsKeyboardFirstButton;
+    [SerializeField] private GameObject _controlsGamepadFirstButton;
     [SerializeField] private GameObject _levelsFirstButton;
     [SerializeField] private GameObject _resetDataFirstButton;
     [SerializeField] private GameObject _exitGameFirstButton;
@@ -47,8 +48,8 @@ public class MainMenuManager : MonoBehaviour
     }
     private void Start()
     {
-        OpenMainMenu();
         OpenKeyboardControls();
+        OpenMainMenu();
         Time.timeScale = 1f;
         CurrentWorld = 0;
         _lastSelectedLevelButton = new int[] { 0, 0, 0 };
@@ -118,7 +119,7 @@ public class MainMenuManager : MonoBehaviour
         _controlsMenu.SetActive(true);
         OpenKeyboardControls();
         _currentScreen = MenuScreens.Controls;
-        EventSystem.current.SetSelectedGameObject(_controlsFirstButton);
+        EventSystem.current.SetSelectedGameObject(_controlsKeyboardFirstButton);
     }
     private void OpenResetDataMenu()
     {
@@ -138,12 +139,14 @@ public class MainMenuManager : MonoBehaviour
     {
         _controlsGamepad.SetActive(false);
         _controlsKeyboard.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(_controlsKeyboardFirstButton);
     }
     private void OpenGamepadControls()
     {
         StartCoroutine(CantCancelTooFast());
         _controlsKeyboard.SetActive(false);
         _controlsGamepad.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(_controlsGamepadFirstButton);
     }
     private void IncrementWorld()
     {
@@ -281,6 +284,18 @@ public class MainMenuManager : MonoBehaviour
     public void SetNoCancelling(bool x)
     {
         _noCancelling = x;
+    }
+    public void SetFullscreen(bool isFullscreen, Vector2 windowedResolution)
+    {
+        if (isFullscreen)
+        {
+            Screen.SetResolution(1920, 1080, FullScreenMode.FullScreenWindow);
+        }
+        else
+        {
+            Screen.SetResolution((int)windowedResolution.x, (int)windowedResolution.y, false);
+        }
+        SaveGame();
     }
     public void SaveGame()
     {

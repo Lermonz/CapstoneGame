@@ -41,13 +41,15 @@ public class TargetBehaviour : MonoBehaviour
 
     }
 }
-// [CustomEditor(typeof(TargetBehaviour))]
-// public class RespawnPoint : Editor
-// {
-//     void OnSceneGUI()
-//     {
-//         TargetBehaviour _target = (TargetBehaviour)target;
-//         Handles.color = Color.yellow;
-//         Handles.DrawSolidDisc(_target.transform.position + new Vector3(_target._checkpointOffset.x, _target._checkpointOffset.y), Vector3.forward,0.5f);
-//     }
-// }
+#if UNITY_EDITOR
+[CustomEditor(typeof(TargetBehaviour))]
+public class RespawnPoint : Editor
+{
+    void OnSceneGUI()
+    {
+        TargetBehaviour _target = (TargetBehaviour)target;
+        Handles.color = Color.yellow;
+        Handles.DrawSolidDisc(_target.transform.position + new Vector3(_target._checkpointOffset.x, _target._checkpointOffset.y), Vector3.forward, 0.5f);
+    }
+}
+#endif
