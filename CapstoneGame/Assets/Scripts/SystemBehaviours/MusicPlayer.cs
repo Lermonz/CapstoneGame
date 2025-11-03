@@ -37,13 +37,16 @@ public class MusicPlayer : MonoBehaviour
         {
             trackToPlay = 1;
         }
-        else if (sceneID <= 20) {
+        else if (sceneID <= 20)
+        {
             trackToPlay = 2;
         }
-        else if (sceneID <= 30) {
+        else if (sceneID <= 30)
+        {
             trackToPlay = 3;
         }
-        else {
+        else
+        {
             trackToPlay = 1;
         }
         Debug.Log(sceneID + " <- sceneID\n" + trackToPlay + " <- trackToPlay");
@@ -88,4 +91,10 @@ public class MusicPlayer : MonoBehaviour
             playingTrack3 = true;
         }
     }
+    // void OnApplicationFocus(bool hasFocus)
+    // {
+    //     //if !hasFocus, pause current playing event, if hasFocus, play
+    //     if (!hasFocus) { AkSoundEngine.Suspend(); }
+    //     else { AkSoundEngine.WakeupFromSuspend(); }
+    // }
 }

@@ -205,21 +205,21 @@ if (IsInstance())
 		}
 	}
 
-	private void OnApplicationPause(bool pauseStatus)
-	{
-		if (IsInstance())
-		{
-			AkSoundEngineController.Instance.OnApplicationPause(pauseStatus);
-		}
-	}
+	// private void OnApplicationPause(bool pauseStatus)
+	// {
+	// 	if (IsInstance())
+	// 	{
+	// 		AkSoundEngineController.Instance.OnApplicationPause(pauseStatus);
+	// 	}
+	// }
 
-	private void OnApplicationFocus(bool focus)
-	{
-		if (IsInstance())
-		{
-			AkSoundEngineController.Instance.OnApplicationFocus(focus);
-		}
-	}
+	// private void OnApplicationFocus(bool focus)
+	// {
+	// 	if (IsInstance())
+	// 	{
+	// 		AkSoundEngineController.Instance.OnApplicationFocus(focus);
+	// 	}
+	// }
 
 	private void OnApplicationQuit()
 	{

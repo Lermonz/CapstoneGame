@@ -23,6 +23,7 @@ public class VolumeManager : MonoBehaviour, IDataPersistence
                 SetRTPC(_akSoundVolume, _soundVolume);
                 break;
         }
+        Debug.Log("Set volume to: " + volumeChange);
     }
     public int GetVolume(AudioMixType audioType)
     {

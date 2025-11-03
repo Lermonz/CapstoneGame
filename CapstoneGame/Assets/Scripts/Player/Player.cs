@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     const float _gravity = -32f;
     float _gravityMult = 1;
     bool _inBlackHole = false;
-    float _blackHoleBaseStrength = 1.2f;
+    float _blackHoleBaseStrength = 1.16f;
     float _terminalVelocity;
     const float _termV = -18;
     Vector2 _wind;
@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
     float _spinCooldown = 42f;
     float _doubleJumpCooldown = 9f;
     float _spinBoost = 0; // real value is in spinCoroutine
+    bool _specialJump;
 
     bool _jumpOverride = false;
     bool _overrideXInput = false;
@@ -127,10 +128,12 @@ public class Player : MonoBehaviour
         {
             _horizontalInput = 0;
             _controller.CrouchHurtbox();
+            _windMult = 0.2f;
         }
         else
         {
             _controller.RegularHurtbox();
+            if (!_grabbedMode) { _windMult = 1f; }
         }
         if(_controller._isGrounded) {
             _wind.y = 0;
@@ -154,7 +157,7 @@ public class Player : MonoBehaviour
             _isJumping = true;
             Jump(_jumpVelocity);
         }
-        if(_isJumping && InputManager.Instance.JumpRelease) {
+        if(_isJumping && InputManager.Instance.JumpRelease && !_specialJump) {
             _isJumping = false;
             if (!_isGravityFlipped && _velocity.y >= 7) {
                 _velocity.y *= 0.4f;
@@ -219,6 +222,20 @@ public class Player : MonoBehaviour
                 Accelerate(ref _grabbedSpeed, 1, _grabbedAccel, 1);
             }
         }
+        // when player hits wall they can bounce off of it at high enough speeds
+        if(_controller._hitWall) {
+            EndGrabbedMode();
+            if (Mathf.Abs(_velocity.x) > _maxRunSpeed * 1.5f && Mathf.Abs(_velocity.y) < 5)
+            {
+                _vfxPlayer.DustEffect(0,0.05f*Mathf.Sign(_velocity.x),Mathf.Sign(_velocity.x));
+                _velocity.x = -_velocity.x * 0.4f;
+                _velocity.y = _isGravityFlipped ? -Mathf.Abs(_velocity.x) : Mathf.Abs(_velocity.x);
+                _velocity.y *= 0.9f; //scale bounce with gravity changes
+            }
+            else
+                _velocity.x = Mathf.Clamp(_velocity.x, -5, 5);
+            _boostDeceling = false;
+        }
         /// BOOST  ///
         if (_canBoost && InputManager.Instance.BoostInput)
         {
@@ -232,11 +249,12 @@ public class Player : MonoBehaviour
             {
                 _velocity.x = -_velocity.x;
             }
-            _velocity.x += _boostSpeed * facingDirection;
+            _velocity.x *= 0.25f;
+            _velocity.x += (_boostSpeed+_maxRunSpeed*0.75f) * facingDirection;
             //Mathf.Clamp(_velocity.x, (_boostSpeed + 3) * facingDirection, Mathf.Infinity*facingDirection);
             //_sfxPlayer.SetAndPlayOneShot(_sfxPlayer._boostSFX);
             AkSoundEngine.PostEvent("Player_Dash", gameObject);
-            if (_isPhilip && _renderer.flipX)
+            if (_isPhilip && (_renderer.flipX != _isGravityFlipped))
             {
                 StartCoroutine(PhilipFlip());
             }
@@ -245,20 +263,7 @@ public class Player : MonoBehaviour
             StartCoroutine(BoostCoroutine());
         }
         
-        // when player hits wall they can bounce off of it at high enough speeds
-        if(_controller._hitWall) {
-            EndGrabbedMode();
-            if (Mathf.Abs(_velocity.x) > _maxRunSpeed * 1.5f)
-            {
-                _vfxPlayer.DustEffect(0,0.05f*Mathf.Sign(_velocity.x),Mathf.Sign(_velocity.x));
-                _velocity.x = -_velocity.x * 0.4f;
-                _velocity.y = _isGravityFlipped ? -Mathf.Abs(_velocity.x) : Mathf.Abs(_velocity.x);
-                _velocity.y *= 0.9f; //scale bounce with gravity changes
-            }
-            else
-                _velocity.x = Mathf.Clamp(_velocity.x, -5, 5);
-            _boostDeceling = false;
-        }
+        
 
         /// SPIN ///
         if(InputManager.Instance.SpinInput && _canSpin) {
@@ -278,7 +283,7 @@ public class Player : MonoBehaviour
                 _velocity.y = _doubleJumpVelocity;
                 _canDownBoost = true;
             }
-            StartCoroutine(SpinCooldown(_spinCooldown));
+            StartCoroutine(SpinCooldown(_spinCooldown, _controller._isGrounded));
         }
 
         //Refresh DoubleJump Property
@@ -335,7 +340,7 @@ public class Player : MonoBehaviour
         _velocity.y = Mathf.Clamp(_velocity.y, -0.4f, 0.4f);
         yield return new WaitForSeconds(0.15f);
         StartCoroutine(BoostDecelCoroutine(1,9));
-        StartCoroutine(BoostCooldown(70f));
+        StartCoroutine(BoostCooldown(70));
     }
     IEnumerator LockOut(int delay, bool ignoreSpinReset = false, bool ignoreDownBoostReset = false, bool ignoreBoostReset = false)
     {
@@ -381,13 +386,13 @@ public class Player : MonoBehaviour
         }
         _boostDeceling = false;
     }
-    IEnumerator SpinCooldown(float cooldown)
+    IEnumerator SpinCooldown(float cooldown, bool specialChance = false)
     {
         if (_controller._isGrounded)
             cooldown -= 8;
         for (int i = 0; i < cooldown; i++)
         {
-            if (i < 3)
+            if (specialChance && i < 3)
             {
                 _spinBoost = 2f;
             }
@@ -406,17 +411,18 @@ public class Player : MonoBehaviour
         _canSpin = true;
         _canDoubleJump = true;
     }
-    IEnumerator BoostCooldown(float cooldown) {
+    IEnumerator BoostCooldown(int cooldown) {
         int adjuster = 12;
         bool didVFX = false;
         if (_controller._isGrounded)
             adjuster += 14;
         for(int i = 0; i < cooldown; i++) {
+            if(_canBoost) { i = cooldown; }
             if(_controller._isGrounded && i < cooldown - adjuster)
                 i = (int)cooldown - adjuster;
-            if (cooldown - i < 7 && !didVFX)
+            if (cooldown - i < 6 && !didVFX)
             {
-                if (!_dead) { _vfxPlayer.RegenerateBoost(); }
+                if (!_dead && !_hasWon) { _vfxPlayer.RegenerateBoost(); }
                 didVFX = true;
             }
             yield return null;
@@ -438,17 +444,18 @@ public class Player : MonoBehaviour
     }
     IEnumerator PhilipFlip()
     {
-        _renderer.flipX = false;
+        _renderer.flipX = !_renderer.flipX;
         _renderer.flipY = !_isGravityFlipped;
         for (int i = 0; i < 14; i++)
         {
             yield return null;
         }
+        _renderer.flipX = !_renderer.flipX;
         _renderer.flipY = _isGravityFlipped;
     }
     IEnumerator TeleportCooldown() {
         _canTeleport = false;
-        for(int i = 0; i < 32; i++) {
+        for(int i = 0; i < 42; i++) {
             yield return null;
         }
         _canTeleport = true;
@@ -456,8 +463,10 @@ public class Player : MonoBehaviour
     void Jump(float jumpVelocity)
     {
         _velocity.y = jumpVelocity + (_isGravityFlipped ? -(Mathf.Abs(_velocity.x) * 0.125f + _spinBoost) : (Mathf.Abs(_velocity.x) * 0.125f + _spinBoost));
+        _specialJump = false;
         if (_spinBoost != 0)
         {
+            _specialJump = true;
             _vfxPlayer.SpecialJump();
             AkSoundEngine.PostEvent("Player_JumpSpecial", gameObject);
         }
@@ -553,7 +562,8 @@ public class Player : MonoBehaviour
             _skidDecel = 80f;
             _baseAccel = 24f;
             _maxRunSpeed = 6.8f;
-            SetAllPlayerActions();
+            StartCoroutine(LockOut(5));
+            StartCoroutine(DoubleJumpCooldown(5));
         }
         if (other.gameObject.CompareTag("Boost"))
         {
@@ -595,10 +605,10 @@ public class Player : MonoBehaviour
         {
             //_terminalVelocity = 0;
             _inBlackHole = true;
-            //Strength of black hole pull is increased when player is closer to it
-            float strength = _blackHoleBaseStrength - 0.33f*Vector2.Distance(other.gameObject.transform.position, this.transform.position);
+            //Strength of black hole pull is decreased when player is further from it
+            float strength = _blackHoleBaseStrength - 0.35f*Vector2.Distance(other.gameObject.transform.position, this.transform.position);
             // float strength = _blackHoleStrength (2.85 in this instance) - 2 * Mathf.Pow(x,0.2); x is the distance
-            _blackHoleBaseStrength += _blackHoleBaseStrength*0.1f*Time.deltaTime;
+            _blackHoleBaseStrength += _blackHoleBaseStrength*0.08f*Time.deltaTime;
             //dont pull player into the ground from below
             if ((this.transform.position.y - other.gameObject.transform.position.y) > 0 && _controller._isGrounded)
             {
@@ -662,7 +672,7 @@ public class Player : MonoBehaviour
     }
     void ExitBlackHole() {
         _inBlackHole = false;
-            _blackHoleBaseStrength = 1.2f;
+            _blackHoleBaseStrength = 1.16f;
     }
     void ForceVelocityToVector(Vector2 v) {
         AkSoundEngine.PostEvent("Boost_Object", gameObject);
@@ -674,7 +684,7 @@ public class Player : MonoBehaviour
         if (!_dontLockOut)
         {
             _velocity.y = 0;
-            StartCoroutine(NegateGravityFor(6));
+            if (this.gameObject.activeSelf) { StartCoroutine(NegateGravityFor(6)); }
         }
         else
         {
@@ -685,7 +695,7 @@ public class Player : MonoBehaviour
                 _velocity.y = 12 * Mathf.Sign(_velocity.y);
             }
         }
-        StartCoroutine(LockOut(lockOutFrames));
+        if (this.gameObject.activeSelf) { StartCoroutine(LockOut(lockOutFrames)); }
         _controller._vcamTransposer.m_TrackedObjectOffset.y = -_controller._vcamTransposer.m_TrackedObjectOffset.y;
         _isGravityFlipped = !_isGravityFlipped;
         _controller._groundIsDown = -_controller._groundIsDown;

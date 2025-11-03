@@ -35,6 +35,7 @@ public class SelectLevel : MonoBehaviour
     }
     IEnumerator DelayThenLoad(int level, bool deathDelay = true)
     {
+        InputManager.Instance.NegateAllInput();
         float delayTime = deathDelay ? _delay : 0.05f;
         yield return new WaitForSecondsRealtime(delayTime);
         ScreenWipe();
@@ -44,7 +45,8 @@ public class SelectLevel : MonoBehaviour
     void ScreenWipe()
     {
         Debug.Log("ScreenWipe");
-        if(SceneManager.GetActiveScene().buildIndex > 0)
-            PauseMenu.Instance.OnResetLevel();
+        InputManager.Instance.NegateAllInput();
+        if (SceneManager.GetActiveScene().buildIndex > 0) { PauseMenu.Instance.OnResetLevel(); }
+        else { MainMenuManager.Instance.OnLoadNewLevel(); }
     }
 }

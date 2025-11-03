@@ -17,8 +17,9 @@ public class GameBehaviour : MonoBehaviour, IDataPersistence
     public Material _philipMaterial;
     public Texture SelectedCostume { get; private set; }
     public bool PlayerIsDead { get; private set; }
+    public bool NoCheckpoints { get; private set; } = false;
     
-    int _costumeID;
+    public int _costumeID;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -84,13 +85,20 @@ public class GameBehaviour : MonoBehaviour, IDataPersistence
     {
         PlayerIsDead = _isDead;
     }
+    public void SetNoCheckpoints(bool _noCheckpoints)
+    {
+        NoCheckpoints = _noCheckpoints;
+        SaveGame();
+    }
     public void SaveData(GameData data)
     {
         data.selectedCostume = _costumeID;
+        data.noCheckpoints = NoCheckpoints;
     }
     public void LoadData(GameData data)
     {
         _costumeID = data.selectedCostume;
         SelectedCostume = _costumes[data.selectedCostume];
+        NoCheckpoints = data.noCheckpoints;
     }
 }

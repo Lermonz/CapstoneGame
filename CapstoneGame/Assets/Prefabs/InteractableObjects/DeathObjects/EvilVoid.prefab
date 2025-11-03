@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delay: 0.5
-  _reset: 1
+  _reset: 0
 --- !u!61 &2072228160297892889
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5151,7 +5151,10 @@ MonoBehaviour:
   _exitPortal: {fileID: 0}
   _renderer: {fileID: 8690257473419552929}
   _baseSpeed: 1.1
+  _linearSpeed: 0
   _growthSpeed: 0.7
+  _growthExponent: 0
   _thresholdDistance: 9
   _slowdownMult: 0.5
   _horizontal: 1
+  _startingDistanceFromPlayer: 0

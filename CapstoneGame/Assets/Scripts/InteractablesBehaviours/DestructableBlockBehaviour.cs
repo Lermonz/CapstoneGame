@@ -38,21 +38,6 @@ public class DestructableBlockBehaviour : MonoBehaviour
             _beenTouched = true;
         }
     }
-    void Update()
-    {
-        if (_beenTouched)
-        {
-            this.transform.position -= Vector3.up * 0.25f * Time.deltaTime * (_flippedGravity ? -1 : 1);
-        }
-        if (_blockIsGone)
-        {
-            StartCoroutine(Reactivate(2.1f));
-        }
-        if (_canRespawn && !_checkOverlap)
-        {
-            RespawnBlock();
-        }
-    }
     void RespawnBlock()
     {
         _canRespawn = false;
@@ -66,14 +51,22 @@ public class DestructableBlockBehaviour : MonoBehaviour
     }
     IEnumerator Deactivate(float delay)
     {
+        int currentStep = 0;
+        int steps = 10;
         AkSoundEngine.PostEvent("Fragile_Step", gameObject);
-        yield return new WaitForSeconds(delay);
+        while (currentStep < steps)
+        {
+            yield return new WaitForSeconds(delay / steps);
+            currentStep++;
+            this.transform.position -= Vector3.up * 0.2f * delay / steps * (_flippedGravity ? -1 : 1);
+        }
         AkSoundEngine.PostEvent("Fragile_Break", gameObject);
         shapeMod.radius = 0.55f;
         shapeMod.radiusThickness = 0.5f;
         _particles.Play();
         _renderer.enabled = false;
         _collider.enabled = false;
+        StartCoroutine(Reactivate(2.1f));
         _blockIsGone = true;
     }
     IEnumerator Reactivate(float delay)
@@ -82,7 +75,16 @@ public class DestructableBlockBehaviour : MonoBehaviour
         _beenTouched = false;
         this.transform.position = _startPos;
         yield return new WaitForSeconds(delay);
-        _canRespawn = true;
+        StartCoroutine(CheckToRespawn());
+    }
+    IEnumerator CheckToRespawn()
+    {
+        while (_checkOverlap)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        yield return null;
+        RespawnBlock();
     }
     IEnumerator Invulnerability(float delay)
     {

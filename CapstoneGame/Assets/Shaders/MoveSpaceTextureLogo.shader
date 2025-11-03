@@ -1,18 +1,36 @@
-Shader "Unlit/WeirdWobbleShader5"
+Shader "Custom/MoveSpaceTextureLogo"
 {
     Properties
     {
         _Color ("Color", Color) = (1,1,1,1)
         _MainTex ("Texture", 2D) = "white" {}
+        _ScaleSize ("Scale Size", Float) = 1
+        _XSpeed ("X Speed", Float) = 1
+        _YSpeed ("Y Speed", Float) = 1
+
+        _Stencil("Stencil Reference", Float) = 0
+        _StencilComp("Stencil Comparison", Float) = 8
+        _StencilOp("Stencil Operation", Float) = 0
+        _StencilReadMask("Stencil Read Mask", Float) = 255
+        _StencilWriteMask("Stencil Write Mask", Float) = 255
+        _ColorMask("Color Mask", Float) = 15
     }
     SubShader
     {
-        Tags { "QUEUE"="Transparent" "IGNOREPROJECTOR"="true" "RenderType"="Transparent" }
-        LOD 100
+        Tags { "RenderType"="Transparent" "Queue"="Transparent"}
+        Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {
-            Blend SrcAlpha OneMinusSrcAlpha
+            Stencil {
+                Ref[_Stencil]
+                Comp[_StencilComp]
+                Pass[_StencilOp]
+                ReadMask[_StencilReadMask]
+                WriteMask[_StencilWriteMask]
+            }
+    
+            ColorMask[_ColorMask]
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -36,6 +54,9 @@ Shader "Unlit/WeirdWobbleShader5"
             sampler2D _MainTex;
             fixed4 _Color;
             float4 _MainTex_ST;
+            float _XSpeed;
+            float _YSpeed;
+            float _ScaleSize;
 
             v2f vert (appdata v)
             {
@@ -50,17 +71,11 @@ Shader "Unlit/WeirdWobbleShader5"
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                //i.uv *= 6;
-                //i.uv.y -= _Time.y*0.42;
-                //i.uv.y += 0.2*sin(i.uv.y+_Time.y*0.3);
+                i.uv *= _ScaleSize;
+                i.uv.x += _Time.y*_XSpeed;
+                i.uv.y += _Time.y*_YSpeed;
                 fixed4 col = tex2D(_MainTex, i.uv);
-                float wnoise = noise(float3(i.uv, _Time.y));
-                col += wnoise;
                 return col*i.color;
-            }
-            float4 hydranoise(float2 uv, float offset)
-            {
-                float2 st = uv/_Resolution;
             }
             ENDCG
         }

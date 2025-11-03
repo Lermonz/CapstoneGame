@@ -20,7 +20,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject _controlsMenu;
     public GameObject _winMenu;
     public GameObject _collectedOrb;
-    public ScaleScreenWipeMask _screenWipe;
+    [SerializeField] ScaleScreenWipeMask _screenWipe;
     [SerializeField] GameObject _screenWipeParent;
 
     [Header("Event System wants a first selected button")]
@@ -75,7 +75,7 @@ public class PauseMenu : MonoBehaviour
         _isPaused = true;
         _isPausedPhysics = true;
         OpenMainPauseMenu();
-        FindAudioPlayerForButtons(2);
+        FindAudioPlayerForButtons(9);
         _medalSpritePause.MedalLoad(LevelManager.Instance._medalInLevel);
         DataPersistenceManager.Instance.LoadGame();
         InputManager.Instance.DisablePlayerInput();

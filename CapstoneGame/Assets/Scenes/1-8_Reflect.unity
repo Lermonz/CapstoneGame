@@ -9244,7 +9244,7 @@ PrefabInstance:
       objectReference: {fileID: 190907396}
     - target: {fileID: 8082073715259999968, guid: 3b3fce2b06a9c45ba8cbe5743cb0768f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.2540026
+      value: 2.7928047
       objectReference: {fileID: 0}
     - target: {fileID: 8082073715259999968, guid: 3b3fce2b06a9c45ba8cbe5743cb0768f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13170,6 +13170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelID: 8
   _personalBest: 5999999
+  _developerTime: {x: 0, y: 0, z: 0}
   _diamondTime: {x: 0, y: 0, z: 0}
   _goldTime: {x: 0, y: 6, z: 400}
   _silverTime: {x: 0, y: 8, z: 800}
@@ -18270,8 +18271,12 @@ PrefabInstance:
       value: 88
       objectReference: {fileID: 0}
     - target: {fileID: 355301126002214083, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 355301126002214083, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
       propertyPath: m_Offset.y
-      value: 7.5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 668707617600971281, guid: 50ecd6f87677641868112ef0cb6b369d, type: 3}
       propertyPath: m_Size.x

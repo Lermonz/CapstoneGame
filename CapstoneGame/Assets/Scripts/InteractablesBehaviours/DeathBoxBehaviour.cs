@@ -12,8 +12,9 @@ public class DeathBoxBehaviour : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<Player>().DeathNormal(_delay,_reset);
-            if(_reset) {_sceneManager.Reload(); }
+            bool reset = (LevelManager.Instance.TargetsDestroyed == 0 || GameBehaviour.Instance.NoCheckpoints) ? true : _reset;
+            other.GetComponent<Player>().DeathNormal(_delay,reset);
+            if(reset) {_sceneManager.Reload(); }
             //trigger death screen wipe animation
         }
     }

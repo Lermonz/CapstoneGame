@@ -22,9 +22,14 @@ namespace AK
         static const AkUniqueID BUTTONCONFIRM4 = 3348213549U;
         static const AkUniqueID BUTTONCOSTUME = 2749803129U;
         static const AkUniqueID BUTTONHIGHLIGHT = 3278968191U;
+        static const AkUniqueID BUTTONMENU = 968143712U;
         static const AkUniqueID BUTTONNEXT = 3070336346U;
+        static const AkUniqueID BUTTONPAUSE = 3982365877U;
         static const AkUniqueID BUTTONPREV = 1953314766U;
+        static const AkUniqueID BUTTONRESET = 75279434U;
+        static const AkUniqueID BUTTONUNPAUSE = 1026037958U;
         static const AkUniqueID BUTTONWARNING = 279279475U;
+        static const AkUniqueID BUTTONWARNINGLESSER = 1534723049U;
         static const AkUniqueID COSTUME_GET = 2716839384U;
         static const AkUniqueID CRYSTAL_BREAK = 756738409U;
         static const AkUniqueID FRAGILE_BREAK = 1755803531U;

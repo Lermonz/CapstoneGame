@@ -16,6 +16,8 @@ public class MainMenuManager : MonoBehaviour
     public GameObject _levelsMenu;
     public GameObject _resetDataMenu;
     public GameObject _exitGameMenu;
+    [SerializeField] ScaleScreenWipeMask _screenWipe;
+    [SerializeField] GameObject _screenWipeParent;
     [SerializeField] AudioSelecterButtons _buttonAudio;
 
     [Header("Event System wants a first selected button")]
@@ -48,6 +50,8 @@ public class MainMenuManager : MonoBehaviour
     }
     private void Start()
     {
+        DataPersistenceManager.Instance.SetLevelTimes();
+        InputManager.Instance.DisablePlayerInput();
         OpenKeyboardControls();
         OpenMainMenu();
         Time.timeScale = 1f;
@@ -95,6 +99,8 @@ public class MainMenuManager : MonoBehaviour
         _levelsMenu.SetActive(true);
         _currentScreen = MenuScreens.LevelSelect;
         DataPersistenceManager.Instance.LoadGame();
+        SetLastSelectedButton();
+        SetFirstLevelsButton();
         EventSystem.current.SetSelectedGameObject(_levelsFirstButton);
     }
     private void OpenCostumesMenu()
@@ -104,6 +110,7 @@ public class MainMenuManager : MonoBehaviour
         _currentScreen = MenuScreens.Costumes;
         NillyDisplay.Instance.ShowNilly(true);
         DataPersistenceManager.Instance.LoadGame();
+        SetFirstCostumesButton();
         EventSystem.current.SetSelectedGameObject(_costumesFirstButton);
     }
     private void OpenSettingsMenu()
@@ -150,7 +157,7 @@ public class MainMenuManager : MonoBehaviour
     }
     private void IncrementWorld()
     {
-        _lastSelectedLevelButton[CurrentWorld] = ScrollRectSnap.Instance._minButtonNum;
+        SetLastSelectedButton();
         if (CurrentWorld < ScrollRectSnap.Instance._panelForLevels.Length - 1)
         {
             foreach (WorldMenuColorChanger i in _colorChangers)
@@ -160,12 +167,13 @@ public class MainMenuManager : MonoBehaviour
             CurrentWorld++;
             ScrollRectSnap.Instance.SnapToWorld(CurrentWorld);
         }
+        SetFirstLevelsButton();
         //DebugIt();
-        EventSystem.current.SetSelectedGameObject(ScrollRectSnap.Instance._buttonsArray[CurrentWorld][_lastSelectedLevelButton[CurrentWorld]].gameObject);
+        EventSystem.current.SetSelectedGameObject(_levelsFirstButton);
     }
     private void DecrementWorld()
     {
-        _lastSelectedLevelButton[CurrentWorld] = ScrollRectSnap.Instance._minButtonNum;
+        SetLastSelectedButton();
         if (CurrentWorld > 0)
         {
             foreach (WorldMenuColorChanger i in _colorChangers)
@@ -175,12 +183,25 @@ public class MainMenuManager : MonoBehaviour
             CurrentWorld--;
             ScrollRectSnap.Instance.SnapToWorld(CurrentWorld);
         }
+        SetFirstLevelsButton();
         //DebugIt();
-        EventSystem.current.SetSelectedGameObject(ScrollRectSnap.Instance._buttonsArray[CurrentWorld][_lastSelectedLevelButton[CurrentWorld]].gameObject);
+        EventSystem.current.SetSelectedGameObject(_levelsFirstButton);
     }
     void DebugIt()
     {
         Debug.Log("Actual World:" + CurrentWorld);
+    }
+    void SetFirstLevelsButton()
+    {
+        _levelsFirstButton = ScrollRectSnap.Instance._buttonsArray[CurrentWorld][_lastSelectedLevelButton[CurrentWorld]].gameObject;
+    }
+    void SetLastSelectedButton()
+    {
+        _lastSelectedLevelButton[CurrentWorld] = ScrollRectSnap.Instance._minButtonNum;
+    }
+    void SetFirstCostumesButton()
+    {
+        _costumesFirstButton = ScrollRectSnapCostumes.Instance._buttonsArray[GameBehaviour.Instance._costumeID].gameObject;
     }
     public void OnCostumesPress()
     {
@@ -234,6 +255,11 @@ public class MainMenuManager : MonoBehaviour
     public void FindAudioPlayerForButtons(int fileNum)
     {
         _buttonAudio.PlaySFX(fileNum);
+    }
+    public void OnLoadNewLevel()
+    {
+        _screenWipeParent.SetActive(true);
+        _screenWipe.ScaleDown();
     }
     // METHODS THAT REDIRECT TO SCRIPTS THAT PERSIST BETWEEN SCENES (dont destroy on loads)
     // so that buttons on the menu can access them

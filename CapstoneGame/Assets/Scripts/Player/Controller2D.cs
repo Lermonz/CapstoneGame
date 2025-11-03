@@ -77,9 +77,9 @@ public class Controller2D : MonoBehaviour
 
         for (int i = 0; i < _vertRayCount; i++)
         {
-            float _tempVertRaySpacing = directionY == -_groundIsDown ? _vertRaySpacing * 0.9f : _vertRaySpacing * 0.7f;
+            float _tempVertRaySpacing = directionY == -_groundIsDown ? _vertRaySpacing * 0.9f : _vertRaySpacing * 0.85f;
             Vector2 rayOrigin = directionY == -1 ? _raycastOrigins.botleft : _raycastOrigins.topleft;
-            rayOrigin += directionY == -_groundIsDown ? (Vector2.right * 0.05f) : (Vector2.right * 0.15f);
+            rayOrigin += directionY == -_groundIsDown ? (Vector2.right * 0.05f) : (Vector2.right * 0.075f);
             rayOrigin += Vector2.right * i * _tempVertRaySpacing;
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collMask);
             Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
@@ -224,10 +224,7 @@ public class Controller2D : MonoBehaviour
             {
                 GetOutOfWallCollision(ref velocity);
             }
-            else
-            {
-                velocity.x = (hit.distance + 0.25f) * directionX;
-            }
+            velocity.x = (hit.distance + 0.15f) * directionX;
         }
     }
     void TouchedDestructableBlock(ref DestructableBlockBehaviour block)

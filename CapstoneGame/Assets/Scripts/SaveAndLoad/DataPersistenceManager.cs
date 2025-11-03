@@ -38,15 +38,27 @@ public class DataPersistenceManager : MonoBehaviour
     public void NewGame(){
         this._gameData = new GameData();
     }
-    public void SaveGame(){
+    public void SetLevelTimes()
+    {
+        this._gameData.levelDevTimes = new GameData().levelDevTimes;
+        this._gameData.levelDiamonds = new GameData().levelDiamonds;
+        this._gameData.levelGolds = new GameData().levelGolds;
+        this._gameData.levelSilvers = new GameData().levelSilvers;
+        this._gameData.levelBronzes = new GameData().levelBronzes;
+        SaveGame();
+    }
+    public void SaveGame()
+    {
         Debug.Log("game is saved :)");
         this._dataPersistenceObjects = FindAllDataPersistenceObjects();
-        if(this._gameData == null) {
+        if (this._gameData == null)
+        {
             Debug.LogWarning("No data found when trying to save.");
             return;
         }
         // pass the data to other scripts so they can update it
-        foreach(IDataPersistence dataPersistenceObj in _dataPersistenceObjects) {
+        foreach (IDataPersistence dataPersistenceObj in _dataPersistenceObjects)
+        {
             //Debug.Log("DataPersistenceManager SaveData foreach SAVE\n"+dataPersistenceObj);
             dataPersistenceObj.SaveData(_gameData);
             //Debug.Log("GAME SAVED");

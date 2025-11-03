@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class ScrollRectSnapCostumes : MonoBehaviour
 {
+    public static ScrollRectSnapCostumes Instance;
     public RectTransform _panelForCostumes;
     public Button[] _buttonsArray;
     public RectTransform _centerForLevels;
@@ -15,6 +16,16 @@ public class ScrollRectSnapCostumes : MonoBehaviour
     public int _currentWorld;
     int _worldDistance;
 
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+        else
+            Instance = this;
+    }
     void Start() {
         int buttonLength = _buttonsArray.Length;
         _distance = new float[buttonLength];

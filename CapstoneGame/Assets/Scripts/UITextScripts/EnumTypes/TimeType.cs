@@ -1,7 +1,9 @@
-public enum TimeType : byte {
+public enum TimeType : byte
+{
     PB,
     Diamond,
     Gold,
     Silver,
-    Bronze
+    Bronze,
+    Developer
 }

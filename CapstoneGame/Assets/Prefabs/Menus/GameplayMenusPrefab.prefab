@@ -734,6 +734,11 @@ MonoBehaviour:
   - ButtonPrev
   - ButtonWarning
   - ButtonCostume
+  - ButtonPause
+  - ButtonUnpause
+  - ButtonMenu
+  - ButtonReset
+  - ButtonWarningLesser
 --- !u!1 &8969446610846713875
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,7 +1435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3970124435341761879, guid: a8ac8ba02170f4fcb9fce10ff15e3f6f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 5
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3970124435341761879, guid: a8ac8ba02170f4fcb9fce10ff15e3f6f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1474,7 +1479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4437641288977496353, guid: a8ac8ba02170f4fcb9fce10ff15e3f6f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4437641288977496353, guid: a8ac8ba02170f4fcb9fce10ff15e3f6f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2048,7 +2053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1793744584985559329, guid: e5873e0a8c1eb4c5295477b24dd2f4ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 5
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1793744584985559329, guid: e5873e0a8c1eb4c5295477b24dd2f4ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2092,7 +2097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4146211902568134825, guid: e5873e0a8c1eb4c5295477b24dd2f4ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4146211902568134825, guid: e5873e0a8c1eb4c5295477b24dd2f4ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2196,7 +2201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7525892743442140902, guid: e5873e0a8c1eb4c5295477b24dd2f4ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7525892743442140902, guid: e5873e0a8c1eb4c5295477b24dd2f4ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName

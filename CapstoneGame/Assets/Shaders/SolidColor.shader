@@ -8,6 +8,7 @@ Shader "Unlit/SolidColor"
     {
         Tags { "QUEUE"="Transparent" "IGNOREPROJECTOR"="true" "RenderType"="Transparent" }
         LOD 200
+        ZWrite Off
 
         Pass
         {

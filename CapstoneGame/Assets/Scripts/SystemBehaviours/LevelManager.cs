@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Data.Common;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -11,6 +10,7 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     public float _personalBest = 99*60000+59*1000+999;
     [Header("Level Times (in ms)")]
     [Tooltip("minute : second : millisecond")]
+    public Vector3 _developerTime;
     public Vector3 _diamondTime;
     public Vector3 _goldTime;
     public Vector3 _silverTime;
@@ -93,24 +93,29 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     {
         this._personalBest = thisRunTime;
     }
-    public void CheckPB() {
+    public bool CheckPB()
+    {
         float finalTime = GameBehaviour.Instance.ConvertTimerToFloat(
             new Vector3(Timer.Instance.m,
                     Timer.Instance.s,
                     Timer.Instance.ms));
-        if (finalTime < this._personalBest) {
+        if (finalTime < this._personalBest)
+        {
             SetNewPB(finalTime);
+            return true;
         }
+        return false;
     }
     public void LoadData(GameData data) {
         this._bronzeTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelBronzes[_levelID]);
         this._silverTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelSilvers[_levelID]);
         this._goldTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelGolds[_levelID]);
         this._diamondTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelDiamonds[_levelID]);
+        this._developerTime = GameBehaviour.Instance.ConvertTimerToVector3(data.levelDevTimes[_levelID]);
         if (data.personalBest.ContainsKey(_levelID))
         {
             data.personalBest.TryGetValue(_levelID, out this._personalBest);
-            _medalInLevel = data.medals[_levelID];
+            if (data.medals.ContainsKey(_levelID)) { _medalInLevel = data.medals[_levelID]; }
         }
         else
         {
@@ -127,7 +132,11 @@ public class LevelManager : MonoBehaviour, IDataPersistence
                 data.personalBest.Remove(_levelID);
             }
             data.personalBest.Add(_levelID, this._personalBest);
-            if (data.personalBest[_levelID] <= data.levelDiamonds[_levelID])
+            if (data.personalBest[_levelID] <= data.levelDevTimes[_levelID])
+            {
+                UpdateMedals(data, "developer");
+            }
+            else if (data.personalBest[_levelID] <= data.levelDiamonds[_levelID])
             {
                 UpdateMedals(data, "diamond");
             }

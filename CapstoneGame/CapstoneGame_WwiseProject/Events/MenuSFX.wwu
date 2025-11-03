@@ -117,6 +117,61 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="ButtonPause" ID="{8B1DD252-8BFD-4B7D-A192-16175295EC0A}">
+					<ChildrenList>
+						<Action Name="" ID="{6A83A447-8027-402F-B246-3114126591BE}" ShortID="279831002">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="button_select10" ID="{2EAA8D2F-C48A-4106-A029-E586C67B5094}" WorkUnitID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="ButtonUnpause" ID="{2EDD094B-C42A-46AA-9A3F-ACF6555661EB}">
+					<ChildrenList>
+						<Action Name="" ID="{A5C59090-4018-472B-8C82-035105988DB1}" ShortID="945849331">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="button_select11" ID="{1A6A83CC-FC70-4672-B7DB-FD8C30CC841B}" WorkUnitID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="ButtonMenu" ID="{6A7AC840-B98D-4DB1-9204-54B4EC4556A1}">
+					<ChildrenList>
+						<Action Name="" ID="{3BFA1BFF-AB9E-43EF-B16E-F9468406B548}" ShortID="603170593">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="button_select12" ID="{AF16C487-FD67-4B87-AA83-9FF4E7188A22}" WorkUnitID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="ButtonReset" ID="{DA07C655-AE08-4B91-B74E-6070BA0D21B2}">
+					<ChildrenList>
+						<Action Name="" ID="{67E6CB23-0956-42FA-B1DF-8613610F885C}" ShortID="93181721">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="button_select14" ID="{99F2DB2C-9188-4EF6-ADAE-B01CA95EE518}" WorkUnitID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="ButtonWarningLesser" ID="{BB4B7CF0-4353-4033-9E98-2865FE4CDEF3}">
+					<ChildrenList>
+						<Action Name="" ID="{A4810483-5B3E-41CE-9A71-F30CECE90F59}" ShortID="308801541">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="button_select13" ID="{77F164DD-94FA-4E1E-9B3E-05C545A4FC4C}" WorkUnitID="{4D9A5FAA-C76D-4F48-BE7B-6AA942287A90}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

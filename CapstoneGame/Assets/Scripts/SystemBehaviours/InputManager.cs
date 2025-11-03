@@ -99,4 +99,8 @@ public class InputManager : MonoBehaviour, IDataPersistence
     {
         PlayerInput.actions.LoadBindingOverridesFromJson(data.rebinds);
     }
+    public string GetControlScheme()
+    {
+        return PlayerInput.currentControlScheme;
+    }
 }

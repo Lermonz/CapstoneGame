@@ -9,8 +9,9 @@ Shader "Unlit/PaletteSwap"
     SubShader
     {
         Tags { "QUEUE"="Transparent" "IGNOREPROJECTOR"="true" "RenderType"="Transparent" }
-        LOD 100
         Cull Off
+        ZWrite Off
+        Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {

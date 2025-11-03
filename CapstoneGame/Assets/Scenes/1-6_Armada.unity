@@ -1088,7 +1088,7 @@ PrefabInstance:
       objectReference: {fileID: 1830105257}
     - target: {fileID: 6374067871469185255, guid: 3b3fce2b06a9c45ba8cbe5743cb0768f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.3
+      value: -11.299999
       objectReference: {fileID: 0}
     - target: {fileID: 6374067871469185255, guid: 3b3fce2b06a9c45ba8cbe5743cb0768f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1140,7 +1140,7 @@ PrefabInstance:
       objectReference: {fileID: 190907396}
     - target: {fileID: 8082073715259999968, guid: 3b3fce2b06a9c45ba8cbe5743cb0768f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.7459917
+      value: -2.7365332
       objectReference: {fileID: 0}
     - target: {fileID: 8082073715259999968, guid: 3b3fce2b06a9c45ba8cbe5743cb0768f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4708,6 +4708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelID: 6
   _personalBest: 5999999
+  _developerTime: {x: 0, y: 0, z: 0}
   _diamondTime: {x: 0, y: 0, z: 0}
   _goldTime: {x: 0, y: 6, z: 400}
   _silverTime: {x: 0, y: 8, z: 800}

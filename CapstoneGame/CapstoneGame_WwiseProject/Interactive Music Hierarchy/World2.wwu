@@ -9,7 +9,19 @@
 			<ChildrenList>
 				<MusicSwitchContainer Name="Switch" ID="{7AED4CD8-42D4-475D-BAE0-3AE2626C68BB}" ShortID="661229776">
 					<PropertyList>
+						<Property Name="BelowThresholdBehavior" Type="int16" Value="1"/>
+						<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+						<Property Name="MaxSoundPerInstance" Type="int16">
+							<ValueList>
+								<Value>2</Value>
+							</ValueList>
+						</Property>
 						<Property Name="Tempo" Type="Real64" Value="170"/>
+						<Property Name="UseMaxSoundPerInstance" Type="bool">
+							<ValueList>
+								<Value>True</Value>
+							</ValueList>
+						</Property>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
 								<Value>-5.5</Value>

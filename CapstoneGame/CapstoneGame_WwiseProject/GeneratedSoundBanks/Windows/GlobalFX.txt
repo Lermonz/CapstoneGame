@@ -1,12 +1,16 @@
 Event	ID	Name			Wwise Object Path	Notes
+	75279434	ButtonReset			\MenuSFX\ButtonReset	
 	279279475	ButtonWarning			\MenuSFX\ButtonWarning	
 	405211869	Tele_Object			\GameSFX\Tele_Object	
 	476417308	Boost_Object			\GameSFX\Boost_Object	
 	756738409	Crystal_Break			\GameSFX\Crystal_Break	
 	817870589	ButtonBackOut1			\MenuSFX\ButtonBackOut1	
 	902328288	Spring_Object			\GameSFX\Spring_Object	
+	968143712	ButtonMenu			\MenuSFX\ButtonMenu	
+	1026037958	ButtonUnpause			\MenuSFX\ButtonUnpause	
 	1305133589	Player_Jump			\PlayerSFX\Player_Jump	
 	1432241047	AllCrystals			\GameSFX\AllCrystals	
+	1534723049	ButtonWarningLesser			\MenuSFX\ButtonWarningLesser	
 	1542330065	Player_Die			\PlayerSFX\Player_Die	
 	1755803531	Fragile_Break			\GameSFX\Fragile_Break	
 	1862289782	PlayMenu			\Music\PlayMenu	
@@ -24,6 +28,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	3348213547	ButtonConfirm2			\MenuSFX\ButtonConfirm2	
 	3348213549	ButtonConfirm4			\MenuSFX\ButtonConfirm4	
 	3457997290	Player_JumpSpecial			\PlayerSFX\Player_JumpSpecial	
+	3982365877	ButtonPause			\MenuSFX\ButtonPause	
 	4179545512	Player_FastFall			\PlayerSFX\Player_FastFall	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
@@ -40,6 +45,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	152986262	FragileBreak3	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\FragileBreak3_818F3B66.wem		\Actor-Mixer Hierarchy\Interactables_SFX\fragileBreak\FragileBreak3		113104
 	153599617	button_select1_1	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\button_select1_1_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_select1_1		173008
 	162884650	teleObj	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\teleObj_818F3B66.wem		\Actor-Mixer Hierarchy\Interactables_SFX\teleObj		261152
+	207924061	button_select13	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\button_select13_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_select13		261264
 	291109648	player_Jump1	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\player_Jump1_818F3B66.wem		\Actor-Mixer Hierarchy\Player_SFX\player_Jump1		262352
 	297365200	player_Boost2	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\player_Boost2_818F3B66.wem		\Actor-Mixer Hierarchy\Player_SFX\player_Boost2		262672
 	309596854	FragileBreak1	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\FragileBreak1_818F3B66.wem		\Actor-Mixer Hierarchy\Interactables_SFX\fragileBreak\FragileBreak1		113104
@@ -48,11 +54,15 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	453961029	button_select9	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\button_select9_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_select9		261200
 	468924835	player_Spin2	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\player_Spin2_818F3B66.wem		\Actor-Mixer Hierarchy\Player_SFX\player_Spin2		262304
 	479308673	button_select7_1	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\button_select7_1_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_select7_1		155836
+	608293321	button_select11	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\button_select11_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_select11		261200
 	610240063	RumblerLoop_2	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\RumblerLoop_2_FBC78EF0.wem		\Interactive Music Hierarchy\Menu\menuSwitch\menuPlaylist\RumblerLoop_2\RumblerLoop_2		13824160
 	699266740	collected_costume1	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\collected_costume1_818F3B66.wem		\Actor-Mixer Hierarchy\Interactables_SFX\collected_costume1		785488
 	713058177	button_highlight1	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\button_highlight1_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_highlight1		78000
 	720226508	death	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\death_818F3B66.wem		\Actor-Mixer Hierarchy\Player_SFX\death		295544
+	744872884	button_select10	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\button_select10_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_select10		261200
+	747428771	button_select14	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\button_select14_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_select14		261200
 	798922989	FragileStep3	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\FragileStep3_818F3B66.wem		\Actor-Mixer Hierarchy\Interactables_SFX\fragileStep\FragileStep3		56632
+	861643939	button_select12	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\button_select12_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_select12		261200
 	875094519	boostObj2	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\boostObj2_818F3B66.wem		\Actor-Mixer Hierarchy\Interactables_SFX\boostObj2		261152
 	876770729	FragileStep2	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\FragileStep2_818F3B66.wem		\Actor-Mixer Hierarchy\Interactables_SFX\fragileStep\FragileStep2		56632
 	914652543	button_select6_1	Y:\Documents\GitHub\CapstoneGame\CapstoneGame\CapstoneGame_WwiseProject\.cache\Windows\SFX\button_select6_1_818F3B66.wem		\Actor-Mixer Hierarchy\UI_SFX\button_select6_1		155836

@@ -4975,10 +4975,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.7}
-      - {x: 0.7, y: 0}
-      - {x: 0, y: -0.7}
-      - {x: -0.7, y: 0}
+    - - {x: 0, y: 0.8}
+      - {x: 0.8, y: 0}
+      - {x: 0, y: -0.8}
+      - {x: -0.8, y: 0}
   m_UseDelaunayMesh: 0
 --- !u!1 &2094579475981989548
 GameObject:
@@ -5170,7 +5170,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0

@@ -18,10 +18,11 @@ public class BlackHoleBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             InputManager.Instance.NegateAllInput();
-            // LevelManager.Instance.FreezePlayerAndTimer();
-            other.GetComponent<Player>().DeathBlackHole(_delay, _reset);
+            bool reset = (LevelManager.Instance.TargetsDestroyed == 0 || GameBehaviour.Instance.NoCheckpoints) ? true : _reset;
+            LevelManager.Instance.StopTimer();
+            other.GetComponent<Player>().DeathBlackHole(_delay, reset);
             this.GetComponent<CircleCollider2D>().radius = 1;
-            if (_reset) { _sceneManager.Reload(); }
+            if (reset) { _sceneManager.Reload(); }
         }
     }
     void OnTriggerExit2D(Collider2D other)

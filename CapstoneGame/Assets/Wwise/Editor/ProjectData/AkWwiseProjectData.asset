@@ -352,7 +352,7 @@ MonoBehaviour:
     ParentPath: Events/MenuSFX
     guid: 058320f7803a91469593dd6787b4fc9b
     GuidInternal: 
-    m_lastTime: -8584433611122743244
+    m_lastTime: -8584419078624374230
     List:
     - name: ButtonBackOut1
       guid: 0356926ca3f27f41a576066ff8379020
@@ -473,6 +473,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.40541667
       minDuration: 0.40541667
+    - name: ButtonMenu
+      guid: 40c87a6a8db9b14d920454b4ec4556a1
+      id: 968143712
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: MenuSFX
+        ObjectType: 12
+        guid: 058320f7803a91469593dd6787b4fc9b
+      - ElementName: ButtonMenu
+        ObjectType: 3
+        guid: 40c87a6a8db9b14d920454b4ec4556a1
+      Path: Events/MenuSFX/ButtonMenu
+      maxAttenuation: 0
+      maxDuration: 1.3593333
+      minDuration: 1.3593333
     - name: ButtonNext
       guid: d0ac9705d77d4c4eadb551d3e663852e
       id: 3070336346
@@ -490,6 +507,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.8108125
       minDuration: 0.8108125
+    - name: ButtonPause
+      guid: 52d21d8bfd8b7d4ba19216175295ec0a
+      id: 3982365877
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: MenuSFX
+        ObjectType: 12
+        guid: 058320f7803a91469593dd6787b4fc9b
+      - ElementName: ButtonPause
+        ObjectType: 3
+        guid: 52d21d8bfd8b7d4ba19216175295ec0a
+      Path: Events/MenuSFX/ButtonPause
+      maxAttenuation: 0
+      maxDuration: 1.3593333
+      minDuration: 1.3593333
     - name: ButtonPrev
       guid: c0b38e09b8b957448fe95403c3ee8a60
       id: 1953314766
@@ -507,6 +541,40 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.8108125
       minDuration: 0.8108125
+    - name: ButtonReset
+      guid: 55c607da08ae914bb74e6070ba0d21b2
+      id: 75279434
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: MenuSFX
+        ObjectType: 12
+        guid: 058320f7803a91469593dd6787b4fc9b
+      - ElementName: ButtonReset
+        ObjectType: 3
+        guid: 55c607da08ae914bb74e6070ba0d21b2
+      Path: Events/MenuSFX/ButtonReset
+      maxAttenuation: 0
+      maxDuration: 1.3593333
+      minDuration: 1.3593333
+    - name: ButtonUnpause
+      guid: 4b09dd2e2ac4aa469a3facf6555661eb
+      id: 1026037958
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: MenuSFX
+        ObjectType: 12
+        guid: 058320f7803a91469593dd6787b4fc9b
+      - ElementName: ButtonUnpause
+        ObjectType: 3
+        guid: 4b09dd2e2ac4aa469a3facf6555661eb
+      Path: Events/MenuSFX/ButtonUnpause
+      maxAttenuation: 0
+      maxDuration: 1.3593333
+      minDuration: 1.3593333
     - name: ButtonWarning
       guid: 5f37ff1eca09fa4d901c90f8b5584ac1
       id: 279279475
@@ -524,6 +592,23 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.8108125
       minDuration: 0.8108125
+    - name: ButtonWarningLesser
+      guid: f07c4bbb534333409e982865fe4cdef3
+      id: 1534723049
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: MenuSFX
+        ObjectType: 12
+        guid: 058320f7803a91469593dd6787b4fc9b
+      - ElementName: ButtonWarningLesser
+        ObjectType: 3
+        guid: f07c4bbb534333409e982865fe4cdef3
+      Path: Events/MenuSFX/ButtonWarningLesser
+      maxAttenuation: 0
+      maxDuration: 1.3593333
+      minDuration: 1.3593333
   - PhysicalPath: Events/Music.wwu
     PathAndIcons:
     - ElementName: Events

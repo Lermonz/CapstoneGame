@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using EasyTextEffects;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +7,8 @@ public class CheckNewMedal : MonoBehaviour
     public Image _image;
     [SerializeField] Sprite[] _medalSprites;
     [SerializeField] GameObject[] _diamondInfo;
+    [SerializeField] GameObject[] _developerInfo;
+    [SerializeField] TextEffect[] _textEffects;
     public void MedalLoad(string oldMedal, string newMedal)
     {
         MedalLoad(newMedal);
@@ -26,6 +27,7 @@ public class CheckNewMedal : MonoBehaviour
             if (medal == "gold")
             {
                 _image.sprite = _medalSprites[0];
+                HideSpecificInfo(_developerInfo);
                 return;
             }
             else if (medal == "silver")
@@ -36,8 +38,15 @@ public class CheckNewMedal : MonoBehaviour
             {
                 _image.sprite = _medalSprites[2];
             }
-            else if (medal == "diamond") {
+            else if (medal == "diamond")
+            {
                 _image.sprite = _medalSprites[3];
+                return;
+            }
+            else if (medal == "developer")
+            {
+                _image.sprite = _medalSprites[4];
+                EnableTextEffects();
                 return;
             }
             else
@@ -45,12 +54,22 @@ public class CheckNewMedal : MonoBehaviour
                 _image.color = Color.black;
             }
         }
-        HideDiamondInfo();
+        HideSpecificInfo(_diamondInfo);
+        HideSpecificInfo(_developerInfo);
     }
-    void HideDiamondInfo()
+    void HideSpecificInfo(GameObject[] _infoObjects)
     {
-        foreach (GameObject diamondObject in _diamondInfo) {
+        foreach (GameObject diamondObject in _infoObjects)
+        {
             diamondObject.SetActive(false);
+        }
+    }
+    void EnableTextEffects()
+    {
+        if(_textEffects.Length == 0) { return; }
+        foreach (TextEffect textEffect in _textEffects)
+        {
+            textEffect.enabled = true;
         }
     }
 }
