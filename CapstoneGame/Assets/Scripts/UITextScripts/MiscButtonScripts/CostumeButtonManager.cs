@@ -14,22 +14,18 @@ public class CostumeButtonManager : MonoBehaviour, IDataPersistence
     [SerializeField] TextMeshProUGUI _descriptionObject;
     Button _button;
     bool _isUnlocked;
+    string _trueDescription;
     void Awake()
     {
         _button = this.GetComponent<Button>();
     }
-    void Update()
+    void OnEnable()
     {
-        if (_selectionHandler.IsSelected)
-        {
-            if (_isUnlocked)
-            {
-                SetDescription(_unlockedDescription);
-            }
-            else {
-                SetDescription(_lockedDescription);
-            }
-        }
+        _selectionHandler._whenSelected += ButtonIsSelected;
+    }
+    void OnDisable()
+    {
+        _selectionHandler._whenSelected -= ButtonIsSelected;
     }
     public void SaveData(GameData data) { return; }
     public void LoadData(GameData data)
@@ -46,11 +42,20 @@ public class CostumeButtonManager : MonoBehaviour, IDataPersistence
                 _isUnlocked = true;
                 break;
         }
+        AssignTrueDesrciption();
         MakeButtonInteractable();
+    }
+    void AssignTrueDesrciption()
+    {
+        _trueDescription = _isUnlocked ? _unlockedDescription : _lockedDescription;
     }
     void MakeButtonInteractable()
     {
         _button.interactable = _isUnlocked;
+    }
+    void ButtonIsSelected()
+    {
+        SetDescription(_trueDescription);
     }
     void SetDescription(string descriptionText)
     {

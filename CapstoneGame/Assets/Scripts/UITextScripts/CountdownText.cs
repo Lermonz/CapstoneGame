@@ -8,15 +8,11 @@ public class CountdownText : MonoBehaviour
     TMP_Text _text;
     void Start() {
         _text = GetComponent<TextMeshProUGUI>();
-    }
-    void Update()
-    {
-        if(LevelManager.Instance._countdownDone) {
-            CountGo();
-        }
+        LevelManager.Instance._countdownFinish += CountGo;
     }
     void CountGo() {
         _text.text = "Go!";
+        LevelManager.Instance._countdownFinish -= CountGo;
         Destroy(this.gameObject, 0.5f);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     public int TargetsDestroyed { get => _targetsDestroyed; set {_targetsDestroyed = value;}}
     public bool _canExit;
     public bool _stopTimer;
+    public Action _countdownFinish;
     public bool _countdownDone = false;
     bool _hasPlayedSoundEffect = false;
     bool _canReset = false;
@@ -73,7 +75,7 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     IEnumerator Countdown()
     {
         yield return new WaitForSeconds(2f);
-        _countdownDone = true;
+        _countdownFinish();
         InputManager.Instance.EnablePlayerInput();
         InputManager.Instance._freezeVelocity = false;
         yield return new WaitForSeconds(0.5f);
