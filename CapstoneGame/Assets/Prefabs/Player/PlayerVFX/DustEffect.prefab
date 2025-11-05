@@ -41,7 +41,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8455081273751716996}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 0.45
   simulationSpeed: 1
   stopAction: 2
   cullingMode: 3
@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.4
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -670,7 +670,7 @@ ParticleSystem:
     boxThickness: {x: 0.2, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: -0.45}
+    m_Position: {x: 0, y: 0, z: -0.55}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 0.5, y: 0.1, z: 0.1}
     placementMode: 0
@@ -1046,17 +1046,17 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: -0.3611508
-          outSlope: -0.3611508
+          inSlope: -0.19571444
+          outSlope: -0.19571444
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.56127053
-          value: 0.7972967
-          inSlope: -0.3611508
-          outSlope: -1.8172855
+          time: 0.5640629
+          value: 0.88960475
+          inSlope: -0.19571444
+          outSlope: -2.0406723
           tangentMode: 69
           weightedMode: 0
           inWeight: 0.41817886
@@ -1064,8 +1064,8 @@ ParticleSystem:
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: -1.8172855
-          outSlope: -1.8172855
+          inSlope: -2.0406723
+          outSlope: -2.0406723
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334

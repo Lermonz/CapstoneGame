@@ -1139,7 +1139,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.214882, y: 0.5, z: 0}
+  m_LocalPosition: {x: -18.222925, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1966,6 +1966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelID: 13
   _personalBest: 5999999
+  _developerTime: {x: 0, y: 0, z: 0}
   _diamondTime: {x: 0, y: 0, z: 0}
   _goldTime: {x: 0, y: 6, z: 400}
   _silverTime: {x: 0, y: 8, z: 800}
@@ -1974,6 +1975,7 @@ MonoBehaviour:
   _canExit: 0
   _stopTimer: 0
   _countdownDone: 0
+  _medalSprites: []
 --- !u!4 &1305881706
 Transform:
   m_ObjectHideFlags: 0
@@ -4214,7 +4216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8139650408714040388, guid: 765b6b3ca70fe41aabec373f29d47fc7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: -22
       objectReference: {fileID: 0}
     - target: {fileID: 8139650408714040388, guid: 765b6b3ca70fe41aabec373f29d47fc7, type: 3}
       propertyPath: m_LocalPosition.y

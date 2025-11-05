@@ -38,25 +38,22 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         else
             Instance = this;
     }
-    void Start() {
+    void Start()
+    {
         Time.timeScale = 1f;
         _stopTimer = true;
         InputManager.Instance.DisablePlayerInput();
         StartCoroutine(Countdown());
+        InputManager.Instance.QuickResetPressEvent += OnQuickResetPress;
+    }
+    void OnDestroy()
+    {
+        InputManager.Instance.QuickResetPressEvent -= OnQuickResetPress;
     }
     public void HitTarget(Vector2 position, Vector2 offset)
     {
         TargetsDestroyed++;
         SetRespawnPoint(position, offset.x, offset.y);
-    }
-    public void SetRespawnPoint(Vector2 position, float offsetX = 0, float offsetY = 0)
-    {
-        Vector2 offset = new Vector2(offsetX, offsetY);
-        Checkpoint = position+offset;
-    }
-    void Update()
-    {
-        // if you've destroyed enough targets for this level, you can touch the goal
         if (_targetsDestroyed >= _targetReq)
         {
             _canExit = true;
@@ -66,11 +63,17 @@ public class LevelManager : MonoBehaviour, IDataPersistence
                 _hasPlayedSoundEffect = true;
             }
         }
-        if (InputManager.Instance.QuickResetInput && _canReset)
-        {
-            _canReset = false;
-            this.GetComponent<SelectLevel>().Reload(false);
-        }
+    }
+    public void SetRespawnPoint(Vector2 position, float offsetX = 0, float offsetY = 0)
+    {
+        Vector2 offset = new Vector2(offsetX, offsetY);
+        Checkpoint = position+offset;
+    }
+    void OnQuickResetPress()
+    {
+        if(!_canReset) { return; }
+        _canReset = false;
+        this.GetComponent<SelectLevel>().Reload(false);
     }
     IEnumerator Countdown()
     {

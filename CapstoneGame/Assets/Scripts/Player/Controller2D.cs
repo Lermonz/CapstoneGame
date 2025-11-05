@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Cinemachine;
 using Unity.VisualScripting;
@@ -22,6 +23,9 @@ public class Controller2D : MonoBehaviour
     public CinemachineFramingTransposer _vcamTransposer;
 
     public bool _isGrounded = true;
+    bool _setToBeGrounded = true;
+    public Action BecameGrounded;
+    public Action BecameAirBorne;
     public bool _hitCeiling;
     public bool _hitWall;
     public bool _canDoubleJump;
@@ -57,9 +61,9 @@ public class Controller2D : MonoBehaviour
         if (!PauseMenu.Instance._isPaused)
         {
             RayCastUpdate();
-            VertCollisions(ref velocity);
             HorzCollisions(ref velocity);
             ReverseHorzCollision(ref velocity);
+            VertCollisions(ref velocity);
             transform.Translate(velocity);
         }
     }
@@ -70,7 +74,7 @@ public class Controller2D : MonoBehaviour
     }
     void VertCollisions(ref Vector2 velocity)
     {
-        float directionY = Mathf.Sign(velocity.y);
+        float directionY = Mathf.Sign(velocity.y - boundInset * _groundIsDown);
         float rayLength = Mathf.Abs(velocity.y) + boundInset;
         _destructable = false;
         _vertElseCount = 0;
@@ -80,6 +84,7 @@ public class Controller2D : MonoBehaviour
             float _tempVertRaySpacing = directionY == -_groundIsDown ? _vertRaySpacing * 0.9f : _vertRaySpacing * 0.85f;
             Vector2 rayOrigin = directionY == -1 ? _raycastOrigins.botleft : _raycastOrigins.topleft;
             rayOrigin += directionY == -_groundIsDown ? (Vector2.right * 0.05f) : (Vector2.right * 0.075f);
+            //rayOrigin.y += directionY * boundInset;
             rayOrigin += Vector2.right * i * _tempVertRaySpacing;
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collMask);
             Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
@@ -96,9 +101,9 @@ public class Controller2D : MonoBehaviour
                 {
                     if (!_isGrounded && !LevelManager.Instance._stopTimer)
                     {
-                        this.GetComponent<VFXPlayer>().DustEffect(-0.45f * _groundIsDown);
+                        this.GetComponent<VFXPlayer>().DustEffect(-0.55f * _groundIsDown);
                     }
-                    _isGrounded = true;
+                    _setToBeGrounded = true;
                     _vcamTransposer.m_DeadZoneHeight = 0;
                 }
                 if (hit.collider.CompareTag("DestructableBlock"))
@@ -129,20 +134,20 @@ public class Controller2D : MonoBehaviour
         if (_vertElseCount >= _vertRayCount && !PauseMenu.Instance._isPausedPhysics)
         {
             _touchConveyer = false;
-            _isGrounded = false;
+            _setToBeGrounded = false;
             _hitCeiling = false;
             _destructable = false;
             _touchFallingBlock = false;
         }
         if (_hitWall && _vertElseCount > 0)
         {
-            _isGrounded = false;
+            _setToBeGrounded = false;
         }
         if (_destructable)
         {
             TouchedDestructableBlock(ref _destructableBlock);
         }
-        if (_touchFallingBlock && _isGrounded)
+        if (_touchFallingBlock && !_hitCeiling)
         {
             if (_fallingBlock.MoveDown())
             {
@@ -158,6 +163,15 @@ public class Controller2D : MonoBehaviour
         {
             _fallingBlock.SetIsGoingDown(_touchFallingBlock);
         }
+        if (_setToBeGrounded && !_isGrounded)
+        {
+            BecameGrounded?.Invoke();
+        }
+        if (!_setToBeGrounded && _isGrounded)
+        {
+            BecameAirBorne?.Invoke();
+        }
+        _isGrounded = _setToBeGrounded;
     }
     void HorzCollisions(ref Vector2 velocity)
     {
@@ -170,6 +184,7 @@ public class Controller2D : MonoBehaviour
         for (int i = 1; i < _vertRayCount; i++)
         {
             Vector2 rayOrigin = directionX == -1 ? _raycastOrigins.botleft : _raycastOrigins.botright;
+            //rayOrigin.x += boundInset * directionX;
             if (_groundIsDown == -1) { rayOrigin = directionX == -1 ? _raycastOrigins.topleft : _raycastOrigins.topright; }
             rayOrigin += Vector2.up * (_horzRaySpacing * _vertMult * i * _groundIsDown);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collMask);

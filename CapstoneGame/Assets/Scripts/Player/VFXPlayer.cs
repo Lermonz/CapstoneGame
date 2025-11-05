@@ -12,6 +12,7 @@ public class VFXPlayer : MonoBehaviour
     public GameObject _regenerateSprite;
     public GameObject _regenerateEffect;
     public GameObject _specialJumpParticles;
+    GameObject DustObject = null;
 
     public int _afterImageAmount;
     public float _afterImageFreq;
@@ -39,8 +40,11 @@ public class VFXPlayer : MonoBehaviour
     }
     public void DustEffect(float offsetY = 0, float offsetX = 0, float rotation = 0)
     {
-        Instantiate(_dustEffect, new Vector3(this.transform.position.x + offsetX, this.transform.position.y + offsetY, this.transform.position.z),
-        new Quaternion(this.transform.rotation.x + 90 * -rotation, this.transform.rotation.y + 90 * Math.Abs(rotation), this.transform.rotation.z + 90 * Math.Abs(rotation), this.transform.rotation.w));
+        if(DustObject == null)
+        {    
+            DustObject = Instantiate(_dustEffect, new Vector3(this.transform.position.x + offsetX, this.transform.position.y + offsetY, this.transform.position.z),
+            new Quaternion(this.transform.rotation.x + 90 * -rotation, this.transform.rotation.y + 90 * Math.Abs(rotation), this.transform.rotation.z + 90 * Math.Abs(rotation), this.transform.rotation.w));
+        }
     }
     IEnumerator AfterImageCoroutine(bool _isFlip)
     {

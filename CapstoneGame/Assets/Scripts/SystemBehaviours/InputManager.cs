@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,13 @@ public class InputManager : MonoBehaviour, IDataPersistence
     public bool UIConfirm { get; private set; }
     public bool UICancel { get; private set; }
     public Vector2 MouseScrollInput { get; private set; }
+    // Input Delegates //
+    public Action JumpPressEvent;
+    public Action JumpReleaseEvent;
+    public Action BoostPressEvent;
+    public Action SpinPressEvent;
+    public Action QuickResetPressEvent;
+    public Action MenuOpenPressEvent;
 
     private InputAction _dpadAction;
     private InputAction _horizontalAction;
@@ -70,7 +78,13 @@ public class InputManager : MonoBehaviour, IDataPersistence
         JumpRelease = _jumpAction.WasReleasedThisFrame();
         DownInput = _downAction.WasPressedThisFrame();
         BoostInput = _boostAction.WasPressedThisFrame();
-        SpinInput = _spinAction.WasPressedThisFrame();
+        if(_jumpAction.WasPerformedThisFrame()) { JumpPressEvent?.Invoke(); }
+        if(_jumpAction.WasReleasedThisFrame()) { JumpReleaseEvent?.Invoke(); }
+        if(_boostAction.WasPerformedThisFrame()) { BoostPressEvent?.Invoke(); }
+        //SpinInput = _spinAction.WasPressedThisFrame();
+        if(_spinAction.WasPerformedThisFrame()) { SpinPressEvent?.Invoke(); }
+        if(_menuOpenAction.WasPerformedThisFrame()) { MenuOpenPressEvent?.Invoke(); }
+        if(_quickResetAction.WasPerformedThisFrame()) { QuickResetPressEvent?.Invoke(); }
         MenuOpenInput = _menuOpenAction.WasPressedThisFrame();
         QuickResetInput = _quickResetAction.WasPressedThisFrame();
         UIMenuCloseInput = _menuCloseAction.WasPressedThisFrame();
