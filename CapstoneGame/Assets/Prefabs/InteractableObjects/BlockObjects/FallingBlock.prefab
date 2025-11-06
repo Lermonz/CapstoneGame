@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 7276520669123457752}
   - component: {fileID: 7356500059201955192}
   - component: {fileID: 7907255835634219732}
-  - component: {fileID: 6030688760345338947}
+  - component: {fileID: 1732732131752259629}
   m_Layer: 8
   m_Name: FallingBlock
   m_TagString: FallingBlock
@@ -283,7 +283,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6030688760345338947
+--- !u!114 &1732732131752259629
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -292,9 +292,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6325954257130964307}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef2731b1440f049f29b731f2bd7bc3a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bde19391d3424b578841841de004365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 7276520669123457752}
   _collider: {fileID: 7356500059201955192}
-  _size: {x: 0, y: 0}

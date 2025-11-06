@@ -11,10 +11,13 @@ public class OnOffBlockBehaviour : MonoBehaviour
     // }
     [SerializeField] SpriteRenderer _renderer;
     [SerializeField] BoxCollider2D _collider;
+    [SerializeField] Vector2 _size;
     [SerializeField] bool _state;
     void Start()
     {
         ActivateState();
+        _renderer.size = _size;
+        _collider.size = _size;
     }
     void ActivateState()
     {

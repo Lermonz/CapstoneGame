@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
@@ -76,6 +77,7 @@ public class Player : MonoBehaviour
     bool _overrideXInput = false;
     bool _dead;
     bool _isPhilip;
+    public Action SwapState;
 
     void Start()
     {
@@ -332,7 +334,8 @@ public class Player : MonoBehaviour
         AkSoundEngine.PostEvent("Player_Attack", gameObject);
         _vfxPlayer.Spin_Sparkle();
         _animator.Play("Player_Spin");
-        SwapBlocks(FindAllOnOffBlockObjects());
+        SwapState?.Invoke();
+        //SwapBlocks(FindAllOnOffBlockObjects());
         if (!_controller._isGrounded && _canDoubleJump)
         {
             _canDoubleJump = false;

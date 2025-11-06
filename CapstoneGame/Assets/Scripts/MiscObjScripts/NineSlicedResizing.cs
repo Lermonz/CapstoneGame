@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReassignScaleToRendererAndCollider : MonoBehaviour
+public class NineSlicedResizing : MonoBehaviour
 {
     [SerializeField] SpriteRenderer _renderer;
     [SerializeField] BoxCollider2D _collider;
-    public Vector2 _size;
-    void Awake()
+    public Vector2 _size { get; private set; }
+    void Start()
     {
         _size = this.transform.localScale;
         _renderer.size = _size;

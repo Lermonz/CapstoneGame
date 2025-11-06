@@ -7,17 +7,14 @@ public class ScaleScreenWipeMask : MonoBehaviour
     [SerializeField] float _time;
     [SerializeField] float _holdTime;
     [SerializeField] GameObject _parent;
-    void Start()
-    {
-        this.transform.localScale = Vector3.zero;
-        ScaleUp();
-    }
     public void ScaleDown()
     {
+        this.transform.localScale = Vector3.one*7;
         StartCoroutine(ScalingAnim(Vector3.zero, true));
     }
     public void ScaleUp()
     {
+        this.transform.localScale = Vector3.zero;
         StartCoroutine(ScalingAnim(Vector3.one*7, false));
     }
     IEnumerator ScalingAnim(Vector3 endScale, bool goAgain)

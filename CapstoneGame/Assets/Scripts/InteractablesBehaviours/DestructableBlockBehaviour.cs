@@ -3,13 +3,15 @@ using UnityEngine;
 
 public class DestructableBlockBehaviour : MonoBehaviour
 {
-    [SerializeField] Vector2 _size = new Vector2(2, 2);
+    Vector2 _size = new Vector2(2, 2);
     [SerializeField] SpriteRenderer _renderer;
     [SerializeField] BoxCollider2D _collider;
     [SerializeField] SpriteRenderer _outlineRenderer;
     [SerializeField] ParticleSystem _particles;
     Vector3 _startPos;
     public bool _beenTouched;
+    public float _fallSpeed = 0.2f;
+    public float _delayOverStep { get; private set; }
     bool _blockIsGone;
     bool _invulnerable = false;
     public bool _checkOverlap;
@@ -21,8 +23,6 @@ public class DestructableBlockBehaviour : MonoBehaviour
         _size = this.transform.localScale;
         this.transform.localScale = Vector3.one;
         _startPos = this.transform.position;
-        _renderer.size = _size;
-        _collider.size = _size;
         shapeMod = _particles.shape;
         shapeMod.scale = _size;
         _outlineRenderer.size = _size * 0.9f;
@@ -53,12 +53,13 @@ public class DestructableBlockBehaviour : MonoBehaviour
     {
         int currentStep = 0;
         int steps = 10;
+        _delayOverStep = delay / steps;
         AkSoundEngine.PostEvent("Fragile_Step", gameObject);
         while (currentStep < steps)
         {
-            yield return new WaitForSeconds(delay / steps);
+            yield return new WaitForSeconds(_delayOverStep);
             currentStep++;
-            this.transform.position -= Vector3.up * 0.2f * delay / steps * (_flippedGravity ? -1 : 1);
+            this.transform.Translate(Vector3.up * _fallSpeed * _delayOverStep * (_flippedGravity ? 1 : -1));
         }
         AkSoundEngine.PostEvent("Fragile_Break", gameObject);
         shapeMod.radius = 0.55f;

@@ -75,7 +75,7 @@ public class Controller2D : MonoBehaviour
     void VertCollisions(ref Vector2 velocity)
     {
         float directionY = Mathf.Sign(velocity.y - boundInset * _groundIsDown);
-        float rayLength = Mathf.Abs(velocity.y) + boundInset;
+        float rayLength = Mathf.Abs(velocity.y) + boundInset*5;
         _destructable = false;
         _vertElseCount = 0;
 
@@ -146,12 +146,16 @@ public class Controller2D : MonoBehaviour
         if (_destructable)
         {
             TouchedDestructableBlock(ref _destructableBlock);
+            if(!_hitCeiling)
+            {
+                velocity.y -= boundInset + _destructableBlock._fallSpeed * _destructableBlock._delayOverStep;
+            }
         }
         if (_touchFallingBlock && !_hitCeiling)
         {
             if (_fallingBlock.MoveDown())
             {
-                velocity.y -= _fallingBlock._fallSpeed * Time.deltaTime;
+                velocity.y -= boundInset + _fallingBlock._fallSpeed * Time.deltaTime;
                 Debug.Log("Descending player with plat");
             }
             else

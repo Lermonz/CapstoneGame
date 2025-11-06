@@ -18,7 +18,7 @@ public class FallingBlock : MonoBehaviour
     {
         _home = this.transform.position;
         _moveBy = new Vector2(0, -_fallSpeed);
-        _ySize = this.GetComponent<ReassignScaleToRendererAndCollider>()._size.y;
+        _ySize = this.GetComponent<NineSlicedResizing>()._size.y;
     }
     void Update()
     {

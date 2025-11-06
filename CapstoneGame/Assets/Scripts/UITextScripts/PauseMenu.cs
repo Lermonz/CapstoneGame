@@ -41,6 +41,7 @@ public class PauseMenu : MonoBehaviour
     {
         _vcam = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
         _vcamPaused = GameObject.Find("Virtual Camera Paused").GetComponent<CinemachineVirtualCamera>();
+        _screenWipe.ScaleUp();
     }
     private void Update()
     {

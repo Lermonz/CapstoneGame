@@ -9,10 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3019451964660448633}
+  - component: {fileID: 6335871163056276770}
+  - component: {fileID: 4203959051494252496}
   - component: {fileID: 5444148670847552272}
   - component: {fileID: 4486476893343056754}
   - component: {fileID: 8583559913985600443}
-  - component: {fileID: 4203959051494252496}
+  - component: {fileID: 7796533665493436329}
   m_Layer: 6
   m_Name: OnBlock
   m_TagString: Block
@@ -36,6 +38,36 @@ Transform:
   - {fileID: 6658344367999068293}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6335871163056276770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650172579307340444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bde19391d3424b578841841de004365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 5444148670847552272}
+  _collider: {fileID: 4486476893343056754}
+--- !u!114 &4203959051494252496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650172579307340444}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5a4530f8c42148d2a875d5ed7791722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 5444148670847552272}
+  _collider: {fileID: 4486476893343056754}
+  _size: {x: 2, y: 1}
+  _state: 1
 --- !u!212 &5444148670847552272
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -160,7 +192,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4203959051494252496
+--- !u!114 &7796533665493436329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,12 +201,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1650172579307340444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5a4530f8c42148d2a875d5ed7791722, type: 3}
+  m_Script: {fileID: 11500000, guid: b604ec9afe9b84427bd4ae29d253ab22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 5444148670847552272}
-  _collider: {fileID: 4486476893343056754}
-  _state: 1
 --- !u!1001 &5301059557224587668
 PrefabInstance:
   m_ObjectHideFlags: 0
