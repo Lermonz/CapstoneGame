@@ -122,6 +122,7 @@ public class PauseMenu : MonoBehaviour
     private void OpenWinMenu()
     {
         CloseMenus();
+        if (CameraManager.Instance != null) { CameraManager.Instance.SwitchToWinCamera(); }
         _winMenu.SetActive(true);
         EventSystem.current.SetSelectedGameObject(_winFirstButton);
     }

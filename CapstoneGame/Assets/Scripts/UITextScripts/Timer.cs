@@ -4,16 +4,20 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     public static Timer Instance;
-    public float _totalFrames = 0;
-    public int m = 0;
-    public int s = 0;
-    public int ms = 0;
+    public float _totalFrames { get; private set; }
+    public int m { get; private set; }
+    public int s { get; private set; }
+    public int ms { get; private set; }
     void Awake()
     {
         if (Instance != null && Instance != this)
             Destroy(this);
         else
             Instance = this;
+    }
+    void Start()
+    {
+        _totalFrames = 0;
     }
     void Update()
     {

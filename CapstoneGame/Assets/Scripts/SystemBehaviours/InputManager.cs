@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour, IDataPersistence
     public static PlayerInput PlayerInput;
 
     public bool _freezeVelocity = false;
+    public bool _hitLag = false;
 
     // Input Properties //
     public Vector2 Dpad { get; private set; }
@@ -28,6 +29,7 @@ public class InputManager : MonoBehaviour, IDataPersistence
     public bool UICancel { get; private set; }
     public Vector2 MouseScrollInput { get; private set; }
     // Input Delegates //
+    public Action<Vector2> DpadInputEvent;
     public Action JumpPressEvent;
     public Action JumpReleaseEvent;
     public Action BoostPressEvent;
@@ -73,11 +75,12 @@ public class InputManager : MonoBehaviour, IDataPersistence
     void Update()
     {
         Dpad = _dpadAction.ReadValue<Vector2>();
-        HorizontalInput = _horizontalAction.ReadValue<float>();
-        JumpInput = _jumpAction.WasPressedThisFrame();
-        JumpRelease = _jumpAction.WasReleasedThisFrame();
-        DownInput = _downAction.WasPressedThisFrame();
-        BoostInput = _boostAction.WasPressedThisFrame();
+        // HorizontalInput = _horizontalAction.ReadValue<float>();
+        // JumpInput = _jumpAction.WasPressedThisFrame();
+        // JumpRelease = _jumpAction.WasReleasedThisFrame();
+        // DownInput = _downAction.WasPressedThisFrame();
+        // BoostInput = _boostAction.WasPressedThisFrame();
+        if(Dpad != Vector2.zero) { DpadInputEvent?.Invoke(Dpad); }
         if(_jumpAction.WasPerformedThisFrame()) { JumpPressEvent?.Invoke(); }
         if(_jumpAction.WasReleasedThisFrame()) { JumpReleaseEvent?.Invoke(); }
         if(_boostAction.WasPerformedThisFrame()) { BoostPressEvent?.Invoke(); }
@@ -86,7 +89,7 @@ public class InputManager : MonoBehaviour, IDataPersistence
         if(_menuOpenAction.WasPerformedThisFrame()) { MenuOpenPressEvent?.Invoke(); }
         if(_quickResetAction.WasPerformedThisFrame()) { QuickResetPressEvent?.Invoke(); }
         MenuOpenInput = _menuOpenAction.WasPressedThisFrame();
-        QuickResetInput = _quickResetAction.WasPressedThisFrame();
+        // QuickResetInput = _quickResetAction.WasPressedThisFrame();
         UIMenuCloseInput = _menuCloseAction.WasPressedThisFrame();
         UIConfirm = _uiConfirm.WasPressedThisFrame();
         UICancel = _uiCancel.WasPressedThisFrame();

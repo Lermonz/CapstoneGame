@@ -104,7 +104,7 @@ public class Controller2D : MonoBehaviour
                         this.GetComponent<VFXPlayer>().DustEffect(-0.55f * _groundIsDown);
                     }
                     _setToBeGrounded = true;
-                    _vcamTransposer.m_DeadZoneHeight = 0;
+                    //_vcamTransposer.m_DeadZoneHeight = 0;
                 }
                 if (hit.collider.CompareTag("DestructableBlock"))
                 {
@@ -128,7 +128,7 @@ public class Controller2D : MonoBehaviour
             else
             {
                 _vertElseCount++;
-                _vcamTransposer.m_DeadZoneHeight = 0.1f;
+                //_vcamTransposer.m_DeadZoneHeight = 0.1f;
             }
         }
         if (_vertElseCount >= _vertRayCount && !PauseMenu.Instance._isPausedPhysics)
@@ -212,7 +212,7 @@ public class Controller2D : MonoBehaviour
                 _horzElseCount++;
             }
         }
-        if (_horzElseCount >= _horzRayCount - 2)
+        if (_horzElseCount >= _horzRayCount - 1)
         {
             _hitWall = false;
             _destructable = false;

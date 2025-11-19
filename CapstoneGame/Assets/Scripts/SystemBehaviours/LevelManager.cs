@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     bool _hasPlayedSoundEffect = false;
     bool _canReset = false;
     //Vector2 _checkpoint;
-    public Vector2 Checkpoint { get; private set; }
+    public Vector3 Checkpoint { get; private set; }
     public string _medalInLevel { get; private set; }
     [SerializeField] CheckNewMedal[] _medalSprites;
 
@@ -67,7 +67,7 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     public void SetRespawnPoint(Vector2 position, float offsetX = 0, float offsetY = 0)
     {
         Vector2 offset = new Vector2(offsetX, offsetY);
-        Checkpoint = position+offset;
+        Checkpoint = position + offset;
     }
     void OnQuickResetPress()
     {

@@ -22,20 +22,20 @@ public class Player : MonoBehaviour
 
     float _horizontalInput;
 
-    float _jumpVelocity = 14f;
-    float _doubleJumpVelocity = 10.5f;
+    float _jumpVelocity = 16.5f; //14 before
+    float _doubleJumpVelocity = 13f; //10.5 before
     float _downBoostVelocity = -24f;
-    float _baseAccel = 18f;
+    float _baseAccel = 15f;
     float _baseDecel = 20f;
-    float _baseAirDecel = 2.8f;
+    float _baseAirDecel = 10f;
     float _skidDecel = 40f;
     float _maxRunSpeed = 5.4f;
-    const float _gravity = -32f;
+    const float _gravity = -45f; //-32 before
     float _gravityMult = 1;
     bool _inBlackHole = false;
     float _blackHoleBaseStrength = 1.16f;
     float _terminalVelocity;
-    const float _termV = -18;
+    const float _termV = -25;
     Vector2 _wind;
     float _windMult = 1;
 
@@ -60,11 +60,12 @@ public class Player : MonoBehaviour
     float _grabbedAccel = 0.5f;
     GrabberBehavior _grabbedBy;
 
-    float _bounceVelocity = 16f;
+    float _bounceVelocity = 17.4f;
 
     bool _boostDeceling;
+    bool _cancelBoostDecel = false;
     float _boostSpeed = 11.5f;
-    float _boostDecel = 55f;
+    float _boostDecel = 75f;
 
     public bool _isGravityFlipped = false;
 
@@ -77,7 +78,11 @@ public class Player : MonoBehaviour
     bool _overrideXInput = false;
     bool _dead;
     bool _isPhilip;
+    bool _inHitlag;
     public Action SwapState;
+    private event Action BufferedInputs;
+    IEnumerator resetGravityCoroutine;
+    IEnumerator boostCoroutine;
 
     void Start()
     {
@@ -94,6 +99,7 @@ public class Player : MonoBehaviour
         SetCostume();
         LevelManager.Instance.SetRespawnPoint(this.transform.position);
         //Set Actions
+        InputManager.Instance.DpadInputEvent += OnDpadInput;
         InputManager.Instance.JumpPressEvent += OnJumpPress;
         InputManager.Instance.JumpReleaseEvent += OnJumpRelease;
         InputManager.Instance.BoostPressEvent += Boost;
@@ -103,6 +109,7 @@ public class Player : MonoBehaviour
     }
     void OnDestroy()
     {
+        InputManager.Instance.DpadInputEvent -= OnDpadInput;
         InputManager.Instance.JumpPressEvent -= OnJumpPress;
         InputManager.Instance.JumpReleaseEvent -= OnJumpRelease;
         InputManager.Instance.BoostPressEvent -= Boost;
@@ -132,6 +139,7 @@ public class Player : MonoBehaviour
         _canJump = true;
         _velocity.y = 0;
         _canDownBoost = false;
+        _cancelBoostDecel = true;
         if(!_canDoubleJump)
         {
             StopCoroutine(SpinCooldown(0));
@@ -141,23 +149,13 @@ public class Player : MonoBehaviour
     }
     void OnAirborne()
     {
-        if(_canJump) { StartCoroutine(CoyoteTime()); }
+        Debug.Log("Became Airborne");
+        if (_canJump) { StartCoroutine(CoyoteTime()); }
     }
-    void Update()
+    void OnDpadInput(Vector2 Dpad)
     {
-        _horizontalInput = _overrideXInput ? 0 : InputManager.Instance.Dpad.x;
-        float delta = Time.deltaTime;
-        _isCrouching = InputManager.Instance.Dpad.y < 0 && _controller._isGrounded && _canCrouch;
-        //Debug.Log("Dead: "+_dead);
-        if (!PauseMenu.Instance._isPausedPhysics)
-        {
-            _animator.SetBool("Crouch", _isCrouching);
-            _animator.SetBool("Running", _horizontalInput != 0 && _controller._isGrounded);
-            _animator.SetBool("Jumping", _velocity.y >= 0 && !_controller._isGrounded && !_dead);
-            _animator.SetBool("Falling", _velocity.y < 0 && !_controller._isGrounded && !_dead);
-        }
-        //_dpad = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if ((_horizontalInput > 0 && _renderer.flipX) || (_horizontalInput < 0 && !_renderer.flipX))
+        _isCrouching = Dpad.y < 0 && _controller._isGrounded && _canCrouch;
+        if ((Dpad.x > 0 && _renderer.flipX) || (Dpad.x < 0 && !_renderer.flipX))
         {
             _renderer.flipX = !_renderer.flipX;
             _cameraFollow.localPosition *= -1;
@@ -173,6 +171,21 @@ public class Player : MonoBehaviour
             _controller.RegularHurtbox();
             if (!_grabbedMode) { _windMult = 1f; }
         }
+    }
+    void Update()
+    {
+        _horizontalInput = _overrideXInput ? 0 : InputManager.Instance.Dpad.x;
+        float delta = Time.deltaTime;
+        _isCrouching = InputManager.Instance.Dpad.y < 0 && _controller._isGrounded && _canCrouch;
+        //Debug.Log("Dead: "+_dead);
+        if (!PauseMenu.Instance._isPausedPhysics)
+        {
+            _animator.SetBool("Crouch", _isCrouching);
+            _animator.SetBool("Running", _horizontalInput != 0 && _controller._isGrounded);
+            _animator.SetBool("Jumping", _velocity.y >= 0 && !_controller._isGrounded && !_dead);
+            _animator.SetBool("Falling", _velocity.y < 0 && !_controller._isGrounded && !_dead);
+        }
+        //_dpad = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         // if (_controller._isGrounded)
         // {
         //     _wind.y = 0;
@@ -188,11 +201,7 @@ public class Player : MonoBehaviour
             _wind.y = 0;
         }
         _velocity.x += _controller._conveyerSpeed * delta;
-        if (_boostDeceling)
-        {
-            Accelerate(ref _velocity.x, Mathf.Sign(_velocity.x), _boostDecel, delta, true);
-        }
-        else
+        if (!_boostDeceling)
         {
             // these are put in an else because otherwise they stack with boostdeceling and i dont want that
             // if not at max run speed yet, accelerate to max run speed
@@ -230,15 +239,15 @@ public class Player : MonoBehaviour
             }
         }
         //TREATING GRAVITY LIKE ACCELERATION
-        if (!_controller._isGrounded && !PauseMenu.Instance._isPaused && !_inBlackHole && !_dead && !_grabbedMode && !_teleporting && !_hasWon)
+        if (!_controller._isGrounded && !InputManager.Instance._freezeVelocity && !PauseMenu.Instance._isPaused && !_inBlackHole && !_dead && !_grabbedMode && !_teleporting && !_hasWon)
         {
             if (_isGravityFlipped ? _velocity.y < _terminalVelocity : _velocity.y > _terminalVelocity)
             {
-                Accelerate(ref _velocity.y, _gravityMult, _gravity, delta);
+                Accelerate(ref _velocity.y, _gravity, _gravityMult, delta);
             }
             if (_isGravityFlipped ? _velocity.y >= _terminalVelocity : _velocity.y <= _terminalVelocity)
             {
-                Accelerate(ref _velocity.y, _gravityMult, _gravity * 2, delta, true);
+                Accelerate(ref _velocity.y, _gravity * 2, _gravityMult, delta, true);
                 //_velocity.x -= _dpad.x * _baseAccel * delta;
             }
         }
@@ -254,13 +263,15 @@ public class Player : MonoBehaviour
         // when player hits wall they can bounce off of it at high enough speeds
         if (_controller._hitWall)
         {
+            _cancelBoostDecel = true;
             EndGrabbedMode();
-            if (Mathf.Abs(_velocity.x) > _maxRunSpeed * 1.5f && Mathf.Abs(_velocity.y) < 5)
+            if (Mathf.Abs(_velocity.x) > _maxRunSpeed * 1.8f && Mathf.Abs(_velocity.y) < 4)
             {
+                SetGravityTo();
                 _vfxPlayer.DustEffect(0, 0.05f * Mathf.Sign(_velocity.x), Mathf.Sign(_velocity.x));
-                _velocity.x = -_velocity.x * 0.4f;
                 _velocity.y = _isGravityFlipped ? -Mathf.Abs(_velocity.x) : Mathf.Abs(_velocity.x);
-                _velocity.y *= 0.9f; //scale bounce with gravity changes
+                _velocity.x = -_velocity.x * 0.5f;
+                _velocity.y *= 0.55f; //scale bounce with gravity changes
             }
             else
                 _velocity.x = Mathf.Clamp(_velocity.x, -5, 5);
@@ -278,11 +289,28 @@ public class Player : MonoBehaviour
         {
             _velocitySend = _velocity;
         }
-        if (_velocitySend.y != 0) { Debug.Log("velocity send:" + _velocitySend.y); }
+        //if (_velocitySend.y != 0) { Debug.Log("velocity send:" + _velocitySend.y); }
         _controller.Move(_velocitySend * delta);
+    }
+    IEnumerator HitLagCoroutine()
+    {
+        _inHitlag = true;
+        while (InputManager.Instance._hitLag)
+        {
+            yield return null;
+        }
+        BufferedInputs?.Invoke();
+        BufferedInputs = null;
+        _inHitlag = false;
     }
     void OnJumpPress()
     {
+        if(InputManager.Instance._hitLag)
+        {
+            BufferedInputs += OnJumpPress;
+            if (!_inHitlag) { StartCoroutine(HitLagCoroutine()); }
+            return;
+        }
         Debug.Log("Can Jump?" + _canJump);
         if (!_canJump) { return; }
         AkSoundEngine.PostEvent("Player_Jump", gameObject);
@@ -300,7 +328,14 @@ public class Player : MonoBehaviour
     }
     void Boost()
     {
-        if(!_canBoost) { return; }
+        if(InputManager.Instance._hitLag)
+        {
+            BufferedInputs += Boost;
+            if (!_inHitlag) { StartCoroutine(HitLagCoroutine()); }
+            return;
+        }
+        if (!_canBoost) { return; }
+        _cancelBoostDecel = false;
         float facingDirection = _renderer.flipX ? -1 : 1;
         EndGrabbedMode();
         if (_horizontalInput != 0)
@@ -322,14 +357,22 @@ public class Player : MonoBehaviour
         }
         _vfxPlayer.Boost_AfterImage(_renderer.flipX);
         _animator.Play("Player_Dash");
-        StartCoroutine(BoostCoroutine());
+        boostCoroutine = BoostCoroutine();
+        StartCoroutine(boostCoroutine);
     }
     void Spin()
     {
+        if(InputManager.Instance._hitLag)
+        {
+            BufferedInputs += Spin;
+            if (!_inHitlag) { StartCoroutine(HitLagCoroutine()); }
+            return;
+        }
         if(!_canSpin) { return; }
         EndGrabbedMode();
+        SetGravityTo();
         _isJumping = false;
-        Hitbox(1.5f, 0.8f);
+        Hitbox(1.4f, 0.6f);
         StartCoroutine(NotCrouchedFor(16));
         AkSoundEngine.PostEvent("Player_Attack", gameObject);
         _vfxPlayer.Spin_Sparkle();
@@ -360,12 +403,14 @@ public class Player : MonoBehaviour
     }
     IEnumerator BoostCoroutine() {
         _canBoost = false;
-        StartCoroutine(LockOut(6,false,false,true));
-        StartCoroutine(NegateGravityFor(12));
+        StartCoroutine(LockOut(6, false, false, true));
+        SetGravityTo(0.1f);
+        resetGravityCoroutine = ResetGravityAfterTime(12);
+        StartCoroutine(resetGravityCoroutine);
         StartCoroutine(OverrideXInput(9));
         _velocity.y = Mathf.Clamp(_velocity.y, -0.4f, 0.4f);
         yield return new WaitForSeconds(0.15f);
-        StartCoroutine(BoostDecelCoroutine(1,9));
+        StartCoroutine(BoostDecelCoroutine(3,5));
         StartCoroutine(BoostCooldown(70));
     }
     IEnumerator LockOut(int delay, bool ignoreSpinReset = false, bool ignoreDownBoostReset = false, bool ignoreBoostReset = false)
@@ -393,12 +438,18 @@ public class Player : MonoBehaviour
         //if (!ignoreBoostReset) { RegenerateBoost(); } 
         _canBoost = !ignoreBoostReset;
     }
-    IEnumerator NegateGravityFor(int delay) {
-        _gravityMult *= 0.125f;
-        for(int i = 0; i < delay; i++) {
+    IEnumerator ResetGravityAfterTime(int delay)
+    {
+        for (int i = 0; i < delay; i++)
+        {
             yield return null;
         }
-        _gravityMult *= 8f;
+        SetGravityTo(); 
+    }
+    void SetGravityTo(float amount = 1)
+    {
+        if (resetGravityCoroutine != null) { StopCoroutine(resetGravityCoroutine); Debug.Log("Coroutine Stopped"); }
+        _gravityMult = _isGravityFlipped ? -amount : amount;
     }
     IEnumerator BoostDecelCoroutine(int delay, int amount) {
         for(int i = 0; i < delay; i++) {
@@ -409,9 +460,12 @@ public class Player : MonoBehaviour
     }
     IEnumerator BoostDecelCoroutine(int amount) {
         for(int i = 0; i < amount; i++) {
+            if(_cancelBoostDecel) { amount = 0; }
+            Accelerate(ref _velocity.x, Mathf.Sign(_velocity.x), _boostDecel, Time.deltaTime, true);
             yield return null;
         }
         _boostDeceling = false;
+        _cancelBoostDecel = false;
     }
     IEnumerator SpinCooldown(float cooldown, bool specialChance = false)
     {
@@ -490,7 +544,8 @@ public class Player : MonoBehaviour
     }
     void Jump(float jumpVelocity)
     {
-        _velocity.y = jumpVelocity + (_isGravityFlipped ? -(Mathf.Abs(_velocity.x) * 0.125f + _spinBoost) : (Mathf.Abs(_velocity.x) * 0.125f + _spinBoost));
+        SetGravityTo();
+        _velocity.y = jumpVelocity + _spinBoost + Mathf.Abs(_velocity.x) * 0.2f * (_isGravityFlipped ? -1 : 1); 
         _specialJump = false;
         if (_spinBoost != 0)
         {
@@ -595,11 +650,13 @@ public class Player : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Boost"))
         {
+            _cancelBoostDecel = true;
             _isJumping = false;
             StartCoroutine(BoostObjectPull(other.gameObject.transform.position,
                 other.gameObject.GetComponent<BoostObjectBehaviour>().BoostInDirection()));
-            StartCoroutine(BoostDecelCoroutine(15, 9));
-            StartCoroutine(NegateGravityFor(19 * (int)Mathf.Abs(Mathf.Sin(Mathf.Deg2Rad * other.gameObject.transform.localEulerAngles.z))));
+            SetGravityTo(0.05f);
+            resetGravityCoroutine = ResetGravityAfterTime(21 * (int)Mathf.Abs(Mathf.Sin(Mathf.Deg2Rad * other.gameObject.transform.localEulerAngles.z)));
+            StartCoroutine(resetGravityCoroutine);
         }
         if (other.gameObject.CompareTag("Teleport") && _canTeleport)
         {
@@ -625,6 +682,10 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("ConfinerChange"))
         {
             other.GetComponent<ChangeConfiner>().ChangeCameraConfiner();
+        }
+        if (other.gameObject.CompareTag("CameraChange"))
+        {
+            other.GetComponent<ChangeCamera>().OnContact();
         }
     }
     void OnTriggerStay2D(Collider2D other)
@@ -656,15 +717,18 @@ public class Player : MonoBehaviour
     }
     IEnumerator BoostObjectPull(Vector3 position, Vector2 boost) {
         SetAllPlayerActions(false, false, false, false);
+        if(boostCoroutine!=null) { StopCoroutine(boostCoroutine); }
         float elapsedTime = 0;
-        float waitTime = 4f;
-        while(elapsedTime < waitTime) {
+        float waitTime = 3f;
+        while (elapsedTime < waitTime)
+        {
             transform.position = Vector3.Lerp(transform.position, position, (elapsedTime / (waitTime)));
             elapsedTime++;
             yield return null;
         }
+        transform.position = position;
         elapsedTime = 0;
-        waitTime = 2f;
+        waitTime = 4f;
         while(elapsedTime < waitTime) {
             InputManager.Instance._freezeVelocity = true;
             elapsedTime++;
@@ -673,6 +737,8 @@ public class Player : MonoBehaviour
         InputManager.Instance._freezeVelocity = false;
         SetAllPlayerActions();
         ForceVelocityToVector(boost);
+        _cancelBoostDecel = false;
+        StartCoroutine(BoostDecelCoroutine(1, 5));
 
     }
     // GRAVITY FIELD EXIT
@@ -702,9 +768,17 @@ public class Player : MonoBehaviour
         _inBlackHole = false;
             _blackHoleBaseStrength = 1.16f;
     }
-    void ForceVelocityToVector(Vector2 v) {
+    void ForceVelocityToVector(Vector2 v)
+    {
         AkSoundEngine.PostEvent("Boost_Object", gameObject);
         _velocity = v;
+        StartCoroutine(DoubleSpeedThenHalfSpeed());
+    }
+    IEnumerator DoubleSpeedThenHalfSpeed()
+    {
+        _velocity *= 2;
+        yield return null;
+        _velocity *= 0.5f;
     }
     void FlipGravity()
     {
@@ -712,7 +786,11 @@ public class Player : MonoBehaviour
         if (!_dontLockOut)
         {
             _velocity.y = 0;
-            if (this.gameObject.activeSelf) { StartCoroutine(NegateGravityFor(6)); }
+            if (this.gameObject.activeSelf) {
+                SetGravityTo(0.05f);
+                resetGravityCoroutine = ResetGravityAfterTime(6);
+                StartCoroutine(resetGravityCoroutine); 
+            }
         }
         else
         {
@@ -793,7 +871,8 @@ public class Player : MonoBehaviour
         _dead = false;
         GameBehaviour.Instance.SetPlayerDeath(_dead);
         _velocity = Vector2.zero;
-        this.transform.position = LevelManager.Instance.Checkpoint;
+        Vector2 checkpoint = LevelManager.Instance.Checkpoint;
+        this.transform.position = new Vector3(checkpoint.x, checkpoint.y, 10);
         StartCoroutine(ReturnPlayerControl());
         StartCoroutine(Invulnerability(90));
     }

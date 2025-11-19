@@ -27,11 +27,13 @@ public class TargetBehaviour : MonoBehaviour
         _animator.SetTrigger("Destroyed");
         Destroy(gameObject, 1f);
         InputManager.Instance._freezeVelocity = true;
-        for (int i = 0; i < 2; i++)
+        InputManager.Instance._hitLag = true;
+        for (int i = 0; i < 4; i++)
         {
             yield return null;
         }
         InputManager.Instance._freezeVelocity = false;
+        InputManager.Instance._hitLag = false;
         for (int i = 0; i < 2; i++)
         {
             yield return null;

@@ -21,7 +21,6 @@ public class DestructableBlockBehaviour : MonoBehaviour
     void Awake()
     {
         _size = this.transform.localScale;
-        this.transform.localScale = Vector3.one;
         _startPos = this.transform.position;
         shapeMod = _particles.shape;
         shapeMod.scale = _size;
