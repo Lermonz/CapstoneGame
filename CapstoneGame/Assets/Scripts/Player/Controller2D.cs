@@ -121,7 +121,7 @@ public class Controller2D : MonoBehaviour
                 {
                     _touchFallingBlock = true;
                     _fallingBlock = hit.collider.GetComponent<FallingBlock>();
-                }
+                }else {_touchFallingBlock = false;}
                 //Debug.Log("conveyer? " + _touchConveyer + " " + _conveyerSpeed);
 
             }

@@ -722,7 +722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0adb3b4ba98240a3ab7a00835f75540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.85
+  _speed: 0.55
   _offset: {x: 0, y: 0}
   _toFollow: {fileID: 5265245605752807761}
   _toFollowY: {fileID: 0}
@@ -823,7 +823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0adb3b4ba98240a3ab7a00835f75540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.55
+  _speed: 0.25
   _offset: {x: 0, y: 0}
   _toFollow: {fileID: 5265245605752807761}
   _toFollowY: {fileID: 0}
@@ -1394,11 +1394,11 @@ PrefabInstance:
       objectReference: {fileID: 8204685954570835149}
     - target: {fileID: 8082073715259999968, guid: 3b3fce2b06a9c45ba8cbe5743cb0768f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.353475
+      value: -2.3269243
       objectReference: {fileID: 0}
     - target: {fileID: 8082073715259999968, guid: 3b3fce2b06a9c45ba8cbe5743cb0768f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.89998996
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 8115047328140955686, guid: 3b3fce2b06a9c45ba8cbe5743cb0768f, type: 3}
       propertyPath: m_IsActive

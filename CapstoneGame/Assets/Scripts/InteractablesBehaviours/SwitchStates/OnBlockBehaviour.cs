@@ -1,12 +1,15 @@
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Animator))]
 public class OnBlockBehaviour : MonoBehaviour
 {
     BoxCollider2D _collider;
+    Animator _animator;
     void Start()
     {
         _collider = this.GetComponent<BoxCollider2D>();
+        _animator = this.GetComponent<Animator>();
         GlobalOnOffState.Instance.OnState += ActivateBlock;
         GlobalOnOffState.Instance.OffState += DeactivateBlock;
         ActivateBlock();
@@ -19,11 +22,11 @@ public class OnBlockBehaviour : MonoBehaviour
     void ActivateBlock()
     {
         _collider.enabled = true;
-        //animate turn on
+        _animator.SetTrigger("On");
     }
     void DeactivateBlock()
     {
         _collider.enabled = false;
-        // animate turn off
+        _animator.SetTrigger("Off");
     }
 }

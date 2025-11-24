@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class GlobalOnOffState : MonoBehaviour
@@ -22,6 +23,7 @@ public class GlobalOnOffState : MonoBehaviour
     void Start()
     {
         _player.SwapState += SwapStatesEvent;
+        StartCoroutine(StartState());
     }
     void OnDestroy()
     {
@@ -29,8 +31,15 @@ public class GlobalOnOffState : MonoBehaviour
     }
     void SwapStatesEvent()
     {
+        Debug.Log("SwapSttesEvent Complete");
         SwitchState = !SwitchState;
         if (SwitchState) { OnState?.Invoke(); }
         else { OffState?.Invoke(); }
+    }
+    IEnumerator StartState()
+    {
+        yield return new WaitForSeconds(0.05f);
+        SwitchState = false;
+        SwapStatesEvent();
     }
 }

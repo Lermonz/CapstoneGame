@@ -20324,6 +20324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _freezeVelocity: 0
+  _hitLag: 0
 --- !u!4 &1191958271
 Transform:
   m_ObjectHideFlags: 0
@@ -32960,27 +32961,27 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
+    m_PreInfinity: 1
+    m_PostInfinity: 1
     m_RotationOrder: 4
-  _startRotation: {x: 0, y: 0, z: 4}
-  _endRotation: {x: 0, y: 0, z: -12}
-  _speed: 0.35
+  _startRotation: {x: 0, y: 0, z: -4}
+  _endRotation: {x: 0, y: 0, z: 356}
+  _speed: 0.022
 --- !u!1 &1854061959
 GameObject:
   m_ObjectHideFlags: 0

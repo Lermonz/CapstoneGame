@@ -270,7 +270,7 @@ public class Player : MonoBehaviour
                 SetGravityTo();
                 _vfxPlayer.DustEffect(0, 0.05f * Mathf.Sign(_velocity.x), Mathf.Sign(_velocity.x));
                 _velocity.y = _isGravityFlipped ? -Mathf.Abs(_velocity.x) : Mathf.Abs(_velocity.x);
-                _velocity.x = -_velocity.x * 0.5f;
+                _velocity.x = -_velocity.x * 0.42f;
                 _velocity.y *= 0.55f; //scale bounce with gravity changes
             }
             else
@@ -475,7 +475,7 @@ public class Player : MonoBehaviour
         {
             if (specialChance && i < 3)
             {
-                _spinBoost = 2f;
+                _spinBoost = 2.5f;
             }
             else
                 _spinBoost = 0;
