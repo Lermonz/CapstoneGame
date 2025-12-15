@@ -26,10 +26,6 @@ public class FallingBlock : MonoBehaviour
         {
             MoveUp();
         }
-        if (this.transform.position.y > _home.y)
-        {
-            this.transform.position = _home;
-        }
         if (GameBehaviour.Instance.PlayerIsDead)
         {
             _resetOnRespawn = true;
@@ -53,6 +49,10 @@ public class FallingBlock : MonoBehaviour
     void MoveUp()
     {
         this.transform.Translate(_moveBy * Time.deltaTime * -0.75f);
+        if (Mathf.Sign(_home.y - this.transform.position.y) != Mathf.Sign(_fallSpeed))
+        {
+            this.transform.position = _home;
+        }
     }
     public void SetIsGoingDown(bool goingDown)
     {

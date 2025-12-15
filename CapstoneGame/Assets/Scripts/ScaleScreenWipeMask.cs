@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class ScaleScreenWipeMask : MonoBehaviour
     [SerializeField] float _time;
     [SerializeField] float _holdTime;
     [SerializeField] GameObject _parent;
+    public Action _StartSceneAnims;
     public void ScaleDown()
     {
         this.transform.localScale = Vector3.one*7;
@@ -30,7 +32,13 @@ public class ScaleScreenWipeMask : MonoBehaviour
         {
             yield return null;
         }
-        if (goAgain) { ScaleUp(); }
-        else{ _parent.SetActive(false); }
+        if (goAgain) { 
+            yield return null; 
+            ScaleUp(); 
+        }
+        else { 
+            _StartSceneAnims?.Invoke();
+            _parent.SetActive(false); 
+        }
     }
 }

@@ -6,6 +6,7 @@ public class EvilVoid : MonoBehaviour
 {
     [SerializeField] PortalBehaviour _exitPortal;
     [SerializeField] SpriteRenderer _renderer;
+    [SerializeField] Transform _player;
     [SerializeField] float _maxSpeed;
     [SerializeField] float _baseSpeed;
     [SerializeField] float _linearSpeed;
@@ -20,11 +21,10 @@ public class EvilVoid : MonoBehaviour
     float _acc = 0.1f;
     float _max;
     bool _resetOnRespawn;
-    Transform _player;
+
     void Start()
     {
         _renderer.material.SetFloat("_Size", this.transform.localScale.y);
-        _player = GameObject.Find("Player").transform;
     }
     void Update()
     {
@@ -50,7 +50,7 @@ public class EvilVoid : MonoBehaviour
             }
             else
             {
-                _speed -= _acc * 0.75f;
+                _speed -= _acc;
             }
         }
         else { _speed = -2; }

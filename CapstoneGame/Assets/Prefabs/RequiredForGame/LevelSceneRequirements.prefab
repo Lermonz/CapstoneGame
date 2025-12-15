@@ -116,6 +116,9 @@ MonoBehaviour:
   _medalSprites:
   - {fileID: 6185766562061275204}
   - {fileID: 65666317563733996}
+  _screenWipe: {fileID: 3170216655566973521}
+  _player: {fileID: 4233924842219197701}
+  _countdown: {fileID: 2585900476157939136}
 --- !u!114 &1151710003606278149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -700,7 +703,7 @@ SpriteRenderer:
   m_SortingLayer: -5
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 76aa156543254445d84e6f649cd4c10d, type: 3}
-  m_Color: {r: 0.51053494, g: 0.4117647, b: 0.8113208, a: 0.8}
+  m_Color: {r: 0.660548, g: 0.59180313, b: 0.8773585, a: 0.8}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -722,7 +725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0adb3b4ba98240a3ab7a00835f75540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.55
+  _speed: 0.25
   _offset: {x: 0, y: 0}
   _toFollow: {fileID: 5265245605752807761}
   _toFollowY: {fileID: 0}
@@ -823,7 +826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0adb3b4ba98240a3ab7a00835f75540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.25
+  _speed: 0
   _offset: {x: 0, y: 0}
   _toFollow: {fileID: 5265245605752807761}
   _toFollowY: {fileID: 0}
@@ -1394,11 +1397,11 @@ PrefabInstance:
       objectReference: {fileID: 8204685954570835149}
     - target: {fileID: 8082073715259999968, guid: 3b3fce2b06a9c45ba8cbe5743cb0768f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3269243
+      value: -22.321583
       objectReference: {fileID: 0}
     - target: {fileID: 8082073715259999968, guid: 3b3fce2b06a9c45ba8cbe5743cb0768f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8115047328140955686, guid: 3b3fce2b06a9c45ba8cbe5743cb0768f, type: 3}
       propertyPath: m_IsActive
@@ -1571,6 +1574,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7594856897538700293, guid: 8ee05fd044866443981128910a2d57bb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594856897538700293, guid: 8ee05fd044866443981128910a2d57bb, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -1581,6 +1588,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ee05fd044866443981128910a2d57bb, type: 3}
+--- !u!1 &4233924842219197701 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7594856897538700293, guid: 8ee05fd044866443981128910a2d57bb, type: 3}
+  m_PrefabInstance: {fileID: 6027986934332481792}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &5474692659714671415 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1755759378174976567, guid: 8ee05fd044866443981128910a2d57bb, type: 3}
@@ -1951,6 +1963,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Outset
       objectReference: {fileID: 0}
+    - target: {fileID: 5451964161146625764, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5698662209341265238, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2129,6 +2145,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7319819142225545896, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
   m_PrefabInstance: {fileID: 7515296445246100260}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2585900476157939136 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5451964161146625764, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+  m_PrefabInstance: {fileID: 7515296445246100260}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3170216655566973521 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4878925673537665397, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}
+  m_PrefabInstance: {fileID: 7515296445246100260}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62eb12cf59fe14a809d8ea4ae3218889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6185766562061275204 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4437157955325952864, guid: 99022f2fdf99243d7b2208cb5658a45f, type: 3}

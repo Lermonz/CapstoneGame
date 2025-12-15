@@ -16,7 +16,7 @@ public class CirclePath : MonoBehaviour
         {
             float x = radius.x * Mathf.Cos(angle);
             float y = radius.y * Mathf.Sin(angle);
-            _circleRenderer.SetPosition(i, new Vector3(x, y, 10));
+            _circleRenderer.SetPosition(i, new Vector3(x, y, 0));
             angle += 2 * Mathf.PI / _steps;
         }
     }

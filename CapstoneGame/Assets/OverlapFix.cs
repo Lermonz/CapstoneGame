@@ -17,7 +17,6 @@ public class OverlapFix : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("overlapfix trigger enter");
         if (collision.CompareTag("Player"))
         {
             escapeRight.GetComponent<BoxCollider2D>().enabled = true;

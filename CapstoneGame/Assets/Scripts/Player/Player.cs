@@ -22,15 +22,15 @@ public class Player : MonoBehaviour
 
     float _horizontalInput;
 
-    float _jumpVelocity = 16.5f; //14 before
-    float _doubleJumpVelocity = 13f; //10.5 before
+    float _jumpVelocity = 15.6f; //16.5 before
+    float _doubleJumpVelocity = 12.3f; //13 before
     float _downBoostVelocity = -24f;
-    float _baseAccel = 15f;
+    float _baseAccel = 22f;
     float _baseDecel = 20f;
     float _baseAirDecel = 10f;
     float _skidDecel = 40f;
-    float _maxRunSpeed = 5.4f;
-    const float _gravity = -45f; //-32 before
+    float _maxRunSpeed = 5f;
+    const float _gravity = -40f; //-45 before
     float _gravityMult = 1;
     bool _inBlackHole = false;
     float _blackHoleBaseStrength = 1.16f;
@@ -60,11 +60,11 @@ public class Player : MonoBehaviour
     float _grabbedAccel = 0.5f;
     GrabberBehavior _grabbedBy;
 
-    float _bounceVelocity = 17.4f;
+    float _bounceVelocity = 18.1f; //19.8f before
 
     bool _boostDeceling;
     bool _cancelBoostDecel = false;
-    float _boostSpeed = 11.5f;
+    float _boostSpeed = 11.9f;
     float _boostDecel = 75f;
 
     public bool _isGravityFlipped = false;
@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
     float _spinCooldown = 42f;
     float _doubleJumpCooldown = 9f;
     float _spinBoost = 0; // real value is in spinCoroutine
+    float _spinBoostValue = 2.5f;
     bool _specialJump;
 
     bool _jumpOverride = false;
@@ -96,7 +97,6 @@ public class Player : MonoBehaviour
         _dead = false;
         _invulnerable = false;
         _hasWon = false;
-        SetCostume();
         LevelManager.Instance.SetRespawnPoint(this.transform.position);
         //Set Actions
         InputManager.Instance.DpadInputEvent += OnDpadInput;
@@ -106,6 +106,7 @@ public class Player : MonoBehaviour
         InputManager.Instance.SpinPressEvent += Spin;
         _controller.BecameGrounded += OnGrounded;
         _controller.BecameAirBorne += OnAirborne;
+        _isPhilip = _renderer.material == GameBehaviour.Instance._philipMaterial;
     }
     void OnDestroy()
     {
@@ -114,27 +115,14 @@ public class Player : MonoBehaviour
         InputManager.Instance.JumpReleaseEvent -= OnJumpRelease;
         InputManager.Instance.BoostPressEvent -= Boost;
         InputManager.Instance.SpinPressEvent -= Spin;
-        _controller.BecameGrounded -= OnGrounded;
-        _controller.BecameAirBorne -= OnAirborne;
-    }
-    void SetCostume()
-    {
-        Debug.Log("Costume Texture Name: " + GameBehaviour.Instance.SelectedCostume.ToString());
-        if (GameBehaviour.Instance.SelectedCostume.ToString() == "philip (UnityEngine.Texture2D)")
+        if(_controller != null)
         {
-            _animator.runtimeAnimatorController = GameBehaviour.Instance._philipController;
-            _renderer.material = GameBehaviour.Instance._philipMaterial;
-            _isPhilip = true;
-        }
-        else
-        {
-            _renderer.material.SetTexture("_Palette", GameBehaviour.Instance.SelectedCostume);
+            _controller.BecameGrounded -= OnGrounded;
+            _controller.BecameAirBorne -= OnAirborne;
         }
     }
     void OnGrounded()
     {
-        Debug.Log("Became Grounded");
-        _wind.y = 0;
         _isJumping = false;
         _canJump = true;
         _velocity.y = 0;
@@ -149,7 +137,6 @@ public class Player : MonoBehaviour
     }
     void OnAirborne()
     {
-        Debug.Log("Became Airborne");
         if (_canJump) { StartCoroutine(CoyoteTime()); }
     }
     void OnDpadInput(Vector2 Dpad)
@@ -321,7 +308,7 @@ public class Player : MonoBehaviour
     {
         if(!_isJumping || _specialJump) { return; }
         _isJumping = false;
-        if (Mathf.Abs(_velocity.y) >= 7)
+        if (Mathf.Abs(_velocity.y) >= 7 && Mathf.Sign(_velocity.y) == Mathf.Sign(_jumpVelocity))
         {
             _velocity.y *= 0.4f;
         }
@@ -372,7 +359,7 @@ public class Player : MonoBehaviour
         EndGrabbedMode();
         SetGravityTo();
         _isJumping = false;
-        Hitbox(1.4f, 0.6f);
+        Hitbox(1.9f, 0.95f);
         StartCoroutine(NotCrouchedFor(16));
         AkSoundEngine.PostEvent("Player_Attack", gameObject);
         _vfxPlayer.Spin_Sparkle();
@@ -475,7 +462,7 @@ public class Player : MonoBehaviour
         {
             if (specialChance && i < 3)
             {
-                _spinBoost = 2.5f;
+                _spinBoost = _spinBoostValue;
             }
             else
                 _spinBoost = 0;
@@ -511,7 +498,6 @@ public class Player : MonoBehaviour
         _canBoost = true;
     }
     IEnumerator CoyoteTime() {
-        Debug.Log("CoyoteTime");
         yield return new WaitForSeconds(0.1f);
         if (!_controller._isGrounded) { _canJump = false; }
     }
@@ -709,6 +695,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Wind"))
         {
             _wind = other.gameObject.GetComponent<BoostObjectBehaviour>().BoostInDirection();
+            if(_controller._isGrounded) {_wind.y = 0;}
         }
     }
     public void PullTowards(Vector2 goal, float str) {
@@ -806,6 +793,8 @@ public class Player : MonoBehaviour
         _isGravityFlipped = !_isGravityFlipped;
         _controller._groundIsDown = -_controller._groundIsDown;
         _jumpVelocity = -_jumpVelocity;
+        _bounceVelocity = -_bounceVelocity;
+        _spinBoostValue = -_spinBoostValue;
         _doubleJumpVelocity = -_doubleJumpVelocity;
         _downBoostVelocity = -_downBoostVelocity;
         _gravityMult = -_gravityMult;

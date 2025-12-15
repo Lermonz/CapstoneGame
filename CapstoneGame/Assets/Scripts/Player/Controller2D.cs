@@ -92,7 +92,7 @@ public class Controller2D : MonoBehaviour
             if (hit)
             {
                 velocity.y = (hit.distance - boundInset) * directionY;
-                rayLength = hit.distance;
+                //rayLength = hit.distance + boundInset;
                 if (directionY == _groundIsDown)
                 {
                     _hitCeiling = true;
@@ -139,10 +139,10 @@ public class Controller2D : MonoBehaviour
             _destructable = false;
             _touchFallingBlock = false;
         }
-        if (_hitWall && _vertElseCount > 0)
-        {
-            _setToBeGrounded = false;
-        }
+        // if (_hitWall && _vertElseCount > 1)
+        // {
+        //     _setToBeGrounded = false; Debug.Log("Hit Wall cause not grounded");
+        // }
         if (_destructable)
         {
             TouchedDestructableBlock(ref _destructableBlock);
@@ -156,11 +156,6 @@ public class Controller2D : MonoBehaviour
             if (_fallingBlock.MoveDown())
             {
                 velocity.y -= boundInset + _fallingBlock._fallSpeed * Time.deltaTime;
-                Debug.Log("Descending player with plat");
-            }
-            else
-            {
-                Debug.Log("Player should not be moving");
             }
         }
         if (_fallingBlock != null)

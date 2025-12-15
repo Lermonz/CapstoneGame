@@ -22,14 +22,18 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     public int TargetsDestroyed { get => _targetsDestroyed; set {_targetsDestroyed = value;}}
     public bool _canExit;
     public bool _stopTimer;
-    public Action _countdownFinish;
+    public Action _countdownStart;
     public bool _countdownDone = false;
     bool _hasPlayedSoundEffect = false;
     bool _canReset = false;
     //Vector2 _checkpoint;
     public Vector3 Checkpoint { get; private set; }
     public string _medalInLevel { get; private set; }
+    [Header("Object References")]
     [SerializeField] CheckNewMedal[] _medalSprites;
+    [SerializeField] ScaleScreenWipeMask _screenWipe;
+    [SerializeField] GameObject _player;
+    [SerializeField] GameObject _countdown;
 
     void Awake()
     {
@@ -40,15 +44,31 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     }
     void Start()
     {
+        _player.SetActive(false);
+        if(_screenWipe != null)
+        {
+            _screenWipe._StartSceneAnims += OnFinishScreenWipe;
+        }
+        else
+        {
+            OnFinishScreenWipe();
+            Debug.Log("else triggered");
+        }
         Time.timeScale = 1f;
         _stopTimer = true;
         InputManager.Instance.DisablePlayerInput();
-        StartCoroutine(Countdown());
         InputManager.Instance.QuickResetPressEvent += OnQuickResetPress;
+    }
+    void OnFinishScreenWipe()
+    {
+        _player.SetActive(true);
+        Debug.Log(Time.frameCount+" OnFinishScreenWipe was invoked");
+        _countdownStart?.Invoke();
     }
     void OnDestroy()
     {
         InputManager.Instance.QuickResetPressEvent -= OnQuickResetPress;
+        _screenWipe._StartSceneAnims -= OnFinishScreenWipe;
     }
     public void HitTarget(Vector2 position, Vector2 offset)
     {
@@ -77,8 +97,7 @@ public class LevelManager : MonoBehaviour, IDataPersistence
     }
     IEnumerator Countdown()
     {
-        yield return new WaitForSeconds(2f);
-        _countdownFinish();
+        yield return new WaitForSeconds(1f);
         InputManager.Instance.EnablePlayerInput();
         InputManager.Instance._freezeVelocity = false;
         yield return new WaitForSeconds(0.5f);
@@ -90,9 +109,13 @@ public class LevelManager : MonoBehaviour, IDataPersistence
         _stopTimer = doIt;
         InputManager.Instance._freezeVelocity = doIt;
     }
-    public void StopTimer()
+    public void StopTimer(bool stopped = true)
     {
-        _stopTimer = true;
+        _stopTimer = stopped;
+    }
+    public void CanReset()
+    {
+        _canReset = true;
     }
     private void SetNewPB(float thisRunTime)
     {

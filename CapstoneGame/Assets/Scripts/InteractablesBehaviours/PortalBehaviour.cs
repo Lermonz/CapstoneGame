@@ -49,6 +49,11 @@ public class PortalBehaviour : MonoBehaviour
         }
         this.transform.localScale *= 0.8f;
     }
+    void PortalOpened()
+    {
+        // reorganize some of the update function into here as an Action
+        // make it so the default scale of the object is at much lower when the portal is closed, but returns to normal when opened
+    }
     void ResetTransform() {
         foreach(SpriteRenderer i in _renderers) {
             i.color = Color.white;
