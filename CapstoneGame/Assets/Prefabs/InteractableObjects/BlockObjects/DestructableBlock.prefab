@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 6404045970141659385}
   _collider: {fileID: 191576740568286777}
-  _size: {x: 2, y: 1}
+  _overlapCollider: {fileID: 8986689421202900324}
 --- !u!114 &171468839226887547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +67,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca8ba963da6e4e5b802f7141839f117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _size: {x: 1, y: 1}
   _renderer: {fileID: 6404045970141659385}
   _collider: {fileID: 191576740568286777}
   _outlineRenderer: {fileID: 872259217477187208}
@@ -5249,5 +5248,10 @@ PrefabInstance:
 --- !u!4 &8233448397698128440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1582475924731922705, guid: dfc1188480be848c8879dd6f7acecd98, type: 3}
+  m_PrefabInstance: {fileID: 7472880024040723241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &8986689421202900324 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1946156075464005197, guid: dfc1188480be848c8879dd6f7acecd98, type: 3}
   m_PrefabInstance: {fileID: 7472880024040723241}
   m_PrefabAsset: {fileID: 0}

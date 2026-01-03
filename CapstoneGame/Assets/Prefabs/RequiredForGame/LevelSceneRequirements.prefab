@@ -480,6 +480,7 @@ MonoBehaviour:
   - {fileID: 374532389670235183}
   startCamera: {fileID: 374532389670235183}
   winCamera: {fileID: 8150692635747462423}
+  _player: {fileID: 6831934184790683122}
 --- !u!1 &7095012158691963148
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,6 +1599,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 1755759378174976567, guid: 8ee05fd044866443981128910a2d57bb, type: 3}
   m_PrefabInstance: {fileID: 6027986934332481792}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6831934184790683122 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 966112127534140658, guid: 8ee05fd044866443981128910a2d57bb, type: 3}
+  m_PrefabInstance: {fileID: 6027986934332481792}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233924842219197701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: debb96be016bc4b499c967f39c7ad5bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7711335679196144195 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4081278157206668099, guid: 8ee05fd044866443981128910a2d57bb, type: 3}

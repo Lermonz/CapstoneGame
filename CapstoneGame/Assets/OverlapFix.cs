@@ -19,6 +19,7 @@ public class OverlapFix : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("Player in Overlap Zone");
             escapeRight.GetComponent<BoxCollider2D>().enabled = true;
             escapeLeft.GetComponent<BoxCollider2D>().enabled = true;
             if (_parent.gameObject.GetComponent<DestructableBlockBehaviour>() != null)

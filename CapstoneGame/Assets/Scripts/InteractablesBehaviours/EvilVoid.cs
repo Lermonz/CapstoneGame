@@ -50,7 +50,7 @@ public class EvilVoid : MonoBehaviour
             }
             else
             {
-                _speed -= _acc;
+                _speed -= _acc*3;
             }
         }
         else { _speed = -2; }

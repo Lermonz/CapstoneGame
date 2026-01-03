@@ -10,6 +10,7 @@ public class CameraManager : MonoBehaviour
     public CinemachineVirtualCamera winCamera;
     private CinemachineVirtualCamera currentCamera;
     public static CameraManager Instance;
+    [SerializeField] Player _player;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -27,7 +28,6 @@ public class CameraManager : MonoBehaviour
     public void SwitchCamera(CinemachineVirtualCamera newCamera)
     {
         if (newCamera == currentCamera) { return; }
-        Debug.Log("SetCamera");
         currentCamera = newCamera;
         SetCurrentCameraEnabled();
     }
@@ -44,6 +44,7 @@ public class CameraManager : MonoBehaviour
             if (_cameras[i] == currentCamera)
             {
                 _cameras[i].enabled = true;
+                _player.SetVcam(_cameras[i]);
             }
             else
             {

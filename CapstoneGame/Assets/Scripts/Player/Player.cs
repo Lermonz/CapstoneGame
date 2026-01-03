@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] SpriteRenderer _renderer;
     VFXPlayer _vfxPlayer;
     Animator _animator;
-    CinemachineVirtualCamera _vcam;
+    public CinemachineVirtualCamera _vcam;
+    CinemachineFramingTransposer _vcamTransposer;
     [SerializeField] Transform _cameraFollow;
 
     Vector2 _velocity;
@@ -22,15 +23,15 @@ public class Player : MonoBehaviour
 
     float _horizontalInput;
 
-    float _jumpVelocity = 15.6f; //16.5 before
-    float _doubleJumpVelocity = 12.3f; //13 before
+    float _jumpVelocity = 14.8f; //14.8 before
+    float _doubleJumpVelocity = 9.5f; //11.7 before
     float _downBoostVelocity = -24f;
     float _baseAccel = 22f;
     float _baseDecel = 20f;
     float _baseAirDecel = 10f;
     float _skidDecel = 40f;
     float _maxRunSpeed = 5f;
-    const float _gravity = -40f; //-45 before
+    const float _gravity = -36f; //-36 before
     float _gravityMult = 1;
     bool _inBlackHole = false;
     float _blackHoleBaseStrength = 1.16f;
@@ -60,7 +61,7 @@ public class Player : MonoBehaviour
     float _grabbedAccel = 0.5f;
     GrabberBehavior _grabbedBy;
 
-    float _bounceVelocity = 18.1f; //19.8f before
+    float _bounceVelocity = 17.2f; //17.2f before
 
     bool _boostDeceling;
     bool _cancelBoostDecel = false;
@@ -91,7 +92,6 @@ public class Player : MonoBehaviour
         //_renderer = GetComponent<SpriteRenderer>();
         _vfxPlayer = GetComponent<VFXPlayer>();
         _animator = GetComponent<Animator>();
-        _vcam = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
         //_particles = GetComponent<ParticleSystem>();
         _terminalVelocity = _termV;
         _dead = false;
@@ -128,6 +128,7 @@ public class Player : MonoBehaviour
         _velocity.y = 0;
         _canDownBoost = false;
         _cancelBoostDecel = true;
+        SetVcamTransposerDeadZoneHeight(0f,0.55f);
         if(!_canDoubleJump)
         {
             StopCoroutine(SpinCooldown(0));
@@ -137,7 +138,20 @@ public class Player : MonoBehaviour
     }
     void OnAirborne()
     {
+        SetVcamTransposerDeadZoneHeight(0.3f, 0.45f);
         if (_canJump) { StartCoroutine(CoyoteTime()); }
+    }
+    public void SetVcam(CinemachineVirtualCamera newCamera) 
+    {
+        _vcam = newCamera;
+        _vcamTransposer = _vcam.GetCinemachineComponent<CinemachineFramingTransposer>();
+        FlipCameraYBias(_isGravityFlipped);
+    }
+    void SetVcamTransposerDeadZoneHeight(float value = 0.1f, float screenY = 0.55f)
+    {
+        if(_isGravityFlipped) {screenY = 1 - screenY;}
+        _vcamTransposer.m_DeadZoneHeight = value;
+        _vcamTransposer.m_ScreenY = screenY;
     }
     void OnDpadInput(Vector2 Dpad)
     {
@@ -799,7 +813,14 @@ public class Player : MonoBehaviour
         _downBoostVelocity = -_downBoostVelocity;
         _gravityMult = -_gravityMult;
         _renderer.flipY = true;
+        FlipCameraYBias();
         this.GetComponent<BoxCollider2D>().offset = -this.GetComponent<BoxCollider2D>().offset;
+    }
+    void FlipCameraYBias(bool flipIt = true)
+    {
+        if(!flipIt) {return;}
+        _vcamTransposer.m_ScreenY = 1-_vcamTransposer.m_ScreenY;
+        _vcamTransposer.m_BiasY = -_vcamTransposer.m_BiasY;
     }
     void SetAllPlayerActions(bool spin = true, bool doubleJump = true, bool boost = true, bool fastFall = true) {
         _canSpin = spin;

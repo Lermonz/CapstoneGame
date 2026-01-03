@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: -84033857
   m_SortingLayer: -1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 939872515, guid: 2699f053a2bea4c129654789cf7cd7d8, type: 3}
+  m_Sprite: {fileID: -1555581309, guid: f436cb7c1c2204f34a7f9f730240616a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,7 +130,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.875}
+  m_Size: {x: 1, y: 0.9375}
   m_EdgeRadius: 0
 --- !u!50 &7904114041140916140
 Rigidbody2D:
@@ -172,7 +172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 7467173171829890824, guid: 19ca8e3fffdd546aea7d503345776d40, type: 3}
-  bulletSpeed: 2.5
+  bulletSpeed: 3
   bulletLifetime: 3.5
-  spawnTime: 3
+  spawnTime: 2.5
+  initialOffset: 0
   dustBurst: {fileID: 5188328491455108308, guid: 11d9131c2fa9b44b38f325ae1285222f, type: 3}

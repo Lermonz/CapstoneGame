@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TranslateOverTimeWithCurve : MonoBehaviour
 {
     [SerializeField] GameObject _movingObj;
     [SerializeField] AnimationCurve _curve;
+    [SerializeField] bool _resetOnEnable;
     public Vector3 _startPosition;
     public Vector3 _endPosition;
     [SerializeField] float _speed = 1;
@@ -15,6 +14,14 @@ public class TranslateOverTimeWithCurve : MonoBehaviour
         if (_movingObj == null)
         {
             _movingObj = this.gameObject;
+        }
+    }
+    void OnEnable()
+    {
+        if(_resetOnEnable)
+        {
+            _movingObj.transform.localPosition = _startPosition;
+            currentTime = 0;
         }
     }
     void Update()

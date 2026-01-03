@@ -256,7 +256,7 @@ public class Controller2D : MonoBehaviour
         Debug.DrawRay(_raycastOrigins.botleft, Vector2.left * 4, Color.red);
         float shortestDistance = escapeRight.distance < escapeLeft.distance ? escapeRight.distance : -escapeLeft.distance;
         velocity.x = shortestDistance;
-        Debug.Log("escapeRight: " + escapeRight.distance + "\nescapeLeft: " + escapeLeft.distance + "\nshortest: " + shortestDistance + "\nvelocity.x:" + velocity.x);
+        //Debug.Log("escapeRight: " + escapeRight.distance + "\nescapeLeft: " + escapeLeft.distance + "\nshortest: " + shortestDistance + "\nvelocity.x:" + velocity.x);
     }
     void RayCastUpdate()
     {

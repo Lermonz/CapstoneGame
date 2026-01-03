@@ -32,7 +32,7 @@ public class DestructableBlockBehaviour : MonoBehaviour
     {
         if (!_invulnerable)
         {
-            _renderer.color = new Color(0.75f, 0.75f, 0.79f, 1f);
+            _renderer.color = new Color(0.56f, 0.525f, 0.575f, 1f);
             StartCoroutine(Deactivate(0.3f));
             _beenTouched = true;
         }
@@ -79,6 +79,7 @@ public class DestructableBlockBehaviour : MonoBehaviour
     }
     IEnumerator CheckToRespawn()
     {
+        Debug.Log("checkOverlap "+_checkOverlap);
         while (_checkOverlap)
         {
             yield return new WaitForSeconds(0.1f);
