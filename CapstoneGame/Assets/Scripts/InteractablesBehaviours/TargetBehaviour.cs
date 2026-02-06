@@ -34,10 +34,10 @@ public class TargetBehaviour : MonoBehaviour
         }
         InputManager.Instance._freezeVelocity = false;
         InputManager.Instance._hitLag = false;
-        for (int i = 0; i < 2; i++)
-        {
-            yield return null;
-        }
+        // for (int i = 0; i < 2; i++)
+        // {
+        //     yield return null;
+        // }
         //this.transform.localEulerAngles = new Vector3(90, 0, 0);
         this.GetComponent<ParticleSystem>().Play();
 

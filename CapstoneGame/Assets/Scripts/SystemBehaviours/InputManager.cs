@@ -30,6 +30,7 @@ public class InputManager : MonoBehaviour, IDataPersistence
     public Vector2 MouseScrollInput { get; private set; }
     // Input Delegates //
     public Action<Vector2> DpadInputEvent;
+    public Action HorizontalPressEvent;
     public Action JumpPressEvent;
     public Action JumpReleaseEvent;
     public Action BoostPressEvent;
@@ -81,6 +82,7 @@ public class InputManager : MonoBehaviour, IDataPersistence
         // DownInput = _downAction.WasPressedThisFrame();
         // BoostInput = _boostAction.WasPressedThisFrame();
         if(Dpad != Vector2.zero) { DpadInputEvent?.Invoke(Dpad); }
+        if(_horizontalAction.WasPerformedThisFrame()) { HorizontalPressEvent?.Invoke(); }
         if(_jumpAction.WasPerformedThisFrame()) { JumpPressEvent?.Invoke(); }
         if(_jumpAction.WasReleasedThisFrame()) { JumpReleaseEvent?.Invoke(); }
         if(_boostAction.WasPerformedThisFrame()) { BoostPressEvent?.Invoke(); }

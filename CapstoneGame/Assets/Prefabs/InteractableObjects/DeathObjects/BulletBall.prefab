@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5669285839882993480}
-  - component: {fileID: 5400110527560272544}
-  - component: {fileID: 5463306205909155009}
-  - component: {fileID: 2632949536686708060}
+  - component: {fileID: 2007678886909538993}
+  - component: {fileID: 6149989417002389350}
+  - component: {fileID: 4011830870810417524}
   - component: {fileID: 1309208388474394727}
   - component: {fileID: 4028754202347402830}
   - component: {fileID: 4996508593428589498}
@@ -37,7 +37,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5400110527560272544
+--- !u!212 &2007678886909538993
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5463306205909155009
+--- !u!61 &6149989417002389350
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,7 +134,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.575, y: 0.575}
   m_EdgeRadius: 0
---- !u!50 &2632949536686708060
+--- !u!50 &4011830870810417524
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30630ef78450748d499a33747e9c2406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletSprite: {fileID: 0}
   speed: 2
   direction: 0
   lifetime: 5

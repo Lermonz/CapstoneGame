@@ -61,7 +61,7 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
     private void TotalGolds(GameData data) {
         _totalCount = 0;
         foreach(KeyValuePair<string, string> item in data.medals) {
-            if(item.Value == "gold") {
+            if(item.Value == "gold"||item.Value == "diamond"||item.Value == "developer") {
                 _totalCount++;
             }
         }
@@ -69,7 +69,7 @@ public class LevelButtonManager : MonoBehaviour, IDataPersistence
     private void TotalGoldsInWorld(GameData data) {
         _totalCount = 0;
         for(int i = 0+(_buttonData._world-1)*10; i < 10+(_buttonData._world-1)*10; i++) {
-            if(data.medals.ElementAt(i).Value == "gold") {
+            if(data.medals.ElementAt(i).Value == "gold"||data.medals.ElementAt(i).Value == "diamond"||data.medals.ElementAt(i).Value == "developer") {
                 _totalCount++;
             }
         }

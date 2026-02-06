@@ -30,7 +30,7 @@ public class Controller2D : MonoBehaviour
     public bool _hitWall;
     public bool _canDoubleJump;
     bool _destructable;
-    bool _touchConveyer;
+    public bool _touchConveyer {get; private set;}
     public float _conveyerSpeed;
     DestructableBlockBehaviour _destructableBlock;
     bool _touchFallingBlock;
@@ -44,6 +44,7 @@ public class Controller2D : MonoBehaviour
     RayCastOrigins _raycastOrigins;
     Vector2 _hurtboxSize;
     Vector2 _hurtboxOffset;
+    Vector2 _prevFrameVelocity;
     void Start()
     {
         _collider = GetComponent<BoxCollider2D>();
@@ -65,6 +66,7 @@ public class Controller2D : MonoBehaviour
             ReverseHorzCollision(ref velocity);
             VertCollisions(ref velocity);
             transform.Translate(velocity);
+            _prevFrameVelocity = velocity;
         }
     }
     public void PullTowards(Vector2 goal, float str)
@@ -104,19 +106,21 @@ public class Controller2D : MonoBehaviour
                         this.GetComponent<VFXPlayer>().DustEffect(-0.55f * _groundIsDown);
                     }
                     _setToBeGrounded = true;
+                    _conveyerSpeed = 0;
                     //_vcamTransposer.m_DeadZoneHeight = 0;
+                    if (hit.collider.CompareTag("Conveyer"))
+                    {
+                        _conveyerSpeed = hit.collider.GetComponent<ConveyerBehaviour>()._speed;
+                        _touchConveyer = true;
+                    }
                 }
                 if (hit.collider.CompareTag("DestructableBlock"))
                 {
                     _destructable = true;
                     _destructableBlock = hit.collider.GetComponent<DestructableBlockBehaviour>();
                 }
-                if (_touchConveyer) { _conveyerSpeed = hit.collider.GetComponent<ConveyerBehaviour>()._speed; }
-                else { _conveyerSpeed = 0; }
-                if (hit.collider.CompareTag("Conveyer"))
-                {
-                    _touchConveyer = true;
-                }
+                // if(_touchConveyer){_conveyerSpeed = hit.collider.GetComponent<ConveyerBehaviour>()._speed;}
+                // else { _conveyerSpeed = 0; }
                 if (hit.collider.CompareTag("FallingBlock"))
                 {
                     _touchFallingBlock = true;

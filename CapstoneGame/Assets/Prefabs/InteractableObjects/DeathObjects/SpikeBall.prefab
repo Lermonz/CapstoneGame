@@ -132,7 +132,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.23, y: 0.23}
+  m_Size: {x: 0.25, y: 0.25}
   m_EdgeRadius: 0.5
 --- !u!95 &8809968881361567818
 Animator:
@@ -308,6 +308,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 4
+  _resetOnEnable: 0
   _startPosition: {x: 0, y: 0, z: 0}
   _endPosition: {x: 0, y: -7, z: 0}
   _speed: 5

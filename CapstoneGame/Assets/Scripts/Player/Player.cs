@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 
     float _horizontalInput;
 
-    float _jumpVelocity = 14.8f; //14.8 before
+    float _jumpVelocity = 14.9f; //14.8 before
     float _doubleJumpVelocity = 9.5f; //11.7 before
     float _downBoostVelocity = -24f;
     float _baseAccel = 22f;
@@ -100,6 +100,7 @@ public class Player : MonoBehaviour
         LevelManager.Instance.SetRespawnPoint(this.transform.position);
         //Set Actions
         InputManager.Instance.DpadInputEvent += OnDpadInput;
+        InputManager.Instance.HorizontalPressEvent += OnHorizontalPress;
         InputManager.Instance.JumpPressEvent += OnJumpPress;
         InputManager.Instance.JumpReleaseEvent += OnJumpRelease;
         InputManager.Instance.BoostPressEvent += Boost;
@@ -111,6 +112,7 @@ public class Player : MonoBehaviour
     void OnDestroy()
     {
         InputManager.Instance.DpadInputEvent -= OnDpadInput;
+        InputManager.Instance.HorizontalPressEvent -= OnHorizontalPress;
         InputManager.Instance.JumpPressEvent -= OnJumpPress;
         InputManager.Instance.JumpReleaseEvent -= OnJumpRelease;
         InputManager.Instance.BoostPressEvent -= Boost;
@@ -163,12 +165,13 @@ public class Player : MonoBehaviour
         }
         if (_isCrouching)
         {
-            _horizontalInput = 0;
+            _overrideXInput = true;
             _controller.CrouchHurtbox();
             _windMult = 0.2f;
         }
         else
         {
+            _overrideXInput = false;
             _controller.RegularHurtbox();
             if (!_grabbedMode) { _windMult = 1f; }
         }
@@ -201,7 +204,16 @@ public class Player : MonoBehaviour
             _velocity.y = _wind.y > 0 ? -2 : 0;
             _wind.y = 0;
         }
-        _velocity.x += _controller._conveyerSpeed * delta;
+        if(_controller._touchConveyer)
+        {
+            Accelerate(ref _velocity.x, 1, _controller._conveyerSpeed, delta, false);
+        }
+        else if(_controller._conveyerSpeed != 0 && (_horizontalInput == 0 || Mathf.Sign(_horizontalInput) != Mathf.Sign(_controller._conveyerSpeed)))
+        {
+            Accelerate(ref _controller._conveyerSpeed, 1, _controller._conveyerSpeed*1.5f, delta, true);
+            if(Mathf.Abs(_controller._conveyerSpeed) <0.8f)  {_controller._conveyerSpeed = 0;}
+        }
+        //_velocity.x += _controller._conveyerSpeed * delta;
         if (!_boostDeceling)
         {
             // these are put in an else because otherwise they stack with boostdeceling and i dont want that
@@ -255,7 +267,6 @@ public class Player : MonoBehaviour
         if (_grabbedMode)
         {
             Accelerate(ref _velocity.y, 1, _grabbedSpeed, delta);
-            Debug.Log(_grabbedSpeed + " : " + _grabbedAccel);
             if (_grabbedSpeed < (_grabbedMaxSpeed + _wind.y))
             {
                 Accelerate(ref _grabbedSpeed, 1, _grabbedAccel, 1);
@@ -304,6 +315,10 @@ public class Player : MonoBehaviour
         BufferedInputs = null;
         _inHitlag = false;
     }
+    void OnHorizontalPress()
+    {
+        _controller._conveyerSpeed = 0;
+    }
     void OnJumpPress()
     {
         if(InputManager.Instance._hitLag)
@@ -312,7 +327,6 @@ public class Player : MonoBehaviour
             if (!_inHitlag) { StartCoroutine(HitLagCoroutine()); }
             return;
         }
-        Debug.Log("Can Jump?" + _canJump);
         if (!_canJump) { return; }
         AkSoundEngine.PostEvent("Player_Jump", gameObject);
         _isJumping = true;
@@ -545,7 +559,7 @@ public class Player : MonoBehaviour
     void Jump(float jumpVelocity)
     {
         SetGravityTo();
-        _velocity.y = jumpVelocity + _spinBoost + Mathf.Abs(_velocity.x) * 0.2f * (_isGravityFlipped ? -1 : 1); 
+        _velocity.y = jumpVelocity + _spinBoost + Mathf.Abs(_velocity.x) * 0.15f * (_isGravityFlipped ? -1 : 1); 
         _specialJump = false;
         if (_spinBoost != 0)
         {

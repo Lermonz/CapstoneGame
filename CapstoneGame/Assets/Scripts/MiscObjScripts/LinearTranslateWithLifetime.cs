@@ -22,7 +22,13 @@ public class LinearTranslateWithLifetime : MonoBehaviour
     {
         yield return new WaitForSeconds(lifetime);
         Instantiate(dustBurst, this.transform.position, this.transform.rotation);
-        Destroy(this.gameObject);
+        DestroySprite();
+        Destroy(this.gameObject,3f);
+    }
+    void DestroySprite()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
 
 }
